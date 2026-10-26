@@ -423,7 +423,7 @@
                 </div>
             </div>
 
-            <!-- Cleared Pre-filled Customer Info Form to prevent confusion -->
+            <!-- Cleared Pre-filled Customer Info Form -->
             <div class="p-4 bg-stone-50 border-b border-safari-beige/50 space-y-3">
                 <p class="text-[11px] font-bold text-stone-700 uppercase tracking-wide">PUDO Locker Shipping Details</p>
                 <input type="text" id="checkout-name" placeholder="Full Name" class="w-full text-xs bg-white border border-stone-300 rounded-lg p-2.5 focus:outline-none focus:border-safari-olive">
@@ -479,7 +479,6 @@
             </div>
 
             <div id="portal-dashboard-view" class="hidden space-y-6">
-                <!-- Corrected Company Name Greeting (Fixed typo from Kettiesgroete) -->
                 <div class="bg-safari-surface p-4 rounded-2xl border border-safari-beige">
                     <h4 class="text-sm font-black text-safari-espresso uppercase font-display">Welcome, Ketties & Goete Admin</h4>
                     <p class="text-[11px] text-stone-600 mt-0.5">Secure session active. Store statistics and orders overview.</p>
@@ -637,8 +636,6 @@
             });
 
             document.getElementById('cart-subtotal').innerText = `R ${subtotal.toFixed(2)}`;
-            
-            // Shipping Rule: Orders under R500 automatically apply R95 shipping. Over R500 is Free.
             let shipping = subtotal >= 500 ? 0 : 95;
             document.getElementById('cart-shipping').innerText = shipping === 0 ? 'Free (Over R500)' : 'R 95.00';
             document.getElementById('cart-total').innerText = `R ${(subtotal + shipping).toFixed(2)}`;
@@ -668,7 +665,6 @@
         function verifyAdminLogin() {
             const user = document.getElementById('admin-user').value.trim();
             const pass = document.getElementById('admin-pass').value.trim();
-            // Secure validation check
             if (user === 'admin' && pass === 'Ketties2026!') {
                 document.getElementById('portal-login-view').classList.add('hidden');
                 document.getElementById('portal-dashboard-view').classList.remove('hidden');
