@@ -371,7 +371,7 @@
         </div>
     </section>
 
-    <!-- SECTION: STAY IN THE LOOP (RESTORED) -->
+    <!-- SECTION: STAY IN THE LOOP -->
     <section class="py-12 bg-safari-base">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-safari-olivedark text-white rounded-3xl p-8 sm:p-12 text-center shadow-2xl relative overflow-hidden border border-safari-olive">
@@ -390,7 +390,7 @@
         </div>
     </section>
 
-    <!-- FULL 4-COLUMN BUSHVELD FOOTER (RESTORED) -->
+    <!-- FULL 4-COLUMN BUSHVELD FOOTER -->
     <footer class="bg-safari-espresso text-stone-400 border-t border-safari-olive/40 mt-auto">
         <div class="border-b border-stone-800 py-6 bg-stone-950/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
@@ -604,6 +604,13 @@
 
     <!-- Application JavaScript -->
     <script>
+        // Force scroll to top instantly upon opening/loading on mobile & desktop
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        if (window.location.hash) {
+            history.replaceState(null, null, window.location.pathname);
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+
         const products = [
             { id: 1, name: "Ou Kalahari Pro Slingshot", category: "slingshots", price: 390, rating: 4.9, reviews: 128, image: "https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600&auto=format&fit=crop", description: "Hand-carved African hardwood kettie with brass pin reinforcements and ergonomic grip." },
             { id: 2, name: "SA Eagle Tactical Metal Frame", category: "slingshots", price: 370, rating: 5.0, reviews: 94, image: "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?q=80&w=600&auto=format&fit=crop", description: "Aircraft-grade aluminum frame with fiber-optic target sights and fast band clamp mechanism." },
@@ -616,6 +623,7 @@
         let cart = JSON.parse(localStorage.getItem('ketties_cart')) || [];
 
         document.addEventListener('DOMContentLoaded', () => {
+            window.scrollTo({ top: 0, behavior: 'instant' });
             lucide.createIcons();
             renderProducts('all');
             updateCartUI();
