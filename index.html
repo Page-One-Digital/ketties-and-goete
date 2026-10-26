@@ -371,37 +371,130 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- SECTION: STAY IN THE LOOP (RESTORED) -->
+    <section class="py-12 bg-safari-base">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-safari-olivedark text-white rounded-3xl p-8 sm:p-12 text-center shadow-2xl relative overflow-hidden border border-safari-olive">
+                <span class="text-amber-300 font-bold uppercase tracking-widest text-[10px]">JOIN THE ADVENTURE</span>
+                <h2 class="text-3xl sm:text-5xl font-black tracking-wider text-white mt-2 uppercase font-display">STAY IN THE LOOP</h2>
+                <p class="text-stone-300 text-xs sm:text-sm max-w-xl mx-auto mt-3">
+                    Subscribe to our newsletter to receive notification on brand new slingshot releases, winter combo launches, and precision targeting guides!
+                </p>
+                <form onsubmit="handleNewsletter(event)" class="mt-8 max-w-md mx-auto flex flex-col sm:flex-row gap-3">
+                    <input type="email" required placeholder="Your email address" class="flex-1 bg-white border border-stone-300 rounded-full px-5 py-3 text-xs font-medium text-stone-900 focus:outline-none focus:ring-2 focus:ring-safari-terracotta">
+                    <button type="submit" class="px-8 py-3 rounded-full bg-safari-espresso hover:bg-stone-900 text-white font-black text-xs uppercase tracking-widest transition-all shadow-md font-display">
+                        SUBSCRIBE
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FULL 4-COLUMN BUSHVELD FOOTER (RESTORED) -->
     <footer class="bg-safari-espresso text-stone-400 border-t border-safari-olive/40 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-xs">
-                <div>
-                    <h4 class="text-white font-black uppercase tracking-wider text-xs font-display mb-3">KETTIES & GOETE</h4>
-                    <p class="text-stone-400 leading-relaxed">Premium South African Shooting Gear Built for Family Adventures. Made to Last.</p>
+        <div class="border-b border-stone-800 py-6 bg-stone-950/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full border border-amber-400/80 bg-[#F4F2EC] flex items-center justify-center overflow-hidden p-0.5 shrink-0">
+                        <svg viewBox="0 0 200 200" class="w-full h-full">
+                            <circle cx="100" cy="100" r="95" fill="#F4F2EC" stroke="#4B5320" stroke-width="6"/>
+                            <circle cx="100" cy="100" r="86" fill="none" stroke="#2D2B28" stroke-width="2"/>
+                            <path id="arch-text-footer" d="M 30,105 A 70,70 0 0,1 170,105" fill="none"/>
+                            <text font-family="'Montserrat', sans-serif" font-weight="900" font-size="18" fill="#4B5320" letter-spacing="2">
+                                <textPath href="#arch-text-footer" startOffset="50%" text-anchor="middle">KETTIES &amp; GOETE</textPath>
+                            </text>
+                            <polygon points="25,145 60,100 85,145" fill="#C5B9AB" opacity="0.6"/>
+                            <polygon points="115,145 145,95 175,145" fill="#C5B9AB" opacity="0.6"/>
+                            <polygon points="35,145 45,118 55,145" fill="#4B5320"/>
+                            <polygon points="148,145 156,122 164,145" fill="#4B5320"/>
+                            <g transform="translate(100, 108)">
+                                <polygon points="0,-32 5,-20 -5,-20" fill="#A35C3E"/>
+                                <polygon points="0,32 5,20 -5,20" fill="#A35C3E"/>
+                                <polygon points="-32,0 -20,5 -20,-5" fill="#A35C3E"/>
+                                <polygon points="32,0 20,5 20,-5" fill="#A35C3E"/>
+                                <path d="M -14,-18 L -14,-34 M 14,-18 L 14,-34" stroke="#2D2B28" stroke-width="6" stroke-linecap="square"/>
+                                <path d="M -20,-34 L -8,-34 M 8,-34 L 20,-34" stroke="#2D2B28" stroke-width="3"/>
+                                <path d="M -7,18 C -7,32 7,32 7,18" stroke="#2D2B28" stroke-width="5" fill="none"/>
+                                <circle cx="0" cy="0" r="22" fill="#F4F2EC" stroke="#2D2B28" stroke-width="3.5"/>
+                                <text x="0" y="6" font-family="'Montserrat', sans-serif" font-weight="900" font-size="14" fill="#A35C3E" text-anchor="middle">K&amp;G</text>
+                            </g>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="text-lg font-black text-white tracking-wider uppercase font-display">KETTIES & GOETE</span>
+                        <p class="text-[10px] text-stone-400 font-medium">Premium South African Shooting Gear Since May 2026.</p>
+                    </div>
                 </div>
-                <div>
-                    <h4 class="text-white font-black uppercase tracking-wider text-xs font-display mb-3">QUICK LINKS</h4>
-                    <ul class="space-y-2 text-stone-400">
-                        <li><a href="#catalog" class="hover:text-amber-400 transition-colors">Shop Catalog</a></li>
-                        <li><a href="#combos" class="hover:text-amber-400 transition-colors">Combo Specials</a></li>
-                        <li><a href="#" onclick="openPortal()" class="text-amber-400 font-bold hover:underline">Management Portal</a></li>
-                    </ul>
+                <div class="flex items-center space-x-2 text-xs text-stone-300 font-bold">
+                    <i data-lucide="shield" class="w-4 h-4 text-amber-400"></i>
+                    <span>Built For Family Adventures & Outdoors. Made To Last.</span>
                 </div>
-                <div>
-                    <h4 class="text-white font-black uppercase tracking-wider text-xs font-display mb-3">CUSTOMER SERVICE</h4>
-                    <ul class="space-y-2 text-stone-400">
-                        <li><a href="#" onclick="alert('Returns Policy: 30-day money back guarantee.')" class="hover:text-amber-400 transition-colors">Returns & Exchange</a></li>
-                        <li><a href="#" onclick="alert('PUDO & Courier Guy: Free national delivery on orders over R500.')" class="hover:text-amber-400 transition-colors">Shipping Information</a></li>
-                    </ul>
+                <div class="flex items-center space-x-3 text-[11px]">
+                    <span class="px-3 py-1 rounded bg-stone-900 border border-stone-800 text-stone-300">✓ 100% Secure Payments</span>
+                    <span class="px-3 py-1 rounded bg-stone-900 border border-stone-800 text-stone-300">ZA South African Pride</span>
                 </div>
-                <div>
-                    <h4 class="text-white font-black uppercase tracking-wider text-xs font-display mb-3">CONTACT</h4>
-                    <p class="text-stone-400 text-[11px] space-y-1">
-                        <span>WhatsApp: 071 870 1626</span><br>
-                        <span>Email: KettiesEnGoete@gmail.com</span><br>
-                        <span>Pretoria, Gauteng, South Africa</span>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 text-xs">
+                
+                <!-- Col 1: THE K&G STORY -->
+                <div class="space-y-4">
+                    <h4 class="text-white font-black uppercase tracking-wider text-xs font-display">THE K&G STORY</h4>
+                    <p class="text-stone-400 leading-relaxed">
+                        At Ketties & Goete, we believe in restoring the magic of backyard family adventures, teaching youngsters precision target shooting safely, and making memories that endure in the South African veld.
                     </p>
+                    <div class="flex items-center space-x-3 pt-2">
+                        <a href="https://facebook.com" target="_blank" class="w-8 h-8 rounded-full bg-stone-800 hover:bg-safari-olive text-white flex items-center justify-center transition-all">
+                            <i data-lucide="facebook" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://wa.me/27718701626" target="_blank" class="w-8 h-8 rounded-full bg-stone-800 hover:bg-safari-olive text-white flex items-center justify-center transition-all">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        </a>
+                    </div>
                 </div>
+
+                <!-- Col 2: QUICK LINKS -->
+                <div class="space-y-3">
+                    <h4 class="text-white font-black uppercase tracking-wider text-xs font-display">QUICK LINKS</h4>
+                    <ul class="space-y-2 text-stone-400 font-medium">
+                        <li><a href="#catalog" class="hover:text-amber-400 transition-colors">Shop Slingshots</a></li>
+                        <li><a href="#catalog" class="hover:text-amber-400 transition-colors">Ammunition (Clay/Steel)</a></li>
+                        <li><a href="#catalog" class="hover:text-amber-400 transition-colors">Bands & Band Sets</a></li>
+                        <li><a href="#heritage" class="hover:text-amber-400 transition-colors">Heritage & Accuracy Blogs</a></li>
+                        <li><a href="#" onclick="openPortal()" class="text-amber-400 font-bold hover:underline flex items-center space-x-1"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i><span>Store Management Portal</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: CUSTOMER SERVICE -->
+                <div class="space-y-3">
+                    <h4 class="text-white font-black uppercase tracking-wider text-xs font-display">CUSTOMER SERVICE</h4>
+                    <ul class="space-y-2 text-stone-400 font-medium">
+                        <li><a href="#" onclick="alert('Returns Policy: 30-day money back guarantee on all unused slingshots.')" class="hover:text-amber-400 transition-colors">Returns Policy & Exchange</a></li>
+                        <li><a href="#" onclick="alert('PUDO & Courier Guy Delivery: Free delivery nationwide for orders over R500.')" class="hover:text-amber-400 transition-colors">Shipping & Locker Delivery</a></li>
+                        <li><a href="#" onclick="alert('Terms & Conditions applied.')" class="hover:text-amber-400 transition-colors">Terms & Conditions</a></li>
+                        <li><a href="#" onclick="alert('Privacy Policy: Your data is protected.')" class="hover:text-amber-400 transition-colors">Privacy Statement</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: STAY IN THE VELD -->
+                <div class="space-y-4">
+                    <h4 class="text-white font-black uppercase tracking-wider text-xs font-display">STAY IN THE VELD</h4>
+                    <p class="text-stone-400 leading-relaxed">
+                        Subscribe to receive winter combo launches, exclusive product drafts, and outdoor tips.
+                    </p>
+                    <form onsubmit="handleNewsletter(event)" class="flex gap-2">
+                        <input type="email" required placeholder="Your email address" class="w-full bg-stone-900 border border-stone-800 rounded-lg px-3 py-2 text-xs text-stone-200 focus:outline-none focus:border-safari-olive">
+                        <button type="submit" class="bg-safari-olive hover:bg-safari-olivedark text-white font-bold px-4 py-2 rounded-lg text-xs font-display">Join</button>
+                    </form>
+                    <div class="pt-2 space-y-1.5 text-stone-400 text-[11px]">
+                        <p class="flex items-center space-x-2"><i data-lucide="phone" class="w-3.5 h-3.5 text-amber-400"></i><span>071 870 1626 (WhatsApp)</span></p>
+                        <p class="flex items-center space-x-2"><i data-lucide="mail" class="w-3.5 h-3.5 text-amber-400"></i><span>KettiesEnGoete@gmail.com</span></p>
+                        <p class="flex items-center space-x-2"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-400"></i><span>Pretoria, Gauteng, South Africa</span></p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </footer>
@@ -647,6 +740,12 @@
 
         function toggleMobileMenu() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function handleNewsletter(e) {
+            e.preventDefault();
+            e.target.reset();
+            showNotification('Subscribed! 🇿🇦', 'Thank you for joining Ketties & Goete.');
         }
 
         function openPortal() {
