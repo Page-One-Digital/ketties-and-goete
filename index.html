@@ -22,6 +22,9 @@
                         oliveCard: '#3B422A',
                         brandBeige: '#D4C5B9',
                         brandBeigeLight: '#E8DFD8',
+                    },
+                    animation: {
+                        'spin-fast': 'spin 1s linear infinite',
                     }
                 }
             }
@@ -64,9 +67,14 @@
     <!-- Main Content Centered -->
     <main class="w-full max-w-4xl mx-auto px-6 py-12 my-auto text-center z-10 space-y-8">
         
-        <!-- Larger Under Construction Notice Badge -->
+        <!-- Under Construction Notice Badge with Fast-Rotating Slingshot Icon -->
         <div class="inline-flex items-center space-x-3 px-6 py-3 rounded-2xl earth-card text-[#D4C5B9] text-sm sm:text-base font-bold uppercase tracking-wider border border-[#D4C5B9]/40 shadow-xl">
-            <i data-lucide="wrench" class="w-5 h-5 animate-spin text-[#D4C5B9]"></i>
+            <!-- Custom Slingshot Icon SVG with Fast Spin Animation -->
+            <svg class="w-5 h-5 text-[#D4C5B9] animate-spin-fast origin-center" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21V12" />
+                <path d="M7 4L12 12L17 4" />
+                <path d="M6.5 7.5H17.5" />
+            </svg>
             <span>Website Currently Under Construction</span>
         </div>
 
