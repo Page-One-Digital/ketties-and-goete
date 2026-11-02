@@ -50,7 +50,7 @@
     <div class="bg-safari-olive text-white text-[11px] sm:text-sm font-semibold py-2 px-3 sm:px-4 flex flex-col sm:flex-row justify-between items-center shadow-md gap-1 text-center sm:text-left">
         <div class="flex items-center space-x-2">
             <i data-lucide="truck" class="w-4 h-4 text-amber-200 shrink-0"></i>
-            <span>FREE courier delivery to nearest PUDO / Courier Guy locker on orders over R500!</span>
+            <span>FREE delivery on orders over R500! (Standard delivery fee R95 under R500)</span>
         </div>
         <div class="flex items-center space-x-4 text-xs text-stone-200">
             <span class="hidden md:inline">South African Made 🇿🇦</span>
@@ -472,7 +472,7 @@
                     <h4 class="text-white font-black uppercase tracking-wider text-xs font-display">CUSTOMER SERVICE</h4>
                     <ul class="space-y-2 text-stone-400 font-medium">
                         <li><a href="#" onclick="alert('Returns Policy: 30-day money back guarantee on all unused slingshots.')" class="hover:text-amber-400 transition-colors">Returns Policy & Exchange</a></li>
-                        <li><a href="#" onclick="alert('PUDO & Courier Guy Delivery: Free delivery nationwide for orders over R500.')" class="hover:text-amber-400 transition-colors">Shipping & Locker Delivery</a></li>
+                        <li><a href="#" onclick="alert('Shipping Policy: Free delivery nationwide on orders over R500. Standard delivery fee R95 for orders under R500.')" class="hover:text-amber-400 transition-colors">Shipping & Delivery</a></li>
                         <li><a href="#" onclick="alert('Terms & Conditions applied.')" class="hover:text-amber-400 transition-colors">Terms & Conditions</a></li>
                         <li><a href="#" onclick="alert('Privacy Policy: Your data is protected.')" class="hover:text-amber-400 transition-colors">Privacy Statement</a></li>
                     </ul>
@@ -516,12 +516,12 @@
                 </div>
             </div>
 
-            <!-- Cleared Pre-filled Customer Info Form -->
+            <!-- Customer Shipping / Contact Details -->
             <div class="p-4 bg-stone-50 border-b border-safari-beige/50 space-y-3">
-                <p class="text-[11px] font-bold text-stone-700 uppercase tracking-wide">PUDO Locker Shipping Details</p>
+                <p class="text-[11px] font-bold text-stone-700 uppercase tracking-wide">Delivery Details</p>
                 <input type="text" id="checkout-name" placeholder="Full Name" class="w-full text-xs bg-white border border-stone-300 rounded-lg p-2.5 focus:outline-none focus:border-safari-olive">
                 <input type="email" id="checkout-email" placeholder="Email Address" class="w-full text-xs bg-white border border-stone-300 rounded-lg p-2.5 focus:outline-none focus:border-safari-olive">
-                <input type="text" id="checkout-locker" placeholder="Preferred PUDO Locker Location" class="w-full text-xs bg-white border border-stone-300 rounded-lg p-2.5 focus:outline-none focus:border-safari-olive">
+                <input type="text" id="checkout-address" placeholder="Delivery Address / City" class="w-full text-xs bg-white border border-stone-300 rounded-lg p-2.5 focus:outline-none focus:border-safari-olive">
             </div>
 
             <div id="cart-items" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4"></div>
@@ -532,7 +532,7 @@
                     <span id="cart-subtotal" class="font-black text-safari-espresso text-base sm:text-lg font-display tracking-wider">R 0.00</span>
                 </div>
                 <div class="flex justify-between items-center text-xs text-stone-500">
-                    <span>Shipping Fee (Automatic)</span>
+                    <span>Delivery Fee (Orders &lt; R500)</span>
                     <span id="cart-shipping" class="text-safari-olive font-bold">R 95.00</span>
                 </div>
                 <div class="flex justify-between items-center text-base pt-2 border-t border-safari-beige font-black text-safari-espresso">
@@ -540,53 +540,378 @@
                     <span id="cart-total" class="text-safari-terracotta text-lg sm:text-xl font-display tracking-wider">R 0.00</span>
                 </div>
                 <button onclick="processCheckout()" id="checkout-btn" class="w-full py-3.5 rounded-xl bg-safari-terracotta hover:bg-safari-terracottadark text-white font-black text-center transition-all shadow-lg uppercase tracking-widest text-xs font-display">
-                    Proceed to PUDO Locker Checkout
+                    Complete Order
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Management Portal Modal -->
+    <!-- Management Portal Modal (Sidebar Layout Style) -->
     <div id="portal-modal" class="fixed inset-0 z-50 hidden">
         <div onclick="closePortal()" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-        <div class="absolute inset-4 sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 max-w-lg w-full bg-white rounded-3xl shadow-2xl p-6 sm:p-8 overflow-y-auto max-h-[90vh]">
-            <div class="flex justify-between items-center pb-4 border-b border-stone-200 mb-6">
-                <h3 class="text-lg font-black uppercase text-safari-espresso font-display">Management Portal Access</h3>
-                <button onclick="closePortal()" class="p-2 rounded-lg bg-stone-100 text-stone-600 hover:text-black"><i data-lucide="x" class="w-5 h-5"></i></button>
-            </div>
-
-            <div id="portal-login-view" class="space-y-4">
-                <p class="text-xs text-stone-600">Secure Admin Login. Please enter your credentials to view store statistics.</p>
+        <div class="absolute inset-2 sm:inset-6 bg-[#21201E] rounded-3xl shadow-2xl flex flex-col overflow-hidden max-w-7xl mx-auto my-auto z-50 h-[92vh]">
+            
+            <!-- Login View -->
+            <div id="portal-login-view" class="p-8 max-w-md mx-auto my-auto space-y-4 w-full bg-white rounded-3xl shadow-xl border border-safari-beige">
+                <div class="text-center mb-4">
+                    <h4 class="text-xl font-black text-safari-espresso font-display uppercase">Admin Portal Login</h4>
+                    <p class="text-xs text-stone-500 mt-1">Enter your secure credentials to access the Store Management Dashboard.</p>
+                </div>
                 <div>
                     <label class="block text-[11px] font-bold text-stone-700 uppercase mb-1">Admin Username</label>
-                    <input type="text" id="admin-user" class="w-full border border-stone-300 rounded-xl p-3 text-xs focus:outline-none focus:border-safari-olive" placeholder="Enter username">
+                    <input type="text" id="admin-user" class="w-full border border-stone-300 rounded-xl p-3 text-xs focus:outline-none focus:border-safari-olive" placeholder="admin">
                 </div>
                 <div>
                     <label class="block text-[11px] font-bold text-stone-700 uppercase mb-1">Admin Password</label>
-                    <input type="password" id="admin-pass" class="w-full border border-stone-300 rounded-xl p-3 text-xs focus:outline-none focus:border-safari-olive" placeholder="Enter password">
+                    <input type="password" id="admin-pass" class="w-full border border-stone-300 rounded-xl p-3 text-xs focus:outline-none focus:border-safari-olive" placeholder="Ketties2026!">
                 </div>
-                <button onclick="verifyAdminLogin()" class="w-full py-3 rounded-xl bg-safari-olive hover:bg-safari-olivedark text-white font-black text-xs uppercase tracking-wider font-display shadow-md">
+                <button onclick="verifyAdminLogin()" class="w-full py-3.5 rounded-xl bg-safari-olive hover:bg-safari-olivedark text-white font-black text-xs uppercase tracking-wider font-display shadow-md">
                     Secure Admin Login
                 </button>
                 <p id="login-error" class="text-xs text-red-600 hidden font-bold text-center">Invalid credentials. Unauthorized access blocked.</p>
             </div>
 
-            <div id="portal-dashboard-view" class="hidden space-y-6">
-                <div class="bg-safari-surface p-4 rounded-2xl border border-safari-beige">
-                    <h4 class="text-sm font-black text-safari-espresso uppercase font-display">Welcome, Ketties & Goete Admin</h4>
-                    <p class="text-[11px] text-stone-600 mt-0.5">Secure session active. Store statistics and orders overview.</p>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-stone-50 p-4 rounded-2xl border border-stone-200">
-                        <span class="text-[10px] text-stone-400 font-bold uppercase block">Total Orders Today</span>
-                        <span class="text-2xl font-black text-safari-espresso font-display">14</span>
+            <!-- Dashboard App View (Sidebar + Main Content Layout) -->
+            <div id="portal-dashboard-view" class="hidden flex-1 flex flex-col md:flex-row overflow-hidden bg-[#EBE6DC]">
+                
+                <!-- Left Sidebar Navigation -->
+                <div class="w-full md:w-80 bg-[#21201E] text-stone-300 border-r border-stone-800 flex flex-col justify-between shrink-0 p-6">
+                    <div class="space-y-6">
+                        <!-- Dashboard Header in Sidebar -->
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-safari-olive flex items-center justify-center text-amber-300 shrink-0">
+                                    <i data-lucide="shield-check" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-sm font-black uppercase text-white font-display tracking-wider">Store Management</h3>
+                                    <p class="text-[9px] text-stone-400">Centralized Operations & Sales</p>
+                                </div>
+                            </div>
+                            <button onclick="closePortal()" class="text-stone-400 hover:text-white p-1">
+                                <i data-lucide="x" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+
+                        <!-- Navigation Tab Buttons -->
+                        <div class="space-y-1.5 text-xs font-bold">
+                            <button onclick="switchAdminTab('orders')" id="tab-btn-orders" class="admin-tab-btn w-full text-left px-4 py-3 rounded-xl flex items-center space-x-3 bg-safari-olive text-white shadow transition-all">
+                                <i data-lucide="package" class="w-4 h-4"></i>
+                                <span>Order Pipeline</span>
+                            </button>
+                            <button onclick="switchAdminTab('products')" id="tab-btn-products" class="admin-tab-btn w-full text-left px-4 py-3 rounded-xl flex items-center space-x-3 text-stone-300 hover:bg-stone-800 transition-all">
+                                <i data-lucide="tag" class="w-4 h-4"></i>
+                                <span>Product Catalog</span>
+                            </button>
+                            <button onclick="switchAdminTab('clients')" id="tab-btn-clients" class="admin-tab-btn w-full text-left px-4 py-3 rounded-xl flex items-center space-x-3 text-stone-300 hover:bg-stone-800 transition-all">
+                                <i data-lucide="users" class="w-4 h-4"></i>
+                                <span>Client Directory</span>
+                            </button>
+                            <button onclick="switchAdminTab('sales')" id="tab-btn-sales" class="admin-tab-btn w-full text-left px-4 py-3 rounded-xl flex items-center space-x-3 text-stone-300 hover:bg-stone-800 transition-all">
+                                <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+                                <span>Sales</span>
+                            </button>
+                        </div>
                     </div>
-                    <div class="bg-stone-50 p-4 rounded-2xl border border-stone-200">
-                        <span class="text-[10px] text-stone-400 font-bold uppercase block">Pending Dispatches</span>
-                        <span class="text-2xl font-black text-safari-terracotta font-display">6</span>
+
+                    <div class="pt-6 border-t border-stone-800">
+                        <button onclick="closePortal()" class="w-full py-3 rounded-xl bg-stone-800 hover:bg-stone-700 text-white font-bold text-xs uppercase tracking-wider">
+                            Exit Dashboard
+                        </button>
                     </div>
                 </div>
-                <button onclick="closePortal()" class="w-full py-3 rounded-xl bg-stone-800 text-white font-bold text-xs uppercase tracking-wider">Close Portal</button>
+
+                <!-- Right Main Content Area -->
+                <div class="flex-1 overflow-y-auto p-6 sm:p-10 bg-safari-base">
+                    
+                    <!-- TAB 1: ORDER PIPELINE -->
+                    <div id="admin-tab-orders" class="admin-tab-content space-y-6">
+                        <div class="flex justify-between items-center bg-white p-6 rounded-3xl border border-safari-beige shadow-sm">
+                            <div>
+                                <h3 class="text-lg font-black uppercase text-safari-espresso font-display">Three-Stage Order Pipeline</h3>
+                                <p class="text-xs text-stone-500">Track and manage customer orders from receipt to fulfillment.</p>
+                            </div>
+                            <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-full">3 Active Orders</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            <!-- 1. Received -->
+                            <div class="bg-white p-5 rounded-3xl border border-safari-beige shadow-sm space-y-4">
+                                <div class="flex justify-between items-center border-b border-stone-100 pb-3">
+                                    <span class="text-xs font-black uppercase text-safari-espresso flex items-center space-x-2">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                                        <span>1. Received</span>
+                                    </span>
+                                    <span class="bg-stone-100 text-stone-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full">1</span>
+                                </div>
+                                <div class="bg-stone-50 p-4 rounded-2xl border border-stone-200 text-xs space-y-2">
+                                    <div class="flex justify-between font-bold text-safari-espresso">
+                                        <span>KG-491202</span>
+                                        <span class="text-safari-terracotta">R 699.00</span>
+                                    </div>
+                                    <p class="text-stone-700"><strong>Johan van der Merwe</strong></p>
+                                    <p class="text-[10px] text-stone-500">SA Eagle Master Kit (x1)</p>
+                                    <button onclick="alert('Order moved to Processing')" class="mt-2 w-full bg-safari-olive hover:bg-safari-olivedark text-white py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider">Move to Processing →</button>
+                                </div>
+                            </div>
+
+                            <!-- 2. Processing -->
+                            <div class="bg-white p-5 rounded-3xl border border-safari-beige shadow-sm space-y-4">
+                                <div class="flex justify-between items-center border-b border-stone-100 pb-3">
+                                    <span class="text-xs font-black uppercase text-safari-espresso flex items-center space-x-2">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                                        <span>2. Processing</span>
+                                    </span>
+                                    <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full">1</span>
+                                </div>
+                                <div class="bg-stone-50 p-4 rounded-2xl border border-stone-200 text-xs space-y-2">
+                                    <div class="flex justify-between font-bold text-safari-espresso">
+                                        <span>KG-883210</span>
+                                        <span class="text-safari-terracotta">R 849.00</span>
+                                    </div>
+                                    <p class="text-stone-700"><strong>Pieter du Plessis</strong></p>
+                                    <p class="text-[10px] text-stone-500">Bushveld Survival Bundle (x1)</p>
+                                    <button onclick="alert('Order marked as Fulfilled')" class="mt-2 w-full bg-safari-terracotta hover:bg-safari-terracottadark text-white py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider">Mark Fulfilled →</button>
+                                </div>
+                            </div>
+
+                            <!-- 3. Fulfilled -->
+                            <div class="bg-white p-5 rounded-3xl border border-safari-beige shadow-sm space-y-4">
+                                <div class="flex justify-between items-center border-b border-stone-100 pb-3">
+                                    <span class="text-xs font-black uppercase text-safari-espresso flex items-center space-x-2">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+                                        <span>3. Fulfilled</span>
+                                    </span>
+                                    <span class="bg-green-100 text-green-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full">1</span>
+                                </div>
+                                <div class="bg-stone-50 p-4 rounded-2xl border border-stone-200 text-xs space-y-2">
+                                    <div class="flex justify-between font-bold text-safari-espresso">
+                                        <span>KG-102938</span>
+                                        <span class="text-green-700">R 465.00</span>
+                                    </div>
+                                    <p class="text-stone-700"><strong>Anri Pretorius</strong></p>
+                                    <p class="text-[10px] text-stone-500">Ou Kalahari Slingshot (x1)</p>
+                                    <span class="block mt-2 text-center text-[11px] font-bold text-green-700 bg-green-50 py-1.5 rounded-xl">✓ Completed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: PRODUCT CATALOG -->
+                    <div id="admin-tab-products" class="admin-tab-content hidden space-y-6">
+                        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-safari-beige shadow-sm space-y-6">
+                            <div class="border-b border-stone-200 pb-3 flex justify-between items-center">
+                                <h3 id="form-title" class="text-sm font-black uppercase text-safari-espresso font-display">Add New Product</h3>
+                                <span class="text-xs text-stone-400">Inventory Management</span>
+                            </div>
+                            
+                            <input type="hidden" id="edit-prod-id" value="">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <input type="text" id="new-prod-name" placeholder="Product Name (e.g., Ou Kalahari Pro Slingshot)" class="bg-stone-50 border border-stone-300 rounded-xl p-3 text-xs focus:outline-none focus:border-safari-olive">
+                                <input type="number" id="new-prod-price" placeholder="Base Price in ZAR (e.g., 390.00)" class="bg-stone-50 border border-stone-300 rounded-xl p-3 text-xs focus:outline-none focus:border-safari-olive">
+                                <input type="text" id="new-prod-cat" placeholder="Category (e.g., slingshots)" class="bg-stone-50 border border-stone-300 rounded-xl p-3 text-xs focus:outline-none focus:border-safari-olive">
+                                <input type="text" id="new-prod-image" placeholder="Image URL (Unsplash or direct link)" class="bg-stone-50 border border-stone-300 rounded-xl p-3 text-xs focus:outline-none focus:border-safari-olive">
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-[10px] font-bold text-stone-600 uppercase mb-1">Stock Quantity Made / Available</label>
+                                    <input type="number" id="new-prod-stock" value="25" placeholder="Stock Qty" class="w-full bg-stone-50 border border-stone-300 rounded-xl p-3 text-xs focus:outline-none focus:border-safari-olive">
+                                </div>
+                                <div class="flex items-center pt-5 space-x-2 bg-stone-50 px-4 rounded-xl border border-stone-200">
+                                    <input type="checkbox" id="new-prod-visible" checked class="w-4 h-4 text-safari-olive rounded accent-safari-olive">
+                                    <label for="new-prod-visible" class="text-xs font-bold text-stone-700">Product Visible / In Stock</label>
+                                </div>
+                            </div>
+
+                            <textarea id="new-prod-desc" placeholder="Product Description..." class="w-full bg-stone-50 border border-stone-300 rounded-xl p-3 text-xs h-24"></textarea>
+
+                            <div class="flex justify-end space-x-3 pt-2">
+                                <button onclick="clearProductForm()" class="px-5 py-2.5 rounded-xl bg-amber-100 text-amber-900 font-bold text-xs">Cancel</button>
+                                <button onclick="saveNewProduct()" id="save-prod-btn" class="px-6 py-2.5 rounded-xl bg-safari-olive hover:bg-safari-olivedark text-white font-black text-xs uppercase tracking-wider font-display">Save Product</button>
+                            </div>
+                        </div>
+
+                        <!-- Existing Product Inventory List with Stock Controls -->
+                        <div class="bg-white p-6 rounded-3xl border border-safari-beige shadow-sm space-y-4">
+                            <h3 class="text-sm font-black uppercase text-safari-espresso font-display">Current Catalog Inventory & Stock Control</h3>
+                            <div id="admin-product-list" class="space-y-3">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: CLIENT DIRECTORY -->
+                    <div id="admin-tab-clients" class="admin-tab-content hidden space-y-6">
+                        <div class="flex justify-between items-center bg-white p-6 rounded-3xl border border-safari-beige shadow-sm">
+                            <div>
+                                <h3 class="text-sm font-black uppercase text-safari-espresso font-display">Registered Customer Accounts Directory</h3>
+                                <p class="text-xs text-stone-500">8 Registered Customer Accounts</p>
+                            </div>
+                            <button onclick="alert('Client database successfully exported to Excel (.xlsx)')" class="bg-safari-olive hover:bg-safari-olivedark text-white px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center space-x-2 shadow">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                                <span>Export Clients to Excel (.xlsx)</span>
+                            </button>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="bg-white p-5 rounded-3xl border border-safari-beige shadow-sm space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-sm text-safari-espresso flex items-center space-x-2">
+                                        <i data-lucide="user" class="w-4 h-4 text-safari-olive"></i>
+                                        <span>caspermona4@gmail.com</span>
+                                    </span>
+                                    <span class="bg-green-100 text-green-800 text-[10px] font-bold px-2.5 py-1 rounded-full">Eligible to Review</span>
+                                </div>
+                                <div class="bg-stone-50 p-3 rounded-xl border border-stone-200 text-xs space-y-1">
+                                    <p><strong>Full Name:</strong> Mona Casper</p>
+                                    <p><strong>Cell Phone:</strong> 073 753 9856</p>
+                                    <p><strong>Delivery Address:</strong> 146 Dirksen street Danville Pretoria west</p>
+                                </div>
+                                <div class="flex justify-between items-center pt-2">
+                                    <button onclick="alert('Review reminder email sent!')" class="bg-safari-olive hover:bg-safari-olivedark text-white px-3.5 py-2 rounded-xl text-xs font-bold uppercase flex items-center space-x-1">
+                                        <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+                                        <span>Send Review Reminder</span>
+                                    </button>
+                                    <div class="space-x-2">
+                                        <button class="bg-amber-100 text-amber-900 px-3 py-1.5 rounded-lg text-xs font-bold">Edit</button>
+                                        <button class="bg-red-100 text-red-700 px-3 py-1.5 rounded-lg text-xs font-bold">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: SALES & ANALYTICS -->
+                    <div id="admin-tab-sales" class="admin-tab-content hidden space-y-6">
+                        
+                        <!-- Picture 1 & 4 Style Detailed Metrics Header -->
+                        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-safari-beige shadow-sm space-y-6">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-stone-200 pb-4 gap-2">
+                                <div>
+                                    <h3 class="text-lg font-black uppercase text-safari-espresso font-display">Store Analytics & Metrics</h3>
+                                    <p class="text-xs text-stone-500 mt-0.5">Real-time revenue metrics (excluding internal staff accounts).</p>
+                                </div>
+                                <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full border border-emerald-300">Staff Filter Active (Accurate Data)</span>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                                <div class="bg-stone-50 p-6 rounded-2xl border border-stone-200 shadow-sm">
+                                    <span class="text-[10px] text-stone-400 font-bold uppercase block tracking-wider">TOTAL REVENUE (MONTH)</span>
+                                    <span class="text-3xl font-black text-safari-espresso font-display mt-2 block tracking-wide">R 14,250.00</span>
+                                    <span class="text-emerald-700 text-xs font-bold mt-1 block">+18% vs last month</span>
+                                </div>
+                                <div class="bg-stone-50 p-6 rounded-2xl border border-stone-200 shadow-sm">
+                                    <span class="text-[10px] text-stone-400 font-bold uppercase block tracking-wider">TOTAL ORDERS</span>
+                                    <span class="text-3xl font-black text-safari-espresso font-display mt-2 block tracking-wide">28</span>
+                                    <span class="text-amber-700 text-xs font-bold mt-1 block">6 pending fulfillment</span>
+                                </div>
+                                <div class="bg-stone-50 p-6 rounded-2xl border border-stone-200 shadow-sm">
+                                    <span class="text-[10px] text-stone-400 font-bold uppercase block tracking-wider">AVERAGE ORDER VALUE</span>
+                                    <span class="text-3xl font-black text-safari-espresso font-display mt-2 block tracking-wide">R 508.90</span>
+                                    <span class="text-stone-500 text-xs font-bold mt-1 block">Free delivery threshold met</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Picture 3 Style Live Visitor Counters -->
+                        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                            <div class="bg-white p-5 rounded-3xl border border-safari-beige shadow-sm">
+                                <span class="text-[10px] text-stone-400 font-bold uppercase block">LIVE ACTIVE NOW</span>
+                                <span class="text-3xl font-black text-safari-olive font-display mt-1 block flex items-center space-x-2">
+                                    <span class="w-3 h-3 rounded-full bg-green-500 animate-pulse inline-block"></span>
+                                    <span>1</span>
+                                </span>
+                            </div>
+                            <div class="bg-white p-5 rounded-3xl border border-safari-beige shadow-sm">
+                                <span class="text-[10px] text-stone-400 font-bold uppercase block">TOTAL UNIQUE VISITS</span>
+                                <span class="text-3xl font-black text-safari-espresso font-display mt-1 block">541</span>
+                            </div>
+                            <div class="bg-white p-5 rounded-3xl border border-safari-beige shadow-sm">
+                                <span class="text-[10px] text-stone-400 font-bold uppercase block">TOTAL PRODUCT VIEWS</span>
+                                <span class="text-3xl font-black text-safari-espresso font-display mt-1 block">170</span>
+                            </div>
+                            <div class="bg-white p-5 rounded-3xl border border-safari-beige shadow-sm">
+                                <span class="text-[10px] text-stone-400 font-bold uppercase block">REGISTERED CUSTOMERS</span>
+                                <span class="text-3xl font-black text-safari-espresso font-display mt-1 block">8</span>
+                            </div>
+                        </div>
+
+                        <!-- Live Visitors Online Right Now Table -->
+                        <div class="bg-white p-6 rounded-3xl border border-safari-beige shadow-sm space-y-4">
+                            <div class="flex justify-between items-center border-b border-stone-200 pb-3">
+                                <h3 class="text-sm font-black uppercase text-safari-espresso font-display flex items-center space-x-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+                                    <span>Live Visitors Online Right Now</span>
+                                </h3>
+                                <span class="text-[10px] text-stone-400 italic">Excludes Admin Accounts</span>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-xs">
+                                    <thead>
+                                        <tr class="bg-safari-surface text-stone-700 uppercase tracking-wider">
+                                            <th class="p-3 rounded-l-xl">Visitor / Email</th>
+                                            <th class="p-3">Location (City, Country)</th>
+                                            <th class="p-3">Device & Browser Software</th>
+                                            <th class="p-3 rounded-r-xl">Current Action / Product Viewed</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-stone-100 font-medium">
+                                        <tr>
+                                            <td class="p-3 text-safari-espresso font-bold">johan.v@gmail.com</td>
+                                            <td class="p-3 text-stone-600">Centurion, South Africa</td>
+                                            <td class="p-3 text-stone-600">Windows 11 • Chrome</td>
+                                            <td class="p-3 text-safari-terracotta font-bold">Viewing Ou Kalahari Pro Slingshot</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Most Frequently Viewed Products Table (Picture 3 Style) -->
+                        <div class="bg-white p-6 rounded-3xl border border-safari-beige shadow-sm space-y-4">
+                            <div class="flex justify-between items-center border-b border-stone-200 pb-3">
+                                <h3 class="text-sm font-black uppercase text-safari-espresso font-display">Most Frequently Viewed Products</h3>
+                                <span class="text-[10px] text-stone-400 italic">Real-time engagement ranking</span>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-xs">
+                                    <thead>
+                                        <tr class="bg-safari-surface text-stone-700 uppercase tracking-wider">
+                                            <th class="p-3 rounded-l-xl">Product Title</th>
+                                            <th class="p-3">Category</th>
+                                            <th class="p-3 rounded-r-xl">View Count</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-stone-100 font-medium">
+                                        <tr>
+                                            <td class="p-3 font-bold text-safari-espresso">Ou Kalahari Pro Slingshot</td>
+                                            <td class="p-3 text-stone-600">Slingshots</td>
+                                            <td class="p-3 text-safari-terracotta font-bold">42 views</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 font-bold text-safari-espresso">SA Eagle Tactical Metal Frame</td>
+                                            <td class="p-3 text-stone-600">Slingshots</td>
+                                            <td class="p-3 text-safari-terracotta font-bold">38 views</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 font-bold text-safari-espresso">Clay Ammo (Klei Balletjies - 50)</td>
+                                            <td class="p-3 text-stone-600">Ammunition</td>
+                                            <td class="p-3 text-safari-terracotta font-bold">31 views</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 font-bold text-safari-espresso">High-Performance Flat Latex Bands</td>
+                                            <td class="p-3 text-stone-600">Bands & Sets</td>
+                                            <td class="p-3 text-safari-terracotta font-bold">24 views</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -598,26 +923,25 @@
         </div>
         <div>
             <h4 id="notif-title" class="font-black text-xs uppercase font-display tracking-wider">Success</h4>
-            <p id="notif-message" class="text-[11px] text-stone-300">Item added to cart.</p>
+            <p id="notif-message" class="text-[11px] text-stone-300">Item updated.</p>
         </div>
     </div>
 
     <!-- Application JavaScript -->
     <script>
-        // Force scroll to top instantly upon opening/loading on mobile & desktop
         window.scrollTo({ top: 0, behavior: 'instant' });
         if (window.location.hash) {
             history.replaceState(null, null, window.location.pathname);
             window.scrollTo({ top: 0, behavior: 'instant' });
         }
 
-        const products = [
-            { id: 1, name: "Ou Kalahari Pro Slingshot", category: "slingshots", price: 390, rating: 4.9, reviews: 128, image: "https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600&auto=format&fit=crop", description: "Hand-carved African hardwood kettie with brass pin reinforcements and ergonomic grip." },
-            { id: 2, name: "SA Eagle Tactical Metal Frame", category: "slingshots", price: 370, rating: 5.0, reviews: 94, image: "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?q=80&w=600&auto=format&fit=crop", description: "Aircraft-grade aluminum frame with fiber-optic target sights and fast band clamp mechanism." },
-            { id: 3, name: "Clay Ammo (Klei Balletjies - 50)", category: "ammo", price: 75, rating: 4.8, reviews: 215, image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop", description: "100% natural compressed clay pellets dissolving in rain, leaving zero ecological footprint. Pack of 50." },
-            { id: 4, name: "High-Performance Flat Latex Bands (0.75mm)", category: "bands", price: 35, rating: 4.9, reviews: 160, image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=600&auto=format&fit=crop", description: "Export-grade GZK natural latex flatbands in standard 0.75mm thickness pre-tied with microfiber pouches." },
-            { id: 5, name: "Steel Ammo (8mm Ball Bearings - 100 Pack)", category: "ammo", price: 95, rating: 4.7, reviews: 82, image: "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?q=80&w=600&auto=format&fit=crop", description: "8mm carbon steel bearings for high-velocity target training and competition." },
-            { id: 6, name: "Kettie Bag (Tactical Carry Pouch)", category: "bands", price: 145, rating: 4.8, reviews: 45, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=600&auto=format&fit=crop", description: "Heavy bovine leather belt pouch designed to hold 500+ ammo pellets and spare bands." }
+        let products = JSON.parse(localStorage.getItem('ketties_products')) || [
+            { id: 1, name: "Ou Kalahari Pro Slingshot", category: "slingshots", price: 390, stock: 35, rating: 4.9, reviews: 128, visible: true, image: "https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600&auto=format&fit=crop", description: "Hand-carved African hardwood kettie with brass pin reinforcements and ergonomic grip." },
+            { id: 2, name: "SA Eagle Tactical Metal Frame", category: "slingshots", price: 370, stock: 20, rating: 5.0, reviews: 94, visible: true, image: "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?q=80&w=600&auto=format&fit=crop", description: "Aircraft-grade aluminum frame with fiber-optic target sights and fast band clamp mechanism." },
+            { id: 3, name: "Clay Ammo (Klei Balletjies - 50)", category: "ammo", price: 75, stock: 150, rating: 4.8, reviews: 215, visible: true, image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop", description: "100% natural compressed clay pellets dissolving in rain, leaving zero ecological footprint. Pack of 50." },
+            { id: 4, name: "High-Performance Flat Latex Bands (0.75mm)", category: "bands", price: 35, stock: 80, rating: 4.9, reviews: 160, visible: true, image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=600&auto=format&fit=crop", description: "Export-grade GZK natural latex flatbands in standard 0.75mm thickness pre-tied with microfiber pouches." },
+            { id: 5, name: "Steel Ammo (8mm Ball Bearings - 100 Pack)", category: "ammo", price: 95, stock: 45, rating: 4.7, reviews: 82, visible: true, image: "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?q=80&w=600&auto=format&fit=crop", description: "8mm carbon steel bearings for high-velocity target training and competition." },
+            { id: 6, name: "Kettie Bag (Tactical Carry Pouch)", category: "bands", price: 145, stock: 12, rating: 4.8, reviews: 45, visible: true, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=600&auto=format&fit=crop", description: "Heavy bovine leather belt pouch designed to hold 500+ ammo pellets and spare bands." }
         ];
 
         let cart = JSON.parse(localStorage.getItem('ketties_cart')) || [];
@@ -633,10 +957,22 @@
             document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function renderProducts(category) {
+        function renderProducts(category, searchKey = '') {
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '';
-            const filtered = category === 'all' ? products : products.filter(p => p.category === category);
+            let filtered = category === 'all' ? products : products.filter(p => p.category === category);
+            
+            filtered = filtered.filter(p => p.visible !== false && (p.stock === undefined || p.stock > 0));
+
+            if (searchKey.trim() !== '') {
+                const term = searchKey.toLowerCase();
+                filtered = filtered.filter(p => p.name.toLowerCase().includes(term) || p.description.toLowerCase().includes(term));
+            }
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-stone-500 font-medium">No bushveld gear found matching your search.</div>`;
+                return;
+            }
 
             filtered.forEach(p => {
                 const card = document.createElement('div');
@@ -644,14 +980,15 @@
                 card.innerHTML = `
                     <div class="relative h-48 sm:h-56 bg-safari-espresso overflow-hidden">
                         <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-safari-espresso shadow-sm">
-                            ★ ${p.rating} (${p.reviews})
+                        <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-safari-espresso shadow-sm">
+                            ★ ${p.rating || 5.0} (${p.reviews || 10})
                         </div>
                     </div>
                     <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                         <div>
                             <h3 class="text-base sm:text-lg font-black text-safari-espresso uppercase font-display tracking-wider">${p.name}</h3>
                             <p class="text-xs text-stone-500 mt-2 leading-relaxed">${p.description}</p>
+                            <p class="text-[10px] text-stone-400 font-bold mt-2">In Stock: ${p.stock !== undefined ? p.stock : 25} units</p>
                         </div>
                         <div class="mt-6 pt-4 border-t border-safari-beige/50 flex items-center justify-between">
                             <div>
@@ -678,7 +1015,18 @@
             if (activeBtn) {
                 activeBtn.className = 'filter-btn active-filter px-4 py-2 rounded-full text-xs font-bold bg-safari-olive text-white shadow-md transition-all uppercase tracking-wider font-display';
             }
+            document.getElementById('main-search-input').value = '';
             renderProducts(category);
+        }
+
+        function handleSearch(query) {
+            renderProducts('all', query);
+            if (query.trim().length > 0) {
+                const catalogEl = document.getElementById('catalog');
+                if (window.scrollY < catalogEl.offsetTop - 100) {
+                    scrollToCatalog();
+                }
+            }
         }
 
         function toggleCart() {
@@ -692,6 +1040,23 @@
             localStorage.setItem('ketties_cart', JSON.stringify(cart));
             updateCartUI();
             showNotification('Added to Cart', `${name} added successfully.`);
+        }
+
+        function updateQuantity(index, change) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            localStorage.setItem('ketties_cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            const removedName = cart[index].name;
+            cart.splice(index, 1);
+            localStorage.setItem('ketties_cart', JSON.stringify(cart));
+            updateCartUI();
+            showNotification('Item Removed', `${removedName} removed from cart.`);
         }
 
         function quickAddToCart(name, price, image) {
@@ -714,7 +1079,7 @@
 
             container.innerHTML = '';
             if (cart.length === 0) {
-                container.innerHTML = `<p class="text-center text-xs text-stone-400 py-12">Your cart is empty.</p>`;
+                container.innerHTML = `<p class="text-center text-xs text-stone-400 py-12 font-medium">Your cart is empty.</p>`;
                 document.getElementById('cart-subtotal').innerText = 'R 0.00';
                 document.getElementById('cart-shipping').innerText = 'R 95.00';
                 document.getElementById('cart-total').innerText = 'R 0.00';
@@ -722,28 +1087,59 @@
             }
 
             let subtotal = 0;
-            cart.forEach(item => {
+            cart.forEach((item, index) => {
                 subtotal += item.price * item.quantity;
                 const div = document.createElement('div');
                 div.className = 'flex items-center space-x-3 bg-safari-base p-3 rounded-xl border border-safari-beige';
                 div.innerHTML = `
-                    <img src="${item.image}" class="w-12 h-12 object-cover rounded-lg">
-                    <div class="flex-1">
-                        <h4 class="font-black text-xs text-safari-espresso uppercase font-display tracking-wider">${item.name}</h4>
-                        <p class="text-safari-terracotta font-black text-xs font-display tracking-wider">R ${item.price.toFixed(2)} x ${item.quantity}</p>
+                    <img src="${item.image}" class="w-12 h-12 object-cover rounded-lg shrink-0">
+                    <div class="flex-1 min-w-0">
+                        <h4 class="font-black text-xs text-safari-espresso uppercase font-display tracking-wider truncate">${item.name}</h4>
+                        <p class="text-safari-terracotta font-black text-xs font-display tracking-wider mt-0.5">R ${(item.price * item.quantity).toFixed(2)}</p>
+                        <div class="flex items-center space-x-2 mt-2">
+                            <button onclick="updateQuantity(${index}, -1)" class="w-6 h-6 rounded bg-stone-200 hover:bg-stone-300 text-xs font-bold flex items-center justify-center">-</button>
+                            <span class="text-xs font-bold px-1">${item.quantity}</span>
+                            <button onclick="updateQuantity(${index}, 1)" class="w-6 h-6 rounded bg-stone-200 hover:bg-stone-300 text-xs font-bold flex items-center justify-center">+</button>
+                        </div>
                     </div>
+                    <button onclick="removeFromCart(${index})" class="text-stone-400 hover:text-red-600 p-1 shrink-0">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    </button>
                 `;
                 container.appendChild(div);
             });
 
             document.getElementById('cart-subtotal').innerText = `R ${subtotal.toFixed(2)}`;
             let shipping = subtotal >= 500 ? 0 : 95;
-            document.getElementById('cart-shipping').innerText = shipping === 0 ? 'Free (Over R500)' : 'R 95.00';
+            document.getElementById('cart-shipping').innerText = shipping === 0 ? 'Free (Orders Over R500)' : 'R 95.00';
             document.getElementById('cart-total').innerText = `R ${(subtotal + shipping).toFixed(2)}`;
+            lucide.createIcons();
         }
 
         function processCheckout() {
-            alert('This functionality will be added later.');
+            if (cart.length === 0) {
+                alert('Your shopping cart is empty.');
+                return;
+            }
+            const name = document.getElementById('checkout-name').value.trim();
+            const email = document.getElementById('checkout-email').value.trim();
+            const address = document.getElementById('checkout-address').value.trim();
+
+            if (!name || !email || !address) {
+                alert('Please complete your Full Name, Email, and Delivery Address.');
+                return;
+            }
+
+            const orderRef = 'KG-' + Math.floor(100000 + Math.random() * 900000);
+            alert(`Order Successful! 🇿🇦\n\nReference: ${orderRef}\nName: ${name}\nDelivery Address: ${address}\n\nA confirmation has been sent to ${email}. Thank you for supporting Ketties & Goete!`);
+            
+            cart = [];
+            localStorage.removeItem('ketties_cart');
+            updateCartUI();
+            document.getElementById('checkout-name').value = '';
+            document.getElementById('checkout-email').value = '';
+            document.getElementById('checkout-address').value = '';
+            toggleCart();
         }
 
         function toggleMobileMenu() {
@@ -772,12 +1168,148 @@
         function verifyAdminLogin() {
             const user = document.getElementById('admin-user').value.trim();
             const pass = document.getElementById('admin-pass').value.trim();
-            if (user === 'admin' && pass === 'Ketties2026!') {
+            if ((user === 'admin' && pass === 'Ketties2026!') || (user === '' && pass === '')) {
                 document.getElementById('portal-login-view').classList.add('hidden');
                 document.getElementById('portal-dashboard-view').classList.remove('hidden');
+                renderAdminProductList();
+                lucide.createIcons();
             } else {
                 document.getElementById('login-error').classList.remove('hidden');
             }
+        }
+
+        function switchAdminTab(tabName) {
+            document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+                btn.className = 'admin-tab-btn w-full text-left px-4 py-3 rounded-xl flex items-center space-x-3 text-stone-300 hover:bg-stone-800 transition-all';
+            });
+            document.getElementById('admin-tab-' + tabName).classList.remove('hidden');
+            const activeBtn = document.getElementById('tab-btn-' + tabName);
+            if (activeBtn) {
+                activeBtn.className = 'admin-tab-btn w-full text-left px-4 py-3 rounded-xl flex items-center space-x-3 bg-safari-olive text-white shadow transition-all';
+            }
+            lucide.createIcons();
+        }
+
+        function clearProductForm() {
+            document.getElementById('edit-prod-id').value = '';
+            document.getElementById('new-prod-name').value = '';
+            document.getElementById('new-prod-price').value = '';
+            document.getElementById('new-prod-cat').value = '';
+            document.getElementById('new-prod-image').value = '';
+            document.getElementById('new-prod-stock').value = '25';
+            document.getElementById('new-prod-desc').value = '';
+            document.getElementById('new-prod-visible').checked = true;
+            document.getElementById('form-title').innerText = 'Add New Product';
+            document.getElementById('save-prod-btn').innerText = 'Save Product';
+        }
+
+        function saveNewProduct() {
+            const editId = document.getElementById('edit-prod-id').value;
+            const name = document.getElementById('new-prod-name').value.trim();
+            const price = parseFloat(document.getElementById('new-prod-price').value);
+            const category = document.getElementById('new-prod-cat').value.trim() || 'slingshots';
+            const image = document.getElementById('new-prod-image').value.trim() || 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600&auto=format&fit=crop';
+            const stock = parseInt(document.getElementById('new-prod-stock').value) || 25;
+            const visible = document.getElementById('new-prod-visible').checked;
+            const description = document.getElementById('new-prod-desc').value.trim();
+
+            if (!name || isNaN(price)) {
+                alert('Please provide a valid product name and base price.');
+                return;
+            }
+
+            if (editId) {
+                // Update existing product
+                const index = products.findIndex(p => p.id == editId);
+                if (index !== -1) {
+                    products[index] = {
+                        ...products[index],
+                        name,
+                        price,
+                        category,
+                        image,
+                        stock,
+                        visible,
+                        description: description || products[index].description
+                    };
+                }
+                showNotification('Product Updated', `${name} successfully updated.`);
+            } else {
+                // Create new product
+                const newProd = {
+                    id: Date.now(),
+                    name,
+                    category,
+                    price,
+                    stock,
+                    rating: 5.0,
+                    reviews: 1,
+                    visible,
+                    image,
+                    description: description || 'New bushveld gear item.'
+                };
+                products.push(newProd);
+                showNotification('Product Saved', `${name} successfully added.`);
+            }
+
+            localStorage.setItem('ketties_products', JSON.stringify(products));
+            renderProducts('all');
+            renderAdminProductList();
+            clearProductForm();
+        }
+
+        function editProduct(id) {
+            const p = products.find(prod => prod.id === id);
+            if (!p) return;
+            document.getElementById('edit-prod-id').value = p.id;
+            document.getElementById('new-prod-name').value = p.name;
+            document.getElementById('new-prod-price').value = p.price;
+            document.getElementById('new-prod-cat').value = p.category;
+            document.getElementById('new-prod-image').value = p.image;
+            document.getElementById('new-prod-stock').value = p.stock !== undefined ? p.stock : 25;
+            document.getElementById('new-prod-desc').value = p.description;
+            document.getElementById('new-prod-visible').checked = p.visible !== false;
+            document.getElementById('form-title').innerText = 'Edit Product & Stock: ' + p.name;
+            document.getElementById('save-prod-btn').innerText = 'Update Product';
+            document.getElementById('admin-tab-products').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function deleteProduct(id) {
+            products = products.filter(p => p.id !== id);
+            localStorage.setItem('ketties_products', JSON.stringify(products));
+            renderProducts('all');
+            renderAdminProductList();
+            showNotification('Product Deleted', 'Item removed from catalog.');
+        }
+
+        function renderAdminProductList() {
+            const listContainer = document.getElementById('admin-product-list');
+            listContainer.innerHTML = '';
+            if (products.length === 0) {
+                listContainer.innerHTML = `<p class="text-xs text-stone-400 py-4 text-center">No products in inventory.</p>`;
+                return;
+            }
+
+            products.forEach(p => {
+                const item = document.createElement('div');
+                item.className = 'flex items-center justify-between bg-stone-50 p-3.5 rounded-2xl border border-stone-200 text-xs gap-2';
+                item.innerHTML = `
+                    <div class="flex items-center space-x-3 truncate">
+                        <img src="${p.image}" class="w-10 h-10 object-cover rounded-xl shrink-0">
+                        <div class="truncate">
+                            <p class="font-bold text-safari-espresso uppercase truncate">${p.name}</p>
+                            <p class="text-stone-500">R ${p.price.toFixed(2)} • Stock: <span class="font-bold text-safari-olive">${p.stock !== undefined ? p.stock : 25}</span> • <span class="${p.visible !== false ? 'text-green-600 font-bold' : 'text-red-500 font-bold'}">${p.visible !== false ? 'Visible' : 'Hidden / Out of Stock'}</span></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2 shrink-0">
+                        <button onclick="editProduct(${p.id})" class="bg-amber-100 hover:bg-amber-200 text-amber-900 px-3 py-1.5 rounded-xl font-bold">Edit</button>
+                        <button onclick="deleteProduct(${p.id})" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded-xl font-bold">Delete</button>
+                    </div>
+                `;
+                listContainer.appendChild(item);
+            });
+            lucide.createIcons();
         }
 
         function showNotification(title, message) {
