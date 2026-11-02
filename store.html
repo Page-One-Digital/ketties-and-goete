@@ -585,7 +585,7 @@
                                 </div>
                                 <div>
                                     <h3 class="text-sm font-black uppercase text-white font-display tracking-wider">Store Management</h3>
-                                    <p class="text-[9px] text-stone-400">Centralized Operations & Sales</p>
+                                    <p class="text-[9px] text-stone-400">Firebase Realtime Sync Active</p>
                                 </div>
                             </div>
                             <button onclick="closePortal()" class="text-stone-400 hover:text-white p-1">
@@ -702,7 +702,7 @@
                         <div class="bg-white p-6 sm:p-8 rounded-3xl border border-safari-beige shadow-sm space-y-6">
                             <div class="border-b border-stone-200 pb-3 flex justify-between items-center">
                                 <h3 id="form-title" class="text-sm font-black uppercase text-safari-espresso font-display">Add New Product</h3>
-                                <span class="text-xs text-stone-400">Inventory Management</span>
+                                <span class="text-xs text-stone-400">Firebase Inventory Management</span>
                             </div>
                             
                             <input type="hidden" id="edit-prod-id" value="">
@@ -728,7 +728,7 @@
 
                             <div class="flex justify-end space-x-3 pt-2">
                                 <button onclick="clearProductForm()" class="px-5 py-2.5 rounded-xl bg-amber-100 text-amber-900 font-bold text-xs">Cancel</button>
-                                <button onclick="saveNewProduct()" id="save-prod-btn" class="px-6 py-2.5 rounded-xl bg-safari-olive hover:bg-safari-olivedark text-white font-black text-xs uppercase tracking-wider font-display">Save Product</button>
+                                <button onclick="saveNewProduct()" id="save-prod-btn" class="px-6 py-2.5 rounded-xl bg-safari-olive hover:bg-safari-olivedark text-white font-black text-xs uppercase tracking-wider font-display">Save to Firebase</button>
                             </div>
                         </div>
 
@@ -785,7 +785,7 @@
                     <!-- TAB 4: SALES & ANALYTICS -->
                     <div id="admin-tab-sales" class="admin-tab-content hidden space-y-6">
                         
-                        <!-- Picture 1 & 4 Style Detailed Metrics Header -->
+                        <!-- Detailed Metrics Header -->
                         <div class="bg-white p-6 sm:p-8 rounded-3xl border border-safari-beige shadow-sm space-y-6">
                             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-stone-200 pb-4 gap-2">
                                 <div>
@@ -814,7 +814,7 @@
                             </div>
                         </div>
 
-                        <!-- Picture 3 Style Live Visitor Counters -->
+                        <!-- Live Visitor Counters -->
                         <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
                             <div class="bg-white p-5 rounded-3xl border border-safari-beige shadow-sm">
                                 <span class="text-[10px] text-stone-400 font-bold uppercase block">LIVE ACTIVE NOW</span>
@@ -868,7 +868,7 @@
                             </div>
                         </div>
 
-                        <!-- Most Frequently Viewed Products Table (Picture 3 Style) -->
+                        <!-- Most Frequently Viewed Products Table -->
                         <div class="bg-white p-6 rounded-3xl border border-safari-beige shadow-sm space-y-4">
                             <div class="flex justify-between items-center border-b border-stone-200 pb-3">
                                 <h3 class="text-sm font-black uppercase text-safari-espresso font-display">Most Frequently Viewed Products</h3>
@@ -927,38 +927,45 @@
         </div>
     </div>
 
-    <!-- Application JavaScript -->
-    <script>
+    <!-- Application JavaScript with Firebase Realtime Database Integration -->
+    <script type="module">
+        import { db } from "./firebase.js";
+        import { ref, set, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
         window.scrollTo({ top: 0, behavior: 'instant' });
         if (window.location.hash) {
             history.replaceState(null, null, window.location.pathname);
             window.scrollTo({ top: 0, behavior: 'instant' });
         }
 
-        let products = JSON.parse(localStorage.getItem('ketties_products')) || [
-            { id: 1, name: "Ou Kalahari Pro Slingshot", category: "slingshots", price: 390, stock: 35, rating: 4.9, reviews: 128, visible: true, image: "https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600&auto=format&fit=crop", description: "Hand-carved African hardwood kettie with brass pin reinforcements and ergonomic grip." },
-            { id: 2, name: "SA Eagle Tactical Metal Frame", category: "slingshots", price: 370, stock: 20, rating: 5.0, reviews: 94, visible: true, image: "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?q=80&w=600&auto=format&fit=crop", description: "Aircraft-grade aluminum frame with fiber-optic target sights and fast band clamp mechanism." },
-            { id: 3, name: "Clay Ammo (Klei Balletjies - 50)", category: "ammo", price: 75, stock: 150, rating: 4.8, reviews: 215, visible: true, image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop", description: "100% natural compressed clay pellets dissolving in rain, leaving zero ecological footprint. Pack of 50." },
-            { id: 4, name: "High-Performance Flat Latex Bands (0.75mm)", category: "bands", price: 35, stock: 80, rating: 4.9, reviews: 160, visible: true, image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=600&auto=format&fit=crop", description: "Export-grade GZK natural latex flatbands in standard 0.75mm thickness pre-tied with microfiber pouches." },
-            { id: 5, name: "Steel Ammo (8mm Ball Bearings - 100 Pack)", category: "ammo", price: 95, stock: 45, rating: 4.7, reviews: 82, visible: true, image: "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?q=80&w=600&auto=format&fit=crop", description: "8mm carbon steel bearings for high-velocity target training and competition." },
-            { id: 6, name: "Kettie Bag (Tactical Carry Pouch)", category: "bands", price: 145, stock: 12, rating: 4.8, reviews: 45, visible: true, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=600&auto=format&fit=crop", description: "Heavy bovine leather belt pouch designed to hold 500+ ammo pellets and spare bands." }
-        ];
-
+        let products = [];
         let cart = JSON.parse(localStorage.getItem('ketties_cart')) || [];
 
         document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo({ top: 0, behavior: 'instant' });
             lucide.createIcons();
-            renderProducts('all');
             updateCartUI();
+
+            // Listen live to products in Firebase Realtime Database
+            onValue(ref(db, 'products'), (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    products = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+                } else {
+                    products = [];
+                }
+                renderProducts('all');
+                renderAdminProductList();
+            });
         });
 
-        function scrollToCatalog() {
+        window.scrollToCatalog = function() {
             document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
-        }
+        };
 
-        function renderProducts(category, searchKey = '') {
+        window.renderProducts = function(category, searchKey = '') {
             const grid = document.getElementById('product-grid');
+            if (!grid) return;
             grid.innerHTML = '';
             let filtered = category === 'all' ? products : products.filter(p => p.category === category);
             
@@ -966,7 +973,7 @@
 
             if (searchKey.trim() !== '') {
                 const term = searchKey.toLowerCase();
-                filtered = filtered.filter(p => p.name.toLowerCase().includes(term) || p.description.toLowerCase().includes(term));
+                filtered = filtered.filter(p => p.name.toLowerCase().includes(term) || (p.description && p.description.toLowerCase().includes(term)));
             }
 
             if (filtered.length === 0) {
@@ -987,15 +994,15 @@
                     <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                         <div>
                             <h3 class="text-base sm:text-lg font-black text-safari-espresso uppercase font-display tracking-wider">${p.name}</h3>
-                            <p class="text-xs text-stone-500 mt-2 leading-relaxed">${p.description}</p>
+                            <p class="text-xs text-stone-500 mt-2 leading-relaxed">${p.description || ''}</p>
                             <p class="text-[10px] text-stone-400 font-bold mt-2">In Stock: ${p.stock !== undefined ? p.stock : 25} units</p>
                         </div>
                         <div class="mt-6 pt-4 border-t border-safari-beige/50 flex items-center justify-between">
                             <div>
                                 <span class="text-[10px] text-stone-400 font-bold block uppercase tracking-wider">Price</span>
-                                <span class="text-lg sm:text-xl font-black text-safari-espresso font-display tracking-wider">R ${p.price.toFixed(2)}</span>
+                                <span class="text-lg sm:text-xl font-black text-safari-espresso font-display tracking-wider">R ${parseFloat(p.price).toFixed(2)}</span>
                             </div>
-                            <button onclick="addToCart('${p.name}', ${p.price}, '${p.image}')" class="px-4 py-2.5 rounded-xl bg-safari-terracotta hover:bg-safari-terracottadark text-white font-black text-xs transition-all flex items-center space-x-1 shadow uppercase tracking-wider font-display">
+                            <button onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.image}')" class="px-4 py-2.5 rounded-xl bg-safari-terracotta hover:bg-safari-terracottadark text-white font-black text-xs transition-all flex items-center space-x-1 shadow uppercase tracking-wider font-display">
                                 <i data-lucide="plus" class="w-4 h-4"></i>
                                 <span>Add</span>
                             </button>
@@ -1005,9 +1012,9 @@
                 grid.appendChild(card);
             });
             lucide.createIcons();
-        }
+        };
 
-        function filterProducts(category) {
+        window.filterProducts = function(category) {
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.className = 'filter-btn px-4 py-2 rounded-full text-xs font-bold bg-white text-stone-700 hover:bg-safari-surface border border-safari-beige shadow-sm transition-all uppercase tracking-wider font-display';
             });
@@ -1017,9 +1024,9 @@
             }
             document.getElementById('main-search-input').value = '';
             renderProducts(category);
-        }
+        };
 
-        function handleSearch(query) {
+        window.handleSearch = function(query) {
             renderProducts('all', query);
             if (query.trim().length > 0) {
                 const catalogEl = document.getElementById('catalog');
@@ -1027,53 +1034,54 @@
                     scrollToCatalog();
                 }
             }
-        }
+        };
 
-        function toggleCart() {
+        window.toggleCart = function() {
             document.getElementById('cart-drawer').classList.toggle('hidden');
-        }
+        };
 
-        function addToCart(name, price, image) {
+        window.addToCart = function(name, price, image) {
             const existing = cart.find(i => i.name === name);
             if (existing) existing.quantity += 1;
             else cart.push({ name, price, image, quantity: 1 });
             localStorage.setItem('ketties_cart', JSON.stringify(cart));
             updateCartUI();
             showNotification('Added to Cart', `${name} added successfully.`);
-        }
+        };
 
-        function updateQuantity(index, change) {
+        window.updateQuantity = function(index, change) {
             cart[index].quantity += change;
             if (cart[index].quantity <= 0) {
                 cart.splice(index, 1);
             }
             localStorage.setItem('ketties_cart', JSON.stringify(cart));
             updateCartUI();
-        }
+        };
 
-        function removeFromCart(index) {
+        window.removeFromCart = function(index) {
             const removedName = cart[index].name;
             cart.splice(index, 1);
             localStorage.setItem('ketties_cart', JSON.stringify(cart));
             updateCartUI();
             showNotification('Item Removed', `${removedName} removed from cart.`);
-        }
+        };
 
-        function quickAddToCart(name, price, image) {
+        window.quickAddToCart = function(name, price, image) {
             addToCart(name, price, image);
             toggleCart();
-        }
+        };
 
-        function clearCart() {
+        window.clearCart = function() {
             cart = [];
             localStorage.removeItem('ketties_cart');
             updateCartUI();
             showNotification('Cart Cleared', 'All items removed from cart.');
-        }
+        };
 
-        function updateCartUI() {
+        window.updateCartUI = function() {
             const badge = document.getElementById('cart-badge');
             const container = document.getElementById('cart-items');
+            if (!badge || !container) return;
             const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
             badge.innerText = totalCount;
 
@@ -1114,9 +1122,9 @@
             document.getElementById('cart-shipping').innerText = shipping === 0 ? 'Free (Orders Over R500)' : 'R 95.00';
             document.getElementById('cart-total').innerText = `R ${(subtotal + shipping).toFixed(2)}`;
             lucide.createIcons();
-        }
+        };
 
-        function processCheckout() {
+        window.processCheckout = function() {
             if (cart.length === 0) {
                 alert('Your shopping cart is empty.');
                 return;
@@ -1140,32 +1148,32 @@
             document.getElementById('checkout-email').value = '';
             document.getElementById('checkout-address').value = '';
             toggleCart();
-        }
+        };
 
-        function toggleMobileMenu() {
+        window.toggleMobileMenu = function() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
-        }
+        };
 
-        function handleNewsletter(e) {
+        window.handleNewsletter = function(e) {
             e.preventDefault();
             e.target.reset();
             showNotification('Subscribed! 🇿🇦', 'Thank you for joining Ketties & Goete.');
-        }
+        };
 
-        function openPortal() {
+        window.openPortal = function() {
             document.getElementById('portal-modal').classList.remove('hidden');
             document.getElementById('portal-login-view').classList.remove('hidden');
             document.getElementById('portal-dashboard-view').classList.add('hidden');
             document.getElementById('admin-user').value = '';
             document.getElementById('admin-pass').value = '';
             document.getElementById('login-error').classList.add('hidden');
-        }
+        };
 
-        function closePortal() {
+        window.closePortal = function() {
             document.getElementById('portal-modal').classList.add('hidden');
-        }
+        };
 
-        function verifyAdminLogin() {
+        window.verifyAdminLogin = function() {
             const user = document.getElementById('admin-user').value.trim();
             const pass = document.getElementById('admin-pass').value.trim();
             if ((user === 'admin' && pass === 'Ketties2026!') || (user === '' && pass === '')) {
@@ -1176,9 +1184,9 @@
             } else {
                 document.getElementById('login-error').classList.remove('hidden');
             }
-        }
+        };
 
-        function switchAdminTab(tabName) {
+        window.switchAdminTab = function(tabName) {
             document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.admin-tab-btn').forEach(btn => {
                 btn.className = 'admin-tab-btn w-full text-left px-4 py-3 rounded-xl flex items-center space-x-3 text-stone-300 hover:bg-stone-800 transition-all';
@@ -1189,9 +1197,9 @@
                 activeBtn.className = 'admin-tab-btn w-full text-left px-4 py-3 rounded-xl flex items-center space-x-3 bg-safari-olive text-white shadow transition-all';
             }
             lucide.createIcons();
-        }
+        };
 
-        function clearProductForm() {
+        window.clearProductForm = function() {
             document.getElementById('edit-prod-id').value = '';
             document.getElementById('new-prod-name').value = '';
             document.getElementById('new-prod-price').value = '';
@@ -1202,9 +1210,9 @@
             document.getElementById('new-prod-visible').checked = true;
             document.getElementById('form-title').innerText = 'Add New Product';
             document.getElementById('save-prod-btn').innerText = 'Save Product';
-        }
+        };
 
-        function saveNewProduct() {
+        window.saveNewProduct = function() {
             const editId = document.getElementById('edit-prod-id').value;
             const name = document.getElementById('new-prod-name').value.trim();
             const price = parseFloat(document.getElementById('new-prod-price').value);
@@ -1219,47 +1227,30 @@
                 return;
             }
 
-            if (editId) {
-                // Update existing product
-                const index = products.findIndex(p => p.id == editId);
-                if (index !== -1) {
-                    products[index] = {
-                        ...products[index],
-                        name,
-                        price,
-                        category,
-                        image,
-                        stock,
-                        visible,
-                        description: description || products[index].description
-                    };
-                }
-                showNotification('Product Updated', `${name} successfully updated.`);
-            } else {
-                // Create new product
-                const newProd = {
-                    id: Date.now(),
-                    name,
-                    category,
-                    price,
-                    stock,
-                    rating: 5.0,
-                    reviews: 1,
-                    visible,
-                    image,
-                    description: description || 'New bushveld gear item.'
-                };
-                products.push(newProd);
-                showNotification('Product Saved', `${name} successfully added.`);
-            }
+            const prodId = editId ? editId : 'prod_' + Date.now();
+            const productData = {
+                name,
+                category,
+                price,
+                stock,
+                rating: 5.0,
+                reviews: 1,
+                visible,
+                image,
+                description: description || 'New bushveld gear item.'
+            };
 
-            localStorage.setItem('ketties_products', JSON.stringify(products));
-            renderProducts('all');
-            renderAdminProductList();
-            clearProductForm();
-        }
+            set(ref(db, 'products/' + prodId), productData)
+                .then(() => {
+                    showNotification('Product Saved', `${name} successfully saved to Firebase.`);
+                    clearProductForm();
+                })
+                .catch((error) => {
+                    alert('Error saving to Firebase: ' + error.message);
+                });
+        };
 
-        function editProduct(id) {
+        window.editProduct = function(id) {
             const p = products.find(prod => prod.id === id);
             if (!p) return;
             document.getElementById('edit-prod-id').value = p.id;
@@ -1273,18 +1264,23 @@
             document.getElementById('form-title').innerText = 'Edit Product & Stock: ' + p.name;
             document.getElementById('save-prod-btn').innerText = 'Update Product';
             document.getElementById('admin-tab-products').scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        };
 
-        function deleteProduct(id) {
-            products = products.filter(p => p.id !== id);
-            localStorage.setItem('ketties_products', JSON.stringify(products));
-            renderProducts('all');
-            renderAdminProductList();
-            showNotification('Product Deleted', 'Item removed from catalog.');
-        }
+        window.deleteProduct = function(id) {
+            if (confirm('Are you sure you want to delete this product from Firebase?')) {
+                remove(ref(db, 'products/' + id))
+                    .then(() => {
+                        showNotification('Product Deleted', 'Item removed from database.');
+                    })
+                    .catch((error) => {
+                        alert('Error removing product: ' + error.message);
+                    });
+            }
+        };
 
-        function renderAdminProductList() {
+        window.renderAdminProductList = function() {
             const listContainer = document.getElementById('admin-product-list');
+            if (!listContainer) return;
             listContainer.innerHTML = '';
             if (products.length === 0) {
                 listContainer.innerHTML = `<p class="text-xs text-stone-400 py-4 text-center">No products in inventory.</p>`;
@@ -1303,16 +1299,16 @@
                         </div>
                     </div>
                     <div class="flex items-center space-x-2 shrink-0">
-                        <button onclick="editProduct(${p.id})" class="bg-amber-100 hover:bg-amber-200 text-amber-900 px-3 py-1.5 rounded-xl font-bold">Edit</button>
-                        <button onclick="deleteProduct(${p.id})" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded-xl font-bold">Delete</button>
+                        <button onclick="editProduct('${p.id}')" class="bg-amber-100 hover:bg-amber-200 text-amber-900 px-3 py-1.5 rounded-xl font-bold">Edit</button>
+                        <button onclick="deleteProduct('${p.id}')" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded-xl font-bold">Delete</button>
                     </div>
                 `;
                 listContainer.appendChild(item);
             });
             lucide.createIcons();
-        }
+        };
 
-        function showNotification(title, message) {
+        window.showNotification = function(title, message) {
             const box = document.getElementById('notification-box');
             document.getElementById('notif-title').innerText = title;
             document.getElementById('notif-message').innerText = message;
