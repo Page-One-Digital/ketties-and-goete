@@ -1231,8 +1231,8 @@
             const productData = {
                 name,
                 category,
-                price,
-                stock,
+                price: Number(price),
+                stock: Number(stock),
                 rating: 5.0,
                 reviews: 1,
                 visible,
@@ -1242,7 +1242,7 @@
 
             set(ref(db, 'products/' + prodId), productData)
                 .then(() => {
-                    showNotification('Product Saved', `${name} successfully saved to Firebase.`);
+                    showNotification('Product Saved', `${name} successfully updated in Firebase.`);
                     clearProductForm();
                 })
                 .catch((error) => {
