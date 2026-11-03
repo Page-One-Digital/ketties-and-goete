@@ -292,6 +292,68 @@
         </div>
     </section>
 
+    <!-- PRODUCT DETAIL POPUP MODAL (Matching Screenshot #2) -->
+    <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6">
+        <div onclick="closeProductModal()" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+        <div class="relative bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto z-50 p-6 sm:p-8 flex flex-col">
+            <button onclick="closeProductModal()" class="absolute top-5 right-5 p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            
+            <div class="flex justify-between items-center text-[11px] font-bold text-stone-400 uppercase tracking-widest mb-4 border-b border-stone-100 pb-3">
+                <span id="modal-sku">SKU: KG-BDL-0UK01</span>
+                <span>KETTIES &amp; GOETE</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <!-- Left: Image Gallery -->
+                <div class="space-y-4">
+                    <div class="h-72 sm:h-96 rounded-2xl bg-safari-espresso overflow-hidden border border-safari-beige shadow-md">
+                        <img id="modal-main-image" src="" alt="Product Image" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Thumbnails -->
+                    <div id="modal-thumbnails" class="flex items-center space-x-3 overflow-x-auto pb-2">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Right: Product Info & Specifications -->
+                <div class="space-y-4">
+                    <h2 id="modal-title" class="text-xl sm:text-2xl font-black text-safari-espresso uppercase font-display tracking-wider">Product Name</h2>
+                    
+                    <div class="flex items-baseline space-x-2 border-b border-stone-100 pb-3">
+                        <span id="modal-price" class="text-2xl sm:text-3xl font-black text-safari-espresso font-display tracking-wider">R 550</span>
+                        <span class="text-[10px] text-stone-400 font-bold uppercase">(INCLUDES 15% VAT)</span>
+                    </div>
+
+                    <p id="modal-description" class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                        Description goes here...
+                    </p>
+
+                    <!-- Specifications Table -->
+                    <div class="bg-stone-50 p-4 rounded-2xl border border-stone-200 space-y-2 text-xs">
+                        <h4 class="font-black text-safari-espresso uppercase font-display tracking-wide mb-1">PRODUCT SPECIFICATIONS:</h4>
+                        <div class="grid grid-cols-2 gap-2 text-stone-700">
+                            <div><strong class="text-stone-900">Category:</strong> <span id="spec-cat">Slingshots</span></div>
+                            <div><strong class="text-stone-900">In Stock:</strong> <span id="spec-stock">25 units</span></div>
+                            <div class="col-span-2"><strong class="text-stone-900">Guarantee:</strong> <span id="spec-warranty">Unconditional Lifetime Warranty</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-3 pt-4">
+                        <button onclick="addModalToCart()" class="flex-1 py-3.5 rounded-xl bg-safari-olive hover:bg-safari-olivedark text-white font-black text-xs uppercase tracking-widest font-display shadow-lg transition-all flex items-center justify-center space-x-2">
+                            <i data-lucide="shopping-bag" class="w-4 h-4 text-amber-300"></i>
+                            <span>Add to Basket</span>
+                        </button>
+                        <button onclick="alert('Added to your favorite wishlist!')" class="p-3.5 rounded-xl border border-stone-300 hover:bg-stone-50 text-stone-700">
+                            <i data-lucide="heart" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Combos & Bundles Section -->
     <section id="combos" class="bg-safari-surface border-y border-safari-beige/60 py-16 sm:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -713,7 +775,12 @@
                                 <input type="text" id="new-prod-name" placeholder="Product Name (e.g., Ou Kalahari Pro Slingshot)" class="bg-stone-50 border border-stone-300 rounded-xl p-3 text-xs focus:outline-none focus:border-safari-olive">
                                 <input type="number" id="new-prod-price" placeholder="Base Price in ZAR (e.g., 390.00)" class="bg-stone-50 border border-stone-300 rounded-xl p-3 text-xs focus:outline-none focus:border-safari-olive">
                                 <input type="text" id="new-prod-cat" placeholder="Category (e.g., slingshots)" class="bg-stone-50 border border-stone-300 rounded-xl p-3 text-xs focus:outline-none focus:border-safari-olive">
-                                <input type="text" id="new-prod-image" placeholder="Image URL (Unsplash or direct link)" class="bg-stone-50 border border-stone-300 rounded-xl p-3 text-xs focus:outline-none focus:border-safari-olive">
+                                <input type="text" id="new-prod-image" placeholder="Main Image URL" class="bg-stone-50 border border-stone-300 rounded-xl p-3 text-xs focus:outline-none focus:border-safari-olive">
+                            </div>
+
+                            <div>
+                                <label class="block text-[10px] font-bold text-stone-600 uppercase mb-1">Additional Gallery Image URLs (comma separated)</label>
+                                <input type="text" id="new-prod-gallery" placeholder="https://img1.com, https://img2.com, https://img3.com" class="w-full bg-stone-50 border border-stone-300 rounded-xl p-3 text-xs focus:outline-none focus:border-safari-olive">
                             </div>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -943,6 +1010,7 @@
 
         let products = [];
         let cart = JSON.parse(localStorage.getItem('ketties_cart')) || [];
+        let currentModalProduct = null;
 
         document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo({ top: 0, behavior: 'instant' });
@@ -986,28 +1054,30 @@
 
             filtered.forEach(p => {
                 const card = document.createElement('div');
-                card.className = 'bg-white border border-safari-beige rounded-3xl overflow-hidden shadow-lg flex flex-col justify-between group hover:border-safari-olive transition-all duration-300';
+                card.className = 'bg-white border border-safari-beige rounded-3xl overflow-hidden shadow-lg flex flex-col justify-between group hover:border-safari-olive transition-all duration-300 cursor-pointer';
                 card.innerHTML = `
-                    <div class="relative h-48 sm:h-56 bg-safari-espresso overflow-hidden">
+                    <div onclick="openProductModal('${p.id}')" class="relative h-64 sm:h-72 bg-safari-espresso overflow-hidden">
                         <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-safari-espresso shadow-sm">
-                            ★ ${p.rating || 5.0} (${p.reviews || 10})
+                        <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-safari-espresso uppercase shadow-sm">
+                            KETTIES &amp; GOETE
                         </div>
+                        <button onclick="event.stopPropagation(); alert('Added to favorites!')" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-stone-700 shadow">
+                            <i data-lucide="heart" class="w-4 h-4"></i>
+                        </button>
                     </div>
-                    <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                    <div onclick="openProductModal('${p.id}')" class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                         <div>
-                            <h3 class="text-base sm:text-lg font-black text-safari-espresso uppercase font-display tracking-wider">${p.name}</h3>
-                            <p class="text-xs text-stone-500 mt-2 leading-relaxed">${p.description || ''}</p>
-                            <p class="text-[10px] text-stone-400 font-bold mt-2">In Stock: ${p.stock !== undefined ? p.stock : 25} units</p>
+                            <span class="text-[10px] font-bold text-stone-400 uppercase tracking-widest block mb-1">${p.category || 'Gear'}</span>
+                            <h3 class="text-base sm:text-lg font-black text-safari-espresso uppercase font-display tracking-wider leading-snug">${p.name}</h3>
                         </div>
                         <div class="mt-6 pt-4 border-t border-safari-beige/50 flex items-center justify-between">
                             <div>
                                 <span class="text-[10px] text-stone-400 font-bold block uppercase tracking-wider">Price</span>
                                 <span class="text-lg sm:text-xl font-black text-safari-espresso font-display tracking-wider">R ${parseFloat(p.price).toFixed(2)}</span>
                             </div>
-                            <button onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.image}')" class="px-4 py-2.5 rounded-xl bg-safari-terracotta hover:bg-safari-terracottadark text-white font-black text-xs transition-all flex items-center space-x-1 shadow uppercase tracking-wider font-display">
-                                <i data-lucide="plus" class="w-4 h-4"></i>
-                                <span>Add</span>
+                            <button onclick="event.stopPropagation(); addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.image}')" class="px-4 py-2.5 rounded-xl bg-safari-olive hover:bg-safari-olivedark text-white font-black text-xs transition-all flex items-center space-x-1 shadow uppercase tracking-wider font-display">
+                                <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                                <span>Quick Add</span>
                             </button>
                         </div>
                     </div>
@@ -1015,6 +1085,60 @@
                 grid.appendChild(card);
             });
             lucide.createIcons();
+        };
+
+        // Open Product Detail Modal
+        window.openProductModal = function(id) {
+            const p = products.find(prod => prod.id === id);
+            if (!p) return;
+            currentModalProduct = p;
+
+            document.getElementById('modal-sku').innerText = 'SKU: KG-' + (p.id || '001').toUpperCase();
+            document.getElementById('modal-title').innerText = p.name;
+            document.getElementById('modal-price').innerText = 'R ' + parseFloat(p.price).toFixed(2);
+            document.getElementById('modal-description').innerText = p.description || 'Precision crafted outdoor gear built for family adventures and backyard target practice.';
+            document.getElementById('spec-cat').innerText = p.category || 'Slingshots';
+            document.getElementById('spec-stock').innerText = (p.stock !== undefined ? p.stock : 25) + ' units';
+
+            // Gather images (main image + gallery array)
+            let imgs = [p.image];
+            if (p.gallery) {
+                if (Array.isArray(p.gallery)) {
+                    imgs = imgs.concat(p.gallery);
+                } else if (typeof p.gallery === 'string' && p.gallery.trim() !== '') {
+                    imgs = imgs.concat(p.gallery.split(',').map(s => s.trim()));
+                }
+            }
+
+            document.getElementById('modal-main-image').src = imgs[0];
+
+            const thumbContainer = document.getElementById('modal-thumbnails');
+            thumbContainer.innerHTML = '';
+            imgs.forEach((imgUrl, index) => {
+                const thumb = document.createElement('div');
+                thumb.className = `w-16 h-16 rounded-xl overflow-hidden border-2 cursor-pointer shrink-0 transition-all ${index === 0 ? 'border-safari-olive shadow-md' : 'border-stone-200 opacity-70 hover:opacity-100'}`;
+                thumb.innerHTML = `<img src="${imgUrl}" class="w-full h-full object-cover">`;
+                thumb.onclick = () => {
+                    document.getElementById('modal-main-image').src = imgUrl;
+                    Array.from(thumbContainer.children).forEach(t => t.className = 'w-16 h-16 rounded-xl overflow-hidden border-2 border-stone-200 cursor-pointer shrink-0 opacity-70 hover:opacity-100');
+                    thumb.className = 'w-16 h-16 rounded-xl overflow-hidden border-2 border-safari-olive cursor-pointer shrink-0 shadow-md';
+                };
+                thumbContainer.appendChild(thumb);
+            });
+
+            document.getElementById('product-modal').classList.remove('hidden');
+            lucide.createIcons();
+        };
+
+        window.closeProductModal = function() {
+            document.getElementById('product-modal').classList.add('hidden');
+            currentModalProduct = null;
+        };
+
+        window.addModalToCart = function() {
+            if (!currentModalProduct) return;
+            addToCart(currentModalProduct.name, currentModalProduct.price, currentModalProduct.image);
+            closeProductModal();
         };
 
         window.filterProducts = function(category) {
@@ -1226,6 +1350,7 @@
             document.getElementById('new-prod-price').value = '';
             document.getElementById('new-prod-cat').value = '';
             document.getElementById('new-prod-image').value = '';
+            document.getElementById('new-prod-gallery').value = '';
             document.getElementById('new-prod-stock').value = '25';
             document.getElementById('new-prod-desc').value = '';
             document.getElementById('new-prod-visible').checked = true;
@@ -1239,6 +1364,8 @@
             const price = parseFloat(document.getElementById('new-prod-price').value);
             const category = document.getElementById('new-prod-cat').value.trim() || 'slingshots';
             const image = document.getElementById('new-prod-image').value.trim() || 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600&auto=format&fit=crop';
+            const galleryInput = document.getElementById('new-prod-gallery').value.trim();
+            const gallery = galleryInput ? galleryInput.split(',').map(s => s.trim()) : [];
             const stock = parseInt(document.getElementById('new-prod-stock').value) || 25;
             const visible = document.getElementById('new-prod-visible').checked;
             const description = document.getElementById('new-prod-desc').value.trim();
@@ -1258,6 +1385,7 @@
                 reviews: 1,
                 visible,
                 image,
+                gallery,
                 description: description || 'New bushveld gear item.'
             };
 
@@ -1279,6 +1407,7 @@
             document.getElementById('new-prod-price').value = p.price;
             document.getElementById('new-prod-cat').value = p.category;
             document.getElementById('new-prod-image').value = p.image;
+            document.getElementById('new-prod-gallery').value = p.gallery ? (Array.isArray(p.gallery) ? p.gallery.join(', ') : p.gallery) : '';
             document.getElementById('new-prod-stock').value = p.stock !== undefined ? p.stock : 25;
             document.getElementById('new-prod-desc').value = p.description;
             document.getElementById('new-prod-visible').checked = p.visible !== false;
