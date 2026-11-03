@@ -86,11 +86,9 @@
         </div>
     </nav>
 
-    <!-- Hero Section (Updated with visible American Wilderness Mountain background & higher opacity) -->
+    <!-- Hero Section -->
     <section class="relative bg-safari-espresso text-safari-parchment overflow-hidden py-20 lg:py-28">
-        <!-- American Mountain Wilderness Background Image with Increased Opacity (50%) -->
         <div class="absolute inset-0 z-0 opacity-50 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1920');"></div>
-        <!-- Softer Gradient Overlay to keep text readable while keeping the background clear and visible -->
         <div class="absolute inset-0 bg-gradient-to-r from-safari-espresso/90 via-safari-espresso/60 to-transparent z-0"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -140,6 +138,61 @@
         </div>
     </section>
 
+    <!-- NEW SECTION (PIC 1): Premium Category Hubs Between Hero & Store -->
+    <section class="py-16 bg-safari-surface/50 border-b border-safari-border/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-[11px] font-bold uppercase tracking-widest text-safari-olive block mb-1">Shop By Collection</span>
+            <h2 class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase tracking-tight mb-8">Premium Category Hubs</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <!-- Slingshots Hub -->
+                <a href="#shop" onclick="filterProducts('Ketties')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
+                    <div class="w-12 h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
+                        <i class="fa-solid fa-bullseye text-lg"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-sm uppercase text-safari-espresso mb-1">Slingshots</h3>
+                    <span class="text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore Items</span>
+                </a>
+
+                <!-- Bands Hub -->
+                <a href="#shop" onclick="filterProducts('Flatbands')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
+                    <div class="w-12 h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
+                        <i class="fa-solid fa-fire text-lg"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-sm uppercase text-safari-espresso mb-1">Bands & Band Sets</h3>
+                    <span class="text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore Items</span>
+                </a>
+
+                <!-- Ammunition Hub -->
+                <a href="#shop" onclick="filterProducts('Clay Pellets')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
+                    <div class="w-12 h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
+                        <i class="fa-solid fa-arrow-right text-lg"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-sm uppercase text-safari-espresso mb-1">Ammunition</h3>
+                    <span class="text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore Items</span>
+                </a>
+
+                <!-- Equipment & Gear Hub -->
+                <a href="#shop" onclick="filterProducts('Accessories')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
+                    <div class="w-12 h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
+                        <i class="fa-solid fa-shield-halved text-lg"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-sm uppercase text-safari-espresso mb-1">Equipment & Gear</h3>
+                    <span class="text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore Items</span>
+                </a>
+
+                <!-- Gift Bundles Hub -->
+                <a href="#shop" onclick="filterProducts('Combos')" class="bg-safari-parchment border border-safari-border hover:border-safari-terracotta p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center sm:col-span-2 lg:col-span-1">
+                    <div class="w-12 h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-3 group-hover:bg-safari-terracotta group-hover:text-white transition-colors shadow-inner">
+                        <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-sm uppercase text-safari-espresso mb-1">Gift Bundles</h3>
+                    <span class="text-[10px] text-safari-terracotta font-bold uppercase tracking-wider">Explore Items</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Main WooCommerce Shop Section -->
     <section id="shop" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 border-b border-safari-border pb-6">
@@ -166,8 +219,97 @@
         </div>
     </section>
 
+    <!-- NEW SECTIONS (PIC 2): Between Store & Footer -->
+    
+    <!-- 1. Why Choose Ketties & Goete? Grid Section -->
+    <section class="py-16 bg-safari-surface/40 border-t border-safari-border/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-[11px] font-bold uppercase tracking-widest text-safari-olive block mb-1">Unmatched Utility</span>
+            <h2 class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase tracking-tight mb-12">Why Choose Ketties & Goete?</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+                <!-- Card 1 -->
+                <div class="bg-safari-parchment p-8 rounded-2xl border border-safari-border shadow-sm">
+                    <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center font-heading font-black text-xs text-safari-olive mb-4 shadow-inner">
+                        ZA
+                    </div>
+                    <h3 class="font-heading font-black text-base text-safari-espresso mb-2">100% South African Made</h3>
+                    <p class="text-xs text-safari-espresso/70 leading-relaxed">Customized and calibrated by specialized local manufacturing and precision steel-smiths in Pretoria, Gauteng. Built to last.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-safari-parchment p-8 rounded-2xl border border-safari-border shadow-sm">
+                    <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center text-safari-espresso mb-4 shadow-inner">
+                        <i class="fa-solid fa-bullseye text-safari-olive"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-base text-safari-espresso mb-2">Precision Target Calibrations</h3>
+                    <p class="text-xs text-safari-espresso/70 leading-relaxed">Every slingshot fork is balanced and aligned for flat trajectories, coupled with premium microfiber double-taper leather pouches.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-safari-parchment p-8 rounded-2xl border border-safari-border shadow-sm">
+                    <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center text-safari-espresso mb-4 shadow-inner">
+                        <i class="fa-solid fa-fire text-safari-olive"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-base text-safari-espresso mb-2">Natural Latex Elasticity</h3>
+                    <p class="text-xs text-safari-espresso/70 leading-relaxed">High-speed therapeutic natural latex flat bands ensure consistent draw weight and instantaneous snap recovery even in cold weather.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-safari-parchment p-8 rounded-2xl border border-safari-border shadow-sm">
+                    <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center text-safari-espresso mb-4 shadow-inner">
+                        <i class="fa-solid fa-shield-halved text-safari-olive"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-base text-safari-espresso mb-2">Biodegradable Ammunition</h3>
+                    <p class="text-xs text-safari-espresso/70 leading-relaxed">Our Klei Balletjies explode safely into natural clay powder on impact, preventing lawnmower damage and protecting veld birds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Preserving Backyard Family Adventure Heritage Section -->
+    <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-safari-surface/70 border border-safari-border p-8 sm:p-12 rounded-3xl shadow-sm">
+            <!-- Left: Hardwood Precision Image Box -->
+            <div class="lg:col-span-5 rounded-2xl overflow-hidden border border-safari-border shadow-md bg-white h-80 sm:h-96 flex items-center justify-center relative">
+                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800" alt="Hardwood precision finish" class="w-full h-full object-cover">
+                <span class="absolute bottom-4 left-4 bg-safari-espresso/90 text-safari-parchment text-[11px] font-mono px-3 py-1 rounded-lg uppercase tracking-wider">Hardwood Precision Finish</span>
+            </div>
+            <!-- Right: Content -->
+            <div class="lg:col-span-7 space-y-6">
+                <span class="text-[11px] font-bold uppercase tracking-widest text-safari-olive">Veld Heritage & Legacy</span>
+                <h2 class="font-heading font-black text-3xl sm:text-4xl text-safari-espresso uppercase leading-tight">Preserving Backyard Family Adventure</h2>
+                <p class="text-safari-espresso/80 text-sm leading-relaxed font-light">
+                    For generations, the traditional "kettie" has been a fixture of growing up in South Africa. It taught young boys and girls the value of hand-eye coordination, precision target practice, patience, and a deep respect for the bush.
+                </p>
+                <p class="text-safari-espresso/80 text-sm leading-relaxed font-light">
+                    At Ketties & Goete, we are bringing this traditional art form into the 21st century. By pairing heavy-duty carbon steel forks, real polished wood scales, and fiber-optic posture sights with fully biodegradable clay ammo, we ensure the next generation can shoot safely, ecologically, and with unmatched accuracy.
+                </p>
+                <div>
+                    <a href="#shop" class="inline-block bg-safari-espresso hover:bg-safari-olive text-safari-parchment px-8 py-4 rounded-xl font-heading font-bold text-xs uppercase tracking-widest transition-colors shadow">
+                        Read Our Heritage Veld Blogs
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Stay In The Loop Newsletter Section -->
+    <section class="py-16 bg-safari-espresso text-safari-parchment">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <span class="text-[11px] font-bold uppercase tracking-widest text-safari-olive">Join The Adventure</span>
+            <h2 class="font-heading font-black text-3xl sm:text-4xl uppercase tracking-tight">Stay In The Loop</h2>
+            <p class="text-safari-borderLight text-sm max-w-lg mx-auto font-light">
+                Subscribe to our newsletter to receive notification on brand new slingshot releases, winter combo launches, and precision targeting guides!
+            </p>
+            <form onsubmit="event.preventDefault(); alert('Thank you for subscribing to Ketties & Goete!'); this.reset();" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto pt-2">
+                <input type="email" placeholder="Enter your email address" required class="flex-1 bg-safari-surface/10 border border-safari-border text-safari-parchment placeholder-safari-border px-4 py-3.5 rounded-xl text-sm focus:outline-none focus:border-safari-olive">
+                <button type="submit" class="bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-8 py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer id="combos" class="bg-safari-espresso text-safari-parchment py-16">
+    <footer id="combos" class="bg-safari-espresso/95 text-safari-parchment py-16 border-t border-safari-border/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 border-b border-safari-border/20 pb-12">
             <div class="space-y-4 md:col-span-2">
                 <div class="flex items-center gap-3">
@@ -711,8 +853,13 @@
                 btn.classList.remove('bg-safari-olive', 'text-white');
                 btn.classList.add('bg-safari-surface', 'text-safari-espresso', 'border', 'border-safari-border');
             });
-            event.target.classList.remove('bg-safari-surface', 'text-safari-espresso', 'border', 'border-safari-border');
-            event.target.classList.add('bg-safari-olive', 'text-white');
+            // Try to match category filter button if active
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if(btn.textContent.includes(cat) || (cat === 'all' && btn.textContent.includes('All'))) {
+                    btn.classList.remove('bg-safari-surface', 'text-safari-espresso', 'border', 'border-safari-border');
+                    btn.classList.add('bg-safari-olive', 'text-white');
+                }
+            });
             renderProducts();
         }
 
