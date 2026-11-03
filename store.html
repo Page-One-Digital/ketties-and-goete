@@ -1040,6 +1040,7 @@
             grid.innerHTML = '';
             let filtered = category === 'all' ? products : products.filter(p => p.category === category);
             
+            // FIXED: Allow products to show even if visible or stock properties are undefined/missing
             filtered = filtered.filter(p => p.visible !== false && (p.stock === undefined || p.stock > 0));
 
             if (searchKey.trim() !== '') {
@@ -1057,7 +1058,7 @@
                 card.className = 'bg-white border border-safari-beige rounded-3xl overflow-hidden shadow-lg flex flex-col justify-between group hover:border-safari-olive transition-all duration-300 cursor-pointer';
                 card.innerHTML = `
                     <div onclick="openProductModal('${p.id}')" class="relative h-64 sm:h-72 bg-safari-espresso overflow-hidden">
-                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="${p.image || 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600&auto=format&fit=crop'}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-safari-espresso uppercase shadow-sm">
                             KETTIES &amp; GOETE
                         </div>
@@ -1073,9 +1074,9 @@
                         <div class="mt-6 pt-4 border-t border-safari-beige/50 flex items-center justify-between">
                             <div>
                                 <span class="text-[10px] text-stone-400 font-bold block uppercase tracking-wider">Price</span>
-                                <span class="text-lg sm:text-xl font-black text-safari-espresso font-display tracking-wider">R ${parseFloat(p.price).toFixed(2)}</span>
+                                <span class="text-lg sm:text-xl font-black text-safari-espresso font-display tracking-wider">R ${parseFloat(p.price || 0).toFixed(2)}</span>
                             </div>
-                            <button onclick="event.stopPropagation(); addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.image}')" class="px-4 py-2.5 rounded-xl bg-safari-olive hover:bg-safari-olivedark text-white font-black text-xs transition-all flex items-center space-x-1 shadow uppercase tracking-wider font-display">
+                            <button onclick="event.stopPropagation(); addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price || 0}, '${p.image || ''}')" class="px-4 py-2.5 rounded-xl bg-safari-olive hover:bg-safari-olivedark text-white font-black text-xs transition-all flex items-center space-x-1 shadow uppercase tracking-wider font-display">
                                 <i data-lucide="shopping-bag" class="w-4 h-4"></i>
                                 <span>Quick Add</span>
                             </button>
@@ -1095,13 +1096,13 @@
 
             document.getElementById('modal-sku').innerText = 'SKU: KG-' + (p.id || '001').toUpperCase();
             document.getElementById('modal-title').innerText = p.name;
-            document.getElementById('modal-price').innerText = 'R ' + parseFloat(p.price).toFixed(2);
+            document.getElementById('modal-price').innerText = 'R ' + parseFloat(p.price || 0).toFixed(2);
             document.getElementById('modal-description').innerText = p.description || 'Precision crafted outdoor gear built for family adventures and backyard target practice.';
             document.getElementById('spec-cat').innerText = p.category || 'Slingshots';
             document.getElementById('spec-stock').innerText = (p.stock !== undefined ? p.stock : 25) + ' units';
 
             // Gather images (main image + gallery array)
-            let imgs = [p.image];
+            let imgs = [p.image || 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600&auto=format&fit=crop'];
             if (p.gallery) {
                 if (Array.isArray(p.gallery)) {
                     imgs = imgs.concat(p.gallery);
@@ -1442,10 +1443,10 @@
                 item.className = 'flex items-center justify-between bg-stone-50 p-3.5 rounded-2xl border border-stone-200 text-xs gap-2';
                 item.innerHTML = `
                     <div class="flex items-center space-x-3 truncate">
-                        <img src="${p.image}" class="w-10 h-10 object-cover rounded-xl shrink-0">
+                        <img src="${p.image || 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600&auto=format&fit=crop'}" class="w-10 h-10 object-cover rounded-xl shrink-0">
                         <div class="truncate">
                             <p class="font-bold text-safari-espresso uppercase truncate">${p.name}</p>
-                            <p class="text-stone-500">R ${p.price.toFixed(2)} • Stock: <span class="font-bold text-safari-olive">${p.stock !== undefined ? p.stock : 25}</span> • <span class="${p.visible !== false ? 'text-green-600 font-bold' : 'text-red-500 font-bold'}">${p.visible !== false ? 'Visible' : 'Hidden / Out of Stock'}</span></p>
+                            <p class="text-stone-500">R ${parseFloat(p.price || 0).toFixed(2)} • Stock: <span class="font-bold text-safari-olive">${p.stock !== undefined ? p.stock : 25}</span> • <span class="${p.visible !== false ? 'text-green-600 font-bold' : 'text-red-500 font-bold'}">${p.visible !== false ? 'Visible' : 'Hidden / Out of Stock'}</span></p>
                         </div>
                     </div>
                     <div class="flex items-center space-x-2 shrink-0">
