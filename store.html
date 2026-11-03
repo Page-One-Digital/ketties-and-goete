@@ -86,27 +86,29 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative bg-safari-espresso text-safari-parchment overflow-hidden py-16 lg:py-24">
-        <div class="absolute inset-0 z-0 opacity-30 mix-blend-overlay bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=1920');"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-safari-espresso via-safari-espresso/90 to-transparent z-0"></div>
+    <!-- Hero Section (Updated with visible American Wilderness Mountain background & higher opacity) -->
+    <section class="relative bg-safari-espresso text-safari-parchment overflow-hidden py-20 lg:py-28">
+        <!-- American Mountain Wilderness Background Image with Increased Opacity (50%) -->
+        <div class="absolute inset-0 z-0 opacity-50 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1920');"></div>
+        <!-- Softer Gradient Overlay to keep text readable while keeping the background clear and visible -->
+        <div class="absolute inset-0 bg-gradient-to-r from-safari-espresso/90 via-safari-espresso/60 to-transparent z-0"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-7 space-y-6">
                 <div class="inline-flex items-center gap-2 bg-safari-olive text-white px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase shadow-sm">
-                    <span>✨</span> SOUTH AFRICA'S SHOOTING HERITAGE
+                    <span>⛰️</span> AMERICAN WILDERNESS & HERITAGE GEAR
                 </div>
-                <h1 class="font-heading font-black text-4xl sm:text-5xl lg:text-6xl tracking-tight uppercase leading-none">
+                <h1 class="font-heading font-black text-4xl sm:text-5xl lg:text-6xl tracking-tight uppercase leading-none drop-shadow-md">
                     GEAR YOU CAN <span class="bg-safari-olive text-white px-3 py-1 inline-block mt-2 rounded shadow-inner">COUNT ON.</span>
                 </h1>
-                <p class="text-safari-borderLight text-base sm:text-lg max-w-xl font-light leading-relaxed">
-                    Precision premium slingshots, therapeutic natural latex flatbands, and biodegradable clay pellets built for target precision and backyard family expeditions.
+                <p class="text-safari-parchment text-base sm:text-lg max-w-xl font-medium leading-relaxed drop-shadow">
+                    Precision premium slingshots, therapeutic natural latex flatbands, and biodegradable clay pellets built for target precision and rugged outdoor expeditions.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-2">
                     <a href="#shop" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-8 py-4 rounded-xl font-heading font-bold text-sm tracking-wider uppercase transition-all shadow-lg flex items-center gap-2">
                         EXPLORE CATALOG <i class="fa-solid fa-arrow-right"></i>
                     </a>
-                    <a href="#combos" class="bg-safari-espresso/60 hover:bg-safari-espresso border border-safari-border text-safari-parchment px-8 py-4 rounded-xl font-heading font-bold text-sm tracking-wider uppercase transition-all backdrop-blur-sm">
+                    <a href="#combos" class="bg-safari-espresso/80 hover:bg-safari-espresso border border-safari-border text-safari-parchment px-8 py-4 rounded-xl font-heading font-bold text-sm tracking-wider uppercase transition-all backdrop-blur-sm shadow-md">
                         BUY COMBO SPECIAL
                     </a>
                 </div>
@@ -1064,7 +1066,6 @@
 
             document.getElementById("opt-group-name").value = prod.optionGroup || "Select Option:";
             
-            // Format options back to comma-separated string with :+price
             if (prod.options && prod.options.length > 0) {
                 const formattedOpts = prod.options.map(o => {
                     const oName = o.name || o;
@@ -1095,7 +1096,6 @@
             const id = document.getElementById("prod-edit-id").value;
             const rawChoices = document.getElementById("opt-choices").value;
             
-            // Parse options like "Blue:+0, Black:+20" into structured objects
             const parsedOptions = rawChoices.split(',').map(item => {
                 const parts = item.split(':+');
                 const name = parts[0].trim();
