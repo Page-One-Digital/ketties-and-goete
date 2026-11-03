@@ -130,7 +130,7 @@
                 <span>SOUTH AFRICA'S SHOOTING HERITAGE</span>
             </div>
             <h1 class="text-3xl sm:text-5xl font-black uppercase font-display tracking-wide">GEAR YOU CAN <span class="text-safari-terracotta">COUNT ON.</span></h1>
-            <p class="text-stone-300 text-xs sm:text-sm max-w-xl mt-3">Precision carbon steel slingshots, GZK flatbands, and clay ammo synced live with Firebase cloud database.</p>
+            <p class="text-stone-300 text-xs sm:text-sm max-w-xl mt-3">Precision carbon steel slingshots, GZK flatbands, and clay ammo synced live with your Firebase cloud database.</p>
         </div>
     </section>
 
@@ -139,7 +139,7 @@
         <div class="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
             <div>
                 <h2 class="text-2xl sm:text-3xl font-black text-safari-espresso uppercase font-display">The Bushveld Arsenal</h2>
-                <p class="text-xs text-stone-500">Live stock synced directly from Firebase database.</p>
+                <p class="text-xs text-stone-500">Live stock synced directly from your Firebase database.</p>
             </div>
             <div class="flex gap-2">
                 <button onclick="filterProducts('all')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-safari-olive text-white shadow">All Gear</button>
@@ -149,8 +149,7 @@
         </div>
 
         <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Dynamically Rendered from Firebase -->
-            <div class="col-span-full text-center py-12 text-stone-500 font-medium">Loading live inventory from database...</div>
+            <div class="col-span-full text-center py-12 text-stone-500 font-medium">Connecting to Firebase database...</div>
         </div>
     </section>
 
@@ -278,9 +277,9 @@
 
     <!-- Firebase Configuration & Sync Script -->
     <script>
-        // REPLACE WITH YOUR FIREBASE DATABASE URL
+        // CONFIGURED WITH YOUR EXACT DATABASE URL
         const firebaseConfig = {
-            databaseURL: "https://YOUR-DATABASE-NAME-default-rtdb.firebaseio.com/"
+            databaseURL: "https://ketties-n-goete-default-rtdb.europe-west1.firebasedatabase.app/"
         };
 
         // Initialize Firebase
@@ -294,13 +293,13 @@
         let orders = [];
         let cart = [];
 
-        // Real-time Database Listeners (Syncs instantly across all devices)
+        // Real-time Database Listeners
         db.ref('products').on('value', (snapshot) => {
             const data = snapshot.val();
             if (data) {
                 products = Object.keys(data).map(key => ({ id: key, ...data[key] }));
             } else {
-                // Default seed products if database is empty
+                // Seed initial products if database is empty
                 products = [
                     { id: 'prod_1', name: 'Ou Kalahari Combo Special', category: 'slingshots', price: 550, stock: 25, image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=800&auto=format&fit=crop', description: 'Complete outdoor adventure kit.' },
                     { id: 'prod_2', name: 'Kettie - Ou Kalahari Slingshot', category: 'slingshots', price: 390, stock: 30, image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop', description: 'Traditional handcrafted hardwood slingshot.' }
