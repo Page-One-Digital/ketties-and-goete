@@ -292,7 +292,7 @@
         </div>
     </section>
 
-    <!-- PRODUCT DETAIL POPUP MODAL (Matching Screenshot #2) -->
+    <!-- PRODUCT DETAIL POPUP MODAL -->
     <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6">
         <div onclick="closeProductModal()" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
         <div class="relative bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto z-50 p-6 sm:p-8 flex flex-col">
@@ -608,7 +608,7 @@
         </div>
     </div>
 
-    <!-- Management Portal Modal (Sidebar Layout Style) -->
+    <!-- Management Portal Modal -->
     <div id="portal-modal" class="fixed inset-0 z-50 hidden">
         <div onclick="closePortal()" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
         <div class="absolute inset-2 sm:inset-6 bg-[#21201E] rounded-3xl shadow-2xl flex flex-col overflow-hidden max-w-7xl mx-auto my-auto z-50 h-[92vh]">
@@ -633,13 +633,12 @@
                 <p id="login-error" class="text-xs text-red-600 hidden font-bold text-center">Invalid credentials. Unauthorized access blocked.</p>
             </div>
 
-            <!-- Dashboard App View (Sidebar + Main Content Layout) -->
+            <!-- Dashboard App View -->
             <div id="portal-dashboard-view" class="hidden flex-1 flex flex-col md:flex-row overflow-hidden bg-[#EBE6DC]">
                 
                 <!-- Left Sidebar Navigation -->
                 <div class="w-full md:w-80 bg-[#21201E] text-stone-300 border-r border-stone-800 flex flex-col justify-between shrink-0 p-6">
                     <div class="space-y-6">
-                        <!-- Dashboard Header in Sidebar -->
                         <div class="flex items-start justify-between">
                             <div class="flex items-center space-x-3">
                                 <div class="w-8 h-8 rounded-full bg-safari-olive flex items-center justify-center text-amber-300 shrink-0">
@@ -655,7 +654,6 @@
                             </button>
                         </div>
 
-                        <!-- Navigation Tab Buttons -->
                         <div class="space-y-1.5 text-xs font-bold">
                             <button onclick="switchAdminTab('orders')" id="tab-btn-orders" class="admin-tab-btn w-full text-left px-4 py-3 rounded-xl flex items-center space-x-3 bg-safari-olive text-white shadow transition-all">
                                 <i data-lucide="package" class="w-4 h-4"></i>
@@ -700,7 +698,6 @@
                         </div>
 
                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                            <!-- 1. Received -->
                             <div class="bg-white p-5 rounded-3xl border border-safari-beige shadow-sm space-y-4">
                                 <div class="flex justify-between items-center border-b border-stone-100 pb-3">
                                     <span class="text-xs font-black uppercase text-safari-espresso flex items-center space-x-2">
@@ -720,7 +717,6 @@
                                 </div>
                             </div>
 
-                            <!-- 2. Processing -->
                             <div class="bg-white p-5 rounded-3xl border border-safari-beige shadow-sm space-y-4">
                                 <div class="flex justify-between items-center border-b border-stone-100 pb-3">
                                     <span class="text-xs font-black uppercase text-safari-espresso flex items-center space-x-2">
@@ -740,7 +736,6 @@
                                 </div>
                             </div>
 
-                            <!-- 3. Fulfilled -->
                             <div class="bg-white p-5 rounded-3xl border border-safari-beige shadow-sm space-y-4">
                                 <div class="flex justify-between items-center border-b border-stone-100 pb-3">
                                     <span class="text-xs font-black uppercase text-safari-espresso flex items-center space-x-2">
@@ -802,7 +797,6 @@
                             </div>
                         </div>
 
-                        <!-- Existing Product Inventory List with Stock Controls -->
                         <div class="bg-white p-6 rounded-3xl border border-safari-beige shadow-sm space-y-4">
                             <h3 class="text-sm font-black uppercase text-safari-espresso font-display">Current Catalog Inventory & Stock Control</h3>
                             <div id="admin-product-list" class="space-y-3">
@@ -854,8 +848,6 @@
 
                     <!-- TAB 4: SALES & ANALYTICS -->
                     <div id="admin-tab-sales" class="admin-tab-content hidden space-y-6">
-                        
-                        <!-- Detailed Metrics Header -->
                         <div class="bg-white p-6 sm:p-8 rounded-3xl border border-safari-beige shadow-sm space-y-6">
                             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-stone-200 pb-4 gap-2">
                                 <div>
@@ -883,102 +875,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Live Visitor Counters -->
-                        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
-                            <div class="bg-white p-5 rounded-3xl border border-safari-beige shadow-sm">
-                                <span class="text-[10px] text-stone-400 font-bold uppercase block">LIVE ACTIVE NOW</span>
-                                <span class="text-3xl font-black text-safari-olive font-display mt-1 block flex items-center space-x-2">
-                                    <span class="w-3 h-3 rounded-full bg-green-500 animate-pulse inline-block"></span>
-                                    <span>1</span>
-                                </span>
-                            </div>
-                            <div class="bg-white p-5 rounded-3xl border border-safari-beige shadow-sm">
-                                <span class="text-[10px] text-stone-400 font-bold uppercase block">TOTAL UNIQUE VISITS</span>
-                                <span class="text-3xl font-black text-safari-espresso font-display mt-1 block">541</span>
-                            </div>
-                            <div class="bg-white p-5 rounded-3xl border border-safari-beige shadow-sm">
-                                <span class="text-[10px] text-stone-400 font-bold uppercase block">TOTAL PRODUCT VIEWS</span>
-                                <span class="text-3xl font-black text-safari-espresso font-display mt-1 block">170</span>
-                            </div>
-                            <div class="bg-white p-5 rounded-3xl border border-safari-beige shadow-sm">
-                                <span class="text-[10px] text-stone-400 font-bold uppercase block">REGISTERED CUSTOMERS</span>
-                                <span class="text-3xl font-black text-safari-espresso font-display mt-1 block">8</span>
-                            </div>
-                        </div>
-
-                        <!-- Live Visitors Online Right Now Table -->
-                        <div class="bg-white p-6 rounded-3xl border border-safari-beige shadow-sm space-y-4">
-                            <div class="flex justify-between items-center border-b border-stone-200 pb-3">
-                                <h3 class="text-sm font-black uppercase text-safari-espresso font-display flex items-center space-x-2">
-                                    <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
-                                    <span>Live Visitors Online Right Now</span>
-                                </h3>
-                                <span class="text-[10px] text-stone-400 italic">Excludes Admin Accounts</span>
-                            </div>
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left text-xs">
-                                    <thead>
-                                        <tr class="bg-safari-surface text-stone-700 uppercase tracking-wider">
-                                            <th class="p-3 rounded-l-xl">Visitor / Email</th>
-                                            <th class="p-3">Location (City, Country)</th>
-                                            <th class="p-3">Device & Browser Software</th>
-                                            <th class="p-3 rounded-r-xl">Current Action / Product Viewed</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-stone-100 font-medium">
-                                        <tr>
-                                            <td class="p-3 text-safari-espresso font-bold">johan.v@gmail.com</td>
-                                            <td class="p-3 text-stone-600">Centurion, South Africa</td>
-                                            <td class="p-3 text-stone-600">Windows 11 • Chrome</td>
-                                            <td class="p-3 text-safari-terracotta font-bold">Viewing Ou Kalahari Pro Slingshot</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <!-- Most Frequently Viewed Products Table -->
-                        <div class="bg-white p-6 rounded-3xl border border-safari-beige shadow-sm space-y-4">
-                            <div class="flex justify-between items-center border-b border-stone-200 pb-3">
-                                <h3 class="text-sm font-black uppercase text-safari-espresso font-display">Most Frequently Viewed Products</h3>
-                                <span class="text-[10px] text-stone-400 italic">Real-time engagement ranking</span>
-                            </div>
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left text-xs">
-                                    <thead>
-                                        <tr class="bg-safari-surface text-stone-700 uppercase tracking-wider">
-                                            <th class="p-3 rounded-l-xl">Product Title</th>
-                                            <th class="p-3">Category</th>
-                                            <th class="p-3 rounded-r-xl">View Count</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-stone-100 font-medium">
-                                        <tr>
-                                            <td class="p-3 font-bold text-safari-espresso">Ou Kalahari Pro Slingshot</td>
-                                            <td class="p-3 text-stone-600">Slingshots</td>
-                                            <td class="p-3 text-safari-terracotta font-bold">42 views</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="p-3 font-bold text-safari-espresso">SA Eagle Tactical Metal Frame</td>
-                                            <td class="p-3 text-stone-600">Slingshots</td>
-                                            <td class="p-3 text-safari-terracotta font-bold">38 views</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="p-3 font-bold text-safari-espresso">Clay Ammo (Klei Balletjies - 50)</td>
-                                            <td class="p-3 text-stone-600">Ammunition</td>
-                                            <td class="p-3 text-safari-terracotta font-bold">31 views</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="p-3 font-bold text-safari-espresso">High-Performance Flat Latex Bands</td>
-                                            <td class="p-3 text-stone-600">Bands & Sets</td>
-                                            <td class="p-3 text-safari-terracotta font-bold">24 views</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
                     </div>
 
                 </div>
@@ -997,7 +893,7 @@
         </div>
     </div>
 
-    <!-- Application JavaScript with Firebase Realtime Database Integration -->
+    <!-- Application JavaScript with Robust Permissive Filtering -->
     <script type="module">
         import { db } from "./firebase.js";
         import { ref, set, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
@@ -1038,10 +934,10 @@
             const grid = document.getElementById('product-grid');
             if (!grid) return;
             grid.innerHTML = '';
-            let filtered = category === 'all' ? products : products.filter(p => p.category === category);
             
-            // FIXED: Allow products to show even if visible or stock properties are undefined/missing
-            filtered = filtered.filter(p => p.visible !== false && (p.stock === undefined || p.stock > 0));
+            // Permissive filter: Only hide if visible is explicitly set to false (boolean)
+            let filtered = category === 'all' ? products : products.filter(p => p.category === category);
+            filtered = filtered.filter(p => p.visible !== false);
 
             if (searchKey.trim() !== '') {
                 const term = searchKey.toLowerCase();
