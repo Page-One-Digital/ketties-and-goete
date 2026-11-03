@@ -233,7 +233,7 @@
         </div>
     </div>
 
-    <!-- Enriched Large Product Detail Modal with Reference Info Box -->
+    <!-- Enriched Large Product Detail Modal with Dynamic Options & Specs -->
     <div id="product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductModal()"></div>
         <div class="bg-safari-parchment rounded-3xl max-w-6xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2 items-center min-h-[82vh]">
@@ -270,19 +270,18 @@
                     <!-- Description -->
                     <p id="modal-desc" class="text-safari-espresso/80 text-sm leading-relaxed"></p>
 
-                    <!-- Select Option Section -->
+                    <!-- Dynamically Rendered Select Option Buttons (Colors, Thickness, Quantities) -->
                     <div class="space-y-2 pt-2">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-safari-espresso">Select Option:</label>
-                        <div class="flex flex-wrap gap-3">
-                            <button type="button" class="option-btn active-option bg-safari-olive text-white px-4 py-2 rounded-xl text-xs font-semibold border border-safari-olive transition-all">Latex Thickness: 0.75mm (Speed)</button>
-                            <button type="button" class="option-btn bg-safari-surface text-safari-espresso px-4 py-2 rounded-xl text-xs font-semibold border border-safari-border hover:border-safari-olive transition-all">Latex Thickness: 1.0mm (Power)</button>
+                        <label id="modal-option-label" class="block text-xs font-bold uppercase tracking-wider text-safari-espresso">Select Option:</label>
+                        <div id="modal-options-container" class="flex flex-wrap gap-2.5">
+                            <!-- Populated dynamically via JS -->
                         </div>
                     </div>
 
-                    <!-- Product Specifications Box (Dynamically Rendered) -->
+                    <!-- Product Specifications Box -->
                     <div class="bg-safari-surface p-4 rounded-xl border border-safari-border space-y-3">
                         <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso">Product Specifications:</h4>
-                        <div class="grid grid-cols-2 gap-y-2 text-xs text-safari-espresso/80" id="modal-specs-grid">
+                        <div class="grid grid-cols-2 gap-y-2 text-xs text-safari-espresso/80">
                             <div><span class="font-semibold">Material:</span> <span id="spec-material">Treated SA Hardwood & Carbon Core</span></div>
                             <div><span class="font-semibold">Aiming System:</span> <span id="spec-aiming">Dual Fiber Optic (Green & Red)</span></div>
                             <div><span class="font-semibold">Weight:</span> <span id="spec-weight">245g</span></div>
@@ -466,7 +465,7 @@
         </div>
     </div>
 
-    <!-- Add / Edit Product Modal (Now with Full Product Specifications Fields) -->
+    <!-- Add / Edit Product Modal (With Product Options & Specs Editor) -->
     <div id="product-form-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductFormModal()"></div>
         <div class="bg-safari-parchment rounded-2xl max-w-2xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
@@ -515,7 +514,22 @@
                     <textarea id="prod-desc" rows="2" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm"></textarea>
                 </div>
 
-                <!-- Specifications Fields for Management Portal -->
+                <!-- Product Options / Variant Builder -->
+                <div class="bg-safari-surface p-4 rounded-xl border border-safari-border space-y-3">
+                    <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso">Selectable Options / Variants</h4>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-[11px] font-semibold uppercase tracking-wider mb-1">Option Group Name</label>
+                            <input type="text" id="opt-group-name" value="Latex Thickness:" placeholder="e.g. Latex Thickness / Color / Pack Size" class="w-full bg-safari-parchment border border-safari-border rounded-lg px-3 py-2 text-xs">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-semibold uppercase tracking-wider mb-1">Option Choices (Comma Separated)</label>
+                            <input type="text" id="opt-choices" value="0.75mm (Speed), 1.0mm (Power)" placeholder="e.g. 0.75mm (Speed), 1.0mm (Power)" class="w-full bg-safari-parchment border border-safari-border rounded-lg px-3 py-2 text-xs">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specifications Fields -->
                 <div class="bg-safari-surface p-4 rounded-xl border border-safari-border space-y-3">
                     <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso">Popup Specifications Editor</h4>
                     <div class="grid grid-cols-2 gap-3">
@@ -574,7 +588,7 @@
         let cart = [];
         let currentFilter = 'all';
         let selectedProduct = null;
-        let modalQty = 1;
+        let selectedOptionValue = '';
 
         const defaultProducts = [
             {
@@ -586,6 +600,8 @@
                 image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
                 thumbs: ["https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800"],
                 description: "Named after the rugged red dunes of the Kalahari, this slingshot combines traditional hardwood aesthetics with integrated fiber optic aiming levels and a quick-clip band loading system for pinpoint target consistency.",
+                optionGroup: "Latex Thickness:",
+                options: ["0.75mm (Speed)", "1.0mm (Power)"],
                 specs: {
                     material: "Treated SA Hardwood & Carbon Core",
                     aiming: "Dual Fiber Optic (Green & Red)",
@@ -603,6 +619,8 @@
                 image: "https://images.unsplash.com/photo-1508873696983-2df5c92063c7?auto=format&fit=crop&q=80&w=800",
                 thumbs: ["https://images.unsplash.com/photo-1508873696983-2df5c92063c7?auto=format&fit=crop&q=80&w=800"],
                 description: "Hand-carved seasoned hard tambotie wood frame paired with high-tensile natural latex bands.",
+                optionGroup: "Frame Finish:",
+                options: ["Natural Tambotie", "Dark Walnut Stain", "Matte Black Carbon"],
                 specs: {
                     material: "Tambotie Hardwood",
                     aiming: "Single Fiber Optic",
@@ -620,6 +638,8 @@
                 image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=800",
                 thumbs: ["https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=800"],
                 description: "Professional grade pure Malaysian natural latex flatbands for competitive target shooting.",
+                optionGroup: "Band Strength:",
+                options: ["0.50mm (Junior / Target)", "0.75mm (Standard)", "1.0mm (Heavy Power)"],
                 specs: {
                     material: "100% Pure Malaysian Latex",
                     aiming: "N/A",
@@ -637,6 +657,8 @@
                 image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800",
                 thumbs: ["https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800"],
                 description: "Eco-friendly compressed clay spheres designed to disintegrate naturally in rain and soil.",
+                optionGroup: "Pellet Size:",
+                options: ["8mm Precision", "10mm Standard", "12mm Heavy Impact"],
                 specs: {
                     material: "Compressed Natural Clay",
                     aiming: "N/A",
@@ -727,12 +749,8 @@
         window.addToCart = function(id) {
             const prod = products.find(p => p.id === id);
             if (!prod) return;
-            const existing = cart.find(item => item.id === id);
-            if (existing) {
-                existing.qty++;
-            } else {
-                cart.push({ ...prod, qty: 1 });
-            }
+            const defaultChoice = prod.options && prod.options.length > 0 ? prod.options[0] : 'Standard';
+            cart.push({ ...prod, selectedOption: defaultChoice, qty: 1 });
             updateCartUI();
             toggleCartDrawer();
         }
@@ -758,19 +776,20 @@
                 return;
             }
 
-            container.innerHTML = cart.map(item => `
+            container.innerHTML = cart.map((item, index) => `
                 <div class="flex items-center gap-4 bg-safari-parchment p-3 rounded-xl border border-safari-border">
                     <img src="${item.image}" class="w-16 h-16 object-cover rounded-lg border border-safari-border">
                     <div class="flex-1">
                         <h4 class="font-heading font-bold text-sm line-clamp-1">${item.name}</h4>
+                        <span class="text-[10px] text-safari-olive font-bold block">Option: ${item.selectedOption}</span>
                         <span class="text-xs text-safari-terracotta font-bold">R${parseFloat(item.price).toFixed(2)}</span>
                         <div class="flex items-center gap-2 mt-1">
-                            <button onclick="updateQty('${item.id}', -1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs">-</button>
+                            <button onclick="updateCartItemQty(${index}, -1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs">-</button>
                             <span class="text-xs font-bold">${item.qty}</span>
-                            <button onclick="updateQty('${item.id}', 1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs">+</button>
+                            <button onclick="updateCartItemQty(${index}, 1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs">+</button>
                         </div>
                     </div>
-                    <button onclick="removeFromCart('${item.id}')" class="text-safari-espresso/40 hover:text-red-600 p-2"><i class="fa-solid fa-trash text-sm"></i></button>
+                    <button onclick="removeFromCart(${index})" class="text-safari-espresso/40 hover:text-red-600 p-2"><i class="fa-solid fa-trash text-sm"></i></button>
                 </div>
             `).join('');
 
@@ -781,18 +800,16 @@
             totalEl.textContent = `R${(subtotal + shipping).toFixed(2)}`;
         }
 
-        window.updateQty = function(id, delta) {
-            const item = cart.find(i => i.id === id);
-            if (!item) return;
-            item.qty += delta;
-            if (item.qty <= 0) {
-                cart = cart.filter(i => i.id !== id);
+        window.updateCartItemQty = function(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
             }
             updateCartUI();
         }
 
-        window.removeFromCart = function(id) {
-            cart = cart.filter(i => i.id !== id);
+        window.removeFromCart = function(index) {
+            cart.splice(index, 1);
             updateCartUI();
         }
 
@@ -803,7 +820,6 @@
         window.openProductModal = function(id) {
             selectedProduct = products.find(p => p.id === id);
             if (!selectedProduct) return;
-            modalQty = 1;
 
             document.getElementById("modal-main-img").src = selectedProduct.image;
             document.getElementById("modal-sku").textContent = `SKU: ${selectedProduct.sku || 'KG-SL-' + selectedProduct.id.substring(0, 6).toUpperCase()}`;
@@ -811,7 +827,23 @@
             document.getElementById("modal-price").textContent = `R${parseFloat(selectedProduct.price).toFixed(2)}`;
             document.getElementById("modal-desc").textContent = selectedProduct.description;
 
-            // Populate Specs dynamically from product data
+            // Render Option Group and Interactive Selectable Buttons
+            const optionLabel = document.getElementById("modal-option-label");
+            const optionsContainer = document.getElementById("modal-options-container");
+            
+            const groupName = selectedProduct.optionGroup || "Select Option:";
+            optionLabel.textContent = groupName;
+
+            const choices = selectedProduct.options && selectedProduct.options.length > 0 ? selectedProduct.options : ["Standard"];
+            selectedOptionValue = choices[0];
+
+            optionsContainer.innerHTML = choices.map((choice, idx) => `
+                <button type="button" onclick="selectOptionButton(this, '${choice}')" class="opt-choice-btn px-4 py-2 rounded-xl text-xs font-semibold border transition-all ${idx === 0 ? 'bg-safari-olive text-white border-safari-olive shadow-sm' : 'bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive'}">
+                    ${choice}
+                </button>
+            `).join('');
+
+            // Specs
             const specs = selectedProduct.specs || {
                 material: "Treated SA Hardwood & Carbon Core",
                 aiming: "Dual Fiber Optic (Green & Red)",
@@ -834,18 +866,21 @@
             document.getElementById("product-modal").classList.remove("hidden");
         }
 
+        window.selectOptionButton = function(btn, value) {
+            selectedOptionValue = value;
+            document.querySelectorAll('.opt-choice-btn').forEach(b => {
+                b.className = "opt-choice-btn px-4 py-2 rounded-xl text-xs font-semibold border bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive transition-all";
+            });
+            btn.className = "opt-choice-btn px-4 py-2 rounded-xl text-xs font-semibold border bg-safari-olive text-white border-safari-olive shadow-sm transition-all";
+        }
+
         window.closeProductModal = function() {
             document.getElementById("product-modal").classList.add("hidden");
         }
 
         window.addModalItemToCart = function() {
             if (!selectedProduct) return;
-            const existing = cart.find(item => item.id === selectedProduct.id);
-            if (existing) {
-                existing.qty += 1;
-            } else {
-                cart.push({ ...selectedProduct, qty: 1 });
-            }
+            cart.push({ ...selectedProduct, selectedOption: selectedOptionValue, qty: 1 });
             updateCartUI();
             closeProductModal();
             toggleCartDrawer();
@@ -1002,6 +1037,8 @@
             document.getElementById("product-form-title").textContent = "Add New Product";
             document.getElementById("prod-edit-id").value = "";
             document.getElementById("product-action-form").reset();
+            document.getElementById("opt-group-name").value = "Latex Thickness:";
+            document.getElementById("opt-choices").value = "0.75mm (Speed), 1.0mm (Power)";
             document.getElementById("spec-input-material").value = "Treated SA Hardwood & Carbon Core";
             document.getElementById("spec-input-aiming").value = "Dual Fiber Optic (Green & Red)";
             document.getElementById("spec-input-weight").value = "245g";
@@ -1013,7 +1050,7 @@
         window.openEditProductModal = function(id) {
             const prod = products.find(p => p.id === id);
             if (!prod) return;
-            document.getElementById("product-form-title").textContent = "Edit Product Specifications";
+            document.getElementById("product-form-title").textContent = "Edit Product Options & Specifications";
             document.getElementById("prod-edit-id").value = prod.id;
             document.getElementById("prod-name").value = prod.name;
             document.getElementById("prod-sku").value = prod.sku || "";
@@ -1022,6 +1059,9 @@
             document.getElementById("prod-stock").value = prod.stock;
             document.getElementById("prod-img").value = prod.image;
             document.getElementById("prod-desc").value = prod.description || "";
+
+            document.getElementById("opt-group-name").value = prod.optionGroup || "Select Option:";
+            document.getElementById("opt-choices").value = prod.options ? prod.options.join(", ") : "Standard";
 
             const specs = prod.specs || {};
             document.getElementById("spec-input-material").value = specs.material || "";
@@ -1040,6 +1080,9 @@
         window.handleProductSubmit = async function(e) {
             e.preventDefault();
             const id = document.getElementById("prod-edit-id").value;
+            const rawChoices = document.getElementById("opt-choices").value;
+            const parsedOptions = rawChoices.split(',').map(s => s.trim()).filter(s => s.length > 0);
+
             const productData = {
                 name: document.getElementById("prod-name").value,
                 sku: document.getElementById("prod-sku").value,
@@ -1048,6 +1091,8 @@
                 stock: parseInt(document.getElementById("prod-stock").value),
                 image: document.getElementById("prod-img").value,
                 description: document.getElementById("prod-desc").value || "",
+                optionGroup: document.getElementById("opt-group-name").value,
+                options: parsedOptions,
                 specs: {
                     material: document.getElementById("spec-input-material").value,
                     aiming: document.getElementById("spec-input-aiming").value,
@@ -1060,11 +1105,11 @@
             try {
                 if (id) {
                     await updateDoc(doc(db, "products", id), productData);
-                    alert("Product & specs successfully updated in Firebase!");
+                    alert("Product & options successfully updated in Firebase!");
                 } else {
                     productData.thumbs = [productData.image];
                     await addDoc(collection(db, "products"), productData);
-                    alert("New product & specs added successfully to Firebase!");
+                    alert("New product & options added successfully to Firebase!");
                 }
                 closeProductFormModal();
             } catch (err) {
@@ -1095,7 +1140,7 @@
                     <td class="p-4 text-xs font-mono font-bold">#${o.id.substring(0, 8)}</td>
                     <td class="p-4 font-bold text-sm">${o.name}</td>
                     <td class="p-4 text-xs text-safari-espresso/70">${o.phone}<br>${o.email}</td>
-                    <td class="p-4 text-xs">${o.items.map(i => `${i.qty}x ${i.name}`).join(', ')}</td>
+                    <td class="p-4 text-xs">${o.items.map(i => `${i.qty}x ${i.name} (${i.selectedOption})`).join(', ')}</td>
                     <td class="p-4 font-heading font-bold text-safari-terracotta">R${parseFloat(o.total).toFixed(2)}</td>
                     <td class="p-4"><span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">${o.status}</span></td>
                 </tr>
