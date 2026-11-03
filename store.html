@@ -48,7 +48,6 @@
             font-family: 'Montserrat', sans-serif;
             letter-spacing: 0.05em;
         }
-        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -67,8 +66,9 @@
 <body class="bg-[#F4F2EC] text-[#2D2B28] antialiased selection:bg-[#4B5320] selection:text-white">
 
     <!-- TOP ANNOUNCEMENT BAR -->
-    <div class="bg-[#2D2B28] text-[#F4F2EC] text-xs py-2 px-4 text-center font-medium tracking-wider">
-        <i class="fa-solid fa-truck-fast mr-2 text-[#A35C3E]"></i> FREE NATIONWIDE COURIER DELIVERY ACROSS SOUTH AFRICA ON ORDERS OVER R750 | CRAFTED FOR THE BUSHVELD
+    <div class="bg-[#2D2B28] text-[#F4F2EC] text-xs py-2 px-4 text-center font-medium tracking-wider flex items-center justify-center gap-3">
+        <span><i class="fa-solid fa-truck-fast mr-2 text-[#A35C3E]"></i> FREE NATIONWIDE COURIER DELIVERY ACROSS SOUTH AFRICA ON ORDERS OVER R750</span>
+        <span class="hidden md:inline-block px-2 py-0.5 bg-[#4B5320] text-white rounded text-[10px] font-bold" id="dbStatusIndicator">🔌 CONNECTING TO FIREBASE...</span>
     </div>
 
     <!-- HEADER / NAVIGATION -->
@@ -81,13 +81,13 @@
                 </div>
                 <div>
                     <span class="font-heading font-black text-xl tracking-wider text-[#2D2B28] block">KETTIES & GOETE</span>
-                    <span class="text-[10px] tracking-widest text-[#4B5320] font-semibold uppercase block">South African Heritage Gear</span>
+                    <span class="text-[10px] tracking-widest text-[#4B5320] font-semibold uppercase block">WooCommerce Bushveld Store</span>
                 </div>
             </a>
 
             <!-- Desktop Navigation Links -->
             <nav class="hidden md:flex items-center gap-8 font-medium text-sm tracking-wide">
-                <a href="#catalog" onclick="switchView('store'); filterCatalog('all');" class="hover:text-[#4B5320] transition-colors uppercase">Catalog</a>
+                <a href="#catalog" onclick="switchView('store'); filterCatalog('all');" class="hover:text-[#4B5320] transition-colors uppercase">Shop</a>
                 <a href="#catalog" onclick="switchView('store'); filterCatalog('Ketties');" class="hover:text-[#4B5320] transition-colors uppercase">Ketties</a>
                 <a href="#catalog" onclick="switchView('store'); filterCatalog('Flatbands');" class="hover:text-[#4B5320] transition-colors uppercase">Flatbands</a>
                 <a href="#catalog" onclick="switchView('store'); filterCatalog('Pellets');" class="hover:text-[#4B5320] transition-colors uppercase">Clay Pellets</a>
@@ -96,13 +96,11 @@
 
             <!-- Actions (Cart & Admin Portal Toggle) -->
             <div class="flex items-center gap-3">
-                <!-- Admin Toggle Button -->
                 <button onclick="toggleAdminPortal()" id="adminNavBtn" class="px-3 py-2 rounded-lg border border-[#C5B9AB] bg-[#EBE6DC] text-[#2D2B28] hover:bg-[#2D2B28] hover:text-[#F4F2EC] hover:border-[#2D2B28] transition-all text-xs font-bold uppercase tracking-wider flex items-center gap-2">
                     <i class="fa-solid fa-lock text-[#A35C3E]" id="adminLockIcon"></i>
                     <span id="adminBtnText">Admin Portal</span>
                 </button>
 
-                <!-- Shopping Cart Button -->
                 <button onclick="toggleCartDrawer(true)" class="relative p-3 rounded-lg bg-[#4B5320] text-[#F4F2EC] hover:bg-[#353B16] transition-colors shadow-sm flex items-center gap-2">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="hidden sm:inline text-xs font-bold uppercase">Cart</span>
@@ -115,36 +113,25 @@
     <!-- MAIN APP CONTAINER -->
     <main id="appContainer">
 
-        <!-- ================= STORE VIEW ================= -->
+        <!-- STORE VIEW -->
         <div id="storeView">
-            
             <!-- HERO SECTION -->
             <section class="relative bg-[#2D2B28] text-[#F4F2EC] overflow-hidden py-16 lg:py-24 border-b border-[#C5B9AB]">
-                <!-- Background Wilderness Image with Espresso Gradient Overlay -->
                 <div class="absolute inset-0 z-0 opacity-40 mix-blend-luminosity bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1920&q=80');"></div>
                 <div class="absolute inset-0 bg-gradient-to-r from-[#2D2B28] via-[#2D2B28]/90 to-transparent z-1"></div>
 
                 <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    
-                    <!-- Left-Hand Content -->
                     <div class="lg:col-span-7 space-y-6">
-                        <!-- Pill Badge in Safari Olive -->
                         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#4B5320] text-[#F4F2EC] text-xs font-bold tracking-widest uppercase shadow-sm border border-[#C5B9AB]/30">
                             <span>✨</span>
                             <span>SOUTH AFRICA'S SHOOTING HERITAGE</span>
                         </div>
-
-                        <!-- Heading with "COUNT ON." styled in a solid Safari Olive box -->
                         <h1 class="font-heading font-black text-4xl sm:text-5xl lg:text-6xl tracking-wider leading-tight text-[#F4F2EC]">
                             GEAR YOU CAN <span class="bg-[#4B5320] text-white px-3 py-1 inline-block rounded shadow-md mt-1 sm:mt-0">COUNT ON.</span>
                         </h1>
-
-                        <!-- Body Description -->
                         <p class="text-[#DFD8CE] text-base sm:text-lg max-w-xl font-normal leading-relaxed">
-                            Precision premium slingshots (ketties), therapeutic natural latex flatbands, and 100% biodegradable clay pellets built for target precision and backyard family expeditions. Hand-crafted for uncompromising durability in the African bush.
+                            Precision premium slingshots, therapeutic natural latex flatbands, and 100% biodegradable clay pellets built for target precision and backyard family expeditions. Hand-crafted for uncompromising durability in the African bush.
                         </p>
-
-                        <!-- CTA Buttons -->
                         <div class="flex flex-wrap gap-4 pt-2">
                             <a href="#catalog" onclick="filterCatalog('all')" class="px-8 py-4 rounded-xl bg-[#4B5320] text-[#F4F2EC] hover:bg-[#353B16] font-heading font-bold text-sm tracking-wider uppercase shadow-lg transition-all flex items-center gap-3 transform hover:-translate-y-0.5">
                                 <span>EXPLORE CATALOG</span>
@@ -156,21 +143,17 @@
                         </div>
                     </div>
 
-                    <!-- Right-Hand Featured Highlight Card -->
                     <div class="lg:col-span-5 flex justify-center">
                         <div class="w-full max-w-md bg-[#2D2B28]/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-[#C5B9AB]/40 shadow-2xl relative overflow-hidden group">
-                            <!-- Terracotta Badge Corner Ribbon -->
                             <div class="absolute top-0 right-0 bg-[#A35C3E] text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-xl uppercase tracking-widest shadow">
                                 Best Seller 🇿🇦
                             </div>
-
                             <div class="mb-6 relative rounded-xl overflow-hidden aspect-video bg-[#EBE6DC] shadow-inner">
-                                <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80" alt="Ou Kalahari Combo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/2D2B28/F4F2EC?text=Ou+Kalahari+Combo'">
+                                <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80" alt="Ou Kalahari Combo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                 <div class="absolute bottom-2 left-2 bg-[#2D2B28]/80 backdrop-blur-sm text-xs px-2.5 py-1 rounded text-[#F4F2EC] font-semibold">
                                     Limited Edition Kit
                                 </div>
                             </div>
-
                             <div class="space-y-3">
                                 <span class="text-xs font-bold tracking-widest text-[#A35C3E] uppercase">FEATURED HIGHLIGHT</span>
                                 <h3 class="font-heading font-bold text-2xl text-[#F4F2EC]">Ou Kalahari Combo Special</h3>
@@ -190,99 +173,77 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </section>
 
-            <!-- TRUST BADGES SECTION -->
-            <section class="bg-[#EBE6DC] border-b border-[#C5B9AB] py-8">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                    <div class="flex flex-col items-center p-4">
-                        <div class="w-12 h-12 rounded-full bg-[#4B5320] text-white flex items-center justify-center mb-3 shadow">
-                            <i class="fa-solid fa-shield-halved text-lg"></i>
-                        </div>
-                        <h4 class="font-heading font-bold text-sm uppercase text-[#2D2B28]">Bushveld Tough</h4>
-                        <p class="text-xs text-[#2D2B28]/70 mt-1">Built to endure rugged South African trails</p>
+            <!-- SHOP CONTROLS -->
+            <section id="catalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+                <div class="bg-[#EBE6DC] rounded-2xl p-6 border border-[#C5B9AB] shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="w-full md:w-96 relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#2D2B28]/50">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                        <input type="text" id="shopSearchInput" oninput="handleSearchInput(this.value)" placeholder="Search shop catalog..." class="w-full pl-10 pr-4 py-3 rounded-xl bg-[#F4F2EC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320]">
                     </div>
-                    <div class="flex flex-col items-center p-4">
-                        <div class="w-12 h-12 rounded-full bg-[#4B5320] text-white flex items-center justify-center mb-3 shadow">
-                            <i class="fa-solid fa-seedling text-lg"></i>
-                        </div>
-                        <h4 class="font-heading font-bold text-sm uppercase text-[#2D2B28]">100% Eco-Friendly</h4>
-                        <p class="text-xs text-[#2D2B28]/70 mt-1">Biodegradable clay & natural latex</p>
-                    </div>
-                    <div class="flex flex-col items-center p-4">
-                        <div class="w-12 h-12 rounded-full bg-[#4B5320] text-white flex items-center justify-center mb-3 shadow">
-                            <i class="fa-solid fa-boxes-stacked text-lg"></i>
-                        </div>
-                        <h4 class="font-heading font-bold text-sm uppercase text-[#2D2B28]">Local Craftsmanship</h4>
-                        <p class="text-xs text-[#2D2B28]/70 mt-1">Proudly designed in South Africa</p>
-                    </div>
-                    <div class="flex flex-col items-center p-4">
-                        <div class="w-12 h-12 rounded-full bg-[#4B5320] text-white flex items-center justify-center mb-3 shadow">
-                            <i class="fa-solid fa-truck text-lg"></i>
-                        </div>
-                        <h4 class="font-heading font-bold text-sm uppercase text-[#2D2B28]">Nationwide Courier</h4>
-                        <p class="text-xs text-[#2D2B28]/70 mt-1">Fast delivery to your doorstep</p>
+                    <div class="w-full md:w-auto flex items-center justify-between gap-4">
+                        <span id="productResultCount" class="text-xs font-semibold text-[#2D2B28]/70">Showing all products</span>
+                        <select id="shopSortSelect" onchange="handleSortChange(this.value)" class="px-4 py-3 rounded-xl bg-[#F4F2EC] border border-[#C5B9AB] text-xs font-bold uppercase tracking-wider focus:outline-none focus:border-[#4B5320]">
+                            <option value="default">Default Sorting</option>
+                            <option value="price-low">Sort by price: low to high</option>
+                            <option value="price-high">Sort by price: high to low</option>
+                            <option value="name">Sort by name</option>
+                        </select>
                     </div>
                 </div>
             </section>
 
             <!-- PRODUCT CATALOG SECTION -->
-            <section id="catalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
-                    <div>
-                        <span class="text-xs font-bold tracking-widest text-[#4B5320] uppercase block mb-2">CURATED HERITAGE GEAR</span>
-                        <h2 class="font-heading font-black text-3xl sm:text-4xl text-[#2D2B28]">THE OUTDOOR CATALOGUE</h2>
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <div class="w-full lg:w-64 space-y-6">
+                        <div class="bg-[#EBE6DC] p-6 rounded-2xl border border-[#C5B9AB] shadow-sm space-y-4">
+                            <h3 class="font-heading font-bold text-sm uppercase tracking-wider text-[#2D2B28] border-b border-[#C5B9AB] pb-3">Product Categories</h3>
+                            <div class="flex flex-col space-y-2 text-xs font-bold uppercase tracking-wider" id="filterButtons">
+                                <button onclick="filterCatalog('all')" class="cat-btn text-left px-3 py-2.5 rounded-lg bg-[#4B5320] text-white transition-all shadow-sm" data-category="all">All Products</button>
+                                <button onclick="filterCatalog('Ketties')" class="cat-btn text-left px-3 py-2.5 rounded-lg bg-transparent text-[#2D2B28] hover:bg-[#C5B9AB]/40 transition-all" data-category="Ketties">Ketties (Slingshots)</button>
+                                <button onclick="filterCatalog('Flatbands')" class="cat-btn text-left px-3 py-2.5 rounded-lg bg-transparent text-[#2D2B28] hover:bg-[#C5B9AB]/40 transition-all" data-category="Flatbands">Natural Flatbands</button>
+                                <button onclick="filterCatalog('Pellets')" class="cat-btn text-left px-3 py-2.5 rounded-lg bg-transparent text-[#2D2B28] hover:bg-[#C5B9AB]/40 transition-all" data-category="Pellets">Clay Pellets</button>
+                                <button onclick="filterCatalog('Combos')" class="cat-btn text-left px-3 py-2.5 rounded-lg bg-transparent text-[#A35C3E] hover:bg-[#C5B9AB]/40 transition-all" data-category="Combos">Combo Specials</button>
+                                <button onclick="filterCatalog('Accessories')" class="cat-btn text-left px-3 py-2.5 rounded-lg bg-transparent text-[#2D2B28] hover:bg-[#C5B9AB]/40 transition-all" data-category="Accessories">Accessories</button>
+                            </div>
+                        </div>
+
+                        <div class="bg-[#2D2B28] text-[#F4F2EC] p-6 rounded-2xl border border-[#C5B9AB]/30 shadow-md space-y-3">
+                            <span class="text-[10px] font-bold text-[#A35C3E] uppercase tracking-widest">LIVE FIRESTORE DATABASE</span>
+                            <h4 class="font-heading font-bold text-sm">Real-Time Sync Active</h4>
+                            <p class="text-xs text-[#DFD8CE] leading-relaxed">
+                                Changes made in the Admin Portal immediately synchronize across all devices and sessions via Firebase.
+                            </p>
+                        </div>
                     </div>
 
-                    <!-- Category Filter Buttons -->
-                    <div class="flex flex-wrap gap-2" id="filterButtons">
-                        <button onclick="filterCatalog('all')" class="cat-btn px-4 py-2 rounded-lg bg-[#4B5320] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-sm" data-category="all">All Gear</button>
-                        <button onclick="filterCatalog('Ketties')" class="cat-btn px-4 py-2 rounded-lg bg-[#EBE6DC] text-[#2D2B28] border border-[#C5B9AB] hover:bg-[#C5B9AB]/50 text-xs font-bold uppercase tracking-wider transition-all" data-category="Ketties">Ketties</button>
-                        <button onclick="filterCatalog('Flatbands')" class="cat-btn px-4 py-2 rounded-lg bg-[#EBE6DC] text-[#2D2B28] border border-[#C5B9AB] hover:bg-[#C5B9AB]/50 text-xs font-bold uppercase tracking-wider transition-all" data-category="Flatbands">Flatbands</button>
-                        <button onclick="filterCatalog('Pellets')" class="cat-btn px-4 py-2 rounded-lg bg-[#EBE6DC] text-[#2D2B28] border border-[#C5B9AB] hover:bg-[#C5B9AB]/50 text-xs font-bold uppercase tracking-wider transition-all" data-category="Pellets">Clay Pellets</button>
-                        <button onclick="filterCatalog('Combos')" class="cat-btn px-4 py-2 rounded-lg bg-[#EBE6DC] text-[#2D2B28] border border-[#C5B9AB] hover:bg-[#C5B9AB]/50 text-xs font-bold uppercase tracking-wider transition-all" data-category="Combos">Combos</button>
-                        <button onclick="filterCatalog('Accessories')" class="cat-btn px-4 py-2 rounded-lg bg-[#EBE6DC] text-[#2D2B28] border border-[#C5B9AB] hover:bg-[#C5B9AB]/50 text-xs font-bold uppercase tracking-wider transition-all" data-category="Accessories">Accessories</button>
-                    </div>
-                </div>
-
-                <!-- Product Grid -->
-                <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Populated dynamically via JS -->
-                </div>
-            </section>
-
-            <!-- BRAND STORY SECTION -->
-            <section class="bg-[#EBE6DC] border-t border-b border-[#C5B9AB] py-20 my-12">
-                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-                    <span class="text-xs font-bold tracking-widest text-[#A35C3E] uppercase">OUR HERITAGE STORY</span>
-                    <h2 class="font-heading font-black text-3xl sm:text-4xl text-[#2D2B28]">ROOTED IN SOUTH AFRICAN TRADITION</h2>
-                    <p class="text-[#2D2B28]/80 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
-                        From childhood afternoons spent testing target precision in the Karoo veld to modern weekend family camping trips, the humble kettie is a quintessential South African rite of passage. At Ketties & Goete, we elevate traditional outdoor shooting with aerospace-grade engineering, therapeutic natural latex, and eco-conscious clay ammunition.
-                    </p>
-                    <div class="pt-4 flex justify-center gap-6 text-sm font-bold text-[#4B5320]">
-                        <span class="flex items-center gap-2"><i class="fa-solid fa-check text-[#A35C3E]"></i> Hand-Tested Flatbands</span>
-                        <span class="flex items-center gap-2"><i class="fa-solid fa-check text-[#A35C3E]"></i> Natural Hardwood Handles</span>
-                        <span class="flex items-center gap-2"><i class="fa-solid fa-check text-[#A35C3E]"></i> Zero Plastic Packaging</span>
+                    <div class="flex-1">
+                        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="col-span-full py-16 text-center text-[#2D2B28]/70">
+                                <i class="fa-solid fa-spinner fa-spin text-2xl text-[#4B5320] mb-3"></i>
+                                <p class="text-sm font-semibold">Loading Ketties & Goete inventory from Firebase...</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-
         </div>
 
-
-        <!-- ================= ADMIN PORTAL VIEW ================= -->
+        <!-- ADMIN PORTAL VIEW -->
         <div id="adminView" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <!-- Admin Header -->
             <div class="bg-[#2D2B28] text-[#F4F2EC] rounded-2xl p-6 sm:p-8 shadow-xl mb-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border border-[#C5B9AB]/30">
                 <div>
                     <div class="flex items-center gap-2 mb-2">
                         <span class="px-3 py-1 bg-[#A35C3E] text-white text-[10px] font-bold rounded-full uppercase tracking-widest">SECURE PORTAL</span>
-                        <span class="text-xs text-[#DFD8CE]">Authorized Personnel Only</span>
+                        <span class="text-xs text-[#DFD8CE]">Cloud Firestore Connected</span>
                     </div>
                     <h1 class="font-heading font-black text-3xl sm:text-4xl">KETTIES & GOETE ADMIN DASHBOARD</h1>
-                    <p class="text-sm text-[#DFD8CE] mt-1">Manage inventory database, monitor stock levels, and review customer client records & orders.</p>
+                    <p class="text-sm text-[#DFD8CE] mt-1">Manage cloud inventory database, adjust stock levels, and review client orders in real-time.</p>
                 </div>
                 <div class="flex items-center gap-3">
                     <button onclick="switchView('store')" class="px-5 py-3 rounded-xl bg-[#4B5320] text-white font-heading font-bold text-xs uppercase tracking-wider hover:bg-[#353B16] transition-all flex items-center gap-2 shadow">
@@ -296,7 +257,6 @@
                 </div>
             </div>
 
-            <!-- Admin Stats Row -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
                 <div class="bg-[#EBE6DC] rounded-xl p-6 border border-[#C5B9AB] shadow-sm">
                     <div class="flex items-center justify-between mb-4">
@@ -304,7 +264,7 @@
                         <i class="fa-solid fa-box text-[#4B5320] text-xl"></i>
                     </div>
                     <h3 id="statTotalProducts" class="font-heading font-black text-3xl text-[#2D2B28]">0</h3>
-                    <p class="text-xs text-[#2D2B28]/70 mt-1">Active in catalog database</p>
+                    <p class="text-xs text-[#2D2B28]/70 mt-1">Cloud catalog items</p>
                 </div>
                 <div class="bg-[#EBE6DC] rounded-xl p-6 border border-[#C5B9AB] shadow-sm">
                     <div class="flex items-center justify-between mb-4">
@@ -320,7 +280,7 @@
                         <i class="fa-solid fa-receipt text-[#4B5320] text-xl"></i>
                     </div>
                     <h3 id="statTotalOrders" class="font-heading font-black text-3xl text-[#2D2B28]">0</h3>
-                    <p class="text-xs text-[#2D2B28]/70 mt-1">Recorded transactions</p>
+                    <p class="text-xs text-[#2D2B28]/70 mt-1">Cloud Firestore orders</p>
                 </div>
                 <div class="bg-[#EBE6DC] rounded-xl p-6 border border-[#C5B9AB] shadow-sm">
                     <div class="flex items-center justify-between mb-4">
@@ -332,7 +292,6 @@
                 </div>
             </div>
 
-            <!-- Admin Tabs Navigation -->
             <div class="flex border-b border-[#C5B9AB] mb-8 gap-4">
                 <button onclick="switchAdminTab('inventory')" id="tabInventoryBtn" class="admin-tab-btn pb-4 font-heading font-bold text-sm tracking-wider uppercase border-b-2 border-[#4B5320] text-[#4B5320] px-2">
                     <i class="fa-solid fa-boxes-stacked mr-2"></i> Inventory Database (<span id="countInventory">0</span>)
@@ -342,13 +301,12 @@
                 </button>
             </div>
 
-            <!-- TAB 1: INVENTORY MANAGEMENT -->
             <div id="adminInventoryTab" class="space-y-6">
                 <div class="bg-[#EBE6DC] rounded-2xl border border-[#C5B9AB] shadow-sm overflow-hidden">
                     <div class="p-6 border-b border-[#C5B9AB] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                        <h3 class="font-heading font-bold text-xl text-[#2D2B28]">Stock & Product Database</h3>
+                        <h3 class="font-heading font-bold text-xl text-[#2D2B28]">Cloud Stock & Product Database</h3>
                         <div class="w-full sm:w-72">
-                            <input type="text" id="adminSearchInput" onkeyup="filterAdminInventory()" placeholder="Search products by name..." class="w-full px-4 py-2 rounded-lg bg-[#F4F2EC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320]">
+                            <input type="text" id="adminSearchInput" onkeyup="renderAdminInventory()" placeholder="Search cloud inventory..." class="w-full px-4 py-2 rounded-lg bg-[#F4F2EC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320]">
                         </div>
                     </div>
                     <div class="overflow-x-auto">
@@ -363,20 +321,17 @@
                                     <th class="p-4 text-right">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody id="adminInventoryTableBody" class="divide-y divide-[#C5B9AB]/50 text-sm">
-                                <!-- Populated dynamically -->
-                            </tbody>
+                            <tbody id="adminInventoryTableBody" class="divide-y divide-[#C5B9AB]/50 text-sm"></tbody>
                         </table>
                     </div>
                 </div>
             </div>
 
-            <!-- TAB 2: CLIENT RECORDS & ORDERS -->
             <div id="adminOrdersTab" class="hidden space-y-6">
                 <div class="bg-[#EBE6DC] rounded-2xl border border-[#C5B9AB] shadow-sm overflow-hidden">
                     <div class="p-6 border-b border-[#C5B9AB]">
                         <h3 class="font-heading font-bold text-xl text-[#2D2B28]">Customer Orders & Dispatch Status</h3>
-                        <p class="text-xs text-[#2D2B28]/70 mt-1">Review customer delivery details, contact numbers, ordered items, and update fulfillment status.</p>
+                        <p class="text-xs text-[#2D2B28]/70 mt-1">Review live cloud order transactions from Firebase.</p>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
@@ -391,38 +346,24 @@
                                     <th class="p-4 text-right">Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="adminOrdersTableBody" class="divide-y divide-[#C5B9AB]/50 text-sm">
-                                <!-- Populated dynamically -->
-                            </tbody>
+                            <tbody id="adminOrdersTableBody" class="divide-y divide-[#C5B9AB]/50 text-sm"></tbody>
                         </table>
                     </div>
                 </div>
             </div>
-
         </div>
-
     </main>
 
-
-    <!-- ================= MODALS & DRAWERS ================= -->
-
-    <!-- 1. MULTI-IMAGE PRODUCT DETAIL MODAL -->
+    <!-- MODALS & DRAWERS -->
     <div id="productModal" class="fixed inset-0 z-50 bg-[#2D2B28]/80 backdrop-blur-sm hidden items-center justify-center p-4">
         <div class="bg-[#F4F2EC] w-full max-w-4xl rounded-2xl border border-[#C5B9AB] shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh]">
-            
-            <!-- Left: Image Gallery -->
             <div class="md:w-1/2 bg-[#EBE6DC] p-6 flex flex-col justify-between border-r border-[#C5B9AB]">
                 <div class="relative rounded-xl overflow-hidden aspect-square bg-[#F4F2EC] shadow-inner">
-                    <img id="modalMainImg" src="" alt="Product Image" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x600/2D2B28/F4F2EC?text=Kettie+Gear'">
+                    <img id="modalMainImg" src="" alt="Product Image" class="w-full h-full object-cover">
                     <div id="modalBadge" class="absolute top-3 right-3 bg-[#A35C3E] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow"></div>
                 </div>
-                <!-- Thumbnail selector -->
-                <div class="flex gap-3 mt-4 overflow-x-auto pb-2" id="modalThumbnails">
-                    <!-- Dynamic thumbs -->
-                </div>
+                <div class="flex gap-3 mt-4 overflow-x-auto pb-2" id="modalThumbnails"></div>
             </div>
-
-            <!-- Right: Details & Add to Cart -->
             <div class="md:w-1/2 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto">
                 <div class="space-y-4">
                     <div class="flex justify-between items-start">
@@ -434,61 +375,36 @@
                             <i class="fa-solid fa-xmark text-lg"></i>
                         </button>
                     </div>
-
                     <div class="flex items-baseline gap-3">
                         <span id="modalPrice" class="text-3xl font-black font-heading text-[#2D2B28]"></span>
                         <span id="modalStockStatus" class="text-xs font-semibold px-2.5 py-1 rounded-full"></span>
                     </div>
-
                     <p id="modalDescription" class="text-sm text-[#2D2B28]/80 leading-relaxed"></p>
-
-                    <!-- Specifications List -->
                     <div class="border-t border-[#C5B9AB] pt-4 space-y-2">
                         <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-[#4B5320]">Technical Specifications:</h4>
-                        <ul id="modalSpecs" class="text-xs space-y-1.5 text-[#2D2B28]/80">
-                            <!-- Populated -->
-                        </ul>
-                    </div>
-
-                    <!-- Customer Reviews Snippet -->
-                    <div class="border-t border-[#C5B9AB] pt-4">
-                        <div class="flex items-center gap-1 text-[#A35C3E] text-xs mb-1">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <span class="text-[#2D2B28] font-bold ml-1">4.9 / 5.0 (42 Bushveld Reviews)</span>
-                        </div>
-                        <p class="text-xs italic text-[#2D2B28]/70">"Ou kêrel, this flatband slingshot has incredible tension and zero hand-slap. Absolute top tier quality!" — Pieter V., Pretoria</p>
+                        <ul id="modalSpecs" class="text-xs space-y-1.5 text-[#2D2B28]/80"></ul>
                     </div>
                 </div>
-
-                <!-- Add to Cart Action -->
                 <div class="pt-6 border-t border-[#C5B9AB] mt-6 flex items-center gap-4">
                     <div class="flex items-center border border-[#C5B9AB] rounded-lg bg-[#EBE6DC] overflow-hidden">
-                        <button onclick="adjustModalQty(-1)" class="px-3.5 py-2.5 text-[#2D2B28] hover:bg-[#C5B9AB]/50 font-bold transition-colors">-</button>
+                        <button onclick="adjustModalQty(-1)" class="px-3.5 py-2.5 text-[#2D2B28] hover:bg-[#C5B9AB]/50 font-bold">-</button>
                         <span id="modalQty" class="w-10 text-center font-bold text-sm">1</span>
-                        <button onclick="adjustModalQty(1)" class="px-3.5 py-2.5 text-[#2D2B28] hover:bg-[#C5B9AB]/50 font-bold transition-colors">+</button>
+                        <button onclick="adjustModalQty(1)" class="px-3.5 py-2.5 text-[#2D2B28] hover:bg-[#C5B9AB]/50 font-bold">+</button>
                     </div>
-                    <button id="modalAddToCartBtn" onclick="addModalItemToCart()" class="flex-1 py-3 px-6 rounded-lg bg-[#4B5320] hover:bg-[#353B16] text-white font-heading font-bold text-xs uppercase tracking-wider shadow-md transition-all flex items-center justify-center gap-2">
+                    <button onclick="addModalItemToCart()" class="flex-1 py-3 px-6 rounded-lg bg-[#4B5320] hover:bg-[#353B16] text-white font-heading font-bold text-xs uppercase tracking-wider shadow-md transition-all flex items-center justify-center gap-2">
                         <i class="fa-solid fa-bag-shopping"></i>
                         <span>Add to Cart</span>
                     </button>
                 </div>
             </div>
-
         </div>
     </div>
 
-
-    <!-- 2. SHOPPING CART SLIDE-OVER DRAWER -->
+    <!-- CART DRAWER -->
     <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden hidden">
-        <div class="absolute inset-0 bg-[#2D2B28]/60 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer(false)"></div>
+        <div class="absolute inset-0 bg-[#2D2B28]/60 backdrop-blur-sm" onclick="toggleCartDrawer(false)"></div>
         <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
             <div class="w-screen max-w-md bg-[#F4F2EC] shadow-2xl border-l border-[#C5B9AB] flex flex-col">
-                
-                <!-- Drawer Header -->
                 <div class="p-6 bg-[#EBE6DC] border-b border-[#C5B9AB] flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-lg bg-[#4B5320] text-white flex items-center justify-center">
@@ -499,58 +415,33 @@
                             <span id="cartItemCountLabel" class="text-xs text-[#4B5320] font-semibold">0 items</span>
                         </div>
                     </div>
-                    <button onclick="toggleCartDrawer(false)" class="w-9 h-9 rounded-full bg-[#F4F2EC] hover:bg-[#C5B9AB] text-[#2D2B28] flex items-center justify-center transition-colors">
+                    <button onclick="toggleCartDrawer(false)" class="w-9 h-9 rounded-full bg-[#F4F2EC] hover:bg-[#C5B9AB] text-[#2D2B28] flex items-center justify-center">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
-
-                <!-- Cart Items List -->
-                <div class="flex-1 overflow-y-auto p-6 space-y-4" id="cartItemsContainer">
-                    <!-- Populated dynamically -->
-                </div>
-
-                <!-- Cart Footer & Checkout -->
+                <div class="flex-1 overflow-y-auto p-6 space-y-4" id="cartItemsContainer"></div>
                 <div class="p-6 bg-[#EBE6DC] border-t border-[#C5B9AB] space-y-4">
-                    <!-- Promo Code input -->
                     <div class="flex gap-2">
                         <input type="text" id="promoCodeInput" placeholder="Promo code (e.g. BUSHVELD10)" class="flex-1 px-3 py-2 rounded-lg bg-[#F4F2EC] border border-[#C5B9AB] text-xs focus:outline-none focus:border-[#4B5320]">
-                        <button onclick="applyPromoCode()" class="px-4 py-2 rounded-lg bg-[#2D2B28] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#4B5320] transition-colors">Apply</button>
+                        <button onclick="applyPromoCode()" class="px-4 py-2 rounded-lg bg-[#2D2B28] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#4B5320]">Apply</button>
                     </div>
                     <div id="promoMessage" class="text-xs font-semibold text-[#4B5320] hidden"></div>
-
-                    <!-- Totals -->
                     <div class="space-y-1.5 text-sm">
-                        <div class="flex justify-between text-[#2D2B28]/70">
-                            <span>Subtotal</span>
-                            <span id="cartSubtotal">R0.00</span>
-                        </div>
-                        <div class="flex justify-between text-[#2D2B28]/70">
-                            <span>Courier Delivery (RSA)</span>
-                            <span id="cartShipping">R95.00</span>
-                        </div>
-                        <div id="discountRow" class="flex justify-between text-[#A35C3E] font-semibold hidden">
-                            <span>Discount</span>
-                            <span id="cartDiscount">-R0.00</span>
-                        </div>
-                        <div class="flex justify-between text-base font-black font-heading text-[#2D2B28] pt-2 border-t border-[#C5B9AB]">
-                            <span>Total (ZAR)</span>
-                            <span id="cartTotal">R0.00</span>
-                        </div>
+                        <div class="flex justify-between text-[#2D2B28]/70"><span>Subtotal</span><span id="cartSubtotal">R0.00</span></div>
+                        <div class="flex justify-between text-[#2D2B28]/70"><span>Courier Delivery (RSA)</span><span id="cartShipping">R95.00</span></div>
+                        <div id="discountRow" class="flex justify-between text-[#A35C3E] font-semibold hidden"><span>Discount</span><span id="cartDiscount">-R0.00</span></div>
+                        <div class="flex justify-between text-base font-black font-heading text-[#2D2B28] pt-2 border-t border-[#C5B9AB]"><span>Total (ZAR)</span><span id="cartTotal">R0.00</span></div>
                     </div>
-
-                    <!-- Checkout Button -->
-                    <button onclick="openCheckoutModal()" id="checkoutBtn" class="w-full py-4 rounded-xl bg-[#4B5320] hover:bg-[#353B16] text-white font-heading font-bold text-xs uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-2">
+                    <button onclick="openCheckoutModal()" class="w-full py-4 rounded-xl bg-[#4B5320] hover:bg-[#353B16] text-white font-heading font-bold text-xs uppercase tracking-wider shadow-lg flex items-center justify-center gap-2">
                         <span>Proceed to Secure Checkout</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
-
             </div>
         </div>
     </div>
 
-
-    <!-- 3. CHECKOUT & PAYMENT MODAL -->
+    <!-- CHECKOUT MODAL -->
     <div id="checkoutModal" class="fixed inset-0 z-50 bg-[#2D2B28]/80 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
         <div class="bg-[#F4F2EC] w-full max-w-2xl rounded-2xl border border-[#C5B9AB] shadow-2xl overflow-hidden my-8">
             <div class="bg-[#2D2B28] text-white p-6 flex justify-between items-center">
@@ -558,89 +449,34 @@
                     <span class="text-xs text-[#A35C3E] font-bold tracking-widest uppercase">SECURE SOUTH AFRICAN CHECKOUT</span>
                     <h2 class="font-heading font-black text-2xl mt-1">SHIPPING & PAYMENT DETAILS</h2>
                 </div>
-                <button onclick="closeCheckoutModal()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+                <button onclick="closeCheckoutModal()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-
             <form id="checkoutForm" onsubmit="processCheckout(event)" class="p-6 sm:p-8 space-y-6">
-                <!-- Customer Details -->
                 <div class="space-y-4">
                     <h3 class="font-heading font-bold text-sm uppercase text-[#4B5320]">1. Customer Information</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Full Name *</label>
-                            <input type="text" id="custName" required placeholder="e.g. Willem van der Merwe" class="w-full px-4 py-2.5 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320]">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Mobile Phone *</label>
-                            <input type="tel" id="custPhone" required placeholder="e.g. 082 555 1234" class="w-full px-4 py-2.5 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320]">
-                        </div>
+                        <div><label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Full Name *</label><input type="text" id="custName" required placeholder="e.g. Willem van der Merwe" class="w-full px-4 py-2.5 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm"></div>
+                        <div><label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Mobile Phone *</label><input type="tel" id="custPhone" required placeholder="e.g. 082 555 1234" class="w-full px-4 py-2.5 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm"></div>
                     </div>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Email Address *</label>
-                        <input type="email" id="custEmail" required placeholder="e.g. willem@bushveld.co.za" class="w-full px-4 py-2.5 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320]">
-                    </div>
+                    <div><label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Email Address *</label><input type="email" id="custEmail" required placeholder="e.g. willem@bushveld.co.za" class="w-full px-4 py-2.5 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm"></div>
                 </div>
-
-                <!-- Delivery Address -->
                 <div class="space-y-4">
                     <h3 class="font-heading font-bold text-sm uppercase text-[#4B5320]">2. Delivery Address (South Africa)</h3>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Street Address *</label>
-                        <input type="text" id="custAddress" required placeholder="e.g. 42 Impala Road, Farm Spruit" class="w-full px-4 py-2.5 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320]">
-                    </div>
+                    <div><label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Street Address *</label><input type="text" id="custAddress" required placeholder="e.g. 42 Impala Road, Farm Spruit" class="w-full px-4 py-2.5 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm"></div>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                        <div>
-                            <label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">City / Town *</label>
-                            <input type="text" id="custCity" required placeholder="e.g. Pretoria" class="w-full px-4 py-2.5 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320]">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Province *</label>
-                            <select id="custProvince" required class="w-full px-4 py-2.5 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320]">
-                                <option value="Gauteng">Gauteng</option>
-                                <option value="Western Cape">Western Cape</option>
-                                <option value="KwaZulu-Natal">KwaZulu-Natal</option>
-                                <option value="Limpopo">Limpopo</option>
-                                <option value="Mpumalanga">Mpumalanga</option>
-                                <option value="North West">North West</option>
-                                <option value="Free State">Free State</option>
-                                <option value="Eastern Cape">Eastern Cape</option>
-                                <option value="Northern Cape">Northern Cape</option>
+                        <div><label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">City / Town *</label><input type="text" id="custCity" required placeholder="e.g. Pretoria" class="w-full px-4 py-2.5 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm"></div>
+                        <div><label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Province *</label>
+                            <select id="custProvince" required class="w-full px-4 py-2.5 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm">
+                                <option value="Gauteng">Gauteng</option><option value="Western Cape">Western Cape</option><option value="KwaZulu-Natal">KwaZulu-Natal</option><option value="Limpopo">Limpopo</option><option value="Mpumalanga">Mpumalanga</option><option value="North West">North West</option><option value="Free State">Free State</option><option value="Eastern Cape">Eastern Cape</option><option value="Northern Cape">Northern Cape</option>
                             </select>
                         </div>
-                        <div>
-                            <label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Postal Code *</label>
-                            <input type="text" id="custPostal" required placeholder="e.g. 0181" class="w-full px-4 py-2.5 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320]">
-                        </div>
+                        <div><label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Postal Code *</label><input type="text" id="custPostal" required placeholder="e.g. 0181" class="w-full px-4 py-2.5 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm"></div>
                     </div>
                 </div>
-
-                <!-- Payment Method -->
-                <div class="space-y-4">
-                    <h3 class="font-heading font-bold text-sm uppercase text-[#4B5320]">3. Secure Payment Gateway</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <label class="border border-[#C5B9AB] rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer hover:border-[#4B5320] bg-[#EBE6DC] has-[:checked]:border-[#4B5320] has-[:checked]:bg-[#4B5320]/10 transition-all">
-                            <input type="radio" name="paymentMethod" value="PayFast" checked class="mb-2 accent-[#4B5320]">
-                            <span class="font-heading font-bold text-xs">PayFast</span>
-                            <span class="text-[10px] text-[#2D2B28]/70">Credit Card / Instant EFT</span>
-                        </label>
-                        <label class="border border-[#C5B9AB] rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer hover:border-[#4B5320] bg-[#EBE6DC] has-[:checked]:border-[#4B5320] has-[:checked]:bg-[#4B5320]/10 transition-all">
-                            <input type="radio" name="paymentMethod" value="Ozow" class="mb-2 accent-[#4B5320]">
-                            <span class="font-heading font-bold text-xs">Ozow</span>
-                            <span class="text-[10px] text-[#2D2B28]/70">Instant EFT Secure</span>
-                        </label>
-                        <label class="border border-[#C5B9AB] rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer hover:border-[#4B5320] bg-[#EBE6DC] has-[:checked]:border-[#4B5320] has-[:checked]:bg-[#4B5320]/10 transition-all">
-                            <input type="radio" name="paymentMethod" value="EFT" class="mb-2 accent-[#4B5320]">
-                            <span class="font-heading font-bold text-xs">Manual EFT</span>
-                            <span class="text-[10px] text-[#2D2B28]/70">Direct Bank Transfer</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Submit Button -->
                 <div class="pt-4 border-t border-[#C5B9AB]">
-                    <button type="submit" class="w-full py-4 rounded-xl bg-[#4B5320] hover:bg-[#353B16] text-white font-heading font-bold text-sm uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-3">
+                    <button type="submit" class="w-full py-4 rounded-xl bg-[#4B5320] hover:bg-[#353B16] text-white font-heading font-bold text-sm uppercase tracking-wider shadow-lg flex items-center justify-center gap-3">
                         <i class="fa-solid fa-lock text-xs text-[#A35C3E]"></i>
                         <span>Complete Secure Order (<span id="modalCheckoutTotal">R0.00</span>)</span>
                     </button>
@@ -649,104 +485,61 @@
         </div>
     </div>
 
-
-    <!-- 4. ORDER SUCCESS CONFIRMATION MODAL -->
+    <!-- SUCCESS MODAL -->
     <div id="successModal" class="fixed inset-0 z-50 bg-[#2D2B28]/80 backdrop-blur-sm hidden items-center justify-center p-4">
         <div class="bg-[#F4F2EC] w-full max-w-lg rounded-2xl border border-[#C5B9AB] shadow-2xl p-8 text-center space-y-6">
-            <div class="w-20 h-20 rounded-full bg-[#4B5320] text-white text-3xl flex items-center justify-center mx-auto shadow-lg">
-                <i class="fa-solid fa-check"></i>
-            </div>
+            <div class="w-20 h-20 rounded-full bg-[#4B5320] text-white text-3xl flex items-center justify-center mx-auto shadow-lg"><i class="fa-solid fa-check"></i></div>
             <div>
                 <span class="text-xs font-bold tracking-widest text-[#A35C3E] uppercase">ORDER PLACED SUCCESSFULLY</span>
                 <h2 class="font-heading font-black text-3xl text-[#2D2B28] mt-1">DANKIE, <span id="successCustomerName">Willem</span>!</h2>
-                <p class="text-sm text-[#2D2B28]/80 mt-2">
-                    Your order <span id="successOrderId" class="font-bold text-[#4B5320]">#KG-8921</span> has been confirmed and logged in our South African client database.
-                </p>
+                <p class="text-sm text-[#2D2B28]/80 mt-2">Your order <span id="successOrderId" class="font-bold text-[#4B5320]">#KG-8921</span> has been confirmed and logged to Firestore.</p>
             </div>
-
-            <div class="bg-[#EBE6DC] p-4 rounded-xl text-left space-y-2 text-xs border border-[#C5B9AB]">
-                <div class="flex justify-between"><span class="font-semibold">Courier Status:</span> <span class="text-[#4B5320] font-bold">Processing (Courier Guy)</span></div>
-                <div class="flex justify-between"><span class="font-semibold">Tracking No:</span> <span class="font-mono">CG-ZA-2026-9984</span></div>
-                <div class="flex justify-between"><span class="font-semibold">Estimated Delivery:</span> <span>2-4 Business Days</span></div>
-            </div>
-
-            <button onclick="closeSuccessModal()" class="w-full py-4 rounded-xl bg-[#4B5320] hover:bg-[#353B16] text-white font-heading font-bold text-xs uppercase tracking-wider shadow-md transition-all">
-                Continue Shopping
-            </button>
+            <button onclick="closeSuccessModal()" class="w-full py-4 rounded-xl bg-[#4B5320] hover:bg-[#353B16] text-white font-heading font-bold text-xs uppercase tracking-wider shadow-md">Continue Shopping</button>
         </div>
     </div>
 
-
-    <!-- 5. ADMIN ADD/EDIT PRODUCT MODAL -->
+    <!-- ADMIN PRODUCT MODAL -->
     <div id="adminProductModal" class="fixed inset-0 z-50 bg-[#2D2B28]/80 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
         <div class="bg-[#F4F2EC] w-full max-w-xl rounded-2xl border border-[#C5B9AB] shadow-2xl overflow-hidden my-8">
             <div class="bg-[#2D2B28] text-white p-6 flex justify-between items-center">
                 <h2 id="adminModalTitle" class="font-heading font-black text-xl">ADD NEW PRODUCT</h2>
-                <button onclick="closeAdminProductModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+                <button onclick="closeAdminProductModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <form id="adminProductForm" onsubmit="saveAdminProduct(event)" class="p-6 sm:p-8 space-y-4">
                 <input type="hidden" id="editProductId">
-                <div>
-                    <label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Product Title *</label>
-                    <input type="text" id="adminProdName" required placeholder="e.g. Kruger Pro Slingshot" class="w-full px-4 py-2 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320]">
-                </div>
+                <div><label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Product Title *</label><input type="text" id="adminProdName" required class="w-full px-4 py-2 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm"></div>
                 <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Category *</label>
-                        <select id="adminProdCategory" required class="w-full px-4 py-2 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320]">
-                            <option value="Ketties">Ketties</option>
-                            <option value="Flatbands">Flatbands</option>
-                            <option value="Pellets">Pellets</option>
-                            <option value="Combos">Combos</option>
-                            <option value="Accessories">Accessories</option>
+                    <div><label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Category *</label>
+                        <select id="adminProdCategory" required class="w-full px-4 py-2 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm">
+                            <option value="Ketties">Ketties</option><option value="Flatbands">Flatbands</option><option value="Pellets">Pellets</option><option value="Combos">Combos</option><option value="Accessories">Accessories</option>
                         </select>
                     </div>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Price (R ZAR) *</label>
-                        <input type="number" step="0.01" id="adminProdPrice" required placeholder="350.00" class="w-full px-4 py-2 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320]">
-                    </div>
+                    <div><label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Price (R ZAR) *</label><input type="number" step="0.01" id="adminProdPrice" required class="w-full px-4 py-2 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm"></div>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Stock Quantity *</label>
-                        <input type="number" id="adminProdStock" required placeholder="25" class="w-full px-4 py-2 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320]">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Badge Tag</label>
-                        <input type="text" id="adminProdBadge" placeholder="e.g. Best Seller / New" class="w-full px-4 py-2 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320]">
-                    </div>
+                    <div><label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Stock Quantity *</label><input type="number" id="adminProdStock" required class="w-full px-4 py-2 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm"></div>
+                    <div><label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Badge Tag</label><input type="text" id="adminProdBadge" class="w-full px-4 py-2 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm"></div>
                 </div>
-                <div>
-                    <label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Image URL *</label>
-                    <input type="url" id="adminProdImage" required placeholder="https://images.unsplash.com/..." class="w-full px-4 py-2 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320]">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Description *</label>
-                    <textarea id="adminProdDesc" rows="3" required placeholder="Detailed description of the product..." class="w-full px-4 py-2 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320]"></textarea>
-                </div>
+                <div><label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Image URL *</label><input type="url" id="adminProdImage" required class="w-full px-4 py-2 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm"></div>
+                <div><label class="block text-xs font-semibold uppercase text-[#2D2B28] mb-1">Description *</label><textarea id="adminProdDesc" rows="3" required class="w-full px-4 py-2 rounded-lg bg-[#EBE6DC] border border-[#C5B9AB] text-sm"></textarea></div>
                 <div class="pt-4 border-t border-[#C5B9AB] flex justify-end gap-3">
                     <button type="button" onclick="closeAdminProductModal()" class="px-5 py-2.5 rounded-lg bg-[#C5B9AB]/50 text-[#2D2B28] text-xs font-bold uppercase">Cancel</button>
-                    <button type="submit" class="px-6 py-2.5 rounded-lg bg-[#4B5320] hover:bg-[#353B16] text-white text-xs font-bold uppercase tracking-wider shadow">Save Product</button>
+                    <button type="submit" class="px-6 py-2.5 rounded-lg bg-[#4B5320] hover:bg-[#353B16] text-white text-xs font-bold uppercase tracking-wider shadow">Save to Cloud</button>
                 </div>
             </form>
         </div>
     </div>
 
-
-    <!-- 6. ADMIN PASSWORD GATE MODAL -->
+    <!-- ADMIN AUTH GATE MODAL -->
     <div id="adminAuthModal" class="fixed inset-0 z-50 bg-[#2D2B28]/80 backdrop-blur-sm hidden items-center justify-center p-4">
         <div class="bg-[#F4F2EC] w-full max-w-md rounded-2xl border border-[#C5B9AB] shadow-2xl p-6 sm:p-8 space-y-6">
             <div class="text-center space-y-2">
-                <div class="w-14 h-14 rounded-full bg-[#2D2B28] text-[#A35C3E] text-xl flex items-center justify-center mx-auto shadow">
-                    <i class="fa-solid fa-lock"></i>
-                </div>
+                <div class="w-14 h-14 rounded-full bg-[#2D2B28] text-[#A35C3E] text-xl flex items-center justify-center mx-auto shadow"><i class="fa-solid fa-lock"></i></div>
                 <h3 class="font-heading font-black text-xl text-[#2D2B28]">SECURE ADMIN ACCESS</h3>
-                <p class="text-xs text-[#2D2B28]/70">Enter admin passcode to open inventory & client records (Hint: press enter or type <span class="font-mono font-bold text-[#4B5320]">admin123</span>)</p>
+                <p class="text-xs text-[#2D2B28]/70">Enter admin passcode (Type <span class="font-mono font-bold text-[#4B5320]">admin123</span>)</p>
             </div>
             <form onsubmit="verifyAdminPassword(event)" class="space-y-4">
-                <input type="password" id="adminPasswordInput" required placeholder="Enter passcode..." class="w-full px-4 py-3 rounded-xl bg-[#EBE6DC] border border-[#C5B9AB] text-sm focus:outline-none focus:border-[#4B5320] text-center font-mono">
+                <input type="password" id="adminPasswordInput" required placeholder="Enter passcode..." class="w-full px-4 py-3 rounded-xl bg-[#EBE6DC] border border-[#C5B9AB] text-sm text-center font-mono focus:outline-none focus:border-[#4B5320]">
                 <div id="adminAuthError" class="text-xs text-[#A35C3E] text-center font-bold hidden">Incorrect passcode. Try 'admin123'.</div>
                 <div class="flex gap-3">
                     <button type="button" onclick="closeAdminAuthModal()" class="flex-1 py-3 rounded-xl bg-[#C5B9AB]/50 text-[#2D2B28] text-xs font-bold uppercase">Cancel</button>
@@ -756,27 +549,18 @@
         </div>
     </div>
 
-
     <!-- FOOTER -->
     <footer class="bg-[#2D2B28] text-[#F4F2EC] pt-16 pb-12 border-t border-[#C5B9AB]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
             <div class="space-y-4 md:col-span-1">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-[#4B5320] text-[#F4F2EC] flex items-center justify-center font-heading text-xl font-black">
-                        K&G
-                    </div>
+                    <div class="w-10 h-10 rounded-lg bg-[#4B5320] text-[#F4F2EC] flex items-center justify-center font-heading text-xl font-black">K&G</div>
                     <span class="font-heading font-black text-lg tracking-wider">KETTIES & GOETE</span>
                 </div>
                 <p class="text-xs text-[#DFD8CE] leading-relaxed">
                     South Africa’s premier destination for artisanal slingshots, therapeutic natural latex flatbands, and eco-conscious clay hunting & target ammunition.
                 </p>
-                <div class="flex gap-3 text-[#A35C3E]">
-                    <a href="#" class="w-8 h-8 rounded-full bg-[#EBE6DC]/10 flex items-center justify-center hover:bg-[#4B5320] hover:text-white transition-colors"><i class="fa-brands fa-facebook-f text-xs"></i></a>
-                    <a href="#" class="w-8 h-8 rounded-full bg-[#EBE6DC]/10 flex items-center justify-center hover:bg-[#4B5320] hover:text-white transition-colors"><i class="fa-brands fa-instagram text-xs"></i></a>
-                    <a href="#" class="w-8 h-8 rounded-full bg-[#EBE6DC]/10 flex items-center justify-center hover:bg-[#4B5320] hover:text-white transition-colors"><i class="fa-brands fa-youtube text-xs"></i></a>
-                </div>
             </div>
-
             <div>
                 <h4 class="font-heading font-bold text-xs uppercase tracking-widest text-[#A35C3E] mb-4">Shop Categories</h4>
                 <ul class="space-y-2.5 text-xs text-[#DFD8CE]">
@@ -784,44 +568,69 @@
                     <li><a href="#catalog" onclick="filterCatalog('Flatbands')" class="hover:text-white transition-colors">Natural Latex Flatbands</a></li>
                     <li><a href="#catalog" onclick="filterCatalog('Pellets')" class="hover:text-white transition-colors">Biodegradable Clay Pellets</a></li>
                     <li><a href="#catalog" onclick="filterCatalog('Combos')" class="hover:text-white transition-colors">Ou Kalahari Combos</a></li>
-                    <li><a href="#catalog" onclick="filterCatalog('Accessories')" class="hover:text-white transition-colors">Targets & Leather Pouches</a></li>
                 </ul>
             </div>
-
             <div>
                 <h4 class="font-heading font-bold text-xs uppercase tracking-widest text-[#A35C3E] mb-4">Bushveld Heritage</h4>
                 <ul class="space-y-2.5 text-xs text-[#DFD8CE]">
                     <li><a href="#" class="hover:text-white transition-colors">Our Craftsmanship Story</a></li>
                     <li><a href="#" class="hover:text-white transition-colors">Target Shooting Guide</a></li>
                     <li><a href="#" class="hover:text-white transition-colors">Nationwide Courier Info</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Wholesale & Outfitters</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Contact South Africa HQ</a></li>
                 </ul>
             </div>
-
             <div>
                 <h4 class="font-heading font-bold text-xs uppercase tracking-widest text-[#A35C3E] mb-4">Secure Payments</h4>
-                <p class="text-xs text-[#DFD8CE] mb-4">We support trusted South African payment gateways and instant EFT partners.</p>
+                <p class="text-xs text-[#DFD8CE] mb-4">Supported South African payment gateways.</p>
                 <div class="flex flex-wrap gap-2 text-[10px] font-bold">
                     <span class="px-2.5 py-1 rounded bg-[#EBE6DC]/10 border border-[#C5B9AB]/30">PAYFAST</span>
                     <span class="px-2.5 py-1 rounded bg-[#EBE6DC]/10 border border-[#C5B9AB]/30">OZOW EFT</span>
-                    <span class="px-2.5 py-1 rounded bg-[#EBE6DC]/10 border border-[#C5B9AB]/30">VISA / MASTERCARD</span>
                 </div>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-[#C5B9AB]/20 flex flex-col sm:flex-row justify-between items-center text-xs text-[#DFD8CE]/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-[#C5B9AB]/20 text-xs text-[#DFD8CE]/70 text-center sm:text-left">
             <p>&copy; 2026 Ketties & Goete (Pty) Ltd. Proudly South African Outdoor Heritage.</p>
-            <p class="mt-2 sm:mt-0">Designed for Rugged Bushveld Expeditions</p>
         </div>
     </footer>
 
+    <!-- FIREBASE & APP JAVASCRIPT -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, doc, setDoc, updateDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    <!-- ================= JAVASCRIPT APPLICATION LOGIC ================= -->
-    <script>
-        // --- INITIAL DATA STORE ---
-        let products = [
+        // --- GLOBAL ENVIRONMENT VARIABLES ---
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'ketties-goete-store-v2';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+            apiKey: "demo-key",
+            authDomain: "demo.firebaseapp.com",
+            projectId: "demo-project",
+            storageBucket: "demo.appspot.com",
+            messagingSenderId: "123456",
+            appId: "1:123456:web:demo"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        let currentUser = null;
+        let products = [];
+        let orders = [];
+        let cart = [];
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+        let sortOption = 'default';
+        let currentModalProduct = null;
+        let modalQtyValue = 1;
+        let discountMultiplier = 1.0;
+        let isAdminLoggedIn = false;
+        let activeAdminTab = 'inventory';
+
+        const initialProducts = [
             {
-                id: 1,
+                id: "prod-1",
                 name: "Ou Kalahari Combo Special",
                 category: "Combos",
                 price: 550.00,
@@ -830,158 +639,129 @@
                 image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80",
                 images: [
                     "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80",
-                    "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80",
-                    "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&q=80"
+                    "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80"
                 ],
-                description: "The ultimate South African bushveld bundle. Features our flagship Vaal hardwood kettie, 3 sets of therapeutic anti-slap natural latex flatbands (0.75mm), and 200 biodegradable eco-clay target pellets.",
-                specs: [
-                    "Slingshot Frame: Solid African Hardwood (Kambala)",
-                    "Flatbands: 0.75mm Therapeutic Natural Latex",
-                    "Ammunition: 200x 10mm Biodegradable Clay Pellets",
-                    "Pouch: Microfiber ultra-grip leather pouch"
-                ]
+                description: "The ultimate South African bushveld bundle. Features our flagship Vaal hardwood kettie, 3 sets of therapeutic anti-slap natural latex flatbands, and 200 biodegradable eco-clay target pellets.",
+                specs: ["Slingshot Frame: Solid African Kambala Wood", "Flatbands: 0.75mm Natural Latex", "Ammunition: 200x Biodegradable Clay Pellets"]
             },
             {
-                id: 2,
+                id: "prod-2",
                 name: "Vaal Hardwood Pro Kettie",
                 category: "Ketties",
                 price: 320.00,
                 stock: 8,
                 badge: "Popular",
                 image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80",
-                images: [
-                    "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80",
-                    "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80"
-                ],
+                images: ["https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80"],
                 description: "Expertly contoured solid hardwood frame designed for instinctive target acquisition and comfortable all-day grip in the field.",
-                specs: [
-                    "Material: Seasoned African Kambala Wood",
-                    "Height: 145mm | Width: 95mm",
-                    "Weight: 185g",
-                    "Finish: Hand-rubbed beeswax & linseed oil"
-                ]
+                specs: ["Material: Seasoned African Kambala Wood", "Height: 145mm | Width: 95mm", "Finish: Beeswax & linseed oil"]
             },
             {
-                id: 3,
+                id: "prod-3",
                 name: "Karoo Natural Latex Flatbands (3-Pack)",
                 category: "Flatbands",
                 price: 150.00,
                 stock: 42,
                 badge: "Essential",
                 image: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&q=80",
-                images: [
-                    "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&q=80"
-                ],
-                description: "High-velocity therapeutic natural latex flatbands pre-tied with heavy-duty cord and microfiber pouches. Designed for zero hand-slap and maximum durability.",
-                specs: [
-                    "Thickness: 0.70mm / 0.75mm",
-                    "Material: 100% Pure Malaysian Natural Latex",
-                    "Velocity: High snap velocity for target precision",
-                    "Quantity: 3 Pre-tied replacement bands"
-                ]
+                images: ["https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&q=80"],
+                description: "High-velocity therapeutic natural latex flatbands pre-tied with heavy-duty cord and microfiber pouches.",
+                specs: ["Thickness: 0.75mm", "Material: 100% Pure Malaysian Natural Latex", "Quantity: 3 Pre-tied bands"]
             },
             {
-                id: 4,
+                id: "prod-4",
                 name: "Eco-Clay Target Pellets (500 Pack)",
                 category: "Pellets",
                 price: 180.00,
-                stock: 3, // Low stock test
+                stock: 5,
                 badge: "Eco-Friendly",
                 image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80",
-                images: [
-                    "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80"
-                ],
-                description: "100% biodegradable compressed clay balls. Dissolves safely back into soil with the first rain after target practice in the veld or backyard.",
-                specs: [
-                    "Diameter: 9.5mm uniform sizing",
-                    "Material: Natural compressed river clay",
-                    "Environmental Impact: Zero plastic, 100% biodegradable",
-                    "Quantity: 500 pellets per bucket"
-                ]
+                images: ["https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80"],
+                description: "100% biodegradable compressed clay balls. Dissolves safely back into soil with the first rain.",
+                specs: ["Diameter: 9.5mm uniform sizing", "Material: Natural river clay", "Quantity: 500 pellets"]
             },
             {
-                id: 5,
+                id: "prod-5",
                 name: "Limpopo Tactical Leather Holster",
                 category: "Accessories",
                 price: 240.00,
                 stock: 19,
                 badge: "New",
                 image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80",
-                images: [
-                    "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80"
-                ],
-                description: "Rugged genuine bovine leather holster designed to clip securely onto your belt, keeping your kettie and spare flatbands ready at a moment's notice.",
-                specs: [
-                    "Material: Full-grain South African bovine leather",
-                    "Attachment: Heavy-duty brass belt clip",
-                    "Stitching: Waxed industrial saddle stitch"
-                ]
+                images: ["https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80"],
+                description: "Rugged genuine bovine leather holster designed to clip securely onto your belt.",
+                specs: ["Material: Full-grain SA bovine leather", "Attachment: Heavy brass belt clip"]
             },
             {
-                id: 6,
+                id: "prod-6",
                 name: "Bushveld Steel Target Gong Set",
                 category: "Accessories",
                 price: 390.00,
                 stock: 6,
                 badge: "Heavy Duty",
                 image: "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?auto=format&fit=crop&w=600&q=80",
-                images: [
-                    "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?auto=format&fit=crop&w=600&q=80"
-                ],
-                description: "Hanging AR500 steel target gong that rings with a satisfying 'CLANG' upon accurate impact with clay or steel ammo.",
-                specs: [
-                    "Plate: 4mm Hardened Steel Gong",
-                    "Includes: Hanging chain and collapsible stand",
-                    "Acoustic: Clear ringing resonance on hit"
-                ]
+                images: ["https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?auto=format&fit=crop&w=600&q=80"],
+                description: "Hanging AR500 steel target gong that rings with a satisfying 'CLANG' upon impact.",
+                specs: ["Plate: 4mm Hardened Steel Gong", "Includes chain and collapsible stand"]
             }
         ];
 
-        let cart = [];
-        let orders = [
-            {
-                id: "KG-8920",
-                date: "2026-11-02 14:22",
-                name: "Barend du Plessis",
-                phone: "083 441 9882",
-                email: "barend@bushveld.co.za",
-                address: "12 Baobab Avenue, Polokwane",
-                city: "Polokwane",
-                province: "Limpopo",
-                items: [{ name: "Ou Kalahari Combo Special", qty: 1, price: 550.00 }],
-                total: 645.00,
-                status: "Dispatched"
-            },
-            {
-                id: "KG-8919",
-                date: "2026-11-01 09:15",
-                name: "Sipho Khumalo",
-                phone: "072 901 3341",
-                email: "sipho@khumalo.co.za",
-                address: "78 Rivonia Road, Sandton",
-                city: "Johannesburg",
-                province: "Gauteng",
-                items: [{ name: "Eco-Clay Target Pellets (500 Pack)", qty: 2, price: 180.00 }],
-                total: 455.00,
-                status: "Delivered"
+        async function initFirebase() {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                currentUser = auth.currentUser;
+                document.getElementById('dbStatusIndicator').innerText = "🟢 FIRESTORE CONNECTED";
+                document.getElementById('dbStatusIndicator').className = "hidden md:inline-block px-2 py-0.5 bg-[#4B5320] text-white rounded text-[10px] font-bold";
+
+                setupFirestoreListeners();
+            } catch (err) {
+                console.error("Firebase auth error:", err);
+                document.getElementById('dbStatusIndicator').innerText = "🔴 OFFLINE MODE";
+                products = initialProducts;
+                renderProductCatalog();
             }
-        ];
+        }
 
-        let currentFilter = 'all';
-        let currentModalProduct = null;
-        let modalQtyValue = 1;
-        let discountMultiplier = 1.0;
-        let isAdminLoggedIn = false;
-        let activeAdminTab = 'inventory';
+        function setupFirestoreListeners() {
+            if (!currentUser) return;
 
-        // --- INIT ON LOAD ---
-        window.onload = function() {
-            renderProductCatalog();
-            updateCartUI();
-        };
+            // RULE 1: STRICT PATHS FOR FIRESTORE
+            const productsCol = collection(db, 'artifacts', appId, 'public', 'data', 'products');
+            
+            onSnapshot(productsCol, (snapshot) => {
+                if (snapshot.empty) {
+                    initialProducts.forEach(async (p) => {
+                        await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'products', p.id), p);
+                    });
+                } else {
+                    products = [];
+                    snapshot.forEach((docSnap) => {
+                        products.push({ id: docSnap.id, ...docSnap.data() });
+                    });
+                    renderProductCatalog();
+                    if (isAdminLoggedIn) renderAdminInventory();
+                }
+            }, (error) => {
+                console.error("Products listener error:", error);
+            });
 
-        // --- VIEW SWITCHING ---
-        function switchView(view) {
+            const ordersCol = collection(db, 'artifacts', appId, 'public', 'data', 'orders');
+            onSnapshot(ordersCol, (snapshot) => {
+                orders = [];
+                snapshot.forEach((docSnap) => {
+                    orders.push({ id: docSnap.id, ...docSnap.data() });
+                });
+                if (isAdminLoggedIn) renderAdminOrders();
+            }, (error) => {
+                console.error("Orders listener error:", error);
+            });
+        }
+
+        window.switchView = function(view) {
             const storeView = document.getElementById('storeView');
             const adminView = document.getElementById('adminView');
             if (view === 'store') {
@@ -1000,16 +780,15 @@
                 updateAdminStats();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-        }
+        };
 
-        // --- ADMIN AUTH ---
-        function toggleAdminPortal() {
+        window.toggleAdminPortal = function() {
             if (isAdminLoggedIn) {
                 switchView('admin');
             } else {
                 openAdminAuthModal();
             }
-        }
+        };
 
         function openAdminAuthModal() {
             document.getElementById('adminAuthModal').classList.remove('hidden');
@@ -1019,12 +798,12 @@
             setTimeout(() => document.getElementById('adminPasswordInput').focus(), 100);
         }
 
-        function closeAdminAuthModal() {
+        window.closeAdminAuthModal = function() {
             document.getElementById('adminAuthModal').classList.add('hidden');
             document.getElementById('adminAuthModal').classList.remove('flex');
-        }
+        };
 
-        function verifyAdminPassword(e) {
+        window.verifyAdminPassword = function(e) {
             e.preventDefault();
             const pass = document.getElementById('adminPasswordInput').value;
             if (pass === 'admin123' || pass === 'Ketties2026') {
@@ -1036,60 +815,71 @@
             } else {
                 document.getElementById('adminAuthError').classList.remove('hidden');
             }
-        }
+        };
 
-        // --- CATALOG RENDERING & FILTERING ---
-        function filterCatalog(category) {
+        window.filterCatalog = function(category) {
             currentFilter = category;
-            // Update button styles
             document.querySelectorAll('.cat-btn').forEach(btn => {
                 if (btn.getAttribute('data-category') === category) {
-                    btn.className = "cat-btn px-4 py-2 rounded-lg bg-[#4B5320] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-sm";
+                    btn.className = "cat-btn text-left px-3 py-2.5 rounded-lg bg-[#4B5320] text-white transition-all shadow-sm";
                 } else {
-                    btn.className = "cat-btn px-4 py-2 rounded-lg bg-[#EBE6DC] text-[#2D2B28] border border-[#C5B9AB] hover:bg-[#C5B9AB]/50 text-xs font-bold uppercase tracking-wider transition-all";
+                    btn.className = "cat-btn text-left px-3 py-2.5 rounded-lg bg-transparent text-[#2D2B28] hover:bg-[#C5B9AB]/40 transition-all";
                 }
             });
             renderProductCatalog();
-        }
+        };
+
+        window.handleSearchInput = function(val) {
+            searchQuery = val.trim().toLowerCase();
+            renderProductCatalog();
+        };
+
+        window.handleSortChange = function(val) {
+            sortOption = val;
+            renderProductCatalog();
+        };
 
         function renderProductCatalog() {
             const grid = document.getElementById('productGrid');
             grid.innerHTML = '';
 
-            const filtered = currentFilter === 'all' 
-                ? products 
-                : products.filter(p => p.category === currentFilter);
+            let filtered = products.filter(p => {
+                const matchCat = currentFilter === 'all' || p.category === currentFilter;
+                const matchSearch = p.name.toLowerCase().includes(searchQuery) || p.description.toLowerCase().includes(searchQuery);
+                return matchCat && matchSearch;
+            });
+
+            if (sortOption === 'price-low') filtered.sort((a, b) => a.price - b.price);
+            else if (sortOption === 'price-high') filtered.sort((a, b) => b.price - a.price);
+            else if (sortOption === 'name') filtered.sort((a, b) => a.name.localeCompare(b.name));
+
+            document.getElementById('productResultCount').innerText = `Showing ${filtered.length} of ${products.length} products`;
 
             if (filtered.length === 0) {
-                grid.innerHTML = `<div class="col-span-full py-12 text-center text-[#2D2B28]/70">No products found in this category.</div>`;
+                grid.innerHTML = `<div class="col-span-full py-16 text-center text-[#2D2B28]/70">No heritage gear found matching your search.</div>`;
                 return;
             }
 
             filtered.forEach(p => {
-                const isLowStock = p.stock <= 5;
-                const stockBadgeClass = isLowStock ? 'bg-[#A35C3E] text-white' : 'bg-[#4B5320]/10 text-[#4B5320]';
-                
                 const card = document.createElement('div');
                 card.className = "bg-[#EBE6DC] rounded-2xl border border-[#C5B9AB] shadow-sm overflow-hidden flex flex-col justify-between group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1";
                 card.innerHTML = `
-                    <div class="relative overflow-hidden aspect-video bg-[#F4F2EC] cursor-pointer" onclick="openProductModal(${p.id})">
-                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/2D2B28/F4F2EC?text=Ketties+Goete'">
+                    <div class="relative overflow-hidden aspect-video bg-[#F4F2EC] cursor-pointer" onclick="openProductModal('${p.id}')">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         ${p.badge ? `<div class="absolute top-3 right-3 bg-[#A35C3E] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow">${p.badge}</div>` : ''}
-                        <div class="absolute bottom-3 left-3 bg-[#2D2B28]/80 backdrop-blur-sm text-[10px] font-bold px-2.5 py-1 rounded text-white uppercase tracking-wider">
-                            ${p.category}
-                        </div>
+                        <div class="absolute bottom-3 left-3 bg-[#2D2B28]/80 backdrop-blur-sm text-[10px] font-bold px-2.5 py-1 rounded text-white uppercase tracking-wider">${p.category}</div>
                     </div>
                     <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-                        <div class="space-y-2 cursor-pointer" onclick="openProductModal(${p.id})">
+                        <div class="space-y-2 cursor-pointer" onclick="openProductModal('${p.id}')">
                             <h3 class="font-heading font-bold text-xl text-[#2D2B28] group-hover:text-[#4B5320] transition-colors">${p.name}</h3>
                             <p class="text-xs text-[#2D2B28]/70 line-clamp-2">${p.description}</p>
                         </div>
                         <div class="pt-4 border-t border-[#C5B9AB] flex items-center justify-between">
                             <div>
                                 <span class="text-xs text-[#2D2B28]/60 block">Price (ZAR)</span>
-                                <span class="text-2xl font-black font-heading text-[#2D2B28]">R${p.price.toFixed(2)}</span>
+                                <span class="text-2xl font-black font-heading text-[#2D2B28]">R${parseFloat(p.price).toFixed(2)}</span>
                             </div>
-                            <button onclick="quickAddToCart(${p.id})" class="px-4 py-3 rounded-xl bg-[#4B5320] hover:bg-[#353B16] text-white font-heading font-bold text-xs uppercase tracking-wider shadow transition-all flex items-center gap-2">
+                            <button onclick="quickAddToCart('${p.id}')" class="px-4 py-3 rounded-xl bg-[#4B5320] hover:bg-[#353B16] text-white font-heading font-bold text-xs uppercase tracking-wider shadow transition-all flex items-center gap-2">
                                 <i class="fa-solid fa-cart-plus"></i>
                                 <span>Add</span>
                             </button>
@@ -1100,8 +890,7 @@
             });
         }
 
-        // --- PRODUCT DETAIL MODAL ---
-        function openProductModal(id) {
+        window.openProductModal = function(id) {
             const p = products.find(prod => prod.id === id);
             if (!p) return;
             currentModalProduct = p;
@@ -1111,11 +900,10 @@
             document.getElementById('modalBadge').innerText = p.badge || p.category;
             document.getElementById('modalCategory').innerText = p.category.toUpperCase();
             document.getElementById('modalTitle').innerText = p.name;
-            document.getElementById('modalPrice').innerText = `R${p.price.toFixed(2)}`;
+            document.getElementById('modalPrice').innerText = `R${parseFloat(p.price).toFixed(2)}`;
             document.getElementById('modalDescription').innerText = p.description;
             document.getElementById('modalQty').innerText = modalQtyValue;
 
-            // Stock status
             const stockStatusEl = document.getElementById('modalStockStatus');
             if (p.stock > 5) {
                 stockStatusEl.className = "text-xs font-semibold px-2.5 py-1 rounded-full bg-[#4B5320]/10 text-[#4B5320]";
@@ -1128,10 +916,9 @@
                 stockStatusEl.innerText = `Out of Stock`;
             }
 
-            // Specs
             const specsList = document.getElementById('modalSpecs');
             specsList.innerHTML = '';
-            if (p.specs) {
+            if (p.specs && Array.isArray(p.specs)) {
                 p.specs.forEach(s => {
                     const li = document.createElement('li');
                     li.className = "flex items-center gap-2";
@@ -1140,7 +927,6 @@
                 });
             }
 
-            // Thumbnails
             const thumbsContainer = document.getElementById('modalThumbnails');
             thumbsContainer.innerHTML = '';
             const imgs = p.images && p.images.length > 0 ? p.images : [p.image];
@@ -1154,47 +940,46 @@
 
             document.getElementById('productModal').classList.remove('hidden');
             document.getElementById('productModal').classList.add('flex');
-        }
+        };
 
-        function closeProductModal() {
+        window.closeProductModal = function() {
             document.getElementById('productModal').classList.add('hidden');
             document.getElementById('productModal').classList.remove('flex');
-        }
+        };
 
-        function adjustModalQty(change) {
+        window.adjustModalQty = function(change) {
             modalQtyValue += change;
             if (modalQtyValue < 1) modalQtyValue = 1;
             if (currentModalProduct && modalQtyValue > currentModalProduct.stock) {
                 modalQtyValue = currentModalProduct.stock;
             }
             document.getElementById('modalQty').innerText = modalQtyValue;
-        }
+        };
 
-        function addModalItemToCart() {
+        window.addModalItemToCart = function() {
             if (!currentModalProduct) return;
             addToCart(currentModalProduct.id, modalQtyValue);
             closeProductModal();
             toggleCartDrawer(true);
-        }
+        };
 
-        function quickAddToCart(id) {
+        window.quickAddToCart = function(id) {
             addToCart(id, 1);
             toggleCartDrawer(true);
-        }
+        };
 
-        function quickAddCombo() {
+        window.quickAddCombo = function() {
             const combo = products.find(p => p.category === 'Combos');
             if (combo) {
                 addToCart(combo.id, 1);
                 toggleCartDrawer(true);
             }
-        }
+        };
 
-        function addFeaturedComboToCart() {
+        window.addFeaturedComboToCart = function() {
             quickAddCombo();
-        }
+        };
 
-        // --- SHOPPING CART LOGIC ---
         function addToCart(productId, qty) {
             const product = products.find(p => p.id === productId);
             if (!product || product.stock <= 0) return;
@@ -1207,7 +992,7 @@
                 cart.push({
                     id: product.id,
                     name: product.name,
-                    price: product.price,
+                    price: parseFloat(product.price),
                     image: product.image,
                     qty: qty > product.stock ? product.stock : qty
                 });
@@ -1215,7 +1000,7 @@
             updateCartUI();
         }
 
-        function updateCartItemQty(productId, delta) {
+        window.updateCartItemQty = function(productId, delta) {
             const item = cart.find(i => i.id === productId);
             if (!item) return;
             item.qty += delta;
@@ -1223,17 +1008,15 @@
                 cart = cart.filter(i => i.id !== productId);
             } else {
                 const prod = products.find(p => p.id === productId);
-                if (prod && item.qty > prod.stock) {
-                    item.qty = prod.stock;
-                }
+                if (prod && item.qty > prod.stock) item.qty = prod.stock;
             }
             updateCartUI();
-        }
+        };
 
-        function removeFromCart(productId) {
+        window.removeFromCart = function(productId) {
             cart = cart.filter(i => i.id !== productId);
             updateCartUI();
-        }
+        };
 
         function updateCartUI() {
             const countBadge = document.getElementById('cartBadge');
@@ -1248,9 +1031,7 @@
             if (cart.length === 0) {
                 container.innerHTML = `
                     <div class="text-center py-12 space-y-3">
-                        <div class="w-16 h-16 rounded-full bg-[#C5B9AB]/30 text-[#4B5320] flex items-center justify-center mx-auto text-2xl">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
+                        <div class="w-16 h-16 rounded-full bg-[#C5B9AB]/30 text-[#4B5320] flex items-center justify-center mx-auto text-2xl"><i class="fa-solid fa-bag-shopping"></i></div>
                         <h4 class="font-heading font-bold text-base text-[#2D2B28]">Your cart is empty</h4>
                         <p class="text-xs text-[#2D2B28]/70">Explore our South African heritage catalog and add some heavy-duty ketties.</p>
                     </div>
@@ -1267,17 +1048,17 @@
                 const row = document.createElement('div');
                 row.className = "flex items-center gap-4 bg-[#F4F2EC] p-3 rounded-xl border border-[#C5B9AB]";
                 row.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-lg object-cover bg-white" onerror="this.src='https://placehold.co/200x200/2D2B28/F4F2EC?text=Item'">
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-lg object-cover bg-white">
                     <div class="flex-1">
                         <h4 class="font-heading font-bold text-xs text-[#2D2B28]">${item.name}</h4>
                         <span class="text-xs text-[#A35C3E] font-bold">R${item.price.toFixed(2)}</span>
                         <div class="flex items-center gap-3 mt-2">
                             <div class="flex items-center border border-[#C5B9AB] rounded bg-white">
-                                <button onclick="updateCartItemQty(${item.id}, -1)" class="px-2 py-0.5 text-xs font-bold">-</button>
+                                <button onclick="updateCartItemQty('${item.id}', -1)" class="px-2 py-0.5 text-xs font-bold">-</button>
                                 <span class="px-2 text-xs font-bold">${item.qty}</span>
-                                <button onclick="updateCartItemQty(${item.id}, 1)" class="px-2 py-0.5 text-xs font-bold">+</button>
+                                <button onclick="updateCartItemQty('${item.id}', 1)" class="px-2 py-0.5 text-xs font-bold">+</button>
                             </div>
-                            <button onclick="removeFromCart(${item.id})" class="text-xs text-red-600 hover:text-red-800"><i class="fa-solid fa-trash-can"></i></button>
+                            <button onclick="removeFromCart('${item.id}')" class="text-xs text-red-600 hover:text-red-800"><i class="fa-solid fa-trash-can"></i></button>
                         </div>
                     </div>
                 `;
@@ -1302,16 +1083,13 @@
             document.getElementById('cartTotal').innerText = `R${finalTotal.toFixed(2)}`;
         }
 
-        function toggleCartDrawer(open) {
+        window.toggleCartDrawer = function(open) {
             const drawer = document.getElementById('cartDrawer');
-            if (open) {
-                drawer.classList.remove('hidden');
-            } else {
-                drawer.classList.add('hidden');
-            }
-        }
+            if (open) drawer.classList.remove('hidden');
+            else drawer.classList.add('hidden');
+        };
 
-        function applyPromoCode() {
+        window.applyPromoCode = function() {
             const code = document.getElementById('promoCodeInput').value.trim().toUpperCase();
             const msg = document.getElementById('promoMessage');
             msg.classList.remove('hidden');
@@ -1330,14 +1108,12 @@
                 msg.innerText = "Invalid promo code. Try 'BUSHVELD10'.";
             }
             updateCartUI();
-        }
+        };
 
-        // --- CHECKOUT PROCESS ---
-        function openCheckoutModal() {
+        window.openCheckoutModal = function() {
             if (cart.length === 0) return;
             toggleCartDrawer(false);
 
-            // Calculate total for checkout button
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
             const shipping = subtotal >= 750 ? 0 : 95.00;
             const finalTotal = (subtotal * discountMultiplier) + shipping;
@@ -1345,15 +1121,17 @@
 
             document.getElementById('checkoutModal').classList.remove('hidden');
             document.getElementById('checkoutModal').classList.add('flex');
-        }
+        };
 
-        function closeCheckoutModal() {
+        window.closeCheckoutModal = function() {
             document.getElementById('checkoutModal').classList.add('hidden');
             document.getElementById('checkoutModal').classList.remove('flex');
-        }
+        };
 
-        function processCheckout(e) {
+        window.processCheckout = async function(e) {
             e.preventDefault();
+            if (!currentUser) return;
+
             const name = document.getElementById('custName').value;
             const phone = document.getElementById('custPhone').value;
             const email = document.getElementById('custEmail').value;
@@ -1365,54 +1143,49 @@
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
             const shipping = subtotal >= 750 ? 0 : 95.00;
             const finalTotal = (subtotal * discountMultiplier) + shipping;
-
             const newOrderId = `KG-${Math.floor(1000 + Math.random() * 9000)}`;
 
-            // Deduct stock
-            cart.forEach(cartItem => {
+            for (const cartItem of cart) {
                 const prod = products.find(p => p.id === cartItem.id);
                 if (prod) {
-                    prod.stock -= cartItem.qty;
-                    if (prod.stock < 0) prod.stock = 0;
+                    const newStock = Math.max(0, prod.stock - cartItem.qty);
+                    await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'products', prod.id), {
+                        stock: newStock
+                    });
                 }
-            });
+            }
 
-            // Log Order
-            orders.unshift({
+            const orderData = {
                 id: newOrderId,
                 date: new Date().toISOString().replace('T', ' ').substring(0, 16),
-                name: name,
-                phone: phone,
-                email: email,
-                address: `${address}, ${city} (${postal})`,
-                city: city,
-                province: province,
+                name,
+                phone,
+                email,
+                address: `${address}, ${city} (${province}, ${postal})`,
                 items: [...cart],
                 total: finalTotal,
                 status: "Processing"
-            });
+            };
 
-            // Clear cart
+            await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'orders', newOrderId), orderData);
+
             cart = [];
             updateCartUI();
             closeCheckoutModal();
 
-            // Show success modal
             document.getElementById('successCustomerName').innerText = name.split(' ')[0];
             document.getElementById('successOrderId').innerText = `#${newOrderId}`;
             document.getElementById('successModal').classList.remove('hidden');
             document.getElementById('successModal').classList.add('flex');
-        }
+        };
 
-        function closeSuccessModal() {
+        window.closeSuccessModal = function() {
             document.getElementById('successModal').classList.add('hidden');
             document.getElementById('successModal').classList.remove('flex');
             switchView('store');
-            renderProductCatalog();
-        }
+        };
 
-        // --- ADMIN DASHBOARD LOGIC ---
-        function switchAdminTab(tab) {
+        window.switchAdminTab = function(tab) {
             activeAdminTab = tab;
             const invBtn = document.getElementById('tabInventoryBtn');
             const ordBtn = document.getElementById('tabOrdersBtn');
@@ -1432,7 +1205,7 @@
                 invTab.classList.add('hidden');
                 renderAdminOrders();
             }
-        }
+        };
 
         function updateAdminStats() {
             document.getElementById('statTotalProducts').innerText = products.length;
@@ -1440,14 +1213,14 @@
             document.getElementById('statLowStock').innerText = lowStockCount;
             document.getElementById('statTotalOrders').innerText = orders.length;
 
-            const totalRev = orders.reduce((sum, o) => sum + o.total, 0);
+            const totalRev = orders.reduce((sum, o) => sum + (o.total || 0), 0);
             document.getElementById('statTotalRevenue').innerText = `R${totalRev.toFixed(2)}`;
 
             document.getElementById('countInventory').innerText = products.length;
             document.getElementById('countOrders').innerText = orders.length;
         }
 
-        function renderAdminInventory() {
+        window.renderAdminInventory = function() {
             updateAdminStats();
             const tbody = document.getElementById('adminInventoryTableBody');
             tbody.innerHTML = '';
@@ -1456,7 +1229,7 @@
             const filtered = products.filter(p => p.name.toLowerCase().includes(searchTerm) || p.category.toLowerCase().includes(searchTerm));
 
             if (filtered.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-[#2D2B28]/70">No matching products found in stock database.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-[#2D2B28]/70">No matching products in cloud database.</td></tr>`;
                 return;
             }
 
@@ -1466,49 +1239,46 @@
                 tr.className = "hover:bg-[#DFD8CE]/30 transition-colors";
                 tr.innerHTML = `
                     <td class="p-4 flex items-center gap-3">
-                        <img src="${p.image}" class="w-10 h-10 rounded-lg object-cover bg-white" onerror="this.src='https://placehold.co/100x100/2D2B28/F4F2EC?text=P'">
+                        <img src="${p.image}" class="w-10 h-10 rounded-lg object-cover bg-white">
                         <div>
                             <span class="font-heading font-bold text-sm block text-[#2D2B28]">${p.name}</span>
-                            <span class="text-[10px] text-[#2D2B28]/60">ID: #KG-PROD-0${p.id}</span>
+                            <span class="text-[10px] text-[#2D2B28]/60">ID: ${p.id}</span>
                         </div>
                     </td>
                     <td class="p-4 text-xs font-semibold">${p.category}</td>
-                    <td class="p-4 font-mono font-bold">R${p.price.toFixed(2)}</td>
+                    <td class="p-4 font-mono font-bold">R${parseFloat(p.price).toFixed(2)}</td>
                     <td class="p-4">
                         <div class="flex items-center gap-2">
                             <span class="font-bold">${p.stock} units</span>
-                            <button onclick="adjustStock(${p.id}, 1)" class="w-6 h-6 rounded bg-[#C5B9AB]/50 hover:bg-[#4B5320] hover:text-white text-xs font-bold flex items-center justify-center">+</button>
-                            <button onclick="adjustStock(${p.id}, -1)" class="w-6 h-6 rounded bg-[#C5B9AB]/50 hover:bg-[#A35C3E] hover:text-white text-xs font-bold flex items-center justify-center">-</button>
+                            <button onclick="adjustStock('${p.id}', 1)" class="w-6 h-6 rounded bg-[#C5B9AB]/50 hover:bg-[#4B5320] hover:text-white text-xs font-bold flex items-center justify-center">+</button>
+                            <button onclick="adjustStock('${p.id}', -1)" class="w-6 h-6 rounded bg-[#C5B9AB]/50 hover:bg-[#A35C3E] hover:text-white text-xs font-bold flex items-center justify-center">-</button>
                         </div>
                     </td>
                     <td class="p-4">
                         ${isLow ? `<span class="px-2.5 py-1 rounded-full bg-red-100 text-red-800 text-[10px] font-bold uppercase">Low Stock</span>` : `<span class="px-2.5 py-1 rounded-full bg-green-100 text-green-800 text-[10px] font-bold uppercase">In Stock</span>`}
                     </td>
                     <td class="p-4 text-right space-x-2">
-                        <button onclick="openEditProductModal(${p.id})" class="px-3 py-1.5 rounded bg-[#4B5320] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#353B16]">Edit</button>
-                        <button onclick="deleteProduct(${p.id})" class="px-3 py-1.5 rounded bg-[#A35C3E] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#84472F]">Delete</button>
+                        <button onclick="openEditProductModal('${p.id}')" class="px-3 py-1.5 rounded bg-[#4B5320] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#353B16]">Edit</button>
+                        <button onclick="deleteProduct('${p.id}')" class="px-3 py-1.5 rounded bg-[#A35C3E] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#84472F]">Delete</button>
                     </td>
                 `;
                 tbody.appendChild(tr);
             });
-        }
+        };
 
-        function filterAdminInventory() {
-            renderAdminInventory();
-        }
-
-        function adjustStock(id, change) {
+        window.adjustStock = async function(id, change) {
+            if (!currentUser) return;
             const prod = products.find(p => p.id === id);
             if (prod) {
-                prod.stock += change;
-                if (prod.stock < 0) prod.stock = 0;
-                renderAdminInventory();
-                renderProductCatalog();
+                const newStock = Math.max(0, prod.stock + change);
+                await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'products', id), {
+                    stock: newStock
+                });
             }
-        }
+        };
 
-        function openNewProductModal() {
-            document.getElementById('adminModalTitle').innerText = "ADD NEW PRODUCT";
+        window.openNewProductModal = function() {
+            document.getElementById('adminModalTitle').innerText = "ADD NEW CLOUD PRODUCT";
             document.getElementById('editProductId').value = '';
             document.getElementById('adminProdName').value = '';
             document.getElementById('adminProdCategory').value = 'Ketties';
@@ -1520,13 +1290,13 @@
 
             document.getElementById('adminProductModal').classList.remove('hidden');
             document.getElementById('adminProductModal').classList.add('flex');
-        }
+        };
 
-        function openEditProductModal(id) {
+        window.openEditProductModal = function(id) {
             const prod = products.find(p => p.id === id);
             if (!prod) return;
 
-            document.getElementById('adminModalTitle').innerText = "EDIT PRODUCT";
+            document.getElementById('adminModalTitle').innerText = "EDIT CLOUD PRODUCT";
             document.getElementById('editProductId').value = prod.id;
             document.getElementById('adminProdName').value = prod.name;
             document.getElementById('adminProdCategory').value = prod.category;
@@ -1538,15 +1308,17 @@
 
             document.getElementById('adminProductModal').classList.remove('hidden');
             document.getElementById('adminProductModal').classList.add('flex');
-        }
+        };
 
-        function closeAdminProductModal() {
+        window.closeAdminProductModal = function() {
             document.getElementById('adminProductModal').classList.add('hidden');
             document.getElementById('adminProductModal').classList.remove('flex');
-        }
+        };
 
-        function saveAdminProduct(e) {
+        window.saveAdminProduct = async function(e) {
             e.preventDefault();
+            if (!currentUser) return;
+
             const editId = document.getElementById('editProductId').value;
             const name = document.getElementById('adminProdName').value;
             const category = document.getElementById('adminProdCategory').value;
@@ -1557,19 +1329,12 @@
             const description = document.getElementById('adminProdDesc').value;
 
             if (editId) {
-                const prod = products.find(p => p.id == editId);
-                if (prod) {
-                    prod.name = name;
-                    prod.category = category;
-                    prod.price = price;
-                    prod.stock = stock;
-                    prod.badge = badge;
-                    prod.image = image;
-                    prod.description = description;
-                }
+                await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'products', editId), {
+                    name, category, price, stock, badge, image, description
+                });
             } else {
-                const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
-                products.push({
+                const newId = `prod-${Date.now()}`;
+                const newProd = {
                     id: newId,
                     name,
                     category,
@@ -1579,30 +1344,28 @@
                     image,
                     images: [image],
                     description,
-                    specs: ["Handcrafted South African build", "Tested for precision and durability"]
-                });
+                    specs: ["Handcrafted South African build", "Tested for bushveld durability"]
+                };
+                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'products', newId), newProd);
             }
 
             closeAdminProductModal();
-            renderAdminInventory();
-            renderProductCatalog();
-        }
+        };
 
-        function deleteProduct(id) {
-            if (confirm("Are you sure you want to delete this product from the inventory database?")) {
-                products = products.filter(p => p.id !== id);
-                renderAdminInventory();
-                renderProductCatalog();
+        window.deleteProduct = async function(id) {
+            if (!currentUser) return;
+            if (confirm("Are you sure you want to delete this product from the cloud database?")) {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'products', id));
             }
-        }
+        };
 
-        function renderAdminOrders() {
+        window.renderAdminOrders = function() {
             updateAdminStats();
             const tbody = document.getElementById('adminOrdersTableBody');
             tbody.innerHTML = '';
 
             if (orders.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-[#2D2B28]/70">No customer orders recorded yet.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-[#2D2B28]/70">No customer orders recorded in cloud.</td></tr>`;
                 return;
             }
 
@@ -1610,12 +1373,11 @@
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-[#DFD8CE]/30 transition-colors";
                 
-                let statusBadge = '';
-                if (o.status === 'Processing') statusBadge = 'bg-amber-100 text-amber-800';
-                else if (o.status === 'Dispatched') statusBadge = 'bg-blue-100 text-blue-800';
+                let statusBadge = 'bg-amber-100 text-amber-800';
+                if (o.status === 'Dispatched') statusBadge = 'bg-blue-100 text-blue-800';
                 else if (o.status === 'Delivered') statusBadge = 'bg-green-100 text-green-800';
 
-                const itemsSummary = o.items.map(i => `${i.qty}x ${i.name}`).join(', ');
+                const itemsSummary = o.items ? o.items.map(i => `${i.qty}x ${i.name}`).join(', ') : '';
 
                 tr.innerHTML = `
                     <td class="p-4">
@@ -1628,7 +1390,7 @@
                     </td>
                     <td class="p-4 text-xs text-[#2D2B28]/80">${o.address}</td>
                     <td class="p-4 text-xs text-[#2D2B28]/70 max-w-xs truncate">${itemsSummary}</td>
-                    <td class="p-4 font-mono font-bold text-sm">R${o.total.toFixed(2)}</td>
+                    <td class="p-4 font-mono font-bold text-sm">R${parseFloat(o.total || 0).toFixed(2)}</td>
                     <td class="p-4">
                         <select onchange="updateOrderStatus('${o.id}', this.value)" class="px-2 py-1 rounded text-xs font-bold uppercase ${statusBadge} border border-[#C5B9AB]">
                             <option value="Processing" ${o.status === 'Processing' ? 'selected' : ''}>Processing</option>
@@ -1642,21 +1404,24 @@
                 `;
                 tbody.appendChild(tr);
             });
-        }
+        };
 
-        function updateOrderStatus(orderId, newStatus) {
-            const ord = orders.find(o => o.id === orderId);
-            if (ord) {
-                ord.status = newStatus;
-                renderAdminOrders();
-            }
-        }
+        window.updateOrderStatus = async function(orderId, newStatus) {
+            if (!currentUser) return;
+            await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'orders', orderId), {
+                status: newStatus
+            });
+        };
 
-        function viewOrderDetails(orderId) {
+        window.viewOrderDetails = function(orderId) {
             const ord = orders.find(o => o.id === orderId);
             if (!ord) return;
-            alert(`Order #${ord.id}\nCustomer: ${ord.name} (${ord.phone})\nDelivery Address: ${ord.address}\nStatus: ${ord.status}\nTotal: R${ord.total.toFixed(2)}`);
-        }
+            alert(`Order #${ord.id}\nCustomer: ${ord.name} (${ord.phone})\nDelivery Address: ${ord.address}\nStatus: ${ord.status}\nTotal: R${parseFloat(ord.total).toFixed(2)}`);
+        };
+
+        window.onload = function() {
+            initFirebase();
+        };
     </script>
 </body>
 </html>
