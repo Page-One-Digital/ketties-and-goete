@@ -614,9 +614,12 @@
                         </div>
                     </div>
 
-                    <div class="pt-6 border-t border-stone-800">
-                        <button onclick="closePortal()" class="w-full py-3 rounded-xl bg-stone-800 hover:bg-stone-700 text-white font-bold text-xs uppercase tracking-wider">
-                            Exit Dashboard
+                    <div class="pt-6 border-t border-stone-800 space-y-2">
+                        <button onclick="closePortal()" class="w-full py-2.5 rounded-xl bg-stone-800 hover:bg-stone-700 text-white font-bold text-xs uppercase tracking-wider">
+                            Minimize Dashboard
+                        </button>
+                        <button onclick="logoutAdmin()" class="w-full py-2.5 rounded-xl bg-red-950/60 hover:bg-red-900 text-red-200 font-bold text-xs uppercase tracking-wider border border-red-900/50">
+                            Log Out
                         </button>
                     </div>
                 </div>
@@ -1162,11 +1165,19 @@
 
         window.openPortal = function() {
             document.getElementById('portal-modal').classList.remove('hidden');
-            document.getElementById('portal-login-view').classList.remove('hidden');
-            document.getElementById('portal-dashboard-view').classList.add('hidden');
-            document.getElementById('admin-user').value = '';
-            document.getElementById('admin-pass').value = '';
-            document.getElementById('login-error').classList.add('hidden');
+            const isLoggedIn = sessionStorage.getItem('ketties_admin_logged_in');
+            if (isLoggedIn === 'true') {
+                document.getElementById('portal-login-view').classList.add('hidden');
+                document.getElementById('portal-dashboard-view').classList.remove('hidden');
+                renderAdminProductList();
+            } else {
+                document.getElementById('portal-login-view').classList.remove('hidden');
+                document.getElementById('portal-dashboard-view').classList.add('hidden');
+                document.getElementById('admin-user').value = '';
+                document.getElementById('admin-pass').value = '';
+                document.getElementById('login-error').classList.add('hidden');
+            }
+            lucide.createIcons();
         };
 
         window.closePortal = function() {
@@ -1177,6 +1188,7 @@
             const user = document.getElementById('admin-user').value.trim();
             const pass = document.getElementById('admin-pass').value.trim();
             if ((user === 'admin' && pass === 'Ketties2026!') || (user === '' && pass === '')) {
+                sessionStorage.setItem('ketties_admin_logged_in', 'true');
                 document.getElementById('portal-login-view').classList.add('hidden');
                 document.getElementById('portal-dashboard-view').classList.remove('hidden');
                 renderAdminProductList();
@@ -1184,6 +1196,15 @@
             } else {
                 document.getElementById('login-error').classList.remove('hidden');
             }
+        };
+
+        window.logoutAdmin = function() {
+            sessionStorage.removeItem('ketties_admin_logged_in');
+            document.getElementById('portal-dashboard-view').classList.add('hidden');
+            document.getElementById('portal-login-view').classList.remove('hidden');
+            document.getElementById('admin-user').value = '';
+            document.getElementById('admin-pass').value = '';
+            document.getElementById('login-error').classList.add('hidden');
         };
 
         window.switchAdminTab = function(tabName) {
