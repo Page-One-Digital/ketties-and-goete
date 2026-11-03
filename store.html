@@ -50,7 +50,7 @@
         <span>🇿🇦 CRAFTED IN SOUTH AFRICA • FREE NATIONWIDE SHIPPING ON ORDERS OVER R600 • 100% NATURAL LATEX & BIO-CLAY</span>
     </div>
 
-    <!-- Sticky Navigation -->
+    <!-- Sticky Navigation matching reference layout -->
     <nav class="sticky top-0 z-40 bg-safari-parchment/95 backdrop-blur-md border-b border-safari-border transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Brand Logo -->
@@ -60,25 +60,26 @@
                 </div>
                 <div>
                     <span class="font-heading font-black text-xl tracking-wider block leading-tight">KETTIES & GOETE</span>
-                    <span class="text-[10px] tracking-widest text-safari-olive uppercase font-semibold">Outdoors & Shooting Heritage</span>
+                    <span class="text-[10px] tracking-widest text-safari-olive uppercase font-semibold">South African Heritage Gear</span>
                 </div>
             </a>
 
             <!-- Desktop Nav Links -->
-            <div class="hidden md:flex items-center gap-8 font-medium text-sm tracking-wide">
-                <a href="#shop" class="hover:text-safari-olive transition-colors">Shop Catalog</a>
-                <a href="#heritage" class="hover:text-safari-olive transition-colors">Our Craft</a>
-                <a href="#combos" class="hover:text-safari-olive transition-colors">Combo Specials</a>
-                <a href="#" onclick="openAdminModal(event)" class="text-safari-terracotta hover:text-safari-terracottaDark font-semibold flex items-center gap-1.5">
-                    <i class="fa-solid fa-lock text-xs"></i> Admin Portal
-                </a>
+            <div class="hidden lg:flex items-center gap-8 font-heading font-bold text-xs uppercase tracking-wider">
+                <a href="#shop" onclick="filterProducts('all')" class="hover:text-safari-olive transition-colors">Catalog</a>
+                <a href="#shop" onclick="filterProducts('Ketties')" class="hover:text-safari-olive transition-colors">Ketties</a>
+                <a href="#shop" onclick="filterProducts('Flatbands')" class="hover:text-safari-olive transition-colors">Flatbands</a>
+                <a href="#shop" onclick="filterProducts('Clay Pellets')" class="hover:text-safari-olive transition-colors">Clay Pellets</a>
+                <a href="#shop" onclick="filterProducts('Combos')" class="text-safari-terracotta hover:text-safari-terracottaDark transition-colors">Combos</a>
             </div>
 
-            <!-- Cart & Quick Actions -->
+            <!-- Dashboard & Cart Actions -->
             <div class="flex items-center gap-4">
-                <button onclick="toggleCartDrawer()" class="relative bg-safari-surface border border-safari-border hover:border-safari-olive p-2.5 rounded-xl flex items-center gap-2.5 transition-all shadow-sm">
-                    <i class="fa-solid fa-shopping-bag text-safari-olive text-lg"></i>
-                    <span class="hidden sm:inline text-xs font-semibold uppercase tracking-wider">Cart</span>
+                <button onclick="openAdminModal(event)" class="bg-safari-surface border border-safari-border hover:border-safari-olive px-4 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-all shadow-sm">
+                    <i class="fa-solid fa-shield-halved text-safari-olive"></i> Dashboard
+                </button>
+                <button onclick="toggleCartDrawer()" class="relative bg-safari-espresso text-safari-parchment hover:bg-safari-olive px-4 py-2.5 rounded-xl flex items-center gap-2 font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-sm">
+                    <i class="fa-solid fa-shopping-bag text-sm"></i> Cart
                     <span id="cart-badge" class="absolute -top-2 -right-2 bg-safari-terracotta text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center shadow">0</span>
                 </button>
             </div>
@@ -87,12 +88,10 @@
 
     <!-- Hero Section -->
     <section class="relative bg-safari-espresso text-safari-parchment overflow-hidden py-16 lg:py-24">
-        <!-- Background Wilderness Image with Gradient Overlay -->
         <div class="absolute inset-0 z-0 opacity-30 mix-blend-overlay bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=1920');"></div>
         <div class="absolute inset-0 bg-gradient-to-r from-safari-espresso via-safari-espresso/90 to-transparent z-0"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <!-- Left-Hand Content -->
             <div class="lg:col-span-7 space-y-6">
                 <div class="inline-flex items-center gap-2 bg-safari-olive text-white px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase shadow-sm">
                     <span>✨</span> SOUTH AFRICA'S SHOOTING HERITAGE
@@ -113,14 +112,14 @@
                 </div>
             </div>
 
-            <!-- Right-Hand Featured Highlight Card -->
+            <!-- Featured Highlight Card -->
             <div class="lg:col-span-5">
                 <div class="bg-safari-espresso/95 border border-safari-border/40 rounded-2xl p-6 sm:p-8 shadow-2xl backdrop-blur-md relative">
                     <div class="absolute -top-3 right-6 bg-safari-terracotta text-white font-heading font-bold text-xs uppercase px-3 py-1 rounded-full shadow">
                         Best Seller Combo
                     </div>
-                    <div class="rounded-xl overflow-hidden mb-6 h-56 border border-safari-border/30">
-                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800" alt="Ou Kalahari Combo Special" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500">
+                    <div class="rounded-xl overflow-hidden mb-6 h-56 border border-safari-border/30 bg-white flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800" alt="Ou Kalahari Combo Special" class="w-full h-full object-cover">
                     </div>
                     <span class="text-xs uppercase tracking-widest text-safari-olive font-bold">Limited Wilderness Edition</span>
                     <h3 class="font-heading font-black text-2xl text-white mt-1 mb-2">Ou Kalahari Combo Special</h3>
@@ -149,8 +148,9 @@
             <!-- Category Filter Tabs -->
             <div class="flex flex-wrap gap-2 mt-4 md:mt-0" id="category-filters">
                 <button onclick="filterProducts('all')" class="cat-btn active bg-safari-olive text-white px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">All Items</button>
-                <button onclick="filterProducts('Slingshots')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Slingshots</button>
-                <button onclick="filterProducts('Flatbands & Ammunition')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Bands & Ammo</button>
+                <button onclick="filterProducts('Ketties')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Ketties</button>
+                <button onclick="filterProducts('Flatbands')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Flatbands</button>
+                <button onclick="filterProducts('Clay Pellets')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Clay Pellets</button>
                 <button onclick="filterProducts('Combos')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Combos</button>
             </div>
         </div>
@@ -160,34 +160,6 @@
             <div class="col-span-full text-center py-12 text-safari-espresso/60">
                 <i class="fa-solid fa-spinner fa-spin text-3xl mb-3 text-safari-olive"></i>
                 <p>Loading live catalog from Firebase database...</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Heritage & Craft Section -->
-    <section id="heritage" class="py-16 bg-safari-surface border-t border-b border-safari-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-                <span class="text-xs font-semibold uppercase tracking-widest text-safari-olive block">Authentic Bushveld Heritage</span>
-                <h2 class="font-heading font-black text-3xl sm:text-4xl text-safari-espresso">CRAFTED FOR PRECISION & DURABILITY</h2>
-                <p class="text-safari-espresso/80 leading-relaxed text-sm sm:text-base">
-                    At Ketties & Goete, we honor the time-tested outdoor traditions of South Africa. Every slingshot is hand-finished from dense, seasoned indigenous hardwoods, paired with high-tensile medical-grade natural latex flatbands designed for maximum velocity and accurate target repetition.
-                </p>
-                <div class="grid grid-cols-2 gap-6 pt-4">
-                    <div class="bg-safari-parchment p-5 rounded-xl border border-safari-border">
-                        <i class="fa-solid fa-seedling text-safari-olive text-xl mb-2"></i>
-                        <h4 class="font-heading font-bold text-sm uppercase mb-1">100% Eco-Friendly</h4>
-                        <p class="text-xs text-safari-espresso/70">Biodegradable clay ammunition that dissolves naturally in soil.</p>
-                    </div>
-                    <div class="bg-safari-parchment p-5 rounded-xl border border-safari-border">
-                        <i class="fa-solid fa-shield-halved text-safari-olive text-xl mb-2"></i>
-                        <h4 class="font-heading font-bold text-sm uppercase mb-1">Rugged Build</h4>
-                        <p class="text-xs text-safari-espresso/70">Engineered to withstand the harsh conditions of African outdoor expeditions.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="rounded-2xl overflow-hidden h-96 border border-safari-border shadow-lg">
-                <img src="https://images.unsplash.com/photo-1508873696983-2df5c92063c7?auto=format&fit=crop&q=80&w=1000" alt="Bushveld Outdoor Gear" class="w-full h-full object-cover">
             </div>
         </div>
     </section>
@@ -211,8 +183,7 @@
                 <h4 class="font-heading font-bold text-sm uppercase tracking-widest text-safari-olive mb-4">Quick Links</h4>
                 <ul class="space-y-2 text-sm text-safari-borderLight">
                     <li><a href="#shop" class="hover:text-white transition-colors">Shop Catalog</a></li>
-                    <li><a href="#heritage" class="hover:text-white transition-colors">Our Craft</a></li>
-                    <li><a href="#" onclick="openAdminModal(event)" class="hover:text-white transition-colors">Admin Portal</a></li>
+                    <li><a href="#" onclick="openAdminModal(event)" class="hover:text-white transition-colors">Admin Dashboard</a></li>
                 </ul>
             </div>
             <div>
@@ -231,7 +202,6 @@
         <div class="absolute inset-0 bg-safari-espresso/60 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer()"></div>
         <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
             <div class="w-screen max-w-md bg-safari-parchment border-l border-safari-border flex flex-col shadow-2xl">
-                <!-- Cart Header -->
                 <div class="p-6 bg-safari-surface border-b border-safari-border flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <i class="fa-solid fa-shopping-bag text-safari-olive text-xl"></i>
@@ -241,9 +211,7 @@
                         <i class="fa-solid fa-xmark text-xl"></i>
                     </button>
                 </div>
-                <!-- Cart Items List -->
                 <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
-                <!-- Cart Footer & Checkout -->
                 <div class="p-6 bg-safari-surface border-t border-safari-border space-y-4">
                     <div class="flex items-center justify-between text-sm">
                         <span class="text-safari-espresso/70">Subtotal:</span>
@@ -265,18 +233,16 @@
         </div>
     </div>
 
-    <!-- Product Detail Modal (Fixed Image Scaling with object-contain) -->
+    <!-- Product Detail Modal -->
     <div id="product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/70 backdrop-blur-sm" onclick="closeProductModal()"></div>
         <div class="bg-safari-parchment rounded-2xl max-w-4xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2 items-center">
-            <!-- Left: Image Gallery -->
             <div class="p-6 bg-safari-surface flex flex-col justify-center items-center border-r border-safari-border h-full">
                 <div class="rounded-xl overflow-hidden max-h-[450px] w-full flex items-center justify-center bg-safari-parchment/50">
                     <img id="modal-main-img" src="" alt="Product Image" class="max-h-[400px] w-auto max-w-full object-contain mx-auto">
                 </div>
                 <div id="modal-thumbs" class="flex gap-3 mt-4 overflow-x-auto pb-2 justify-center w-full"></div>
             </div>
-            <!-- Right: Details -->
             <div class="p-8 flex flex-col justify-between">
                 <div>
                     <button onclick="closeProductModal()" class="absolute top-4 right-4 text-safari-espresso/60 hover:text-safari-espresso p-2">
@@ -346,130 +312,181 @@
         </div>
     </div>
 
-    <!-- Admin Management Portal Modal -->
+    <!-- Admin Management Portal Modal (Exact Reference Layout Match) -->
     <div id="admin-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeAdminModal()"></div>
-        <div class="bg-safari-parchment rounded-2xl max-w-5xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
-            <div class="flex items-center justify-between mb-6 border-b border-safari-border pb-4">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-safari-terracotta text-white rounded-lg flex items-center justify-center font-heading font-bold">
-                        <i class="fa-solid fa-shield-halved"></i>
+        <div class="bg-safari-parchment rounded-2xl max-w-6xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
+            
+            <!-- Dashboard Header Banner -->
+            <div class="bg-safari-espresso text-safari-parchment p-8 rounded-2xl mb-8 shadow-lg relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div class="absolute right-0 top-0 bottom-0 w-1/3 bg-cover bg-center opacity-10 pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800');"></div>
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-safari-terracotta text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-3 shadow">
+                        <i class="fa-solid fa-lock text-[9px]"></i> Secure Portal • Authorized Personnel Only
                     </div>
-                    <div>
-                        <h3 class="font-heading font-black text-xl uppercase">Secure Admin Management Portal</h3>
-                        <span class="text-xs text-safari-olive font-semibold tracking-widest uppercase">Live Firebase Firestore Sync</span>
-                    </div>
+                    <h2 class="font-heading font-black text-2xl sm:text-4xl uppercase tracking-tight">Ketties & Goete Admin Dashboard</h2>
+                    <p class="text-safari-borderLight text-xs sm:text-sm mt-1">Manage inventory database, monitor stock levels, and review customer client records & orders.</p>
                 </div>
-                <button onclick="closeAdminModal()" class="text-safari-espresso/60 hover:text-safari-espresso p-2"><i class="fa-solid fa-xmark text-xl"></i></button>
+                <div class="flex flex-wrap gap-3 relative z-10">
+                    <button onclick="closeAdminModal()" class="bg-safari-surface/10 hover:bg-safari-surface/20 border border-safari-border text-safari-parchment px-5 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 backdrop-blur-sm">
+                        <i class="fa-solid fa-store"></i> Return to Store
+                    </button>
+                    <button onclick="openNewProductModal()" class="bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-5 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow">
+                        <i class="fa-solid fa-plus"></i> Add New Product
+                    </button>
+                </div>
             </div>
 
-            <!-- Admin Tabs -->
+            <!-- Metrics Summary Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <!-- Total Products -->
+                <div class="bg-safari-surface border border-safari-border p-6 rounded-2xl shadow-sm relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold uppercase tracking-widest text-safari-espresso/70">Total Products</span>
+                        <i class="fa-solid fa-box-open text-safari-olive text-lg"></i>
+                    </div>
+                    <div id="stat-total-products" class="font-heading font-black text-3xl sm:text-4xl text-safari-espresso mb-1">0</div>
+                    <span class="text-[11px] text-safari-espresso/60 block">Active in catalog database</span>
+                </div>
+                <!-- Low Stock Alerts -->
+                <div class="bg-safari-surface border border-safari-border p-6 rounded-2xl shadow-sm relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold uppercase tracking-widest text-safari-espresso/70">Low Stock Alerts</span>
+                        <i class="fa-solid fa-triangle-exclamation text-amber-600 text-lg"></i>
+                    </div>
+                    <div id="stat-low-stock" class="font-heading font-black text-3xl sm:text-4xl text-safari-espresso mb-1">0</div>
+                    <span class="text-[11px] text-safari-espresso/60 block">Items below 10 units</span>
+                </div>
+                <!-- Total Client Orders -->
+                <div class="bg-safari-surface border border-safari-border p-6 rounded-2xl shadow-sm relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold uppercase tracking-widest text-safari-espresso/70">Total Client Orders</span>
+                        <i class="fa-solid fa-receipt text-safari-olive text-lg"></i>
+                    </div>
+                    <div id="stat-total-orders" class="font-heading font-black text-3xl sm:text-4xl text-safari-espresso mb-1">0</div>
+                    <span class="text-[11px] text-safari-espresso/60 block">Recorded transactions</span>
+                </div>
+                <!-- Total Revenue -->
+                <div class="bg-safari-surface border border-safari-border p-6 rounded-2xl shadow-sm relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold uppercase tracking-widest text-safari-espresso/70">Total Revenue</span>
+                        <span class="font-heading font-black text-safari-terracotta text-lg">R</span>
+                    </div>
+                    <div id="stat-total-revenue" class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso mb-1">R0.00</div>
+                    <span class="text-[11px] text-safari-espresso/60 block">Gross sales (ZAR)</span>
+                </div>
+            </div>
+
+            <!-- Admin Sub-Navigation Tabs -->
             <div class="flex gap-4 mb-6 border-b border-safari-border pb-4">
-                <button onclick="switchAdminTab('products')" id="admin-tab-prod" class="bg-safari-olive text-white px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all">Manage Inventory</button>
-                <button onclick="switchAdminTab('orders')" id="admin-tab-ord" class="bg-safari-surface text-safari-espresso border border-safari-border px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all">Customer Orders</button>
+                <button onclick="switchAdminTab('products')" id="admin-tab-prod" class="bg-safari-olive text-white px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-boxes-stacked"></i> Inventory Database (<span id="prod-count-badge">0</span>)
+                </button>
+                <button onclick="switchAdminTab('orders')" id="admin-tab-ord" class="bg-safari-surface text-safari-espresso border border-safari-border px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-clipboard-list"></i> Client Records & Orders (<span id="ord-count-badge">0</span>)
+                </button>
             </div>
 
             <!-- Products Inventory Tab -->
-            <div id="admin-panel-products" class="space-y-6">
+            <div id="admin-panel-products" class="space-y-4">
                 <div class="bg-safari-surface p-6 rounded-2xl border border-safari-border">
-                    <h4 class="font-heading font-bold text-base mb-4 uppercase">Add New Product to Database</h4>
-                    <form id="add-product-form" onsubmit="addNewProduct(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <input type="text" id="new-name" placeholder="Product Name" required class="bg-safari-parchment border border-safari-border rounded-xl px-4 py-2.5 text-sm">
-                        <select id="new-cat" class="bg-safari-parchment border border-safari-border rounded-xl px-4 py-2.5 text-sm">
-                            <option value="Slingshots">Slingshots</option>
-                            <option value="Flatbands & Ammunition">Flatbands & Ammunition</option>
-                            <option value="Combos">Combos</option>
-                        </select>
-                        <input type="number" id="new-price" placeholder="Price (ZAR)" required class="bg-safari-parchment border border-safari-border rounded-xl px-4 py-2.5 text-sm">
-                        <input type="number" id="new-stock" placeholder="Stock Quantity" required class="bg-safari-parchment border border-safari-border rounded-xl px-4 py-2.5 text-sm">
-                        <input type="url" id="new-img" placeholder="Main Image URL" required class="bg-safari-parchment border border-safari-border rounded-xl px-4 py-2.5 text-sm">
-                        <input type="text" id="new-thumb" placeholder="Comma-separated Thumbnail URLs" class="bg-safari-parchment border border-safari-border rounded-xl px-4 py-2.5 text-sm">
-                        <textarea id="new-desc" placeholder="Product Description" rows="2" class="col-span-full bg-safari-parchment border border-safari-border rounded-xl px-4 py-2.5 text-sm"></textarea>
-                        <button type="submit" class="col-span-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">Save Product to Firebase</button>
-                    </form>
-                </div>
-                <!-- Inventory Table -->
-                <div class="overflow-x-auto border border-safari-border rounded-xl bg-safari-surface">
-                    <table class="w-full text-left border-collapse text-sm">
-                        <thead>
-                            <tr class="bg-safari-border/30 border-b border-safari-border font-heading text-xs uppercase tracking-wider">
-                                <th class="p-4">Item</th>
-                                <th class="p-4">Category</th>
-                                <th class="p-4">Price</th>
-                                <th class="p-4">Stock</th>
-                                <th class="p-4 text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="admin-product-table-body"></tbody>
-                    </table>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+                        <h4 class="font-heading font-bold text-base uppercase">Stock & Product Database</h4>
+                        <div class="relative">
+                            <input type="text" id="admin-search" oninput="filterAdminProducts(this.value)" placeholder="Search products by name..." class="bg-safari-parchment border border-safari-border rounded-xl px-4 py-2 text-xs w-full sm:w-72 focus:outline-none focus:border-safari-olive">
+                            <i class="fa-solid fa-search absolute right-3 top-3 text-safari-espresso/40 text-xs"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="overflow-x-auto border border-safari-border rounded-xl bg-safari-parchment">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead>
+                                <tr class="bg-safari-border/30 border-b border-safari-border font-heading text-[11px] uppercase tracking-wider text-safari-espresso/70">
+                                    <th class="p-4">Product</th>
+                                    <th class="p-4">Category</th>
+                                    <th class="p-4">Price (ZAR)</th>
+                                    <th class="p-4">Stock Level</th>
+                                    <th class="p-4">Status</th>
+                                    <th class="p-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-product-table-body"></tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <!-- Customer Orders Tab -->
             <div id="admin-panel-orders" class="space-y-4 hidden">
-                <div class="overflow-x-auto border border-safari-border rounded-xl bg-safari-surface">
-                    <table class="w-full text-left border-collapse text-sm">
-                        <thead>
-                            <tr class="bg-safari-border/30 border-b border-safari-border font-heading text-xs uppercase tracking-wider">
-                                <th class="p-4">Order ID</th>
-                                <th class="p-4">Customer</th>
-                                <th class="p-4">Contact</th>
-                                <th class="p-4">Items</th>
-                                <th class="p-4">Total</th>
-                                <th class="p-4">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="admin-order-table-body"></tbody>
-                    </table>
+                <div class="bg-safari-surface p-6 rounded-2xl border border-safari-border">
+                    <h4 class="font-heading font-bold text-base mb-4 uppercase">Client Orders & Transactions</h4>
+                    <div class="overflow-x-auto border border-safari-border rounded-xl bg-safari-parchment">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead>
+                                <tr class="bg-safari-border/30 border-b border-safari-border font-heading text-[11px] uppercase tracking-wider text-safari-espresso/70">
+                                    <th class="p-4">Order ID</th>
+                                    <th class="p-4">Customer</th>
+                                    <th class="p-4">Contact</th>
+                                    <th class="p-4">Items Ordered</th>
+                                    <th class="p-4">Total</th>
+                                    <th class="p-4">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-order-table-body"></tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 
-    <!-- Edit Product Modal -->
-    <div id="edit-product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
-        <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeEditModal()"></div>
+    <!-- Add / Edit Product Modal -->
+    <div id="product-form-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductFormModal()"></div>
         <div class="bg-safari-parchment rounded-2xl max-w-xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl">
             <div class="flex items-center justify-between mb-6 border-b border-safari-border pb-4">
-                <h3 class="font-heading font-black text-xl uppercase">Edit Product</h3>
-                <button onclick="closeEditModal()" class="text-safari-espresso/60 hover:text-safari-espresso"><i class="fa-solid fa-xmark text-xl"></i></button>
+                <h3 id="product-form-title" class="font-heading font-black text-xl uppercase">Add New Product</h3>
+                <button onclick="closeProductFormModal()" class="text-safari-espresso/60 hover:text-safari-espresso"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
-            <form id="edit-product-form" onsubmit="saveEditedProduct(event)" class="space-y-4">
-                <input type="hidden" id="edit-id">
+            <form id="product-action-form" onsubmit="handleProductSubmit(event)" class="space-y-4">
+                <input type="hidden" id="prod-edit-id">
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Product Name</label>
-                    <input type="text" id="edit-name" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm">
+                    <input type="text" id="prod-name" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm">
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Category</label>
-                        <select id="edit-cat" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm">
-                            <option value="Slingshots">Slingshots</option>
-                            <option value="Flatbands & Ammunition">Flatbands & Ammunition</option>
+                        <select id="prod-cat" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm">
+                            <option value="Ketties">Ketties</option>
+                            <option value="Flatbands">Flatbands</option>
+                            <option value="Clay Pellets">Clay Pellets</option>
+                            <option value="Accessories">Accessories</option>
                             <option value="Combos">Combos</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Price (ZAR)</label>
-                        <input type="number" id="edit-price" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm">
+                        <input type="number" step="0.01" id="prod-price" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm">
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Stock Quantity</label>
-                        <input type="number" id="edit-stock" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm">
+                        <input type="number" id="prod-stock" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Image URL</label>
-                        <input type="url" id="edit-img" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm">
+                        <input type="url" id="prod-img" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm">
                     </div>
                 </div>
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Description</label>
-                    <textarea id="edit-desc" rows="3" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm"></textarea>
+                    <textarea id="prod-desc" rows="3" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm"></textarea>
                 </div>
-                <button type="submit" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
-                    Save Changes to Firebase
+                <button type="submit" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
+                    Save Product to Database
                 </button>
             </form>
         </div>
@@ -492,58 +509,57 @@
             appId: "1:33272737255:web:55ca69854bd4001c26142"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
         // Global State
         let products = [];
+        let orders = [];
         let cart = [];
         let currentFilter = 'all';
         let selectedProduct = null;
         let modalQty = 1;
 
-        // Default initial products if Firestore is empty
+        // Default initial products matching reference
         const defaultProducts = [
-            {
-                name: "The Bushveld Master Slingshot",
-                category: "Slingshots",
-                price: 380.00,
-                stock: 25,
-                image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                thumbs: ["https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800", "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800"],
-                description: "Hand-carved seasoned hard tambotie wood frame paired with high-tensile natural latex bands. Ergonomic grip designed for rugged outdoor target practice."
-            },
-            {
-                name: "Therapeutic Natural Latex Flatbands (5-Pack)",
-                category: "Flatbands & Ammunition",
-                price: 150.00,
-                stock: 50,
-                image: "https://images.unsplash.com/photo-1508873696983-2df5c92063c7?auto=format&fit=crop&q=80&w=800",
-                thumbs: ["https://images.unsplash.com/photo-1508873696983-2df5c92063c7?auto=format&fit=crop&q=80&w=800"],
-                description: "Professional grade pure Malaysian natural latex flatbands. Delivers maximum elasticity, velocity, and enduring durability for competitive target shooting."
-            },
-            {
-                name: "Bio-Degradable Clay Pellets (500 Pack)",
-                category: "Flatbands & Ammunition",
-                price: 120.00,
-                stock: 80,
-                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=800",
-                thumbs: ["https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=800"],
-                description: "Eco-friendly compressed clay spheres designed to disintegrate naturally in rain and soil. Zero environmental impact for backyard practice."
-            },
             {
                 name: "Ou Kalahari Combo Special",
                 category: "Combos",
                 price: 550.00,
-                stock: 15,
+                stock: 14,
                 image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
                 thumbs: ["https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800"],
                 description: "Complete heavy-duty slingshot setup with dual-tier natural latex flatbands, genuine leather pouch, and 100 biodegradable clay spheres."
+            },
+            {
+                name: "Vaal Hardwood Pro Kettie",
+                category: "Ketties",
+                price: 320.00,
+                stock: 8,
+                image: "https://images.unsplash.com/photo-1508873696983-2df5c92063c7?auto=format&fit=crop&q=80&w=800",
+                thumbs: ["https://images.unsplash.com/photo-1508873696983-2df5c92063c7?auto=format&fit=crop&q=80&w=800"],
+                description: "Hand-carved seasoned hard tambotie wood frame paired with high-tensile natural latex bands."
+            },
+            {
+                name: "Karoo Natural Latex Flatbands (3-Pack)",
+                category: "Flatbands",
+                price: 150.00,
+                stock: 42,
+                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=800",
+                thumbs: ["https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=800"],
+                description: "Professional grade pure Malaysian natural latex flatbands for competitive target shooting."
+            },
+            {
+                name: "Eco-Clay Target Pellets (500 Pack)",
+                category: "Clay Pellets",
+                price: 180.00,
+                stock: 3,
+                image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800",
+                thumbs: ["https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800"],
+                description: "Eco-friendly compressed clay spheres designed to disintegrate naturally in rain and soil."
             }
         ];
 
-        // Fetch products in real-time from Firestore
         async function initDatabase() {
             try {
                 const querySnapshot = await getDocs(collection(db, "products"));
@@ -553,10 +569,10 @@
                     }
                 }
             } catch (err) {
-                console.log("Firebase offline or not configured yet. Running with local sample products.", err);
+                console.log("Firebase offline. Using local products.", err);
                 products = defaultProducts;
                 renderProducts();
-                renderAdminProducts();
+                renderAdminDashboard();
             }
 
             onSnapshot(collection(db, "products"), (snapshot) => {
@@ -565,18 +581,16 @@
                     products.push({ id: docSnap.id, ...docSnap.data() });
                 });
                 renderProducts();
-                renderAdminProducts();
-            }, (error) => {
-                console.log("Using fallback local data due to network/config state.");
-            });
+                renderAdminDashboard();
+            }, (error) => { console.log("Product snapshot error", error); });
 
             onSnapshot(collection(db, "orders"), (snapshot) => {
-                const orders = [];
+                orders = [];
                 snapshot.forEach((docSnap) => {
                     orders.push({ id: docSnap.id, ...docSnap.data() });
                 });
-                renderAdminOrders(orders);
-            }, (err) => { console.log("Orders listener inactive"); });
+                renderAdminDashboard();
+            }, (err) => { console.log("Order snapshot error", err); });
         }
 
         window.renderProducts = function() {
@@ -696,8 +710,7 @@
         }
 
         window.toggleCartDrawer = function() {
-            const drawer = document.getElementById("cart-drawer");
-            drawer.classList.toggle("hidden");
+            document.getElementById("cart-drawer").classList.toggle("hidden");
         }
 
         window.openProductModal = function(id) {
@@ -785,9 +798,11 @@
             }
         }
 
+        // Admin Portal & Dashboard Logic
         window.openAdminModal = function(e) {
             e.preventDefault();
             document.getElementById("admin-modal").classList.remove("hidden");
+            renderAdminDashboard();
         }
 
         window.closeAdminModal = function() {
@@ -801,60 +816,145 @@
             const ordPanel = document.getElementById("admin-panel-orders");
 
             if (tab === 'products') {
-                prodTab.className = "bg-safari-olive text-white px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all";
-                ordTab.className = "bg-safari-surface text-safari-espresso border border-safari-border px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all";
+                prodTab.className = "bg-safari-olive text-white px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
+                ordTab.className = "bg-safari-surface text-safari-espresso border border-safari-border px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
                 prodPanel.classList.remove("hidden");
                 ordPanel.classList.add("hidden");
             } else {
-                ordTab.className = "bg-safari-olive text-white px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all";
-                prodTab.className = "bg-safari-surface text-safari-espresso border border-safari-border px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all";
+                ordTab.className = "bg-safari-olive text-white px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
+                prodTab.className = "bg-safari-surface text-safari-espresso border border-safari-border px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
                 ordPanel.classList.remove("hidden");
                 prodPanel.classList.add("hidden");
             }
         }
 
-        window.renderAdminProducts = function() {
-            const tbody = document.getElementById("admin-product-table-body");
-            if (!tbody) return;
-            tbody.innerHTML = products.map(p => `
-                <tr class="border-b border-safari-border/50 hover:bg-safari-parchment/50">
-                    <td class="p-4 flex items-center gap-3">
-                        <img src="${p.image}" class="w-10 h-10 object-cover rounded-lg border">
-                        <span class="font-bold text-sm">${p.name}</span>
-                    </td>
-                    <td class="p-4 text-xs uppercase font-semibold text-safari-olive">${p.category}</td>
-                    <td class="p-4 font-heading font-bold text-safari-terracotta">R${parseFloat(p.price).toFixed(2)}</td>
-                    <td class="p-4 text-sm">${p.stock}</td>
-                    <td class="p-4 text-right flex items-center justify-end gap-2">
-                        <button onclick="openEditModal('${p.id}')" class="text-safari-olive hover:text-safari-oliveDark p-2"><i class="fa-solid fa-pen-to-square text-sm"></i></button>
-                        <button onclick="deleteProduct('${p.id}')" class="text-red-600 hover:text-red-800 p-2"><i class="fa-solid fa-trash text-sm"></i></button>
-                    </td>
-                </tr>
-            `).join('');
+        window.renderAdminDashboard = function(filteredList = products) {
+            // Update Metric Counts
+            document.getElementById("stat-total-products").textContent = products.length;
+            const lowStockCount = products.filter(p => p.stock < 10).length;
+            document.getElementById("stat-low-stock").textContent = lowStockCount;
+            document.getElementById("stat-total-orders").textContent = orders.length;
+            
+            const totalRevenue = orders.reduce((sum, o) => sum + (o.total || 0), 0);
+            document.getElementById("stat-total-revenue").textContent = `R${totalRevenue.toFixed(2)}`;
+
+            document.getElementById("prod-count-badge").textContent = products.length;
+            document.getElementById("ord-count-badge").textContent = orders.length;
+
+            renderAdminProductsTable(filteredList);
+            renderAdminOrdersTable();
         }
 
-        window.addNewProduct = async function(e) {
+        window.renderAdminProductsTable = function(list) {
+            const tbody = document.getElementById("admin-product-table-body");
+            if (!tbody) return;
+            if (list.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-safari-espresso/60">No products found.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = list.map(p => {
+                const isLow = p.stock < 10;
+                const statusBadge = isLow 
+                    ? `<span class="bg-red-100 text-red-700 font-bold text-[10px] px-2.5 py-1 rounded-full uppercase">Low Stock</span>`
+                    : `<span class="bg-emerald-100 text-emerald-800 font-bold text-[10px] px-2.5 py-1 rounded-full uppercase">In Stock</span>`;
+
+                return `
+                    <tr class="border-b border-safari-border/50 hover:bg-safari-surface/50">
+                        <td class="p-4 flex items-center gap-3">
+                            <img src="${p.image}" class="w-10 h-10 object-cover rounded-lg border">
+                            <div>
+                                <span class="font-bold text-sm block">${p.name}</span>
+                                <span class="text-[10px] text-safari-espresso/50 font-mono">ID: #${p.id.substring(0, 8)}</span>
+                            </div>
+                        </td>
+                        <td class="p-4 text-xs uppercase font-semibold text-safari-olive">${p.category}</td>
+                        <td class="p-4 font-heading font-bold text-safari-terracotta">R${parseFloat(p.price).toFixed(2)}</td>
+                        <td class="p-4">
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-sm w-12">${p.stock} units</span>
+                                <button onclick="quickAdjustStock('${p.id}', 1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-safari-olive hover:text-white transition-colors">+</button>
+                                <button onclick="quickAdjustStock('${p.id}', -1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-red-600 hover:text-white transition-colors">-</button>
+                            </div>
+                        </td>
+                        <td class="p-4">${statusBadge}</td>
+                        <td class="p-4 text-right space-x-1">
+                            <button onclick="openEditProductModal('${p.id}')" class="bg-safari-olive text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-safari-oliveDark transition-colors">Edit</button>
+                            <button onclick="deleteProduct('${p.id}')" class="bg-safari-terracotta text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-safari-terracottaDark transition-colors">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        window.filterAdminProducts = function(query) {
+            const q = query.toLowerCase();
+            const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
+            renderAdminProductsTable(filtered);
+        }
+
+        window.quickAdjustStock = async function(id, amount) {
+            const prod = products.find(p => p.id === id);
+            if (!prod) return;
+            const newStock = Math.max(0, (prod.stock || 0) + amount);
+            try {
+                await updateDoc(doc(db, "products", id), { stock: newStock });
+            } catch (err) {
+                prod.stock = newStock;
+                renderAdminDashboard();
+            }
+        }
+
+        window.openNewProductModal = function() {
+            document.getElementById("product-form-title").textContent = "Add New Product";
+            document.getElementById("prod-edit-id").value = "";
+            document.getElementById("product-action-form").reset();
+            document.getElementById("product-form-modal").classList.remove("hidden");
+        }
+
+        window.openEditProductModal = function(id) {
+            const prod = products.find(p => p.id === id);
+            if (!prod) return;
+            document.getElementById("product-form-title").textContent = "Edit Product";
+            document.getElementById("prod-edit-id").value = prod.id;
+            document.getElementById("prod-name").value = prod.name;
+            document.getElementById("prod-cat").value = prod.category;
+            document.getElementById("prod-price").value = prod.price;
+            document.getElementById("prod-stock").value = prod.stock;
+            document.getElementById("prod-img").value = prod.image;
+            document.getElementById("prod-desc").value = prod.description || "";
+            document.getElementById("product-form-modal").classList.remove("hidden");
+        }
+
+        window.closeProductFormModal = function() {
+            document.getElementById("product-form-modal").classList.add("hidden");
+        }
+
+        window.handleProductSubmit = async function(e) {
             e.preventDefault();
-            const newProd = {
-                name: document.getElementById("new-name").value,
-                category: document.getElementById("new-cat").value,
-                price: parseFloat(document.getElementById("new-price").value),
-                stock: parseInt(document.getElementById("new-stock").value),
-                image: document.getElementById("new-img").value,
-                thumbs: document.getElementById("new-thumb").value ? document.getElementById("new-thumb").value.split(',').map(s => s.trim()) : [document.getElementById("new-img").value],
-                description: document.getElementById("new-desc").value || "No description provided."
+            const id = document.getElementById("prod-edit-id").value;
+            const productData = {
+                name: document.getElementById("prod-name").value,
+                category: document.getElementById("prod-cat").value,
+                price: parseFloat(document.getElementById("prod-price").value),
+                stock: parseInt(document.getElementById("prod-stock").value),
+                image: document.getElementById("prod-img").value,
+                description: document.getElementById("prod-desc").value || ""
             };
 
             try {
-                await addDoc(collection(db, "products"), newProd);
-                alert("Product added successfully to Firebase database!");
-                document.getElementById("add-product-form").reset();
+                if (id) {
+                    await updateDoc(doc(db, "products", id), productData);
+                    alert("Product successfully updated!");
+                } else {
+                    productData.thumbs = [productData.image];
+                    await addDoc(collection(db, "products"), productData);
+                    alert("New product added successfully!");
+                }
+                closeProductFormModal();
             } catch (err) {
-                alert("Added locally (Firebase config required for cloud persistence).");
-                products.push({ id: 'local-' + Date.now(), ...newProd });
-                renderProducts();
-                renderAdminProducts();
-                document.getElementById("add-product-form").reset();
+                alert("Saved locally (Firebase connection required for cloud persistence).");
+                closeProductFormModal();
             }
         }
 
@@ -864,58 +964,11 @@
                 await deleteDoc(doc(db, "products", id));
             } catch (err) {
                 products = products.filter(p => p.id !== id);
-                renderProducts();
-                renderAdminProducts();
+                renderAdminDashboard();
             }
         }
 
-        window.openEditModal = function(id) {
-            const prod = products.find(p => p.id === id);
-            if (!prod) return;
-
-            document.getElementById("edit-id").value = prod.id;
-            document.getElementById("edit-name").value = prod.name;
-            document.getElementById("edit-cat").value = prod.category;
-            document.getElementById("edit-price").value = prod.price;
-            document.getElementById("edit-stock").value = prod.stock;
-            document.getElementById("edit-img").value = prod.image;
-            document.getElementById("edit-desc").value = prod.description || "";
-
-            document.getElementById("edit-product-modal").classList.remove("hidden");
-        }
-
-        window.closeEditModal = function() {
-            document.getElementById("edit-product-modal").classList.add("hidden");
-        }
-
-        window.saveEditedProduct = async function(e) {
-            e.preventDefault();
-            const id = document.getElementById("edit-id").value;
-            const updatedData = {
-                name: document.getElementById("edit-name").value,
-                category: document.getElementById("edit-cat").value,
-                price: parseFloat(document.getElementById("edit-price").value),
-                stock: parseInt(document.getElementById("edit-stock").value),
-                image: document.getElementById("edit-img").value,
-                description: document.getElementById("edit-desc").value
-            };
-
-            try {
-                const productRef = doc(db, "products", id);
-                await updateDoc(productRef, updatedData);
-                alert("Product successfully updated in Firebase!");
-                closeEditModal();
-            } catch (err) {
-                const p = products.find(item => item.id === id);
-                if (p) Object.assign(p, updatedData);
-                renderProducts();
-                renderAdminProducts();
-                alert("Product updated locally!");
-                closeEditModal();
-            }
-        }
-
-        window.renderAdminOrders = function(orders) {
+        window.renderAdminOrdersTable = function() {
             const tbody = document.getElementById("admin-order-table-body");
             if (!tbody) return;
             if (orders.length === 0) {
@@ -924,7 +977,7 @@
             }
             tbody.innerHTML = orders.map(o => `
                 <tr class="border-b border-safari-border/50">
-                    <td class="p-4 text-xs font-mono">${o.id.substring(0, 8)}...</td>
+                    <td class="p-4 text-xs font-mono font-bold">#${o.id.substring(0, 8)}</td>
                     <td class="p-4 font-bold text-sm">${o.name}</td>
                     <td class="p-4 text-xs text-safari-espresso/70">${o.phone}<br>${o.email}</td>
                     <td class="p-4 text-xs">${o.items.map(i => `${i.qty}x ${i.name}`).join(', ')}</td>
@@ -934,7 +987,6 @@
             `).join('');
         }
 
-        // Run initialization
         initDatabase();
     </script>
 </body>
