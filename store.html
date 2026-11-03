@@ -233,7 +233,7 @@
         </div>
     </div>
 
-    <!-- Enriched Large Product Detail Modal (Expanded max-w-6xl for poster view) -->
+    <!-- Enriched Large Product Detail Modal with Reference Info Box -->
     <div id="product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductModal()"></div>
         <div class="bg-safari-parchment rounded-3xl max-w-6xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2 items-center min-h-[82vh]">
@@ -244,29 +244,61 @@
                 </div>
                 <div id="modal-thumbs" class="flex gap-3 mt-6 overflow-x-auto pb-2 justify-center w-full"></div>
             </div>
-            <!-- Right: Product Details -->
-            <div class="p-10 flex flex-col justify-between h-full">
-                <div>
-                    <button onclick="closeProductModal()" class="absolute top-6 right-6 text-safari-espresso/60 hover:text-safari-espresso p-2 text-xl">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                    <span id="modal-category" class="text-xs uppercase tracking-widest text-safari-olive font-bold block mb-2"></span>
-                    <h3 id="modal-title" class="font-heading font-black text-3xl sm:text-4xl text-safari-espresso mb-4 leading-tight"></h3>
-                    <div class="text-3xl font-heading font-black text-safari-terracotta mb-6" id="modal-price"></div>
-                    <p id="modal-desc" class="text-safari-espresso/80 text-base leading-relaxed mb-8"></p>
-                    <div class="flex items-center gap-3 mb-8 bg-safari-surface p-3.5 rounded-xl border border-safari-border/60">
-                        <span class="w-3.5 h-3.5 rounded-full bg-emerald-600 inline-block animate-pulse"></span>
-                        <span id="modal-stock" class="text-xs font-bold uppercase tracking-wider text-safari-espresso/80">In Stock & Ready for Dispatch</span>
+            
+            <!-- Right: Enriched Product Details Matching Reference Box -->
+            <div class="p-8 sm:p-10 flex flex-col justify-between h-full relative">
+                <button onclick="closeProductModal()" class="absolute top-6 right-6 text-safari-espresso/60 hover:text-safari-espresso p-2 text-xl z-10">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <div class="space-y-4">
+                    <!-- SKU & Brand Header -->
+                    <div class="flex items-center justify-between text-[11px] font-mono text-safari-espresso/60 uppercase tracking-widest border-b border-safari-border/40 pb-2">
+                        <span id="modal-sku">SKU: KG-SL-OUK02-75</span>
+                        <span class="font-bold text-safari-olive">Ketties & Goete</span>
+                    </div>
+
+                    <!-- Product Title -->
+                    <h3 id="modal-title" class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase leading-tight"></h3>
+
+                    <!-- Price & VAT -->
+                    <div class="flex items-baseline gap-3">
+                        <span class="font-heading font-black text-3xl text-safari-terracotta" id="modal-price"></span>
+                        <span class="text-xs text-safari-espresso/60 font-medium">(Includes 15% VAT)</span>
+                    </div>
+
+                    <!-- Description -->
+                    <p id="modal-desc" class="text-safari-espresso/80 text-sm leading-relaxed"></p>
+
+                    <!-- Select Option Section -->
+                    <div class="space-y-2 pt-2">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-safari-espresso">Select Option:</label>
+                        <div class="flex flex-wrap gap-3">
+                            <button type="button" class="option-btn active-option bg-safari-olive text-white px-4 py-2 rounded-xl text-xs font-semibold border border-safari-olive transition-all">Latex Thickness: 0.75mm (Speed)</button>
+                            <button type="button" class="option-btn bg-safari-surface text-safari-espresso px-4 py-2 rounded-xl text-xs font-semibold border border-safari-border hover:border-safari-olive transition-all">Latex Thickness: 1.0mm (Power)</button>
+                        </div>
+                    </div>
+
+                    <!-- Product Specifications Box -->
+                    <div class="bg-safari-surface p-4 rounded-xl border border-safari-border space-y-3">
+                        <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso">Product Specifications:</h4>
+                        <div class="grid grid-cols-2 gap-y-2 text-xs text-safari-espresso/80">
+                            <div><span class="font-semibold">Material:</span> Treated SA Hardwood & Carbon Core</div>
+                            <div><span class="font-semibold">Aiming System:</span> Dual Fiber Optic (Green & Red)</div>
+                            <div><span class="font-semibold">Weight:</span> 245g</div>
+                            <div><span class="font-semibold">Fork Width:</span> 80mm</div>
+                            <div class="col-span-full"><span class="font-semibold">Band Attachment:</span> Quick-release Press-clip</div>
+                        </div>
                     </div>
                 </div>
-                <div class="flex gap-4 items-center">
-                    <div class="flex items-center border border-safari-border rounded-xl bg-safari-surface shadow-sm">
-                        <button onclick="adjustModalQty(-1)" class="px-4 py-4 text-safari-espresso hover:bg-safari-border/40 rounded-l-xl transition-colors"><i class="fa-solid fa-minus text-xs"></i></button>
-                        <span id="modal-qty" class="w-12 text-center font-heading font-bold text-base">1</span>
-                        <button onclick="adjustModalQty(1)" class="px-4 py-4 text-safari-espresso hover:bg-safari-border/40 rounded-r-xl transition-colors"><i class="fa-solid fa-plus text-xs"></i></button>
-                    </div>
-                    <button id="modal-add-btn" onclick="addModalItemToCart()" class="flex-1 bg-safari-olive hover:bg-safari-oliveDark text-white py-4 px-8 rounded-xl font-heading font-bold text-sm tracking-wider uppercase transition-colors shadow-lg flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-shopping-bag"></i> Add to Cart
+
+                <!-- Bottom Add to Basket & Wishlist Action Bar -->
+                <div class="pt-6 border-t border-safari-border/40 flex items-center gap-4 mt-6">
+                    <button id="modal-add-btn" onclick="addModalItemToCart()" class="flex-1 bg-safari-olive hover:bg-safari-oliveDark text-white py-4 px-6 rounded-xl font-heading font-bold text-xs tracking-widest uppercase transition-colors shadow-lg flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-basket-shopping"></i> Add to Basket
+                    </button>
+                    <button onclick="alert('Added to your wishlist!')" class="w-14 h-14 bg-safari-surface border border-safari-border hover:border-safari-terracotta text-safari-espresso hover:text-safari-terracotta rounded-xl flex items-center justify-center transition-all shadow-sm">
+                        <i class="fa-solid fa-heart text-lg"></i>
                     </button>
                 </div>
             </div>
@@ -319,7 +351,6 @@
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeAdminModal()"></div>
         <div class="bg-safari-parchment rounded-2xl max-w-6xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
             
-            <!-- Dashboard Header Banner -->
             <div class="bg-safari-espresso text-safari-parchment p-8 rounded-2xl mb-8 shadow-lg relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                 <div class="absolute right-0 top-0 bottom-0 w-1/3 bg-cover bg-center opacity-10 pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800');"></div>
                 <div>
@@ -339,7 +370,6 @@
                 </div>
             </div>
 
-            <!-- Metrics Summary Cards -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                 <div class="bg-safari-surface border border-safari-border p-6 rounded-2xl shadow-sm relative overflow-hidden">
                     <div class="flex items-center justify-between mb-2">
@@ -375,7 +405,6 @@
                 </div>
             </div>
 
-            <!-- Admin Sub-Navigation Tabs -->
             <div class="flex gap-4 mb-6 border-b border-safari-border pb-4">
                 <button onclick="switchAdminTab('products')" id="admin-tab-prod" class="bg-safari-olive text-white px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
                     <i class="fa-solid fa-boxes-stacked"></i> Inventory Database (<span id="prod-count-badge">0</span>)
@@ -385,7 +414,6 @@
                 </button>
             </div>
 
-            <!-- Products Inventory Tab -->
             <div id="admin-panel-products" class="space-y-4">
                 <div class="bg-safari-surface p-6 rounded-2xl border border-safari-border">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
@@ -414,7 +442,6 @@
                 </div>
             </div>
 
-            <!-- Customer Orders Tab -->
             <div id="admin-panel-orders" class="space-y-4 hidden">
                 <div class="bg-safari-surface p-6 rounded-2xl border border-safari-border">
                     <h4 class="font-heading font-bold text-base mb-4 uppercase">Client Orders & Transactions</h4>
@@ -519,19 +546,21 @@
 
         const defaultProducts = [
             {
-                name: "Ou Kalahari Combo Special",
-                category: "Combos",
-                price: 550.00,
+                name: "KETTIE - OU KALAHARI SLINGSHOT",
+                category: "Ketties",
+                price: 390.00,
                 stock: 14,
+                sku: "KG-SL-OUK02-75",
                 image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
                 thumbs: ["https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800"],
-                description: "Complete heavy-duty slingshot setup with dual-tier natural latex flatbands, genuine leather pouch, and 100 biodegradable clay spheres."
+                description: "Named after the rugged red dunes of the Kalahari, this slingshot combines traditional hardwood aesthetics with integrated fiber optic aiming levels and a quick-clip band loading system for pinpoint target consistency."
             },
             {
                 name: "Vaal Hardwood Pro Kettie",
                 category: "Ketties",
                 price: 320.00,
                 stock: 8,
+                sku: "KG-SL-VAA01-80",
                 image: "https://images.unsplash.com/photo-1508873696983-2df5c92063c7?auto=format&fit=crop&q=80&w=800",
                 thumbs: ["https://images.unsplash.com/photo-1508873696983-2df5c92063c7?auto=format&fit=crop&q=80&w=800"],
                 description: "Hand-carved seasoned hard tambotie wood frame paired with high-tensile natural latex bands."
@@ -541,6 +570,7 @@
                 category: "Flatbands",
                 price: 150.00,
                 stock: 42,
+                sku: "KG-FB-KAR03-05",
                 image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=800",
                 thumbs: ["https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=800"],
                 description: "Professional grade pure Malaysian natural latex flatbands for competitive target shooting."
@@ -550,6 +580,7 @@
                 category: "Clay Pellets",
                 price: 180.00,
                 stock: 3,
+                sku: "KG-CL-ECO500-12",
                 image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800",
                 thumbs: ["https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800"],
                 description: "Eco-friendly compressed clay spheres designed to disintegrate naturally in rain and soil."
@@ -647,7 +678,7 @@
         }
 
         window.addComboToCart = function() {
-            const combo = products.find(p => p.name.includes("Ou Kalahari Combo")) || products[0];
+            const combo = products.find(p => p.name.includes("Ou Kalahari Combo") || p.category === "Combos") || products[0];
             if (combo) addToCart(combo.id);
         }
 
@@ -715,11 +746,10 @@
             modalQty = 1;
 
             document.getElementById("modal-main-img").src = selectedProduct.image;
-            document.getElementById("modal-category").textContent = selectedProduct.category;
+            document.getElementById("modal-sku").textContent = `SKU: ${selectedProduct.sku || 'KG-SL-' + selectedProduct.id.substring(0, 6).toUpperCase()}`;
             document.getElementById("modal-title").textContent = selectedProduct.name;
             document.getElementById("modal-price").textContent = `R${parseFloat(selectedProduct.price).toFixed(2)}`;
             document.getElementById("modal-desc").textContent = selectedProduct.description;
-            document.getElementById("modal-qty").textContent = modalQty;
 
             const thumbsContainer = document.getElementById("modal-thumbs");
             const thumbs = selectedProduct.thumbs && selectedProduct.thumbs.length > 0 ? selectedProduct.thumbs : [selectedProduct.image];
@@ -734,18 +764,13 @@
             document.getElementById("product-modal").classList.add("hidden");
         }
 
-        window.adjustModalQty = function(delta) {
-            modalQty = Math.max(1, modalQty + delta);
-            document.getElementById("modal-qty").textContent = modalQty;
-        }
-
         window.addModalItemToCart = function() {
             if (!selectedProduct) return;
             const existing = cart.find(item => item.id === selectedProduct.id);
             if (existing) {
-                existing.qty += modalQty;
+                existing.qty += 1;
             } else {
-                cart.push({ ...selectedProduct, qty: modalQty });
+                cart.push({ ...selectedProduct, qty: 1 });
             }
             updateCartUI();
             closeProductModal();
