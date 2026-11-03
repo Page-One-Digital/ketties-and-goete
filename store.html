@@ -265,16 +265,16 @@
         </div>
     </div>
 
-    <!-- Product Detail Modal -->
+    <!-- Product Detail Modal (Fixed Image Scaling with object-contain) -->
     <div id="product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/70 backdrop-blur-sm" onclick="closeProductModal()"></div>
-        <div class="bg-safari-parchment rounded-2xl max-w-4xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2">
+        <div class="bg-safari-parchment rounded-2xl max-w-4xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2 items-center">
             <!-- Left: Image Gallery -->
-            <div class="p-6 bg-safari-surface flex flex-col justify-between border-r border-safari-border">
-                <div class="rounded-xl overflow-hidden h-72 border border-safari-border/50 bg-white">
-                    <img id="modal-main-img" src="" alt="Product Image" class="w-full h-full object-cover">
+            <div class="p-6 bg-safari-surface flex flex-col justify-center items-center border-r border-safari-border h-full">
+                <div class="rounded-xl overflow-hidden max-h-[450px] w-full flex items-center justify-center bg-safari-parchment/50">
+                    <img id="modal-main-img" src="" alt="Product Image" class="max-h-[400px] w-auto max-w-full object-contain mx-auto">
                 </div>
-                <div id="modal-thumbs" class="flex gap-3 mt-4 overflow-x-auto pb-2"></div>
+                <div id="modal-thumbs" class="flex gap-3 mt-4 overflow-x-auto pb-2 justify-center w-full"></div>
             </div>
             <!-- Right: Details -->
             <div class="p-8 flex flex-col justify-between">
@@ -339,7 +339,7 @@
                         <option value="Direct EFT Bank Transfer">Direct Bank Transfer (EFT)</option>
                     </select>
                 </div>
-                <button type="submit" class="w-full bg-safari-terracotta hover:bg-safari-terracottaDark text-white py-4 rounded-xl font-heading font-bold text-xs tracking-wider uppercase transition-colors shadow-lg mt-2">
+                <button type="submit" class="w-full bg-safari-terracotta hover:bg-safari-terracottaDark text-white py-4 rounded-xl font-heading font-bold text-sm tracking-wider uppercase transition-colors shadow-lg mt-2">
                     Place Order & Sync with Firebase →
                 </button>
             </form>
@@ -591,7 +591,7 @@
             grid.innerHTML = filtered.map(p => `
                 <div class="bg-safari-surface border border-safari-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
                     <div>
-                        <div class="h-60 overflow-hidden relative cursor-pointer" onclick="openProductModal('${p.id}')">
+                        <div class="h-60 overflow-hidden relative cursor-pointer bg-white flex items-center justify-center" onclick="openProductModal('${p.id}')">
                             <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute top-3 left-3 bg-safari-espresso/90 text-safari-parchment text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-md">
                                 ${p.category}
