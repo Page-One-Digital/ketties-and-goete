@@ -1045,7 +1045,6 @@
             
             selectedOptionsMap = {};
 
-            // True Single-Select Radio Architecture: Default to the first choice in each group
             groups.forEach((g) => {
                 if (g.choices && g.choices.length > 0) {
                     const defaultChoice = g.choices[0];
@@ -1058,7 +1057,6 @@
 
             updateModalDisplayedPrice();
 
-            // Render Each Option Group as ONE Light Box Container with Radio-Button Style Options inside (Only ONE can be highlighted per group)
             groupsContainer.innerHTML = groups.map((g, gIdx) => {
                 const currentSelectedChoiceName = selectedOptionsMap[g.groupName] ? selectedOptionsMap[g.groupName].name : '';
 
@@ -1072,7 +1070,6 @@
                                 const modLabel = cMod > 0 ? ` (+R${cMod})` : cMod < 0 ? ` (-R${Math.abs(cMod)})` : '';
                                 const isSelected = cName === currentSelectedChoiceName;
                                 
-                                // True Single-Select Radio Styling: Selected option gets dark olive fill with white text; others get light surface
                                 const btnClasses = isSelected 
                                     ? 'bg-[#4B5320] text-white border-[#4B5320] shadow-sm font-semibold' 
                                     : 'bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive font-medium';
@@ -1117,14 +1114,12 @@
             selectedOptionsMap[groupName] = { name: choiceName, priceMod: parseFloat(priceMod) || 0 };
             updateModalDisplayedPrice();
 
-            // Option-Specific Image Swapping
             let activeImage = selectedProduct.image;
             if (groupImage && groupImage.trim() !== "") {
                 activeImage = groupImage.trim();
             }
             document.getElementById("modal-main-img").src = activeImage;
 
-            // Enforce True Single-Select Radio Behavior: Reset all buttons in this group container to unselected state, then highlight the clicked button
             const groupContainer = btnElem.closest('.space-y-2.5');
             groupContainer.querySelectorAll('button').forEach(b => {
                 b.className = 'w-full text-left px-4 py-2.5 rounded-lg text-xs border transition-all flex items-center justify-between bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive font-medium';
@@ -1381,7 +1376,7 @@
                 } else {
                     document.getElementById(`og-name-${i}`).value = "";
                     document.getElementById(`og-choices-${i}`).value = "";
-                    document.getElementById(`og-img-4`).value = "";
+                    document.getElementById(`og-img-${i}`).value = "";
                 }
             }
 
@@ -1456,7 +1451,7 @@
                     await addDoc(collection(db, "products"), productData);
                     alert("New product added successfully to Firebase!");
                 }
-                closeProductFormManager();
+                closeProductFormModal();
             } catch (err) {
                 alert("Saved locally! (Configure Firebase credentials to persist online).");
                 closeProductFormModal();
