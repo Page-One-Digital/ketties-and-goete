@@ -412,7 +412,7 @@
                     <!-- Description -->
                     <p id="modal-desc" class="text-safari-espresso/80 text-sm leading-relaxed"></p>
 
-                    <!-- Dynamically Rendered Multi-Group Option Selectors (Pic 1 Clickable Button Style) -->
+                    <!-- Dynamically Rendered Multi-Group Option Selectors (Pic 1 Style Clickable Buttons) -->
                     <div id="modal-option-groups-container" class="space-y-3 pt-2">
                         <!-- Populated dynamically via JS -->
                     </div>
@@ -1052,7 +1052,7 @@
 
             updateModalDisplayedPrice();
 
-            // Render Option Groups with Pic 1 Clean Interactive Clickable Buttons Style
+            // Render Option Groups with Pic 1 Style Interactive Clickable Buttons
             groupsContainer.innerHTML = groups.map((g, gIdx) => {
                 return `
                     <div class="space-y-1.5 bg-safari-surface/60 p-3 rounded-xl border border-safari-border/50">
@@ -1103,11 +1103,22 @@
             selectedOptionsMap[groupName] = { name: choiceName, priceMod: parseFloat(priceMod) || 0 };
             updateModalDisplayedPrice();
 
-            // Option-Specific Image Swapping in Real Time
+            // Option-Specific Image Swapping in Real Time (Main Photo & Thumbnails)
+            let activeImage = selectedProduct.image;
             if (groupImage && groupImage.trim() !== "") {
-                document.getElementById("modal-main-img").src = groupImage.trim();
-            } else if (selectedProduct && selectedProduct.image) {
-                document.getElementById("modal-main-img").src = selectedProduct.image;
+                activeImage = groupImage.trim();
+            }
+            document.getElementById("modal-main-img").src = activeImage;
+
+            if (selectedProduct) {
+                let thumbs = selectedProduct.thumbs && selectedProduct.thumbs.length > 0 ? [...selectedProduct.thumbs] : [selectedProduct.image];
+                if (groupImage && groupImage.trim() !== "" && !thumbs.includes(groupImage.trim())) {
+                    thumbs.unshift(groupImage.trim());
+                }
+                const thumbsContainer = document.getElementById("modal-thumbs");
+                thumbsContainer.innerHTML = thumbs.map(t => `
+                    <img src="${t}" onclick="document.getElementById('modal-main-img').src='${t}'" class="w-16 h-16 object-cover rounded-lg border ${t === activeImage ? 'border-safari-olive ring-2 ring-safari-olive' : 'border-safari-border'} cursor-pointer hover:opacity-80 transition-all">
+                `).join('');
             }
 
             // Highlight selected button immediately upon click (Pic 1 Style)
@@ -1146,7 +1157,7 @@
 
             const finalPrice = basePrice + totalMod;
 
-            // Independent Cart Additions: pushing a distinct customized item object each time
+            // Independent Cart Additions: pushing each configured item combination as a distinct cart entry
             cart.push({ 
                 ...selectedProduct, 
                 finalPrice: finalPrice,
