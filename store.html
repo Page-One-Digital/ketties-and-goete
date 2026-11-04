@@ -412,7 +412,7 @@
                     <!-- Description -->
                     <p id="modal-desc" class="text-safari-espresso/80 text-sm leading-relaxed"></p>
 
-                    <!-- Dynamically Rendered Multi-Group Option Selectors -->
+                    <!-- Dynamically Rendered Multi-Group Option Selectors (Pic 1 Clickable Button Style) -->
                     <div id="modal-option-groups-container" class="space-y-3 pt-2">
                         <!-- Populated dynamically via JS -->
                     </div>
@@ -1052,6 +1052,7 @@
 
             updateModalDisplayedPrice();
 
+            // Render Option Groups with Pic 1 Clean Interactive Clickable Buttons Style
             groupsContainer.innerHTML = groups.map((g, gIdx) => {
                 return `
                     <div class="space-y-1.5 bg-safari-surface/60 p-3 rounded-xl border border-safari-border/50">
@@ -1064,7 +1065,7 @@
                                 const isFirst = cIdx === 0;
                                 
                                 return `
-                                    <button type="button" onclick="selectModalOption('${g.groupName}', '${cName}', ${cMod}, '${g.groupImage || ''}', this)" class="opt-btn-${gIdx} px-3.5 py-1.5 rounded-lg text-xs font-semibold border transition-all ${isFirst ? 'bg-safari-olive text-white border-safari-olive shadow-sm' : 'bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive'}">
+                                    <button type="button" onclick="selectModalOption('${g.groupName}', '${cName}', ${cMod}, '${g.groupImage || ''}', this)" class="opt-btn-${gIdx} px-3.5 py-2 rounded-xl text-xs font-semibold border transition-all ${isFirst ? 'bg-safari-olive text-white border-safari-olive shadow-md' : 'bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive'}">
                                         ${cName}${modLabel}
                                     </button>
                                 `;
@@ -1102,20 +1103,19 @@
             selectedOptionsMap[groupName] = { name: choiceName, priceMod: parseFloat(priceMod) || 0 };
             updateModalDisplayedPrice();
 
-            // If an option-specific image is provided for this group, swap the main modal preview image
+            // Option-Specific Image Swapping in Real Time
             if (groupImage && groupImage.trim() !== "") {
                 document.getElementById("modal-main-img").src = groupImage.trim();
             } else if (selectedProduct && selectedProduct.image) {
-                // Fallback to default product image if no group image is set
                 document.getElementById("modal-main-img").src = selectedProduct.image;
             }
 
-            // Highlight selected button in this specific group
+            // Highlight selected button immediately upon click (Pic 1 Style)
             const parentContainer = btnElem.parentElement;
             parentContainer.querySelectorAll('button').forEach(b => {
-                b.className = b.className.replace('bg-safari-olive text-white border-safari-olive shadow-sm', 'bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive');
+                b.className = b.className.replace('bg-safari-olive text-white border-safari-olive shadow-md', 'bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive');
             });
-            btnElem.className = btnElem.className.replace('bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive', 'bg-safari-olive text-white border-safari-olive shadow-sm');
+            btnElem.className = btnElem.className.replace('bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive', 'bg-safari-olive text-white border-safari-olive shadow-md');
         }
 
         window.updateModalDisplayedPrice = function() {
@@ -1146,6 +1146,7 @@
 
             const finalPrice = basePrice + totalMod;
 
+            // Independent Cart Additions: pushing a distinct customized item object each time
             cart.push({ 
                 ...selectedProduct, 
                 finalPrice: finalPrice,
