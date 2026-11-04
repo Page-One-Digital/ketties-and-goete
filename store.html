@@ -375,19 +375,19 @@
         </div>
     </div>
 
-    <!-- Enriched Large Product Detail Modal with Multi-Group Options Support -->
+    <!-- Enriched Large Product Detail Modal with Option-Specific Image Swapping -->
     <div id="product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductModal()"></div>
         <div class="bg-safari-parchment rounded-3xl max-w-6xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2 items-center min-h-[82vh]">
             <!-- Left: Expanded Image Gallery Container -->
             <div class="p-8 bg-safari-surface flex flex-col justify-center items-center border-r border-safari-border h-full">
                 <div class="rounded-2xl overflow-hidden max-h-[700px] w-full flex items-center justify-center bg-safari-parchment/60 p-4 border border-safari-border/40 shadow-inner">
-                    <img id="modal-main-img" src="" alt="Product Image" class="max-h-[650px] w-auto max-w-full object-contain mx-auto shadow-md rounded-lg">
+                    <img id="modal-main-img" src="" alt="Product Image" class="max-h-[650px] w-auto max-w-full object-contain mx-auto shadow-md rounded-lg transition-all duration-300">
                 </div>
                 <div id="modal-thumbs" class="flex gap-3 mt-6 overflow-x-auto pb-2 justify-center w-full"></div>
             </div>
             
-            <!-- Right: Enriched Product Details with Multi-Group Pricing Modifiers -->
+            <!-- Right: Enriched Product Details with Option-Specific Image Linking -->
             <div class="p-8 sm:p-10 flex flex-col justify-between h-full relative">
                 <button onclick="closeProductModal()" class="absolute top-6 right-6 text-safari-espresso/60 hover:text-safari-espresso p-2 text-xl z-10">
                     <i class="fa-solid fa-xmark"></i>
@@ -604,7 +604,7 @@
         </div>
     </div>
 
-    <!-- Add / Edit Product Modal with 4 Independent Option Groups & Choice Blocks -->
+    <!-- Add / Edit Product Modal with Option-Specific Image Link Inputs -->
     <div id="product-form-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductFormModal()"></div>
         <div class="bg-safari-parchment rounded-2xl max-w-3xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
@@ -645,7 +645,7 @@
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Image URL</label>
+                    <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Default Image URL</label>
                     <input type="url" id="prod-img" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm">
                 </div>
                 <div>
@@ -653,24 +653,28 @@
                     <textarea id="prod-desc" rows="2" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm"></textarea>
                 </div>
 
-                <!-- 4 Independent Blocks of Option Group Names and Choices & Price Additions -->
+                <!-- 4 Independent Option Blocks with Option-Specific Image Links -->
                 <div class="bg-safari-surface p-5 rounded-2xl border border-safari-border space-y-4">
                     <div>
-                        <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso">Selectable Options & Price Modifiers (4 Option Groups)</h4>
-                        <p class="text-[11px] text-safari-espresso/60 mt-0.5">Format per block: <code class="bg-safari-parchment px-1.5 py-0.5 rounded font-mono">ChoiceName:+price</code> (comma separated)</p>
+                        <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso">Selectable Options & Option-Specific Image Links (4 Groups)</h4>
+                        <p class="text-[11px] text-safari-espresso/60 mt-0.5">Format per choice: <code class="bg-safari-parchment px-1.5 py-0.5 rounded font-mono">ChoiceName:+price</code></p>
                     </div>
 
                     <!-- Option Group Block 1 -->
                     <div class="p-3 bg-safari-parchment rounded-xl border border-safari-border/60 space-y-2">
                         <span class="text-[10px] font-bold uppercase tracking-widest text-safari-olive block">Option Group Block 1</span>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                             <div>
-                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Group Name 1</label>
+                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Group Name 1</label>
                                 <input type="text" id="og-name-1" value="Select Color / Finish:" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                             <div>
                                 <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions 1</label>
                                 <input type="text" id="og-choices-1" value="Natural Wood:+0, Matte Black:+30, Camo Finish:+50" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Image URL (Optional)</label>
+                                <input type="url" id="og-img-1" placeholder="https://... image for this group" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                         </div>
                     </div>
@@ -678,14 +682,18 @@
                     <!-- Option Group Block 2 -->
                     <div class="p-3 bg-safari-parchment rounded-xl border border-safari-border/60 space-y-2">
                         <span class="text-[10px] font-bold uppercase tracking-widest text-safari-olive block">Option Group Block 2</span>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                             <div>
-                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Group Name 2</label>
+                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Group Name 2</label>
                                 <input type="text" id="og-name-2" value="Select Latex Band Tier:" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                             <div>
                                 <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions 2</label>
                                 <input type="text" id="og-choices-2" value="0.50mm Junior:+0, 0.75mm Standard:+20, 1.0mm Power:+40" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Image URL (Optional)</label>
+                                <input type="url" id="og-img-2" placeholder="https://... image for this group" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                         </div>
                     </div>
@@ -693,14 +701,18 @@
                     <!-- Option Group Block 3 -->
                     <div class="p-3 bg-safari-parchment rounded-xl border border-safari-border/60 space-y-2">
                         <span class="text-[10px] font-bold uppercase tracking-widest text-safari-olive block">Option Group Block 3</span>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                             <div>
-                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Group Name 3</label>
+                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Group Name 3</label>
                                 <input type="text" id="og-name-3" value="Select Leather Pouch Upgrade:" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                             <div>
                                 <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions 3</label>
                                 <input type="text" id="og-choices-3" value="Standard Microfiber:+0, Genuine Buffalo Leather:+35, Heavy Duty Grip Pouch:+60" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Image URL (Optional)</label>
+                                <input type="url" id="og-img-3" placeholder="https://... image for this group" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                         </div>
                     </div>
@@ -708,14 +720,18 @@
                     <!-- Option Group Block 4 -->
                     <div class="p-3 bg-safari-parchment rounded-xl border border-safari-border/60 space-y-2">
                         <span class="text-[10px] font-bold uppercase tracking-widest text-safari-olive block">Option Group Block 4</span>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                             <div>
-                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Group Name 4</label>
+                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Group Name 4</label>
                                 <input type="text" id="og-name-4" value="Select Ammo Pack Add-on:" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                             <div>
                                 <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions 4</label>
                                 <input type="text" id="og-choices-4" value="None:+0, 100x Clay Pellets:+45, 250x Clay Pellets:+95, 500x Bulk Box:+170" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Image URL (Optional)</label>
+                                <input type="url" id="og-img-4" placeholder="https://... image for this group" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                         </div>
                     </div>
@@ -777,7 +793,6 @@
         let cart = [];
         let currentFilter = 'all';
         let selectedProduct = null;
-        // Holds user selections across multiple option groups: { groupName: { choiceName, priceMod } }
         let selectedOptionsMap = {};
 
         const defaultProducts = [
@@ -793,6 +808,7 @@
                 optionGroups: [
                     {
                         groupName: "Select Color / Finish:",
+                        groupImage: "",
                         choices: [
                             { name: "Natural Wood", priceMod: 0 },
                             { name: "Matte Black", priceMod: 30 },
@@ -801,6 +817,7 @@
                     },
                     {
                         groupName: "Select Latex Band Tier:",
+                        groupImage: "",
                         choices: [
                             { name: "0.50mm Junior", priceMod: 0 },
                             { name: "0.75mm Standard", priceMod: 20 },
@@ -809,6 +826,7 @@
                     },
                     {
                         groupName: "Select Leather Pouch Upgrade:",
+                        groupImage: "",
                         choices: [
                             { name: "Standard Microfiber", priceMod: 0 },
                             { name: "Genuine Buffalo Leather", priceMod: 35 },
@@ -817,6 +835,7 @@
                     },
                     {
                         groupName: "Select Ammo Pack Add-on:",
+                        groupImage: "",
                         choices: [
                             { name: "None", priceMod: 0 },
                             { name: "100x Clay Pellets", priceMod: 45 },
@@ -831,33 +850,6 @@
                     weight: "245g",
                     width: "80mm",
                     attachment: "Quick-release Press-clip"
-                }
-            },
-            {
-                name: "Therapeutic Natural Latex Flatbands",
-                category: "Flatbands",
-                price: 150.00,
-                stock: 50,
-                sku: "KG-FB-LAT01-50",
-                image: "https://images.unsplash.com/photo-1508873696983-2df5c92063c7?auto=format&fit=crop&q=80&w=800",
-                thumbs: ["https://images.unsplash.com/photo-1508873696983-2df5c92063c7?auto=format&fit=crop&q=80&w=800"],
-                description: "Professional grade pure Malaysian natural latex flatbands. Delivers maximum elasticity, velocity, and enduring durability for competitive target shooting.",
-                optionGroups: [
-                    {
-                        groupName: "Select Band Thickness:",
-                        choices: [
-                            { name: "0.50mm Junior", priceMod: 0 },
-                            { name: "0.75mm Standard", priceMod: 20 },
-                            { name: "1.0mm Power", priceMod: 35 }
-                        ]
-                    }
-                ],
-                specs: {
-                    material: "100% Pure Malaysian Latex",
-                    aiming: "N/A",
-                    weight: "45g",
-                    width: "20mm tapered",
-                    attachment: "Universal Tie-on"
                 }
             }
         ];
@@ -947,7 +939,7 @@
             const prod = products.find(p => p.id === id);
             if (!prod) return;
             
-            const groups = prod.optionGroups || (prod.options ? [{ groupName: prod.optionGroup || 'Option:', choices: prod.options }] : []);
+            const groups = prod.optionGroups || (prod.options ? [{ groupName: prod.optionGroup || 'Option:', groupImage: '', choices: prod.options }] : []);
             let defaultOptionsSummary = [];
             let totalMod = 0;
 
@@ -1044,11 +1036,11 @@
             document.getElementById("modal-title").textContent = selectedProduct.name;
             
             const groupsContainer = document.getElementById("modal-option-groups-container");
-            const groups = selectedProduct.optionGroups || (selectedProduct.options ? [{ groupName: selectedProduct.optionGroup || 'Select Option:', choices: selectedProduct.options }] : []);
+            const groups = selectedProduct.optionGroups || (selectedProduct.options ? [{ groupName: selectedProduct.optionGroup || 'Select Option:', groupImage: '', choices: selectedProduct.options }] : []);
             
             selectedOptionsMap = {};
 
-            groups.forEach((g, gIdx) => {
+            groups.forEach((g) => {
                 if (g.choices && g.choices.length > 0) {
                     const firstChoice = g.choices[0];
                     selectedOptionsMap[g.groupName] = {
@@ -1072,7 +1064,7 @@
                                 const isFirst = cIdx === 0;
                                 
                                 return `
-                                    <button type="button" onclick="selectModalOption('${g.groupName}', '${cName}', ${cMod}, this)" class="opt-btn-${gIdx} px-3.5 py-1.5 rounded-lg text-xs font-semibold border transition-all ${isFirst ? 'bg-safari-olive text-white border-safari-olive shadow-sm' : 'bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive'}">
+                                    <button type="button" onclick="selectModalOption('${g.groupName}', '${cName}', ${cMod}, '${g.groupImage || ''}', this)" class="opt-btn-${gIdx} px-3.5 py-1.5 rounded-lg text-xs font-semibold border transition-all ${isFirst ? 'bg-safari-olive text-white border-safari-olive shadow-sm' : 'bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive'}">
                                         ${cName}${modLabel}
                                     </button>
                                 `;
@@ -1106,9 +1098,17 @@
             document.getElementById("product-modal").classList.remove("hidden");
         }
 
-        window.selectModalOption = function(groupName, choiceName, priceMod, btnElem) {
+        window.selectModalOption = function(groupName, choiceName, priceMod, groupImage, btnElem) {
             selectedOptionsMap[groupName] = { name: choiceName, priceMod: parseFloat(priceMod) || 0 };
             updateModalDisplayedPrice();
+
+            // If an option-specific image is provided for this group, swap the main modal preview image
+            if (groupImage && groupImage.trim() !== "") {
+                document.getElementById("modal-main-img").src = groupImage.trim();
+            } else if (selectedProduct && selectedProduct.image) {
+                // Fallback to default product image if no group image is set
+                document.getElementById("modal-main-img").src = selectedProduct.image;
+            }
 
             // Highlight selected button in this specific group
             const parentContainer = btnElem.parentElement;
@@ -1309,15 +1309,21 @@
             document.getElementById("prod-edit-id").value = "";
             document.getElementById("product-action-form").reset();
             
-            // Default 4 blocks setup
             document.getElementById("og-name-1").value = "Select Color / Finish:";
             document.getElementById("og-choices-1").value = "Natural Wood:+0, Matte Black:+30, Camo Finish:+50";
+            document.getElementById("og-img-1").value = "";
+
             document.getElementById("og-name-2").value = "Select Latex Band Tier:";
             document.getElementById("og-choices-2").value = "0.50mm Junior:+0, 0.75mm Standard:+20, 1.0mm Power:+40";
+            document.getElementById("og-img-2").value = "";
+
             document.getElementById("og-name-3").value = "Select Leather Pouch Upgrade:";
             document.getElementById("og-choices-3").value = "Standard Microfiber:+0, Genuine Buffalo Leather:+35, Heavy Duty Grip Pouch:+60";
+            document.getElementById("og-img-3").value = "";
+
             document.getElementById("og-name-4").value = "Select Ammo Pack Add-on:";
             document.getElementById("og-choices-4").value = "None:+0, 100x Clay Pellets:+45, 250x Clay Pellets:+95, 500x Bulk Box:+170";
+            document.getElementById("og-img-4").value = "";
 
             document.getElementById("spec-input-material").value = "Treated SA Hardwood";
             document.getElementById("spec-input-aiming").value = "Dual Fiber Optic";
@@ -1340,12 +1346,13 @@
             document.getElementById("prod-img").value = prod.image;
             document.getElementById("prod-desc").value = prod.description || "";
 
-            const groups = prod.optionGroups || (prod.options ? [{ groupName: prod.optionGroup || 'Select Option:', choices: prod.options }] : []);
+            const groups = prod.optionGroups || (prod.options ? [{ groupName: prod.optionGroup || 'Select Option:', groupImage: '', choices: prod.options }] : []);
 
             for (let i = 1; i <= 4; i++) {
                 const g = groups[i-1];
                 if (g) {
                     document.getElementById(`og-name-${i}`).value = g.groupName || "";
+                    document.getElementById(`og-img-${i}`).value = g.groupImage || "";
                     const formatted = (g.choices || []).map(c => {
                         const cName = c.name || c;
                         const cMod = c.priceMod !== undefined ? c.priceMod : 0;
@@ -1355,6 +1362,7 @@
                 } else {
                     document.getElementById(`og-name-${i}`).value = "";
                     document.getElementById(`og-choices-${i}`).value = "";
+                    document.getElementById(`og-img-${i}`).value = "";
                 }
             }
 
@@ -1381,6 +1389,7 @@
             for (let i = 1; i <= 4; i++) {
                 const gName = document.getElementById(`og-name-${i}`).value.trim();
                 const gChoicesStr = document.getElementById(`og-choices-${i}`).value.trim();
+                const gImg = document.getElementById(`og-img-${i}`).value.trim();
 
                 if (gName && gChoicesStr) {
                     const parsedChoices = gChoicesStr.split(',').map(item => {
@@ -1393,6 +1402,7 @@
                     if (parsedChoices.length > 0) {
                         optionGroups.push({
                             groupName: gName,
+                            groupImage: gImg,
                             choices: parsedChoices
                         });
                     }
@@ -1420,11 +1430,11 @@
             try {
                 if (id) {
                     await updateDoc(doc(db, "products", id), productData);
-                    alert("Product & 4 option groups successfully updated in Firebase!");
+                    alert("Product & option-linked images successfully updated in Firebase!");
                 } else {
                     productData.thumbs = [productData.image];
                     await addDoc(collection(db, "products"), productData);
-                    alert("New product & 4 option groups added successfully to Firebase!");
+                    alert("New product & option-linked images added successfully to Firebase!");
                 }
                 closeProductFormModal();
             } catch (err) {
