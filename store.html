@@ -375,7 +375,7 @@
         </div>
     </div>
 
-    <!-- Enriched Large Product Detail Modal with Option-Specific Image Swapping -->
+    <!-- Enriched Large Product Detail Modal with Single-Select Option Group Architecture -->
     <div id="product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductModal()"></div>
         <div class="bg-safari-parchment rounded-3xl max-w-6xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2 items-center min-h-[82vh]">
@@ -387,7 +387,7 @@
                 <div id="modal-thumbs" class="flex gap-3 mt-6 overflow-x-auto pb-2 justify-center w-full"></div>
             </div>
             
-            <!-- Right: Enriched Product Details with Option-Specific Image Linking -->
+            <!-- Right: Enriched Product Details with Single-Select Radio Button Option Architecture -->
             <div class="p-8 sm:p-10 flex flex-col justify-between h-full relative">
                 <button onclick="closeProductModal()" class="absolute top-6 right-6 text-safari-espresso/60 hover:text-safari-espresso p-2 text-xl z-10">
                     <i class="fa-solid fa-xmark"></i>
@@ -403,7 +403,7 @@
                     <!-- Product Title -->
                     <h3 id="modal-title" class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase leading-tight"></h3>
 
-                    <!-- Price & VAT (Dynamically updates based on selected options) -->
+                    <!-- Price & VAT -->
                     <div class="flex items-baseline gap-3">
                         <span class="font-heading font-black text-3xl text-safari-terracotta" id="modal-price"></span>
                         <span class="text-xs text-safari-espresso/60 font-medium">(Includes 15% VAT)</span>
@@ -412,7 +412,7 @@
                     <!-- Description -->
                     <p id="modal-desc" class="text-safari-espresso/80 text-sm leading-relaxed"></p>
 
-                    <!-- Dynamically Rendered Multi-Group Option Selectors (Matching Pic 2 Style Exactly: Outline Box, Dark Olive Pill for Single Selection) -->
+                    <!-- Dynamically Rendered Single-Select Option Groups (One box per option group with radio buttons) -->
                     <div id="modal-option-groups-container" class="space-y-3 pt-2">
                         <!-- Populated dynamically via JS -->
                     </div>
@@ -604,7 +604,7 @@
         </div>
     </div>
 
-    <!-- Add / Edit Product Modal with Option-Specific Image Link Inputs -->
+    <!-- Add / Edit Product Modal -->
     <div id="product-form-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductFormModal()"></div>
         <div class="bg-safari-parchment rounded-2xl max-w-3xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
@@ -653,10 +653,10 @@
                     <textarea id="prod-desc" rows="2" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm"></textarea>
                 </div>
 
-                <!-- 4 Independent Option Blocks with Option-Specific Image Links -->
+                <!-- 4 Independent Option Blocks -->
                 <div class="bg-safari-surface p-5 rounded-2xl border border-safari-border space-y-4">
                     <div>
-                        <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso">Selectable Options & Option-Specific Image Links (4 Groups)</h4>
+                        <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso">Selectable Option Groups (4 Groups)</h4>
                         <p class="text-[11px] text-safari-espresso/60 mt-0.5">Format per choice: <code class="bg-safari-parchment px-1.5 py-0.5 rounded font-mono">ChoiceName:+price</code></p>
                     </div>
 
@@ -666,15 +666,15 @@
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                             <div>
                                 <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Group Name 1</label>
-                                <input type="text" id="og-name-1" value="SELECT PARACORD COLOR:" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                                <input type="text" id="og-name-1" value="SELECT CARRY BAG STYLE:" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                             <div>
                                 <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions 1</label>
-                                <input type="text" id="og-choices-1" value="Paracord Color: Forest Green:+0, Paracord Color: Desert Sand:+0, Paracord Color: Tactical Black:+0" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                                <input type="text" id="og-choices-1" value="SA Eagle & Brown Carry Bag:+0, SA Eagle & Camo Carry Bag:+0" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                             <div>
                                 <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Image URL (Optional)</label>
-                                <input type="url" id="og-img-1" placeholder="https://... image for this group" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                                <input type="url" id="og-img-1" placeholder="https://..." class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                         </div>
                     </div>
@@ -685,15 +685,15 @@
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                             <div>
                                 <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Group Name 2</label>
-                                <input type="text" id="og-name-2" value="SELECT LATEX BAND TIER:" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                                <input type="text" id="og-name-2" value="SELECT TIER:" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                             <div>
                                 <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions 2</label>
-                                <input type="text" id="og-choices-2" value="0.50mm Junior:+0, 0.75mm Standard:+20, 1.0mm Power:+40" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                                <input type="text" id="og-choices-2" value="Standard:+0, Premium:+50" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                             <div>
                                 <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Image URL (Optional)</label>
-                                <input type="url" id="og-img-2" placeholder="https://... image for this group" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                                <input type="url" id="og-img-2" placeholder="https://..." class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                         </div>
                     </div>
@@ -704,15 +704,15 @@
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                             <div>
                                 <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Group Name 3</label>
-                                <input type="text" id="og-name-3" value="SELECT POUCH UPGRADE:" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                                <input type="text" id="og-name-3" value="" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                             <div>
                                 <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions 3</label>
-                                <input type="text" id="og-choices-3" value="Standard Microfiber:+0, Genuine Buffalo Leather:+35, Heavy Duty Grip Pouch:+60" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                                <input type="text" id="og-choices-3" value="" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                             <div>
                                 <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Image URL (Optional)</label>
-                                <input type="url" id="og-img-3" placeholder="https://... image for this group" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                                <input type="url" id="og-img-3" placeholder="https://..." class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                         </div>
                     </div>
@@ -723,15 +723,15 @@
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                             <div>
                                 <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Group Name 4</label>
-                                <input type="text" id="og-name-4" value="SELECT AMMO PACK ADD-ON:" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                                <input type="text" id="og-name-4" value="" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                             <div>
                                 <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions 4</label>
-                                <input type="text" id="og-choices-4" value="None:+0, 100x Clay Pellets:+45, 250x Clay Pellets:+95, 500x Bulk Box:+170" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                                <input type="text" id="og-choices-4" value="" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                             <div>
                                 <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Image URL (Optional)</label>
-                                <input type="url" id="og-img-4" placeholder="https://... image for this group" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                                <input type="url" id="og-img-4" placeholder="https://..." class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
                             </div>
                         </div>
                     </div>
@@ -797,6 +797,36 @@
 
         const defaultProducts = [
             {
+                name: "SA EAGLE & CARRY BAG",
+                category: "Combos",
+                price: 590.00,
+                stock: 20,
+                sku: "KG-SA-EAGLE-BAG",
+                image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
+                thumbs: [
+                    "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
+                    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800"
+                ],
+                description: "WHAT'S INSIDE THE PACK: * 1x Kettie - SA Eagle * 1x Brown/Camo Carry Bag * 1x Pack 50 of Clay Ammo Balls * 1x Set of Extra High-Performance Replacement Bands",
+                optionGroups: [
+                    {
+                        groupName: "SELECT CARRY BAG STYLE:",
+                        groupImage: "",
+                        choices: [
+                            { name: "SA Eagle & Brown Carry Bag", priceMod: 0 },
+                            { name: "SA Eagle & Camo Carry Bag", priceMod: 0 }
+                        ]
+                    }
+                ],
+                specs: {
+                    material: "High-grade Carbon Steel",
+                    aiming: "Dual Fiber Optic",
+                    weight: "280g",
+                    width: "85mm",
+                    attachment: "Quick-release Press-clip"
+                }
+            },
+            {
                 name: "KETTIE - SA EAGLE SLINGSHOT",
                 category: "Ketties",
                 price: 370.00,
@@ -807,7 +837,7 @@
                     "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
                     "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800"
                 ],
-                description: "The SA Eagle represents the pinnacle of South African outdoor engineering. Precision-forged with high-tensile steel and paracord-wrapped stable ergonomic grip, it offers remarkable velocity and pinpoint target accuracy.",
+                description: "The SA Eagle represents the pinnacle of South African outdoor engineering. Precision-forged with high-tensile steel and paracord-wrapped stable ergonomic grip.",
                 optionGroups: [
                     {
                         groupName: "SELECT PARACORD COLOR:",
@@ -817,15 +847,6 @@
                             { name: "Paracord Color: Desert Sand", priceMod: 0 },
                             { name: "Paracord Color: Tactical Black", priceMod: 0 }
                         ]
-                    },
-                    {
-                        groupName: "SELECT LATEX BAND TIER:",
-                        groupImage: "",
-                        choices: [
-                            { name: "0.50mm Junior", priceMod: 0 },
-                            { name: "0.75mm Standard", priceMod: 20 },
-                            { name: "1.0mm Power", priceMod: 40 }
-                        ]
                     }
                 ],
                 specs: {
@@ -833,43 +854,6 @@
                     aiming: "Dual Fiber Optic (Green & Red)",
                     weight: "280g",
                     width: "85mm",
-                    attachment: "Quick-release Press-clip"
-                }
-            },
-            {
-                name: "Ou Kalahari Combo Special",
-                category: "Combos",
-                price: 550.00,
-                stock: 15,
-                sku: "SKU1",
-                image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                thumbs: ["https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800"],
-                description: "Complete heavy-duty slingshot setup with dual-tier natural latex flatbands, genuine leather pouch, and 100 biodegradable clay spheres.",
-                optionGroups: [
-                    {
-                        groupName: "SELECT COLOR / FINISH:",
-                        groupImage: "",
-                        choices: [
-                            { name: "Natural Wood", priceMod: 0 },
-                            { name: "Matte Black", priceMod: 30 },
-                            { name: "Camo Finish", priceMod: 50 }
-                        ]
-                    },
-                    {
-                        groupName: "SELECT LATEX BAND TIER:",
-                        groupImage: "",
-                        choices: [
-                            { name: "0.50mm Junior", priceMod: 0 },
-                            { name: "0.75mm Standard", priceMod: 20 },
-                            { name: "1.0mm Power", priceMod: 40 }
-                        ]
-                    }
-                ],
-                specs: {
-                    material: "Treated SA Hardwood",
-                    aiming: "Dual Fiber Optic",
-                    weight: "245g",
-                    width: "80mm",
                     attachment: "Quick-release Press-clip"
                 }
             }
@@ -987,7 +971,7 @@
         }
 
         window.addComboToCart = function() {
-            const combo = products.find(p => p.name.includes("Ou Kalahari Combo") || p.category === "Combos") || products[0];
+            const combo = products.find(p => p.name.includes("SA EAGLE") || p.category === "Combos") || products[0];
             if (combo) addToCart(combo.id);
         }
 
@@ -1053,7 +1037,7 @@
             if (!selectedProduct) return;
 
             document.getElementById("modal-main-img").src = selectedProduct.image;
-            document.getElementById("modal-sku").textContent = `SKU: ${selectedProduct.sku || 'KG-SL-' + selectedProduct.id.substring(0, 6).toUpperCase()}`;
+            document.getElementById("modal-sku").textContent = `SKU: ${selectedProduct.sku || 'N/A'}`;
             document.getElementById("modal-title").textContent = selectedProduct.name;
             
             const groupsContainer = document.getElementById("modal-option-groups-container");
@@ -1061,13 +1045,10 @@
             
             selectedOptionsMap = {};
 
+            // True Single-Select Radio Architecture: Default to the first choice in each group
             groups.forEach((g) => {
                 if (g.choices && g.choices.length > 0) {
-                    // Match Pic 2 default behavior: pick the third item ("Tactical Black") if available, else first
-                    let defaultChoice = g.choices[0];
-                    if (g.choices.length >= 3 && g.groupName.toUpperCase().includes("PARACORD")) {
-                        defaultChoice = g.choices[2];
-                    }
+                    const defaultChoice = g.choices[0];
                     selectedOptionsMap[g.groupName] = {
                         name: defaultChoice.name || defaultChoice,
                         priceMod: defaultChoice.priceMod !== undefined ? defaultChoice.priceMod : 0
@@ -1077,28 +1058,29 @@
 
             updateModalDisplayedPrice();
 
-            // Render Option Groups Matching Pic 2 Exactly: Light Box Container, Dark Olive Pill for Single Selected Item, Standard Light Gray for Others
+            // Render Each Option Group as ONE Light Box Container with Radio-Button Style Options inside (Only ONE can be highlighted per group)
             groupsContainer.innerHTML = groups.map((g, gIdx) => {
                 const currentSelectedChoiceName = selectedOptionsMap[g.groupName] ? selectedOptionsMap[g.groupName].name : '';
 
                 return `
-                    <div class="bg-safari-parchment p-3.5 rounded-xl border border-safari-border/80 space-y-2 shadow-sm">
+                    <div class="bg-safari-parchment p-3.5 rounded-xl border border-safari-border/80 space-y-2.5 shadow-sm">
                         <label class="block text-xs font-bold uppercase tracking-wider text-safari-espresso">${g.groupName}</label>
-                        <div class="flex flex-wrap gap-2">
+                        <div class="flex flex-col gap-2">
                             ${g.choices.map((c, cIdx) => {
                                 const cName = c.name || c;
                                 const cMod = c.priceMod !== undefined ? c.priceMod : 0;
                                 const modLabel = cMod > 0 ? ` (+R${cMod})` : cMod < 0 ? ` (-R${Math.abs(cMod)})` : '';
                                 const isSelected = cName === currentSelectedChoiceName;
                                 
-                                // Exact Pic 2 Style Classes: Selected = Dark Olive background with White text and dark shadow. Unselected = Light surface with dark text.
+                                // True Single-Select Radio Styling: Selected option gets dark olive fill with white text; others get light surface
                                 const btnClasses = isSelected 
                                     ? 'bg-[#4B5320] text-white border-[#4B5320] shadow-sm font-semibold' 
                                     : 'bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive font-medium';
 
                                 return `
-                                    <button type="button" onclick="selectModalOption('${g.groupName}', '${cName}', ${cMod}, '${g.groupImage || ''}', this)" class="px-3.5 py-1.5 rounded-lg text-xs border transition-all ${btnClasses}">
-                                        ${cName}${modLabel}
+                                    <button type="button" onclick="selectRadioOption('${g.groupName}', '${cName}', ${cMod}, '${g.groupImage || ''}', this)" class="w-full text-left px-4 py-2.5 rounded-lg text-xs border transition-all flex items-center justify-between ${btnClasses}">
+                                        <span>${cName}${modLabel}</span>
+                                        <i class="fa-solid ${isSelected ? 'fa-circle-dot text-white' : 'fa-circle text-safari-border'} text-xs"></i>
                                     </button>
                                 `;
                             }).join('')}
@@ -1111,7 +1093,7 @@
 
             const specs = selectedProduct.specs || {
                 material: "High-grade Carbon Steel",
-                aiming: "Dual Fiber Optic (Green & Red)",
+                aiming: "Dual Fiber Optic",
                 weight: "280g",
                 width: "85mm",
                 attachment: "Quick-release Press-clip"
@@ -1131,23 +1113,28 @@
             document.getElementById("product-modal").classList.remove("hidden");
         }
 
-        window.selectModalOption = function(groupName, choiceName, priceMod, groupImage, btnElem) {
+        window.selectRadioOption = function(groupName, choiceName, priceMod, groupImage, btnElem) {
             selectedOptionsMap[groupName] = { name: choiceName, priceMod: parseFloat(priceMod) || 0 };
             updateModalDisplayedPrice();
 
-            // Option-Specific Image Swapping in Real Time
+            // Option-Specific Image Swapping
             let activeImage = selectedProduct.image;
             if (groupImage && groupImage.trim() !== "") {
                 activeImage = groupImage.trim();
             }
             document.getElementById("modal-main-img").src = activeImage;
 
-            // Update button styles within this option group to reflect Pic 2 exact highlighting (only the clicked button gets dark olive)
-            const parentContainer = btnElem.parentElement;
-            parentContainer.querySelectorAll('button').forEach(b => {
-                b.className = 'px-3.5 py-1.5 rounded-lg text-xs border transition-all bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive font-medium';
+            // Enforce True Single-Select Radio Behavior: Reset all buttons in this group container to unselected state, then highlight the clicked button
+            const groupContainer = btnElem.closest('.space-y-2.5');
+            groupContainer.querySelectorAll('button').forEach(b => {
+                b.className = 'w-full text-left px-4 py-2.5 rounded-lg text-xs border transition-all flex items-center justify-between bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive font-medium';
+                const icon = b.querySelector('i');
+                if(icon) { icon.className = 'fa-solid fa-circle text-safari-border text-xs'; }
             });
-            btnElem.className = 'px-3.5 py-1.5 rounded-lg text-xs border transition-all bg-[#4B5320] text-white border-[#4B5320] shadow-sm font-semibold';
+
+            btnElem.className = 'w-full text-left px-4 py-2.5 rounded-lg text-xs border transition-all flex items-center justify-between bg-[#4B5320] text-white border-[#4B5320] shadow-sm font-semibold';
+            const activeIcon = btnElem.querySelector('i');
+            if(activeIcon) { activeIcon.className = 'fa-solid fa-circle-dot text-white text-xs'; }
         }
 
         window.updateModalDisplayedPrice = function() {
@@ -1173,7 +1160,7 @@
 
             Object.entries(selectedOptionsMap).forEach(([groupName, opt]) => {
                 totalMod += opt.priceMod;
-                summaryParts.push(`${groupName} ${opt.name}`);
+                summaryParts.push(`${groupName.replace('SELECT ', '').replace(':', '')}: ${opt.name}`);
             });
 
             const finalPrice = basePrice + totalMod;
@@ -1341,24 +1328,24 @@
             document.getElementById("prod-edit-id").value = "";
             document.getElementById("product-action-form").reset();
             
-            document.getElementById("og-name-1").value = "SELECT PARACORD COLOR:";
-            document.getElementById("og-choices-1").value = "Paracord Color: Forest Green:+0, Paracord Color: Desert Sand:+0, Paracord Color: Tactical Black:+0";
+            document.getElementById("og-name-1").value = "SELECT CARRY BAG STYLE:";
+            document.getElementById("og-choices-1").value = "SA Eagle & Brown Carry Bag:+0, SA Eagle & Camo Carry Bag:+0";
             document.getElementById("og-img-1").value = "";
 
-            document.getElementById("og-name-2").value = "SELECT LATEX BAND TIER:";
-            document.getElementById("og-choices-2").value = "0.50mm Junior:+0, 0.75mm Standard:+20, 1.0mm Power:+40";
+            document.getElementById("og-name-2").value = "SELECT TIER:";
+            document.getElementById("og-choices-2").value = "Standard:+0, Premium:+50";
             document.getElementById("og-img-2").value = "";
 
-            document.getElementById("og-name-3").value = "SELECT POUCH UPGRADE:";
-            document.getElementById("og-choices-3").value = "Standard Microfiber:+0, Genuine Buffalo Leather:+35, Heavy Duty Grip Pouch:+60";
+            document.getElementById("og-name-3").value = "";
+            document.getElementById("og-choices-3").value = "";
             document.getElementById("og-img-3").value = "";
 
-            document.getElementById("og-name-4").value = "SELECT AMMO PACK ADD-ON:";
-            document.getElementById("og-choices-4").value = "None:+0, 100x Clay Pellets:+45, 250x Clay Pellets:+95, 500x Bulk Box:+170";
+            document.getElementById("og-name-4").value = "";
+            document.getElementById("og-choices-4").value = "";
             document.getElementById("og-img-4").value = "";
 
             document.getElementById("spec-input-material").value = "High-grade Carbon Steel";
-            document.getElementById("spec-input-aiming").value = "Dual Fiber Optic (Green & Red)";
+            document.getElementById("spec-input-aiming").value = "Dual Fiber Optic";
             document.getElementById("spec-input-weight").value = "280g";
             document.getElementById("spec-input-width").value = "85mm";
             document.getElementById("spec-input-attachment").value = "Quick-release Press-clip";
@@ -1394,7 +1381,7 @@
                 } else {
                     document.getElementById(`og-name-${i}`).value = "";
                     document.getElementById(`og-choices-${i}`).value = "";
-                    document.getElementById(`og-img-${i}`).value = "";
+                    document.getElementById(`og-img-4`).value = "";
                 }
             }
 
@@ -1405,6 +1392,7 @@
             document.getElementById("spec-input-width").value = specs.width || "";
             document.getElementById("spec-input-attachment").value = specs.attachment || "";
 
+            document.getElementById("product-modal").classList.add("hidden");
             document.getElementById("product-form-modal").classList.remove("hidden");
         }
 
@@ -1462,13 +1450,13 @@
             try {
                 if (id) {
                     await updateDoc(doc(db, "products", id), productData);
-                    alert("Product & option-linked images successfully updated in Firebase!");
+                    alert("Product successfully updated in Firebase!");
                 } else {
                     productData.thumbs = [productData.image];
                     await addDoc(collection(db, "products"), productData);
-                    alert("New product & option-linked images added successfully to Firebase!");
+                    alert("New product added successfully to Firebase!");
                 }
-                closeProductFormModal();
+                closeProductFormManager();
             } catch (err) {
                 alert("Saved locally! (Configure Firebase credentials to persist online).");
                 closeProductFormModal();
