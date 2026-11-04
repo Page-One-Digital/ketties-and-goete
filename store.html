@@ -138,7 +138,7 @@
         </div>
     </section>
 
-    <!-- NEW SECTION (PIC 1): Premium Category Hubs Between Hero & Store -->
+    <!-- Premium Category Hubs Between Hero & Store -->
     <section class="py-16 bg-safari-surface/50 border-b border-safari-border/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span class="text-[11px] font-bold uppercase tracking-widest text-safari-olive block mb-1">Shop By Collection</span>
@@ -219,9 +219,7 @@
         </div>
     </section>
 
-    <!-- NEW SECTIONS (PIC 2): Between Store & Footer -->
-    
-    <!-- 1. Why Choose Ketties & Goete? Grid Section -->
+    <!-- Why Choose Ketties & Goete? Grid Section -->
     <section class="py-16 bg-safari-surface/40 border-t border-safari-border/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span class="text-[11px] font-bold uppercase tracking-widest text-safari-olive block mb-1">Unmatched Utility</span>
@@ -264,7 +262,7 @@
         </div>
     </section>
 
-    <!-- 2. Preserving Backyard Family Adventure Heritage Section -->
+    <!-- Preserving Backyard Family Adventure Heritage Section -->
     <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-safari-surface/70 border border-safari-border p-8 sm:p-12 rounded-3xl shadow-sm">
             <!-- Left: Hardwood Precision Image Box -->
@@ -291,7 +289,7 @@
         </div>
     </section>
 
-    <!-- 3. Stay In The Loop Newsletter Section -->
+    <!-- Stay In The Loop Newsletter Section -->
     <section class="py-16 bg-safari-espresso text-safari-parchment">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
             <span class="text-[11px] font-bold uppercase tracking-widest text-safari-olive">Join The Adventure</span>
@@ -609,7 +607,7 @@
         </div>
     </div>
 
-    <!-- Add / Edit Product Modal with Pricing Modifiers Support -->
+    <!-- Add / Edit Product Modal with 4 Default Options Support -->
     <div id="product-form-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductFormModal()"></div>
         <div class="bg-safari-parchment rounded-2xl max-w-2xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
@@ -658,18 +656,18 @@
                     <textarea id="prod-desc" rows="2" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm"></textarea>
                 </div>
 
-                <!-- Selectable Options with Pricing Modifiers Support (e.g. blue:+0, black:+20) -->
+                <!-- Selectable Options with 4 Default Pricing Modifiers -->
                 <div class="bg-safari-surface p-4 rounded-xl border border-safari-border space-y-3">
                     <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso">Selectable Options & Price Modifiers</h4>
-                    <p class="text-[11px] text-safari-espresso/60">Format: <code class="bg-safari-parchment px-1.5 py-0.5 rounded font-mono">OptionName:+price</code> (e.g. <code class="bg-safari-parchment px-1.5 py-0.5 rounded font-mono">Blue:+0, Black:+20, Premium:+50</code>)</p>
+                    <p class="text-[11px] text-safari-espresso/60">Format: <code class="bg-safari-parchment px-1.5 py-0.5 rounded font-mono">OptionName:+price</code> (e.g. <code class="bg-safari-parchment px-1.5 py-0.5 rounded font-mono">Standard Setup:+0, Pro Carbon Tier:+50, Elite Wilderness Pack:+100, Master Collector Edition:+200</code>)</p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                             <label class="block text-[11px] font-semibold uppercase tracking-wider mb-1">Option Group Name</label>
-                            <input type="text" id="opt-group-name" value="Select Color / Style:" class="w-full bg-safari-parchment border border-safari-border rounded-lg px-3 py-2 text-xs">
+                            <input type="text" id="opt-group-name" value="Select Package Tier:" class="w-full bg-safari-parchment border border-safari-border rounded-lg px-3 py-2 text-xs">
                         </div>
                         <div>
-                            <label class="block text-[11px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions</label>
-                            <input type="text" id="opt-choices" value="Blue:+0, Black:+20, Special Camo:+45" class="w-full bg-safari-parchment border border-safari-border rounded-lg px-3 py-2 text-xs">
+                            <label class="block text-[11px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions (4+ Options)</label>
+                            <input type="text" id="opt-choices" value="Standard Setup:+0, Pro Carbon Tier:+50, Elite Wilderness Pack:+100, Master Collector Edition:+200" class="w-full bg-safari-parchment border border-safari-border rounded-lg px-3 py-2 text-xs">
                         </div>
                     </div>
                 </div>
@@ -735,6 +733,30 @@
 
         const defaultProducts = [
             {
+                name: "Ou Kalahari Combo Special",
+                category: "Combos",
+                price: 550.00,
+                stock: 15,
+                sku: "SKU1",
+                image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
+                thumbs: ["https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800"],
+                description: "Complete heavy-duty slingshot setup with dual-tier natural latex flatbands, genuine leather pouch, and 100 biodegradable clay spheres.",
+                optionGroup: "Select Package Tier:",
+                options: [
+                    { name: "Standard Setup", priceMod: 0 },
+                    { name: "Pro Carbon Tier", priceMod: 50 },
+                    { name: "Elite Wilderness Pack", priceMod: 100 },
+                    { name: "Master Collector Edition", priceMod: 200 }
+                ],
+                specs: {
+                    material: "Treated SA Hardwood",
+                    aiming: "Dual Fiber Optic",
+                    weight: "245g",
+                    width: "80mm",
+                    attachment: "Quick-release Press-clip"
+                }
+            },
+            {
                 name: "Therapeutic Natural Latex Flatbands",
                 category: "Flatbands",
                 price: 150.00,
@@ -743,11 +765,12 @@
                 image: "https://images.unsplash.com/photo-1508873696983-2df5c92063c7?auto=format&fit=crop&q=80&w=800",
                 thumbs: ["https://images.unsplash.com/photo-1508873696983-2df5c92063c7?auto=format&fit=crop&q=80&w=800"],
                 description: "Professional grade pure Malaysian natural latex flatbands. Delivers maximum elasticity, velocity, and enduring durability for competitive target shooting.",
-                optionGroup: "Select Color / Thickness:",
+                optionGroup: "Select Band Thickness:",
                 options: [
-                    { name: "Blue (0.50mm)", priceMod: 0 },
-                    { name: "Black (0.75mm)", priceMod: 20 },
-                    { name: "Red Power (1.0mm)", priceMod: 35 }
+                    { name: "0.50mm (Junior)", priceMod: 0 },
+                    { name: "0.75mm (Standard)", priceMod: 20 },
+                    { name: "1.0mm (Power)", priceMod: 35 },
+                    { name: "1.2mm (Heavy Impact)", priceMod: 50 }
                 ],
                 specs: {
                     material: "100% Pure Malaysian Latex",
@@ -755,28 +778,6 @@
                     weight: "45g",
                     width: "20mm tapered",
                     attachment: "Universal Tie-on"
-                }
-            },
-            {
-                name: "KETTIE - OU KALAHARI SLINGSHOT",
-                category: "Ketties",
-                price: 390.00,
-                stock: 14,
-                sku: "KG-SL-OUK02-75",
-                image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                thumbs: ["https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800"],
-                description: "Named after the rugged red dunes of the Kalahari, this slingshot combines traditional hardwood aesthetics with integrated fiber optic aiming levels and a quick-clip band loading system for pinpoint target consistency.",
-                optionGroup: "Latex Thickness:",
-                options: [
-                    { name: "0.75mm (Speed)", priceMod: 0 },
-                    { name: "1.0mm (Power)", priceMod: 40 }
-                ],
-                specs: {
-                    material: "Treated SA Hardwood & Carbon Core",
-                    aiming: "Dual Fiber Optic (Green & Red)",
-                    weight: "245g",
-                    width: "80mm",
-                    attachment: "Quick-release Press-clip"
                 }
             }
         ];
@@ -853,7 +854,6 @@
                 btn.classList.remove('bg-safari-olive', 'text-white');
                 btn.classList.add('bg-safari-surface', 'text-safari-espresso', 'border', 'border-safari-border');
             });
-            // Try to match category filter button if active
             document.querySelectorAll('.cat-btn').forEach(btn => {
                 if(btn.textContent.includes(cat) || (cat === 'all' && btn.textContent.includes('All'))) {
                     btn.classList.remove('bg-safari-surface', 'text-safari-espresso', 'border', 'border-safari-border');
@@ -1188,10 +1188,10 @@
             document.getElementById("product-form-title").textContent = "Add New Product";
             document.getElementById("prod-edit-id").value = "";
             document.getElementById("product-action-form").reset();
-            document.getElementById("opt-group-name").value = "Select Color / Style:";
-            document.getElementById("opt-choices").value = "Blue:+0, Black:+20, Special Camo:+45";
-            document.getElementById("spec-input-material").value = "Treated SA Hardwood & Carbon Core";
-            document.getElementById("spec-input-aiming").value = "Dual Fiber Optic (Green & Red)";
+            document.getElementById("opt-group-name").value = "Select Package Tier:";
+            document.getElementById("opt-choices").value = "Standard Setup:+0, Pro Carbon Tier:+50, Elite Wilderness Pack:+100, Master Collector Edition:+200";
+            document.getElementById("spec-input-material").value = "Treated SA Hardwood";
+            document.getElementById("spec-input-aiming").value = "Dual Fiber Optic";
             document.getElementById("spec-input-weight").value = "245g";
             document.getElementById("spec-input-width").value = "80mm";
             document.getElementById("spec-input-attachment").value = "Quick-release Press-clip";
@@ -1221,7 +1221,7 @@
                 }).join(', ');
                 document.getElementById("opt-choices").value = formattedOpts;
             } else {
-                document.getElementById("opt-choices").value = "Standard:+0";
+                document.getElementById("opt-choices").value = "Standard Setup:+0, Pro Carbon Tier:+50, Elite Wilderness Pack:+100, Master Collector Edition:+200";
             }
 
             const specs = prod.specs || {};
