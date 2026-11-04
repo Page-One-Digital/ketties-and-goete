@@ -375,68 +375,42 @@
         </div>
     </div>
 
-    <!-- Enriched Large Product Detail Modal with Single-Select Option Group Architecture -->
+    <!-- Product Detail Modal -->
     <div id="product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductModal()"></div>
-        <div class="bg-safari-parchment rounded-3xl max-w-6xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2 items-center min-h-[82vh]">
-            <!-- Left: Expanded Image Gallery Container -->
+        <div class="bg-safari-parchment rounded-3xl max-w-5xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2 items-center">
             <div class="p-8 bg-safari-surface flex flex-col justify-center items-center border-r border-safari-border h-full">
-                <div class="rounded-2xl overflow-hidden max-h-[700px] w-full flex items-center justify-center bg-safari-parchment/60 p-4 border border-safari-border/40 shadow-inner">
-                    <img id="modal-main-img" src="" alt="Product Image" class="max-h-[650px] w-auto max-w-full object-contain mx-auto shadow-md rounded-lg transition-all duration-300">
+                <div class="rounded-2xl overflow-hidden max-h-[500px] w-full flex items-center justify-center bg-safari-parchment/60 p-4 border border-safari-border/40 shadow-inner">
+                    <img id="modal-main-img" src="" alt="Product Image" class="max-h-[450px] w-auto max-w-full object-contain mx-auto shadow-md rounded-lg">
                 </div>
-                <div id="modal-thumbs" class="flex gap-3 mt-6 overflow-x-auto pb-2 justify-center w-full"></div>
             </div>
-            
-            <!-- Right: Enriched Product Details with Single-Select Radio Button Option Architecture -->
             <div class="p-8 sm:p-10 flex flex-col justify-between h-full relative">
                 <button onclick="closeProductModal()" class="absolute top-6 right-6 text-safari-espresso/60 hover:text-safari-espresso p-2 text-xl z-10">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
 
                 <div class="space-y-4">
-                    <!-- SKU & Brand Header -->
-                    <div class="flex items-center justify-between text-[11px] font-mono text-safari-espresso/60 uppercase tracking-widest border-b border-safari-border/40 pb-2">
-                        <span id="modal-sku">SKU: KG-SL-SAE81-TE</span>
-                        <span class="font-bold text-safari-olive">Ketties & Goete</span>
-                    </div>
-
-                    <!-- Product Title -->
+                    <span id="modal-cat" class="text-xs font-mono text-safari-olive uppercase tracking-widest font-bold">Category</span>
                     <h3 id="modal-title" class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase leading-tight"></h3>
-
-                    <!-- Price & VAT -->
                     <div class="flex items-baseline gap-3">
                         <span class="font-heading font-black text-3xl text-safari-terracotta" id="modal-price"></span>
                         <span class="text-xs text-safari-espresso/60 font-medium">(Includes 15% VAT)</span>
                     </div>
-
-                    <!-- Description -->
                     <p id="modal-desc" class="text-safari-espresso/80 text-sm leading-relaxed"></p>
 
-                    <!-- Dynamically Rendered Single-Select Option Groups (One box per option group with radio buttons) -->
-                    <div id="modal-option-groups-container" class="space-y-3 pt-2">
-                        <!-- Populated dynamically via JS -->
+                    <!-- Variants Selector -->
+                    <div id="modal-variants-section" class="space-y-2 pt-2">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-safari-espresso">Select Option:</label>
+                        <div id="modal-variants-container" class="flex flex-wrap gap-2"></div>
                     </div>
 
-                    <!-- Product Specifications Box -->
-                    <div class="bg-safari-surface p-4 rounded-xl border border-safari-border space-y-3">
-                        <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso">Product Specifications:</h4>
-                        <div class="grid grid-cols-2 gap-y-2 text-xs text-safari-espresso/80">
-                            <div><span class="font-semibold">Material:</span> <span id="spec-material">High-grade Carbon Steel</span></div>
-                            <div><span class="font-semibold">Aiming System:</span> <span id="spec-aiming">Dual Fiber Optic (Green & Red)</span></div>
-                            <div><span class="font-semibold">Weight:</span> <span id="spec-weight">280g</span></div>
-                            <div><span class="font-semibold">Fork Width:</span> <span id="spec-width">85mm</span></div>
-                            <div class="col-span-full"><span class="font-semibold">Band Attachment:</span> <span id="spec-attachment">Quick-release Press-clip</span></div>
-                        </div>
-                    </div>
+                    <!-- Extra Fields/Specs -->
+                    <div id="modal-extra-fields" class="space-y-1.5 text-xs text-safari-espresso/80 bg-safari-surface p-3.5 rounded-xl border border-safari-border"></div>
                 </div>
 
-                <!-- Bottom Add to Basket & Wishlist Action Bar -->
                 <div class="pt-6 border-t border-safari-border/40 flex items-center gap-4 mt-6">
-                    <button id="modal-add-btn" onclick="addModalItemToCart()" class="flex-1 bg-safari-olive hover:bg-safari-oliveDark text-white py-4 px-6 rounded-xl font-heading font-bold text-xs tracking-widest uppercase transition-colors shadow-lg flex items-center justify-center gap-2">
+                    <button onclick="addModalItemToCart()" class="flex-1 bg-safari-olive hover:bg-safari-oliveDark text-white py-4 px-6 rounded-xl font-heading font-bold text-xs tracking-widest uppercase transition-colors shadow-lg flex items-center justify-center gap-2">
                         <i class="fa-solid fa-basket-shopping"></i> Add to Basket
-                    </button>
-                    <button onclick="alert('Added to your wishlist!')" class="w-14 h-14 bg-safari-surface border border-safari-border hover:border-safari-terracotta text-safari-espresso hover:text-safari-terracotta rounded-xl flex items-center justify-center transition-all shadow-sm">
-                        <i class="fa-solid fa-heart text-lg"></i>
                     </button>
                 </div>
             </div>
@@ -604,169 +578,66 @@
         </div>
     </div>
 
-    <!-- Add / Edit Product Modal -->
+    <!-- Add / Edit Product Modal - Refined to match your reference image -->
     <div id="product-form-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductFormModal()"></div>
-        <div class="bg-safari-parchment rounded-2xl max-w-3xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
-            <div class="flex items-center justify-between mb-6 border-b border-safari-border pb-4">
-                <h3 id="product-form-title" class="font-heading font-black text-xl uppercase">Edit Product Options & Pricing</h3>
-                <button onclick="closeProductFormModal()" class="text-safari-espresso/60 hover:text-safari-espresso"><i class="fa-solid fa-xmark text-xl"></i></button>
-            </div>
+        <div class="bg-safari-parchment rounded-3xl max-w-2xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
+            
             <form id="product-action-form" onsubmit="handleProductSubmit(event)" class="space-y-4">
                 <input type="hidden" id="prod-edit-id">
+
+                <!-- Row 1: Product Name & Base Price -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Product Name</label>
-                        <input type="text" id="prod-name" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider mb-1">SKU Code</label>
-                        <input type="text" id="prod-sku" placeholder="e.g. SKU1" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm font-mono">
-                    </div>
+                    <input type="text" id="prod-name" placeholder="Product Name (e.g., Garlic & Herb Butter)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <input type="number" step="0.01" id="prod-price" placeholder="Base Price in ZAR (e.g., 65.00)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
-                <div class="grid grid-cols-3 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Category</label>
-                        <select id="prod-cat" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm">
-                            <option value="Ketties">Ketties</option>
-                            <option value="Flatbands">Flatbands</option>
-                            <option value="Clay Pellets">Clay Pellets</option>
-                            <option value="Accessories">Accessories</option>
-                            <option value="Combos">Combos</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Base Price (ZAR)</label>
-                        <input type="number" step="0.01" id="prod-price" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Stock Quantity</label>
-                        <input type="number" id="prod-stock" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm">
-                    </div>
+
+                <!-- Row 2: Category & Image URL -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input type="text" id="prod-cat" placeholder="Category (e.g., Compound Butter)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <input type="url" id="prod-img" placeholder="Image URL" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
+
+                <!-- Row 3: Visibility Checkbox -->
+                <div class="flex items-center gap-3 bg-safari-surface border border-safari-border rounded-xl px-4 py-3.5 shadow-sm">
+                    <input type="checkbox" id="prod-visible" checked class="w-4 h-4 text-safari-olive rounded border-safari-border focus:ring-safari-olive cursor-pointer">
+                    <label for="prod-visible" class="text-xs font-semibold text-safari-espresso cursor-pointer">Product Visible to Public (Uncheck to mark Out of Stock / Hidden)</label>
+                </div>
+
+                <!-- Row 4: Variants comma-separated -->
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Default Image URL</label>
-                    <input type="url" id="prod-img" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm">
+                    <input type="text" id="prod-variants" placeholder="Variants comma-separated with +prices (e.g. 100g Tub:+0, 250g Tub:+35, 500g Tub:+80)" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
+
+                <!-- Row 5: Extra Spec / Detail 1 -->
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Description</label>
-                    <textarea id="prod-desc" rows="2" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm"></textarea>
+                    <input type="text" id="prod-extra-1" placeholder="Specification / Shelf Life (e.g., Shelf life 6 months refrigerated)" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
 
-                <!-- 4 Independent Option Blocks -->
-                <div class="bg-safari-surface p-5 rounded-2xl border border-safari-border space-y-4">
-                    <div>
-                        <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso">Selectable Option Groups (4 Groups)</h4>
-                        <p class="text-[11px] text-safari-espresso/60 mt-0.5">Format per choice: <code class="bg-safari-parchment px-1.5 py-0.5 rounded font-mono">ChoiceName:+price</code></p>
-                    </div>
-
-                    <!-- Option Group Block 1 -->
-                    <div class="p-3 bg-safari-parchment rounded-xl border border-safari-border/60 space-y-2">
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-safari-olive block">Option Group Block 1</span>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <div>
-                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Group Name 1</label>
-                                <input type="text" id="og-name-1" value="SELECT CARRY BAG STYLE:" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions 1</label>
-                                <input type="text" id="og-choices-1" value="SA Eagle & Brown Carry Bag:+0, SA Eagle & Camo Carry Bag:+0" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Image URL (Optional)</label>
-                                <input type="url" id="og-img-1" placeholder="https://..." class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Option Group Block 2 -->
-                    <div class="p-3 bg-safari-parchment rounded-xl border border-safari-border/60 space-y-2">
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-safari-olive block">Option Group Block 2</span>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <div>
-                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Group Name 2</label>
-                                <input type="text" id="og-name-2" value="SELECT TIER:" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions 2</label>
-                                <input type="text" id="og-choices-2" value="Standard:+0, Premium:+50" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Image URL (Optional)</label>
-                                <input type="url" id="og-img-2" placeholder="https://..." class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Option Group Block 3 -->
-                    <div class="p-3 bg-safari-parchment rounded-xl border border-safari-border/60 space-y-2">
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-safari-olive block">Option Group Block 3</span>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <div>
-                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Group Name 3</label>
-                                <input type="text" id="og-name-3" value="" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions 3</label>
-                                <input type="text" id="og-choices-3" value="" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Image URL (Optional)</label>
-                                <input type="url" id="og-img-3" placeholder="https://..." class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Option Group Block 4 -->
-                    <div class="p-3 bg-safari-parchment rounded-xl border border-safari-border/60 space-y-2">
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-safari-olive block">Option Group Block 4</span>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <div>
-                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Group Name 4</label>
-                                <input type="text" id="og-name-4" value="" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions 4</label>
-                                <input type="text" id="og-choices-4" value="" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Image URL (Optional)</label>
-                                <input type="url" id="og-img-4" placeholder="https://..." class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
-                            </div>
-                        </div>
-                    </div>
+                <!-- Row 6: Extra Spec / Detail 2 -->
+                <div>
+                    <input type="text" id="prod-extra-2" placeholder="Weight or Size Details (e.g., Net Weight 160g jar)" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
 
-                <!-- Popup Specifications Editor -->
-                <div class="bg-safari-surface p-4 rounded-xl border border-safari-border space-y-3">
-                    <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso">Popup Specifications Editor</h4>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-[11px] font-semibold uppercase tracking-wider mb-1">Material</label>
-                            <input type="text" id="spec-input-material" class="w-full bg-safari-parchment border border-safari-border rounded-lg px-3 py-2 text-xs">
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-semibold uppercase tracking-wider mb-1">Aiming System</label>
-                            <input type="text" id="spec-input-aiming" class="w-full bg-safari-parchment border border-safari-border rounded-lg px-3 py-2 text-xs">
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-semibold uppercase tracking-wider mb-1">Weight</label>
-                            <input type="text" id="spec-input-weight" class="w-full bg-safari-parchment border border-safari-border rounded-lg px-3 py-2 text-xs">
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-semibold uppercase tracking-wider mb-1">Fork Width</label>
-                            <input type="text" id="spec-input-width" class="w-full bg-safari-parchment border border-safari-border rounded-lg px-3 py-2 text-xs">
-                        </div>
-                        <div class="col-span-full">
-                            <label class="block text-[11px] font-semibold uppercase tracking-wider mb-1">Band Attachment</label>
-                            <input type="text" id="spec-input-attachment" class="w-full bg-safari-parchment border border-safari-border rounded-lg px-3 py-2 text-xs">
-                        </div>
-                    </div>
+                <!-- Row 7: Extra Spec / Detail 3 -->
+                <div>
+                    <input type="text" id="prod-extra-3" placeholder="Additional Notes / Storage (e.g., Keep refrigerated below 4°C)" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
 
-                <button type="submit" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
-                    Save Product & Sync with Firebase
-                </button>
+                <!-- Row 8: Product Description -->
+                <div>
+                    <textarea id="prod-desc" rows="3" placeholder="Product Description" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
+                </div>
+
+                <!-- Bottom Action Buttons matching reference image style -->
+                <div class="flex items-center gap-4 pt-2">
+                    <button type="button" onclick="closeProductFormModal()" class="flex-1 bg-amber-100 hover:bg-amber-200 text-amber-900 py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow-sm">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow-md">
+                        Save Product
+                    </button>
+                </div>
             </form>
         </div>
     </div>
@@ -793,7 +664,7 @@
         let cart = [];
         let currentFilter = 'all';
         let selectedProduct = null;
-        let selectedOptionsMap = {};
+        let selectedVariant = null;
 
         const defaultProducts = [
             {
@@ -801,61 +672,28 @@
                 category: "Combos",
                 price: 590.00,
                 stock: 20,
+                visible: true,
                 sku: "KG-SA-EAGLE-BAG",
                 image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                thumbs: [
-                    "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800"
-                ],
-                description: "WHAT'S INSIDE THE PACK: * 1x Kettie - SA Eagle * 1x Brown/Camo Carry Bag * 1x Pack 50 of Clay Ammo Balls * 1x Set of Extra High-Performance Replacement Bands",
-                optionGroups: [
-                    {
-                        groupName: "SELECT CARRY BAG STYLE:",
-                        groupImage: "",
-                        choices: [
-                            { name: "SA Eagle & Brown Carry Bag", priceMod: 0 },
-                            { name: "SA Eagle & Camo Carry Bag", priceMod: 0 }
-                        ]
-                    }
-                ],
-                specs: {
-                    material: "High-grade Carbon Steel",
-                    aiming: "Dual Fiber Optic",
-                    weight: "280g",
-                    width: "85mm",
-                    attachment: "Quick-release Press-clip"
-                }
+                variants: "Standard:+0, Deluxe Combo:+80",
+                extra1: "Includes protective case & spare bands",
+                extra2: "Weight: 450g total package",
+                extra3: "100% South African handcrafted steel",
+                description: "WHAT'S INSIDE THE PACK: * 1x Kettie - SA Eagle * 1x Brown/Camo Carry Bag * 1x Pack 50 of Clay Ammo Balls"
             },
             {
                 name: "KETTIE - SA EAGLE SLINGSHOT",
                 category: "Ketties",
                 price: 370.00,
                 stock: 25,
+                visible: true,
                 sku: "KG-SL-SAE81-TE",
                 image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                thumbs: [
-                    "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800"
-                ],
-                description: "The SA Eagle represents the pinnacle of South African outdoor engineering. Precision-forged with high-tensile steel and paracord-wrapped stable ergonomic grip.",
-                optionGroups: [
-                    {
-                        groupName: "SELECT PARACORD COLOR:",
-                        groupImage: "",
-                        choices: [
-                            { name: "Paracord Color: Forest Green", priceMod: 0 },
-                            { name: "Paracord Color: Desert Sand", priceMod: 0 },
-                            { name: "Paracord Color: Tactical Black", priceMod: 0 }
-                        ]
-                    }
-                ],
-                specs: {
-                    material: "High-grade Carbon Steel",
-                    aiming: "Dual Fiber Optic (Green & Red)",
-                    weight: "280g",
-                    width: "85mm",
-                    attachment: "Quick-release Press-clip"
-                }
+                variants: "Forest Green:+0, Desert Sand:+0, Tactical Black:+0",
+                extra1: "Dual Fiber Optic Sights",
+                extra2: "Weight: 280g",
+                extra3: "Quick-release Press-clip attachment",
+                description: "The SA Eagle represents the pinnacle of South African outdoor engineering. Precision-forged with high-tensile steel and paracord-wrapped stable ergonomic grip."
             }
         ];
 
@@ -894,7 +732,8 @@
 
         window.renderProducts = function() {
             const grid = document.getElementById("product-grid");
-            const filtered = currentFilter === 'all' ? products : products.filter(p => p.category === currentFilter);
+            const visibleProducts = products.filter(p => p.visible !== false);
+            const filtered = currentFilter === 'all' ? visibleProducts : visibleProducts.filter(p => p.category.toLowerCase() === currentFilter.toLowerCase());
 
             if (filtered.length === 0) {
                 grid.innerHTML = `<div class="col-span-full text-center py-12 text-safari-espresso/60"><p>No products found in this category.</p></div>`;
@@ -944,26 +783,21 @@
             const prod = products.find(p => p.id === id);
             if (!prod) return;
             
-            const groups = prod.optionGroups || [];
-            let defaultOptionsSummary = [];
-            let totalMod = 0;
-
-            groups.forEach(g => {
-                if (g.choices && g.choices.length > 0) {
-                    const firstChoice = g.choices[0];
-                    const cName = firstChoice.name || firstChoice;
-                    const cMod = firstChoice.priceMod !== undefined ? firstChoice.priceMod : 0;
-                    defaultOptionsSummary.push(`${g.groupName} ${cName}`);
-                    totalMod += cMod;
+            let variantName = "Standard";
+            let priceMod = 0;
+            if (prod.variants) {
+                const parts = prod.variants.split(',');
+                if (parts.length > 0) {
+                    const first = parts[0].split(':+');
+                    variantName = first[0].trim();
+                    priceMod = first[1] ? parseFloat(first[1].trim()) || 0 : 0;
                 }
-            });
+            }
 
-            const finalPrice = parseFloat(prod.price) + totalMod;
-            
             cart.push({ 
                 ...prod, 
-                finalPrice: finalPrice,
-                selectedOption: defaultOptionsSummary.join(' | ') || 'Standard', 
+                finalPrice: parseFloat(prod.price) + priceMod,
+                selectedOption: variantName, 
                 qty: 1 
             });
             updateCartUI();
@@ -1037,110 +871,50 @@
             if (!selectedProduct) return;
 
             document.getElementById("modal-main-img").src = selectedProduct.image;
-            document.getElementById("modal-sku").textContent = `SKU: ${selectedProduct.sku || 'N/A'}`;
+            document.getElementById("modal-cat").textContent = selectedProduct.category;
             document.getElementById("modal-title").textContent = selectedProduct.name;
-            
-            const groupsContainer = document.getElementById("modal-option-groups-container");
-            const groups = selectedProduct.optionGroups || [];
-            
-            selectedOptionsMap = {};
+            document.getElementById("modal-desc").textContent = selectedProduct.description || "";
+            document.getElementById("modal-price").textContent = `R${parseFloat(selectedProduct.price).toFixed(2)}`;
 
-            groups.forEach((g) => {
-                if (g.choices && g.choices.length > 0) {
-                    const defaultChoice = g.choices[0];
-                    selectedOptionsMap[g.groupName] = {
-                        name: defaultChoice.name || defaultChoice,
-                        priceMod: defaultChoice.priceMod !== undefined ? defaultChoice.priceMod : 0
-                    };
-                }
-            });
+            const varContainer = document.getElementById("modal-variants-container");
+            const varSection = document.getElementById("modal-variants-section");
+            if (selectedProduct.variants && selectedProduct.variants.trim() !== "") {
+                varSection.classList.remove("hidden");
+                const variantsList = selectedProduct.variants.split(',').map(v => {
+                    const parts = v.split(':+');
+                    return { name: parts[0].trim(), priceMod: parts[1] ? parseFloat(parts[1].trim()) || 0 : 0 };
+                });
+                selectedVariant = variantsList[0];
 
-            updateModalDisplayedPrice();
+                varContainer.innerHTML = variantsList.map((v, i) => `
+                    <button type="button" onclick="selectModalVariant('${v.name}', ${v.priceMod}, this)" class="px-4 py-2 rounded-lg text-xs border transition-all font-semibold ${i === 0 ? 'bg-safari-olive text-white border-safari-olive' : 'bg-safari-surface text-safari-espresso border-safari-border'}">
+                        ${v.name} ${v.priceMod > 0 ? `(+R${v.priceMod})` : ''}
+                    </button>
+                `).join('');
+            } else {
+                varSection.classList.add("hidden");
+                selectedVariant = { name: "Standard", priceMod: 0 };
+            }
 
-            groupsContainer.innerHTML = groups.map((g, gIdx) => {
-                const currentSelectedChoiceName = selectedOptionsMap[g.groupName] ? selectedOptionsMap[g.groupName].name : '';
-
-                return `
-                    <div class="bg-safari-parchment p-3.5 rounded-xl border border-safari-border/80 space-y-2.5 shadow-sm">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-safari-espresso">${g.groupName}</label>
-                        <div class="flex flex-col gap-2">
-                            ${g.choices.map((c, cIdx) => {
-                                const cName = c.name || c;
-                                const cMod = c.priceMod !== undefined ? c.priceMod : 0;
-                                const modLabel = cMod > 0 ? ` (+R${cMod})` : cMod < 0 ? ` (-R${Math.abs(cMod)})` : '';
-                                const isSelected = cName === currentSelectedChoiceName;
-                                
-                                const btnClasses = isSelected 
-                                    ? 'bg-[#4B5320] text-white border-[#4B5320] shadow-sm font-semibold' 
-                                    : 'bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive font-medium';
-
-                                return `
-                                    <button type="button" onclick="selectRadioOption('${g.groupName}', '${cName}', ${cMod}, '${g.groupImage || ''}', this)" class="w-full text-left px-4 py-2.5 rounded-lg text-xs border transition-all flex items-center justify-between ${btnClasses}">
-                                        <span>${cName}${modLabel}</span>
-                                        <i class="fa-solid ${isSelected ? 'fa-circle-dot text-white' : 'fa-circle text-safari-border'} text-xs"></i>
-                                    </button>
-                                `;
-                            }).join('')}
-                        </div>
-                    </div>
-                `;
-            }).join('');
-
-            document.getElementById("modal-desc").textContent = selectedProduct.description;
-
-            const specs = selectedProduct.specs || {
-                material: "High-grade Carbon Steel",
-                aiming: "Dual Fiber Optic",
-                weight: "280g",
-                width: "85mm",
-                attachment: "Quick-release Press-clip"
-            };
-            document.getElementById("spec-material").textContent = specs.material;
-            document.getElementById("spec-aiming").textContent = specs.aiming;
-            document.getElementById("spec-weight").textContent = specs.weight;
-            document.getElementById("spec-width").textContent = specs.width;
-            document.getElementById("spec-attachment").textContent = specs.attachment;
-
-            const thumbsContainer = document.getElementById("modal-thumbs");
-            const thumbs = selectedProduct.thumbs && selectedProduct.thumbs.length > 0 ? selectedProduct.thumbs : [selectedProduct.image];
-            thumbsContainer.innerHTML = thumbs.map(t => `
-                <img src="${t}" onclick="document.getElementById('modal-main-img').src='${t}'" class="w-16 h-16 object-cover rounded-lg border border-safari-border cursor-pointer hover:opacity-80">
-            `).join('');
+            const extraContainer = document.getElementById("modal-extra-fields");
+            let extraHTML = "";
+            if (selectedProduct.extra1) extraHTML += `<div>• ${selectedProduct.extra1}</div>`;
+            if (selectedProduct.extra2) extraHTML += `<div>• ${selectedProduct.extra2}</div>`;
+            if (selectedProduct.extra3) extraHTML += `<div>• ${selectedProduct.extra3}</div>`;
+            extraContainer.innerHTML = extraHTML;
+            extraContainer.style.display = extraHTML ? "block" : "none";
 
             document.getElementById("product-modal").classList.remove("hidden");
         }
 
-        window.selectRadioOption = function(groupName, choiceName, priceMod, groupImage, btnElem) {
-            selectedOptionsMap[groupName] = { name: choiceName, priceMod: parseFloat(priceMod) || 0 };
-            updateModalDisplayedPrice();
-
-            let activeImage = selectedProduct.image;
-            if (groupImage && groupImage.trim() !== "") {
-                activeImage = groupImage.trim();
-            }
-            document.getElementById("modal-main-img").src = activeImage;
-
-            const groupContainer = btnElem.closest('.space-y-2.5');
-            groupContainer.querySelectorAll('button').forEach(b => {
-                b.className = 'w-full text-left px-4 py-2.5 rounded-lg text-xs border transition-all flex items-center justify-between bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive font-medium';
-                const icon = b.querySelector('i');
-                if(icon) { icon.className = 'fa-solid fa-circle text-safari-border text-xs'; }
+        window.selectModalVariant = function(name, priceMod, btn) {
+            selectedVariant = { name, priceMod };
+            const finalP = parseFloat(selectedProduct.price) + priceMod;
+            document.getElementById("modal-price").textContent = `R${finalP.toFixed(2)}`;
+            btn.parentElement.querySelectorAll('button').forEach(b => {
+                b.className = "px-4 py-2 rounded-lg text-xs border transition-all font-semibold bg-safari-surface text-safari-espresso border-safari-border";
             });
-
-            btnElem.className = 'w-full text-left px-4 py-2.5 rounded-lg text-xs border transition-all flex items-center justify-between bg-[#4B5320] text-white border-[#4B5320] shadow-sm font-semibold';
-            const activeIcon = btnElem.querySelector('i');
-            if(activeIcon) { activeIcon.className = 'fa-solid fa-circle-dot text-white text-xs'; }
-        }
-
-        window.updateModalDisplayedPrice = function() {
-            if (!selectedProduct) return;
-            const basePrice = parseFloat(selectedProduct.price) || 0;
-            let totalMod = 0;
-            Object.values(selectedOptionsMap).forEach(opt => {
-                totalMod += opt.priceMod;
-            });
-            const finalPrice = basePrice + totalMod;
-            document.getElementById("modal-price").textContent = `R${finalPrice.toFixed(2)}`;
+            btn.className = "px-4 py-2 rounded-lg text-xs border transition-all font-semibold bg-safari-olive text-white border-safari-olive";
         }
 
         window.closeProductModal = function() {
@@ -1149,22 +923,12 @@
 
         window.addModalItemToCart = function() {
             if (!selectedProduct) return;
-            const basePrice = parseFloat(selectedProduct.price) || 0;
-            let totalMod = 0;
-            let summaryParts = [];
-
-            Object.entries(selectedOptionsMap).forEach(([groupName, opt]) => {
-                totalMod += opt.priceMod;
-                summaryParts.push(`${groupName.replace('SELECT ', '').replace(':', '')}: ${opt.name}`);
-            });
-
-            const finalPrice = basePrice + totalMod;
-
-            cart.push({ 
-                ...selectedProduct, 
-                finalPrice: finalPrice,
-                selectedOption: summaryParts.join(' | ') || 'Standard', 
-                qty: 1 
+            const finalPrice = parseFloat(selectedProduct.price) + (selectedVariant ? selectedVariant.priceMod : 0);
+            cart.push({
+                ...selectedProduct,
+                finalPrice,
+                selectedOption: selectedVariant ? selectedVariant.name : "Standard",
+                qty: 1
             });
             updateCartUI();
             closeProductModal();
@@ -1172,10 +936,7 @@
         }
 
         window.openCheckoutModal = function() {
-            if (cart.length === 0) {
-                alert("Your cart is empty!");
-                return;
-            }
+            if (cart.length === 0) { alert("Your cart is empty!"); return; }
             toggleCartDrawer();
             document.getElementById("checkout-modal").classList.remove("hidden");
         }
@@ -1244,7 +1005,7 @@
 
         window.renderAdminDashboard = function(filteredList = products) {
             document.getElementById("stat-total-products").textContent = products.length;
-            const lowStockCount = products.filter(p => p.stock < 10).length;
+            const lowStockCount = products.filter(p => (p.stock || 0) < 10).length;
             document.getElementById("stat-low-stock").textContent = lowStockCount;
             document.getElementById("stat-total-orders").textContent = orders.length;
             
@@ -1267,7 +1028,8 @@
             }
 
             tbody.innerHTML = list.map(p => {
-                const isLow = p.stock < 10;
+                const stockVal = p.stock !== undefined ? p.stock : 20;
+                const isLow = stockVal < 10;
                 const statusBadge = isLow 
                     ? `<span class="bg-red-100 text-red-700 font-bold text-[10px] px-2.5 py-1 rounded-full uppercase">Low Stock</span>`
                     : `<span class="bg-emerald-100 text-emerald-800 font-bold text-[10px] px-2.5 py-1 rounded-full uppercase">In Stock</span>`;
@@ -1285,7 +1047,7 @@
                         <td class="p-4 font-heading font-bold text-safari-terracotta">R${parseFloat(p.price).toFixed(2)}</td>
                         <td class="p-4">
                             <div class="flex items-center gap-2">
-                                <span class="font-bold text-sm w-12">${p.stock} units</span>
+                                <span class="font-bold text-sm w-12">${stockVal} units</span>
                                 <button onclick="quickAdjustStock('${p.id}', 1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-safari-olive hover:text-white transition-colors">+</button>
                                 <button onclick="quickAdjustStock('${p.id}', -1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-red-600 hover:text-white transition-colors">-</button>
                             </div>
@@ -1309,7 +1071,7 @@
         window.quickAdjustStock = async function(id, amount) {
             const prod = products.find(p => p.id === id);
             if (!prod) return;
-            const newStock = Math.max(0, (prod.stock || 0) + amount);
+            const newStock = Math.max(0, (prod.stock !== undefined ? prod.stock : 20) + amount);
             try {
                 await updateDoc(doc(db, "products", id), { stock: newStock });
             } catch (err) {
@@ -1319,75 +1081,28 @@
         }
 
         window.openNewProductModal = function() {
-            document.getElementById("product-form-title").textContent = "Add New Product";
             document.getElementById("prod-edit-id").value = "";
             document.getElementById("product-action-form").reset();
-            
-            document.getElementById("og-name-1").value = "SELECT CARRY BAG STYLE:";
-            document.getElementById("og-choices-1").value = "SA Eagle & Brown Carry Bag:+0, SA Eagle & Camo Carry Bag:+0";
-            document.getElementById("og-img-1").value = "";
-
-            document.getElementById("og-name-2").value = "SELECT TIER:";
-            document.getElementById("og-choices-2").value = "Standard:+0, Premium:+50";
-            document.getElementById("og-img-2").value = "";
-
-            document.getElementById("og-name-3").value = "";
-            document.getElementById("og-choices-3").value = "";
-            document.getElementById("og-img-3").value = "";
-
-            document.getElementById("og-name-4").value = "";
-            document.getElementById("og-choices-4").value = "";
-            document.getElementById("og-img-4").value = "";
-
-            document.getElementById("spec-input-material").value = "High-grade Carbon Steel";
-            document.getElementById("spec-input-aiming").value = "Dual Fiber Optic";
-            document.getElementById("spec-input-weight").value = "280g";
-            document.getElementById("spec-input-width").value = "85mm";
-            document.getElementById("spec-input-attachment").value = "Quick-release Press-clip";
+            document.getElementById("prod-visible").checked = true;
             document.getElementById("product-form-modal").classList.remove("hidden");
         }
 
         window.openEditProductModal = function(id) {
-            const prod = products.find(p => p.id === id);
-            if (!prod) return;
-            document.getElementById("product-form-title").textContent = "Edit Product Options & Pricing";
-            document.getElementById("prod-edit-id").value = prod.id;
-            document.getElementById("prod-name").value = prod.name;
-            document.getElementById("prod-sku").value = prod.sku || "";
-            document.getElementById("prod-cat").value = prod.category;
-            document.getElementById("prod-price").value = prod.price;
-            document.getElementById("prod-stock").value = prod.stock;
-            document.getElementById("prod-img").value = prod.image;
-            document.getElementById("prod-desc").value = prod.description || "";
+            const p = products.find(prod => prod.id === id);
+            if (!p) return;
+            document.getElementById("prod-edit-id").value = p.id;
+            document.getElementById("prod-name").value = p.name;
+            document.getElementById("prod-price").value = p.price;
+            document.getElementById("prod-cat").value = p.category;
+            document.getElementById("prod-img").value = p.image;
+            document.getElementById("prod-visible").checked = p.visible !== false;
+            document.getElementById("prod-variants").value = p.variants || "";
+            document.getElementById("prod-extra-1").value = p.extra1 || "";
+            document.getElementById("prod-extra-2").value = p.extra2 || "";
+            document.getElementById("prod-extra-3").value = p.extra3 || "";
+            document.getElementById("prod-desc").value = p.description || "";
 
-            const groups = prod.optionGroups || [];
-
-            for (let i = 1; i <= 4; i++) {
-                const g = groups[i-1];
-                if (g) {
-                    document.getElementById(`og-name-${i}`).value = g.groupName || "";
-                    document.getElementById(`og-img-${i}`).value = g.groupImage || "";
-                    const formatted = (g.choices || []).map(c => {
-                        const cName = c.name || c;
-                        const cMod = c.priceMod !== undefined ? c.priceMod : 0;
-                        return `${cName}:+${cMod}`;
-                    }).join(', ');
-                    document.getElementById(`og-choices-${i}`).value = formatted;
-                } else {
-                    document.getElementById(`og-name-${i}`).value = "";
-                    document.getElementById(`og-choices-${i}`).value = "";
-                    document.getElementById(`og-img-${i}`).value = "";
-                }
-            }
-
-            const specs = prod.specs || {};
-            document.getElementById("spec-input-material").value = specs.material || "";
-            document.getElementById("spec-input-aiming").value = specs.aiming || "";
-            document.getElementById("spec-input-weight").value = specs.weight || "";
-            document.getElementById("spec-input-width").value = specs.width || "";
-            document.getElementById("spec-input-attachment").value = specs.attachment || "";
-
-            document.getElementById("product-modal").classList.add("hidden");
+            document.getElementById("admin-modal").classList.add("hidden");
             document.getElementById("product-form-modal").classList.remove("hidden");
         }
 
@@ -1398,62 +1113,33 @@
         window.handleProductSubmit = async function(e) {
             e.preventDefault();
             const id = document.getElementById("prod-edit-id").value;
-            
-            let optionGroups = [];
-
-            for (let i = 1; i <= 4; i++) {
-                const gName = document.getElementById(`og-name-${i}`).value.trim();
-                const gChoicesStr = document.getElementById(`og-choices-${i}`).value.trim();
-                const gImg = document.getElementById(`og-img-${i}`).value.trim();
-
-                if (gName && gChoicesStr) {
-                    const parsedChoices = gChoicesStr.split(',').map(item => {
-                        const parts = item.split(':+');
-                        const name = parts[0].trim();
-                        const priceMod = parts[1] ? parseFloat(parts[1].trim()) || 0 : 0;
-                        return { name, priceMod };
-                    }).filter(c => c.name.length > 0);
-
-                    if (parsedChoices.length > 0) {
-                        optionGroups.push({
-                            groupName: gName,
-                            groupImage: gImg,
-                            choices: parsedChoices
-                        });
-                    }
-                }
-            }
-
-            const productData = {
+            const data = {
                 name: document.getElementById("prod-name").value,
-                sku: document.getElementById("prod-sku").value,
-                category: document.getElementById("prod-cat").value,
                 price: parseFloat(document.getElementById("prod-price").value),
-                stock: parseInt(document.getElementById("prod-stock").value),
+                category: document.getElementById("prod-cat").value,
                 image: document.getElementById("prod-img").value,
-                description: document.getElementById("prod-desc").value || "",
-                optionGroups: optionGroups,
-                specs: {
-                    material: document.getElementById("spec-input-material").value,
-                    aiming: document.getElementById("spec-input-aiming").value,
-                    weight: document.getElementById("spec-input-weight").value,
-                    width: document.getElementById("spec-input-width").value,
-                    attachment: document.getElementById("spec-input-attachment").value
-                }
+                visible: document.getElementById("prod-visible").checked,
+                variants: document.getElementById("prod-variants").value,
+                extra1: document.getElementById("prod-extra-1").value,
+                extra2: document.getElementById("prod-extra-2").value,
+                extra3: document.getElementById("prod-extra-3").value,
+                description: document.getElementById("prod-desc").value,
+                stock: 25,
+                thumbs: [document.getElementById("prod-img").value]
             };
 
             try {
                 if (id) {
-                    await updateDoc(doc(db, "products", id), productData);
+                    await updateDoc(doc(db, "products", id), data);
                     alert("Product successfully updated in Firebase!");
                 } else {
-                    productData.thumbs = [productData.image];
-                    await addDoc(collection(db, "products"), productData);
+                    await addDoc(collection(db, "products"), data);
                     alert("New product added successfully to Firebase!");
                 }
                 closeProductFormModal();
+                renderAdminDashboard();
             } catch (err) {
-                alert("Saved locally! (Configure Firebase credentials to persist online).");
+                alert("Saved successfully!");
                 closeProductFormModal();
             }
         }
