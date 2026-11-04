@@ -375,7 +375,7 @@
         </div>
     </div>
 
-    <!-- Enriched Large Product Detail Modal with Dynamic Option Price Modifiers -->
+    <!-- Enriched Large Product Detail Modal with Multi-Group Options Support -->
     <div id="product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductModal()"></div>
         <div class="bg-safari-parchment rounded-3xl max-w-6xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2 items-center min-h-[82vh]">
@@ -387,7 +387,7 @@
                 <div id="modal-thumbs" class="flex gap-3 mt-6 overflow-x-auto pb-2 justify-center w-full"></div>
             </div>
             
-            <!-- Right: Enriched Product Details with Pricing Modifiers -->
+            <!-- Right: Enriched Product Details with Multi-Group Pricing Modifiers -->
             <div class="p-8 sm:p-10 flex flex-col justify-between h-full relative">
                 <button onclick="closeProductModal()" class="absolute top-6 right-6 text-safari-espresso/60 hover:text-safari-espresso p-2 text-xl z-10">
                     <i class="fa-solid fa-xmark"></i>
@@ -403,7 +403,7 @@
                     <!-- Product Title -->
                     <h3 id="modal-title" class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase leading-tight"></h3>
 
-                    <!-- Price & VAT (Dynamically updates based on selected option) -->
+                    <!-- Price & VAT (Dynamically updates based on selected options) -->
                     <div class="flex items-baseline gap-3">
                         <span class="font-heading font-black text-3xl text-safari-terracotta" id="modal-price"></span>
                         <span class="text-xs text-safari-espresso/60 font-medium">(Includes 15% VAT)</span>
@@ -412,12 +412,9 @@
                     <!-- Description -->
                     <p id="modal-desc" class="text-safari-espresso/80 text-sm leading-relaxed"></p>
 
-                    <!-- Dynamically Rendered Multi-Option Buttons with Pricing -->
-                    <div class="space-y-2 pt-2">
-                        <label id="modal-option-label" class="block text-xs font-bold uppercase tracking-wider text-safari-espresso">Select Option:</label>
-                        <div id="modal-options-container" class="flex flex-wrap gap-2">
-                            <!-- Populated dynamically via JS -->
-                        </div>
+                    <!-- Dynamically Rendered Multi-Group Option Selectors -->
+                    <div id="modal-option-groups-container" class="space-y-3 pt-2">
+                        <!-- Populated dynamically via JS -->
                     </div>
 
                     <!-- Product Specifications Box -->
@@ -607,10 +604,10 @@
         </div>
     </div>
 
-    <!-- Add / Edit Product Modal with 4 Default Options Support -->
+    <!-- Add / Edit Product Modal with 4 Independent Option Groups & Choice Blocks -->
     <div id="product-form-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductFormModal()"></div>
-        <div class="bg-safari-parchment rounded-2xl max-w-2xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+        <div class="bg-safari-parchment rounded-2xl max-w-3xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
             <div class="flex items-center justify-between mb-6 border-b border-safari-border pb-4">
                 <h3 id="product-form-title" class="font-heading font-black text-xl uppercase">Edit Product Options & Pricing</h3>
                 <button onclick="closeProductFormModal()" class="text-safari-espresso/60 hover:text-safari-espresso"><i class="fa-solid fa-xmark text-xl"></i></button>
@@ -624,7 +621,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-semibold uppercase tracking-wider mb-1">SKU Code</label>
-                        <input type="text" id="prod-sku" placeholder="e.g. KG-SL-OUK02-75" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm font-mono">
+                        <input type="text" id="prod-sku" placeholder="e.g. SKU1" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm font-mono">
                     </div>
                 </div>
                 <div class="grid grid-cols-3 gap-4">
@@ -656,18 +653,70 @@
                     <textarea id="prod-desc" rows="2" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm"></textarea>
                 </div>
 
-                <!-- Selectable Options with 4 Default Pricing Modifiers -->
-                <div class="bg-safari-surface p-4 rounded-xl border border-safari-border space-y-3">
-                    <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso">Selectable Options & Price Modifiers</h4>
-                    <p class="text-[11px] text-safari-espresso/60">Format: <code class="bg-safari-parchment px-1.5 py-0.5 rounded font-mono">OptionName:+price</code> (e.g. <code class="bg-safari-parchment px-1.5 py-0.5 rounded font-mono">Standard Setup:+0, Pro Carbon Tier:+50, Elite Wilderness Pack:+100, Master Collector Edition:+200</code>)</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-[11px] font-semibold uppercase tracking-wider mb-1">Option Group Name</label>
-                            <input type="text" id="opt-group-name" value="Select Package Tier:" class="w-full bg-safari-parchment border border-safari-border rounded-lg px-3 py-2 text-xs">
+                <!-- 4 Independent Blocks of Option Group Names and Choices & Price Additions -->
+                <div class="bg-safari-surface p-5 rounded-2xl border border-safari-border space-y-4">
+                    <div>
+                        <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso">Selectable Options & Price Modifiers (4 Option Groups)</h4>
+                        <p class="text-[11px] text-safari-espresso/60 mt-0.5">Format per block: <code class="bg-safari-parchment px-1.5 py-0.5 rounded font-mono">ChoiceName:+price</code> (comma separated)</p>
+                    </div>
+
+                    <!-- Option Group Block 1 -->
+                    <div class="p-3 bg-safari-parchment rounded-xl border border-safari-border/60 space-y-2">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-safari-olive block">Option Group Block 1</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Group Name 1</label>
+                                <input type="text" id="og-name-1" value="Select Color / Finish:" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions 1</label>
+                                <input type="text" id="og-choices-1" value="Natural Wood:+0, Matte Black:+30, Camo Finish:+50" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-[11px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions (4+ Options)</label>
-                            <input type="text" id="opt-choices" value="Standard Setup:+0, Pro Carbon Tier:+50, Elite Wilderness Pack:+100, Master Collector Edition:+200" class="w-full bg-safari-parchment border border-safari-border rounded-lg px-3 py-2 text-xs">
+                    </div>
+
+                    <!-- Option Group Block 2 -->
+                    <div class="p-3 bg-safari-parchment rounded-xl border border-safari-border/60 space-y-2">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-safari-olive block">Option Group Block 2</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Group Name 2</label>
+                                <input type="text" id="og-name-2" value="Select Latex Band Tier:" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions 2</label>
+                                <input type="text" id="og-choices-2" value="0.50mm Junior:+0, 0.75mm Standard:+20, 1.0mm Power:+40" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Option Group Block 3 -->
+                    <div class="p-3 bg-safari-parchment rounded-xl border border-safari-border/60 space-y-2">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-safari-olive block">Option Group Block 3</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Group Name 3</label>
+                                <input type="text" id="og-name-3" value="Select Leather Pouch Upgrade:" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions 3</label>
+                                <input type="text" id="og-choices-3" value="Standard Microfiber:+0, Genuine Buffalo Leather:+35, Heavy Duty Grip Pouch:+60" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Option Group Block 4 -->
+                    <div class="p-3 bg-safari-parchment rounded-xl border border-safari-border/60 space-y-2">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-safari-olive block">Option Group Block 4</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Option Group Name 4</label>
+                                <input type="text" id="og-name-4" value="Select Ammo Pack Add-on:" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-semibold uppercase tracking-wider mb-1">Choices & Price Additions 4</label>
+                                <input type="text" id="og-choices-4" value="None:+0, 100x Clay Pellets:+45, 250x Clay Pellets:+95, 500x Bulk Box:+170" class="w-full bg-safari-surface border border-safari-border rounded-lg px-3 py-2 text-xs">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -728,8 +777,8 @@
         let cart = [];
         let currentFilter = 'all';
         let selectedProduct = null;
-        let selectedOptionName = '';
-        let selectedOptionPriceMod = 0;
+        // Holds user selections across multiple option groups: { groupName: { choiceName, priceMod } }
+        let selectedOptionsMap = {};
 
         const defaultProducts = [
             {
@@ -741,12 +790,40 @@
                 image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
                 thumbs: ["https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800"],
                 description: "Complete heavy-duty slingshot setup with dual-tier natural latex flatbands, genuine leather pouch, and 100 biodegradable clay spheres.",
-                optionGroup: "Select Package Tier:",
-                options: [
-                    { name: "Standard Setup", priceMod: 0 },
-                    { name: "Pro Carbon Tier", priceMod: 50 },
-                    { name: "Elite Wilderness Pack", priceMod: 100 },
-                    { name: "Master Collector Edition", priceMod: 200 }
+                optionGroups: [
+                    {
+                        groupName: "Select Color / Finish:",
+                        choices: [
+                            { name: "Natural Wood", priceMod: 0 },
+                            { name: "Matte Black", priceMod: 30 },
+                            { name: "Camo Finish", priceMod: 50 }
+                        ]
+                    },
+                    {
+                        groupName: "Select Latex Band Tier:",
+                        choices: [
+                            { name: "0.50mm Junior", priceMod: 0 },
+                            { name: "0.75mm Standard", priceMod: 20 },
+                            { name: "1.0mm Power", priceMod: 40 }
+                        ]
+                    },
+                    {
+                        groupName: "Select Leather Pouch Upgrade:",
+                        choices: [
+                            { name: "Standard Microfiber", priceMod: 0 },
+                            { name: "Genuine Buffalo Leather", priceMod: 35 },
+                            { name: "Heavy Duty Grip Pouch", priceMod: 60 }
+                        ]
+                    },
+                    {
+                        groupName: "Select Ammo Pack Add-on:",
+                        choices: [
+                            { name: "None", priceMod: 0 },
+                            { name: "100x Clay Pellets", priceMod: 45 },
+                            { name: "250x Clay Pellets", priceMod: 95 },
+                            { name: "500x Bulk Box", priceMod: 170 }
+                        ]
+                    }
                 ],
                 specs: {
                     material: "Treated SA Hardwood",
@@ -765,12 +842,15 @@
                 image: "https://images.unsplash.com/photo-1508873696983-2df5c92063c7?auto=format&fit=crop&q=80&w=800",
                 thumbs: ["https://images.unsplash.com/photo-1508873696983-2df5c92063c7?auto=format&fit=crop&q=80&w=800"],
                 description: "Professional grade pure Malaysian natural latex flatbands. Delivers maximum elasticity, velocity, and enduring durability for competitive target shooting.",
-                optionGroup: "Select Band Thickness:",
-                options: [
-                    { name: "0.50mm (Junior)", priceMod: 0 },
-                    { name: "0.75mm (Standard)", priceMod: 20 },
-                    { name: "1.0mm (Power)", priceMod: 35 },
-                    { name: "1.2mm (Heavy Impact)", priceMod: 50 }
+                optionGroups: [
+                    {
+                        groupName: "Select Band Thickness:",
+                        choices: [
+                            { name: "0.50mm Junior", priceMod: 0 },
+                            { name: "0.75mm Standard", priceMod: 20 },
+                            { name: "1.0mm Power", priceMod: 35 }
+                        ]
+                    }
                 ],
                 specs: {
                     material: "100% Pure Malaysian Latex",
@@ -866,13 +946,27 @@
         window.addToCart = function(id) {
             const prod = products.find(p => p.id === id);
             if (!prod) return;
-            const defaultOpt = prod.options && prod.options.length > 0 ? prod.options[0] : { name: 'Standard', priceMod: 0 };
-            const finalPrice = parseFloat(prod.price) + (defaultOpt.priceMod || 0);
+            
+            const groups = prod.optionGroups || (prod.options ? [{ groupName: prod.optionGroup || 'Option:', choices: prod.options }] : []);
+            let defaultOptionsSummary = [];
+            let totalMod = 0;
+
+            groups.forEach(g => {
+                if (g.choices && g.choices.length > 0) {
+                    const firstChoice = g.choices[0];
+                    const cName = firstChoice.name || firstChoice;
+                    const cMod = firstChoice.priceMod !== undefined ? firstChoice.priceMod : 0;
+                    defaultOptionsSummary.push(`${g.groupName} ${cName}`);
+                    totalMod += cMod;
+                }
+            });
+
+            const finalPrice = parseFloat(prod.price) + totalMod;
             
             cart.push({ 
                 ...prod, 
                 finalPrice: finalPrice,
-                selectedOption: defaultOpt.name || defaultOpt, 
+                selectedOption: defaultOptionsSummary.join(' | ') || 'Standard', 
                 qty: 1 
             });
             updateCartUI();
@@ -905,9 +999,9 @@
                     <img src="${item.image}" class="w-16 h-16 object-cover rounded-lg border border-safari-border">
                     <div class="flex-1">
                         <h4 class="font-heading font-bold text-sm line-clamp-1">${item.name}</h4>
-                        <span class="text-[10px] text-safari-olive font-bold block">Option: ${item.selectedOption}</span>
-                        <span class="text-xs text-safari-terracotta font-bold">R${parseFloat(item.finalPrice).toFixed(2)}</span>
-                        <div class="flex items-center gap-2 mt-1">
+                        <span class="text-[10px] text-safari-olive font-bold block leading-snug">${item.selectedOption}</span>
+                        <span class="text-xs text-safari-terracotta font-bold mt-1 block">R${parseFloat(item.finalPrice).toFixed(2)}</span>
+                        <div class="flex items-center gap-2 mt-1.5">
                             <button onclick="updateCartItemQty(${index}, -1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs">-</button>
                             <span class="text-xs font-bold">${item.qty}</span>
                             <button onclick="updateCartItemQty(${index}, 1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs">+</button>
@@ -949,29 +1043,42 @@
             document.getElementById("modal-sku").textContent = `SKU: ${selectedProduct.sku || 'KG-SL-' + selectedProduct.id.substring(0, 6).toUpperCase()}`;
             document.getElementById("modal-title").textContent = selectedProduct.name;
             
-            const optionLabel = document.getElementById("modal-option-label");
-            const optionsContainer = document.getElementById("modal-options-container");
+            const groupsContainer = document.getElementById("modal-option-groups-container");
+            const groups = selectedProduct.optionGroups || (selectedProduct.options ? [{ groupName: selectedProduct.optionGroup || 'Select Option:', choices: selectedProduct.options }] : []);
             
-            optionLabel.textContent = selectedProduct.optionGroup || "Select Option:";
-            
-            const rawOptions = selectedProduct.options && selectedProduct.options.length > 0 
-                ? selectedProduct.options 
-                : [{ name: "Standard", priceMod: 0 }];
+            selectedOptionsMap = {};
 
-            selectedOptionName = rawOptions[0].name || rawOptions[0];
-            selectedOptionPriceMod = rawOptions[0].priceMod !== undefined ? rawOptions[0].priceMod : 0;
+            groups.forEach((g, gIdx) => {
+                if (g.choices && g.choices.length > 0) {
+                    const firstChoice = g.choices[0];
+                    selectedOptionsMap[g.groupName] = {
+                        name: firstChoice.name || firstChoice,
+                        priceMod: firstChoice.priceMod !== undefined ? firstChoice.priceMod : 0
+                    };
+                }
+            });
 
             updateModalDisplayedPrice();
 
-            optionsContainer.innerHTML = rawOptions.map((opt, idx) => {
-                const optName = opt.name || opt;
-                const optMod = opt.priceMod !== undefined ? opt.priceMod : 0;
-                const modLabel = optMod > 0 ? ` (+R${optMod})` : optMod < 0 ? ` (-R${Math.abs(optMod)})` : '';
-                
+            groupsContainer.innerHTML = groups.map((g, gIdx) => {
                 return `
-                    <button type="button" onclick="selectOptionButton(this, '${optName}', ${optMod})" class="opt-choice-btn px-4 py-2 rounded-xl text-xs font-semibold border transition-all ${idx === 0 ? 'bg-safari-olive text-white border-safari-olive shadow-sm' : 'bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive'}">
-                        ${optName}${modLabel}
-                    </button>
+                    <div class="space-y-1.5 bg-safari-surface/60 p-3 rounded-xl border border-safari-border/50">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-safari-espresso">${g.groupName}</label>
+                        <div class="flex flex-wrap gap-2">
+                            ${g.choices.map((c, cIdx) => {
+                                const cName = c.name || c;
+                                const cMod = c.priceMod !== undefined ? c.priceMod : 0;
+                                const modLabel = cMod > 0 ? ` (+R${cMod})` : cMod < 0 ? ` (-R${Math.abs(cMod)})` : '';
+                                const isFirst = cIdx === 0;
+                                
+                                return `
+                                    <button type="button" onclick="selectModalOption('${g.groupName}', '${cName}', ${cMod}, this)" class="opt-btn-${gIdx} px-3.5 py-1.5 rounded-lg text-xs font-semibold border transition-all ${isFirst ? 'bg-safari-olive text-white border-safari-olive shadow-sm' : 'bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive'}">
+                                        ${cName}${modLabel}
+                                    </button>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
                 `;
             }).join('');
 
@@ -999,21 +1106,26 @@
             document.getElementById("product-modal").classList.remove("hidden");
         }
 
-        window.selectOptionButton = function(btn, name, priceMod) {
-            selectedOptionName = name;
-            selectedOptionPriceMod = parseFloat(priceMod) || 0;
+        window.selectModalOption = function(groupName, choiceName, priceMod, btnElem) {
+            selectedOptionsMap[groupName] = { name: choiceName, priceMod: parseFloat(priceMod) || 0 };
             updateModalDisplayedPrice();
 
-            document.querySelectorAll('.opt-choice-btn').forEach(b => {
-                b.className = "opt-choice-btn px-4 py-2 rounded-xl text-xs font-semibold border bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive transition-all";
+            // Highlight selected button in this specific group
+            const parentContainer = btnElem.parentElement;
+            parentContainer.querySelectorAll('button').forEach(b => {
+                b.className = b.className.replace('bg-safari-olive text-white border-safari-olive shadow-sm', 'bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive');
             });
-            btn.className = "opt-choice-btn px-4 py-2 rounded-xl text-xs font-semibold border bg-safari-olive text-white border-safari-olive shadow-sm transition-all";
+            btnElem.className = btnElem.className.replace('bg-safari-surface text-safari-espresso border-safari-border hover:border-safari-olive', 'bg-safari-olive text-white border-safari-olive shadow-sm');
         }
 
         window.updateModalDisplayedPrice = function() {
             if (!selectedProduct) return;
             const basePrice = parseFloat(selectedProduct.price) || 0;
-            const finalPrice = basePrice + selectedOptionPriceMod;
+            let totalMod = 0;
+            Object.values(selectedOptionsMap).forEach(opt => {
+                totalMod += opt.priceMod;
+            });
+            const finalPrice = basePrice + totalMod;
             document.getElementById("modal-price").textContent = `R${finalPrice.toFixed(2)}`;
         }
 
@@ -1024,12 +1136,20 @@
         window.addModalItemToCart = function() {
             if (!selectedProduct) return;
             const basePrice = parseFloat(selectedProduct.price) || 0;
-            const finalPrice = basePrice + selectedOptionPriceMod;
+            let totalMod = 0;
+            let summaryParts = [];
+
+            Object.entries(selectedOptionsMap).forEach(([groupName, opt]) => {
+                totalMod += opt.priceMod;
+                summaryParts.push(`${groupName} ${opt.name}`);
+            });
+
+            const finalPrice = basePrice + totalMod;
 
             cart.push({ 
                 ...selectedProduct, 
                 finalPrice: finalPrice,
-                selectedOption: selectedOptionName, 
+                selectedOption: summaryParts.join(' | ') || 'Standard', 
                 qty: 1 
             });
             updateCartUI();
@@ -1188,8 +1308,17 @@
             document.getElementById("product-form-title").textContent = "Add New Product";
             document.getElementById("prod-edit-id").value = "";
             document.getElementById("product-action-form").reset();
-            document.getElementById("opt-group-name").value = "Select Package Tier:";
-            document.getElementById("opt-choices").value = "Standard Setup:+0, Pro Carbon Tier:+50, Elite Wilderness Pack:+100, Master Collector Edition:+200";
+            
+            // Default 4 blocks setup
+            document.getElementById("og-name-1").value = "Select Color / Finish:";
+            document.getElementById("og-choices-1").value = "Natural Wood:+0, Matte Black:+30, Camo Finish:+50";
+            document.getElementById("og-name-2").value = "Select Latex Band Tier:";
+            document.getElementById("og-choices-2").value = "0.50mm Junior:+0, 0.75mm Standard:+20, 1.0mm Power:+40";
+            document.getElementById("og-name-3").value = "Select Leather Pouch Upgrade:";
+            document.getElementById("og-choices-3").value = "Standard Microfiber:+0, Genuine Buffalo Leather:+35, Heavy Duty Grip Pouch:+60";
+            document.getElementById("og-name-4").value = "Select Ammo Pack Add-on:";
+            document.getElementById("og-choices-4").value = "None:+0, 100x Clay Pellets:+45, 250x Clay Pellets:+95, 500x Bulk Box:+170";
+
             document.getElementById("spec-input-material").value = "Treated SA Hardwood";
             document.getElementById("spec-input-aiming").value = "Dual Fiber Optic";
             document.getElementById("spec-input-weight").value = "245g";
@@ -1211,17 +1340,22 @@
             document.getElementById("prod-img").value = prod.image;
             document.getElementById("prod-desc").value = prod.description || "";
 
-            document.getElementById("opt-group-name").value = prod.optionGroup || "Select Option:";
-            
-            if (prod.options && prod.options.length > 0) {
-                const formattedOpts = prod.options.map(o => {
-                    const oName = o.name || o;
-                    const oMod = o.priceMod !== undefined ? o.priceMod : 0;
-                    return `${oName}:+${oMod}`;
-                }).join(', ');
-                document.getElementById("opt-choices").value = formattedOpts;
-            } else {
-                document.getElementById("opt-choices").value = "Standard Setup:+0, Pro Carbon Tier:+50, Elite Wilderness Pack:+100, Master Collector Edition:+200";
+            const groups = prod.optionGroups || (prod.options ? [{ groupName: prod.optionGroup || 'Select Option:', choices: prod.options }] : []);
+
+            for (let i = 1; i <= 4; i++) {
+                const g = groups[i-1];
+                if (g) {
+                    document.getElementById(`og-name-${i}`).value = g.groupName || "";
+                    const formatted = (g.choices || []).map(c => {
+                        const cName = c.name || c;
+                        const cMod = c.priceMod !== undefined ? c.priceMod : 0;
+                        return `${cName}:+${cMod}`;
+                    }).join(', ');
+                    document.getElementById(`og-choices-${i}`).value = formatted;
+                } else {
+                    document.getElementById(`og-name-${i}`).value = "";
+                    document.getElementById(`og-choices-${i}`).value = "";
+                }
             }
 
             const specs = prod.specs || {};
@@ -1241,14 +1375,29 @@
         window.handleProductSubmit = async function(e) {
             e.preventDefault();
             const id = document.getElementById("prod-edit-id").value;
-            const rawChoices = document.getElementById("opt-choices").value;
             
-            const parsedOptions = rawChoices.split(',').map(item => {
-                const parts = item.split(':+');
-                const name = parts[0].trim();
-                const priceMod = parts[1] ? parseFloat(parts[1].trim()) || 0 : 0;
-                return { name, priceMod };
-            }).filter(o => o.name.length > 0);
+            let optionGroups = [];
+
+            for (let i = 1; i <= 4; i++) {
+                const gName = document.getElementById(`og-name-${i}`).value.trim();
+                const gChoicesStr = document.getElementById(`og-choices-${i}`).value.trim();
+
+                if (gName && gChoicesStr) {
+                    const parsedChoices = gChoicesStr.split(',').map(item => {
+                        const parts = item.split(':+');
+                        const name = parts[0].trim();
+                        const priceMod = parts[1] ? parseFloat(parts[1].trim()) || 0 : 0;
+                        return { name, priceMod };
+                    }).filter(c => c.name.length > 0);
+
+                    if (parsedChoices.length > 0) {
+                        optionGroups.push({
+                            groupName: gName,
+                            choices: parsedChoices
+                        });
+                    }
+                }
+            }
 
             const productData = {
                 name: document.getElementById("prod-name").value,
@@ -1258,8 +1407,7 @@
                 stock: parseInt(document.getElementById("prod-stock").value),
                 image: document.getElementById("prod-img").value,
                 description: document.getElementById("prod-desc").value || "",
-                optionGroup: document.getElementById("opt-group-name").value,
-                options: parsedOptions,
+                optionGroups: optionGroups,
                 specs: {
                     material: document.getElementById("spec-input-material").value,
                     aiming: document.getElementById("spec-input-aiming").value,
@@ -1272,11 +1420,11 @@
             try {
                 if (id) {
                     await updateDoc(doc(db, "products", id), productData);
-                    alert("Product & pricing options successfully updated in Firebase!");
+                    alert("Product & 4 option groups successfully updated in Firebase!");
                 } else {
                     productData.thumbs = [productData.image];
                     await addDoc(collection(db, "products"), productData);
-                    alert("New product & pricing options added successfully to Firebase!");
+                    alert("New product & 4 option groups added successfully to Firebase!");
                 }
                 closeProductFormModal();
             } catch (err) {
