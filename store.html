@@ -177,8 +177,8 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <!-- Left Sidebar Filter Column (Fixed z-index to z-10 so it stays underneath modals and header) -->
-            <div class="lg:col-span-3 bg-safari-surface border border-safari-border p-6 rounded-2xl shadow-sm sticky top-28 z-10 space-y-4">
+            <!-- Left Sidebar Filter Column (Static normal flow on mobile, sticky only on large screens) -->
+            <div class="lg:col-span-3 bg-safari-surface border border-safari-border p-6 rounded-2xl shadow-sm lg:sticky lg:top-28 z-10 space-y-4">
                 <div class="flex items-center justify-between pb-3 border-b border-safari-border">
                     <h3 class="font-heading font-bold text-xs uppercase tracking-widest text-safari-espresso">Filter Categories</h3>
                     <i class="fa-solid fa-filter text-safari-olive text-xs"></i>
