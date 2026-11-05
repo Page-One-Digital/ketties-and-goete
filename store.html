@@ -408,7 +408,7 @@
                         <div id="modal-variants-container" class="flex flex-wrap gap-2"></div>
                     </div>
 
-                    <!-- Extra Fields/Specs formatted as spacious bullet points (respecting line breaks) -->
+                    <!-- Extra Fields/Specs formatted as spacious bullet points -->
                     <div id="modal-extra-fields" class="space-y-2.5 text-xs text-safari-espresso/90 bg-safari-surface p-5 rounded-2xl border border-safari-border shadow-inner leading-relaxed whitespace-pre-line"></div>
                 </div>
 
@@ -582,7 +582,7 @@
         </div>
     </div>
 
-    <!-- Add / Edit Product Modal (Multi-line Textareas for Specs & Bullets) -->
+    <!-- Add / Edit Product Modal -->
     <div id="product-form-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductFormModal()"></div>
         <div class="bg-safari-parchment rounded-3xl max-w-2xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
@@ -614,9 +614,9 @@
                     <p class="text-[11px] text-safari-espresso/60 mt-1">Example: Black:+0:https://img.com/black.jpg, Silver:+51:https://img.com/silver.jpg</p>
                 </div>
 
-                <!-- Row 5: Extra Spec / Detail 1 (Converted to Textarea for multi-line & Enter key support) -->
+                <!-- Row 5: Extra Spec / Detail 1 -->
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-safari-espresso/70 mb-1">Specification Bubble 1 (Press Enter for line breaks/bullets)</label>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-safari-espresso/70 mb-1">Specification Bubble 1</label>
                     <textarea id="prod-extra-1" rows="3" placeholder="• Press Enter here to list items downwards..." class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
                 </div>
 
@@ -705,6 +705,14 @@
                 description: "The SA Eagle represents the pinnacle of South African outdoor engineering. Precision-forged with high-tensile steel and paracord-wrapped stable ergonomic grip."
             }
         ];
+
+        // Prevent Enter key inside input fields or textareas from triggering form submit
+        document.getElementById('product-action-form').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                return false;
+            }
+        });
 
         async function initDatabase() {
             try {
@@ -884,7 +892,8 @@
             selectedProduct = products.find(p => p.id === id);
             if (!selectedProduct) return;
 
-            document.getElementById("modal-main-img").src = selectedProduct.image;
+            // Fix: Ensure main modal image correctly loads from selected product image property
+            document.getElementById("modal-main-img").src = selectedProduct.image || '';
             document.getElementById("modal-cat").textContent = selectedProduct.category;
             document.getElementById("modal-title").textContent = selectedProduct.name;
             document.getElementById("modal-desc").textContent = selectedProduct.description || "";
