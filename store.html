@@ -604,9 +604,10 @@
                     <label for="prod-visible" class="text-xs font-semibold text-safari-espresso cursor-pointer">Product Visible to Public (Uncheck to mark Out of Stock / Hidden)</label>
                 </div>
 
-                <!-- Row 4: Variants comma-separated -->
+                <!-- Row 4: Variants comma-separated (Format: Name:+Price:ImageURL:Description) -->
                 <div>
-                    <input type="text" id="prod-variants" placeholder="Variants comma-separated with +prices (e.g. 100g Tub:+0, 250g Tub:+35, 500g Tub:+80)" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <input type="text" id="prod-variants" placeholder="Variants format: Name:+Price:ImageURL:Description (Comma separated)" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <p class="text-[11px] text-safari-espresso/60 mt-1">Example: 1 Kettie:+0:https://img.com/1.jpg:Single standard kettie, 2 Ketties Combo:+100:https://img.com/2.jpg:Two ketties plus extra free targets and pouch!</p>
                 </div>
 
                 <!-- Row 5: Extra Spec / Detail 1 -->
@@ -675,7 +676,7 @@
                 visible: true,
                 sku: "KG-SA-EAGLE-BAG",
                 image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                variants: "Standard:+0, Deluxe Combo:+80",
+                variants: "Standard:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800:Includes protective case & spare bands., Deluxe Combo:+80:https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800:Includes deluxe carry bag, 200 clay balls and spare dual-tier rubber flatbands!",
                 extra1: "Includes protective case & spare bands",
                 extra2: "Weight: 450g total package",
                 extra3: "100% South African handcrafted steel",
@@ -689,7 +690,7 @@
                 visible: true,
                 sku: "KG-SL-SAE81-TE",
                 image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                variants: "Black:+0, Silver:+51, Red:+51, Yellow:+51, Blue:+51",
+                variants: "1 Kettie:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800:Single standard SA Eagle slingshot with default precision fiber-optic sights., 2 Ketties Combo:+300:https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800:Buy 2 Ketties for a special discounted bundle price, plus get an extra pack of 100 clay ammunition spheres free!",
                 extra1: "Dual Fiber Optic Sights",
                 extra2: "Weight: 280g",
                 extra3: "Quick-release Press-clip attachment",
@@ -788,9 +789,9 @@
             if (prod.variants) {
                 const parts = prod.variants.split(',');
                 if (parts.length > 0) {
-                    const first = parts[0].split(':+');
-                    variantName = first[0].trim();
-                    priceMod = first[1] ? parseFloat(first[1].trim()) || 0 : 0;
+                    const sub = parts[0].split(':');
+                    variantName = sub[0].trim();
+                    priceMod = sub[1] ? parseFloat(sub[1].replace('+', '')) || 0 : 0;
                 }
             }
 
@@ -878,23 +879,36 @@
 
             const varContainer = document.getElementById("modal-variants-container");
             const varSection = document.getElementById("modal-variants-section");
+            
             if (selectedProduct.variants && selectedProduct.variants.trim() !== "") {
                 varSection.classList.remove("hidden");
                 const variantsList = selectedProduct.variants.split(',').map(v => {
-                    const parts = v.split(':+');
-                    return { name: parts[0].trim(), priceMod: parts[1] ? parseFloat(parts[1].trim()) || 0 : 0 };
+                    const parts = v.split(':');
+                    return { 
+                        name: parts[0] ? parts[0].trim() : "Option", 
+                        priceMod: parts[1] ? parseFloat(parts[1].replace('+', '')) || 0 : 0,
+                        imageUrl: parts[2] && parts[2].startsWith('http') ? parts[2].trim() : selectedProduct.image,
+                        description: parts[3] ? parts[3].trim() : (parts[2] && !parts[2].startsWith('http') ? parts[2].trim() : selectedProduct.description)
+                    };
                 });
                 selectedVariant = variantsList[0];
 
-                // Render variant buttons without showing the price addition (+R51) text on the button
                 varContainer.innerHTML = variantsList.map((v, i) => `
-                    <button type="button" onclick="selectModalVariant('${v.name}', ${v.priceMod}, this)" class="px-4 py-2 rounded-lg text-xs border transition-all font-semibold ${i === 0 ? 'bg-safari-olive text-white border-safari-olive' : 'bg-safari-surface text-safari-espresso border-safari-border'}">
+                    <button type="button" onclick="selectModalVariant('${v.name.replace(/'/g, "\\'")}', ${v.priceMod}, '${v.imageUrl}', '${(v.description || '').replace(/'/g, "\\'")}', this)" class="px-4 py-2 rounded-lg text-xs border transition-all font-semibold ${i === 0 ? 'bg-safari-olive text-white border-safari-olive' : 'bg-safari-surface text-safari-espresso border-safari-border'}">
                         ${v.name}
                     </button>
                 `).join('');
+
+                // Apply initial variant image and description if specified
+                if (selectedVariant.imageUrl) {
+                    document.getElementById("modal-main-img").src = selectedVariant.imageUrl;
+                }
+                if (selectedVariant.description) {
+                    document.getElementById("modal-desc").textContent = selectedVariant.description;
+                }
             } else {
                 varSection.classList.add("hidden");
-                selectedVariant = { name: "Standard", priceMod: 0 };
+                selectedVariant = { name: "Standard", priceMod: 0, imageUrl: selectedProduct.image, description: selectedProduct.description };
             }
 
             const extraContainer = document.getElementById("modal-extra-fields");
@@ -908,10 +922,18 @@
             document.getElementById("product-modal").classList.remove("hidden");
         }
 
-        window.selectModalVariant = function(name, priceMod, btn) {
-            selectedVariant = { name, priceMod };
+        window.selectModalVariant = function(name, priceMod, imageUrl, description, btn) {
+            selectedVariant = { name, priceMod, imageUrl, description };
             const finalP = parseFloat(selectedProduct.price) + priceMod;
             document.getElementById("modal-price").textContent = `R${finalP.toFixed(2)}`;
+            
+            if (imageUrl) {
+                document.getElementById("modal-main-img").src = imageUrl;
+            }
+            if (description) {
+                document.getElementById("modal-desc").textContent = description;
+            }
+
             btn.parentElement.querySelectorAll('button').forEach(b => {
                 b.className = "px-4 py-2 rounded-lg text-xs border transition-all font-semibold bg-safari-surface text-safari-espresso border-safari-border";
             });
@@ -927,6 +949,7 @@
             const finalPrice = parseFloat(selectedProduct.price) + (selectedVariant ? selectedVariant.priceMod : 0);
             cart.push({
                 ...selectedProduct,
+                image: selectedVariant && selectedVariant.imageUrl ? selectedVariant.imageUrl : selectedProduct.image,
                 finalPrice,
                 selectedOption: selectedVariant ? selectedVariant.name : "Standard",
                 qty: 1
