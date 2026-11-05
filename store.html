@@ -809,8 +809,8 @@
                     const sub = parts[0].split(':');
                     variantName = sub[0].trim();
                     priceMod = sub[1] ? parseFloat(sub[1].replace('+', '')) || 0 : 0;
-                    if (sub[2] && sub[2].startsWith('http')) {
-                        variantImg = sub[2].trim();
+                    if (sub.length > 2) {
+                        variantImg = sub.slice(2).join(':').trim();
                     }
                 }
             }
@@ -892,7 +892,6 @@
             selectedProduct = products.find(p => p.id === id);
             if (!selectedProduct) return;
 
-            // Fix: Ensure main modal image correctly loads from selected product image property
             document.getElementById("modal-main-img").src = selectedProduct.image || '';
             document.getElementById("modal-cat").textContent = selectedProduct.category;
             document.getElementById("modal-title").textContent = selectedProduct.name;
@@ -906,11 +905,11 @@
                 varSection.classList.remove("hidden");
                 const variantsList = selectedProduct.variants.split(',').map(v => {
                     const parts = v.split(':');
-                    return { 
-                        name: parts[0] ? parts[0].trim() : "Option", 
-                        priceMod: parts[1] ? parseFloat(parts[1].replace('+', '')) || 0 : 0,
-                        imageUrl: parts[2] && parts[2].startsWith('http') ? parts[2].trim() : selectedProduct.image
-                    };
+                    const name = parts[0] ? parts[0].trim() : "Option";
+                    const priceMod = parts[1] ? parseFloat(parts[1].replace('+', '')) || 0 : 0;
+                    // Rejoin any colons in the URL (e.g. https://) so the full image link is intact
+                    const imageUrl = parts.length > 2 ? parts.slice(2).join(':').trim() : selectedProduct.image;
+                    return { name, priceMod, imageUrl };
                 });
                 selectedVariant = variantsList[0];
 
@@ -920,7 +919,7 @@
                     </button>
                 `).join('');
 
-                if (selectedVariant.imageUrl) {
+                if (selectedVariant && selectedVariant.imageUrl) {
                     document.getElementById("modal-main-img").src = selectedVariant.imageUrl;
                 }
             } else {
