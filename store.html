@@ -380,11 +380,13 @@
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductModal()"></div>
         <div class="bg-safari-parchment rounded-3xl max-w-6xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 items-center">
             
-            <!-- Left: Expanded Image Container -->
+            <!-- Left: Expanded Image Container & Gallery Thumbnails -->
             <div class="lg:col-span-7 p-8 sm:p-12 bg-safari-surface flex flex-col justify-center items-center border-r border-safari-border h-full min-h-[550px]">
-                <div class="rounded-2xl overflow-hidden h-full max-h-[620px] w-full flex items-center justify-center bg-safari-parchment p-6 border border-safari-border/50 shadow-inner">
-                    <img id="modal-main-img" src="" alt="Product Image" class="max-h-[580px] w-auto max-w-full object-contain mx-auto shadow-lg rounded-xl">
+                <div class="rounded-2xl overflow-hidden h-[420px] w-full flex items-center justify-center bg-safari-parchment p-6 border border-safari-border/50 shadow-inner mb-4">
+                    <img id="modal-main-img" src="" alt="Product Image" class="max-h-[380px] w-auto max-w-full object-contain mx-auto shadow-lg rounded-xl">
                 </div>
+                <!-- Gallery Thumbnails Row -->
+                <div id="modal-thumbnails" class="flex flex-wrap gap-3 justify-center"></div>
             </div>
 
             <!-- Right: Content & Bulleted Specs -->
@@ -596,11 +598,12 @@
                     <input type="number" step="0.01" id="prod-price" placeholder="Base Price in ZAR (e.g., 65.00)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
 
-                <!-- Row 2: Category & Image URL -->
+                <!-- Row 2: Category & Image URL (Supports multiple comma-separated URLs) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <input type="text" id="prod-cat" placeholder="Category (e.g., Compound Butter)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
-                    <input type="url" id="prod-img" placeholder="Image URL" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <input type="text" id="prod-img" placeholder="Image URL(s) separated by commas" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
+                <p class="text-[11px] text-safari-espresso/60 -mt-2">Tip: For multiple images, separate URLs with commas (e.g. url1.jpg, url2.jpg)</p>
 
                 <!-- Row 3: Visibility Checkbox -->
                 <div class="flex items-center gap-3 bg-safari-surface border border-safari-border rounded-xl px-4 py-3.5 shadow-sm">
@@ -683,7 +686,7 @@
                 stock: 20,
                 visible: true,
                 sku: "KG-SA-EAGLE-BAG",
-                image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
+                image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800, https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800",
                 variants: "Standard:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800, Deluxe Combo:+80:https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800",
                 extra1: "• 1 x Ou Kalahari Kettie: Features a premium metal frame combined with ergonomic wood-grain handle scales.\n• 1 x Camo Bag: Heavy-duty tactical pouch with belt loops.\n• 1 x Pack of 50 Clay Ammo Balls & Extra Bands.",
                 extra2: "• Calibrated for high-velocity precision shooting.\n• 100% biodegradable and eco-friendly components.",
@@ -757,28 +760,36 @@
                 return;
             }
 
-            grid.innerHTML = filtered.map(p => `
-                <div class="bg-safari-surface border border-safari-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
-                    <div>
-                        <div class="h-60 overflow-hidden relative cursor-pointer bg-white flex items-center justify-center" onclick="openProductModal('${p.id}')">
-                            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-3 left-3 bg-safari-espresso/90 text-safari-parchment text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-md">
-                                ${p.category}
-                            </span>
+            grid.innerHTML = filtered.map(p => {
+                // Support multiple images separated by comma; pick the first one for grid thumbnail
+                let primaryImg = p.image || '';
+                if (primaryImg.includes(',')) {
+                    primaryImg = primaryImg.split(',')[0].trim();
+                }
+
+                return `
+                    <div class="bg-safari-surface border border-safari-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+                        <div>
+                            <div class="h-60 overflow-hidden relative cursor-pointer bg-white flex items-center justify-center" onclick="openProductModal('${p.id}')">
+                                <img src="${primaryImg}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <span class="absolute top-3 left-3 bg-safari-espresso/90 text-safari-parchment text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-md">
+                                    ${p.category}
+                                </span>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-heading font-black text-lg text-safari-espresso mb-1 line-clamp-1 cursor-pointer hover:text-safari-olive" onclick="openProductModal('${p.id}')">${p.name}</h3>
+                                <p class="text-xs text-safari-espresso/70 line-clamp-2 mb-4">${p.description}</p>
+                            </div>
                         </div>
-                        <div class="p-5">
-                            <h3 class="font-heading font-black text-lg text-safari-espresso mb-1 line-clamp-1 cursor-pointer hover:text-safari-olive" onclick="openProductModal('${p.id}')">${p.name}</h3>
-                            <p class="text-xs text-safari-espresso/70 line-clamp-2 mb-4">${p.description}</p>
+                        <div class="p-5 pt-0 flex items-center justify-between border-t border-safari-border/40 mt-auto">
+                            <span class="font-heading font-black text-xl text-safari-terracotta">R${parseFloat(p.price).toFixed(2)}</span>
+                            <button type="button" onclick="addToCart('${p.id}')" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-4 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
+                                Add to Cart
+                            </button>
                         </div>
                     </div>
-                    <div class="p-5 pt-0 flex items-center justify-between border-t border-safari-border/40 mt-auto">
-                        <span class="font-heading font-black text-xl text-safari-terracotta">R${parseFloat(p.price).toFixed(2)}</span>
-                        <button type="button" onclick="addToCart('${p.id}')" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-4 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         window.filterProducts = function(cat) {
@@ -802,7 +813,10 @@
             
             let variantName = "Standard";
             let priceMod = 0;
-            let variantImg = prod.image;
+            let primaryImg = prod.image || '';
+            if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
+            let variantImg = primaryImg;
+
             if (prod.variants) {
                 const parts = prod.variants.split(',');
                 if (parts.length > 0) {
@@ -892,11 +906,27 @@
             selectedProduct = products.find(p => p.id === id);
             if (!selectedProduct) return;
 
-            document.getElementById("modal-main-img").src = selectedProduct.image || '';
+            let imgRaw = selectedProduct.image || '';
+            let imageList = imgRaw.includes(',') ? imgRaw.split(',').map(s => s.trim()).filter(Boolean) : [imgRaw].filter(Boolean);
+
+            document.getElementById("modal-main-img").src = imageList[0] || '';
             document.getElementById("modal-cat").textContent = selectedProduct.category;
             document.getElementById("modal-title").textContent = selectedProduct.name;
             document.getElementById("modal-desc").textContent = selectedProduct.description || "";
             document.getElementById("modal-price").textContent = `R${parseFloat(selectedProduct.price).toFixed(2)}`;
+
+            // Render thumbnails if multiple images exist
+            const thumbContainer = document.getElementById("modal-thumbnails");
+            if (imageList.length > 1) {
+                thumbContainer.innerHTML = imageList.map((url, idx) => `
+                    <button type="button" onclick="switchModalImage('${url}', this)" class="w-14 h-14 rounded-lg overflow-hidden border-2 ${idx === 0 ? 'border-safari-olive shadow-md' : 'border-safari-border opacity-70'} hover:opacity-100 transition-all bg-white flex items-center justify-center">
+                        <img src="${url}" class="w-full h-full object-cover">
+                    </button>
+                `).join('');
+                thumbContainer.style.display = "flex";
+            } else {
+                thumbContainer.style.display = "none";
+            }
 
             const varContainer = document.getElementById("modal-variants-container");
             const varSection = document.getElementById("modal-variants-section");
@@ -907,8 +937,7 @@
                     const parts = v.split(':');
                     const name = parts[0] ? parts[0].trim() : "Option";
                     const priceMod = parts[1] ? parseFloat(parts[1].replace('+', '')) || 0 : 0;
-                    // Rejoin any colons in the URL (e.g. https://) so the full image link is intact
-                    const imageUrl = parts.length > 2 ? parts.slice(2).join(':').trim() : selectedProduct.image;
+                    const imageUrl = parts.length > 2 ? parts.slice(2).join(':').trim() : imageList[0];
                     return { name, priceMod, imageUrl };
                 });
                 selectedVariant = variantsList[0];
@@ -924,10 +953,10 @@
                 }
             } else {
                 varSection.classList.add("hidden");
-                selectedVariant = { name: "Standard", priceMod: 0, imageUrl: selectedProduct.image };
+                selectedVariant = { name: "Standard", priceMod: 0, imageUrl: imageList[0] };
             }
 
-            // Render extra fields, preserving line breaks / bullet formatting
+            // Render extra fields
             const extraContainer = document.getElementById("modal-extra-fields");
             let combinedExtras = [selectedProduct.extra1, selectedProduct.extra2, selectedProduct.extra3].filter(Boolean).join('\n');
 
@@ -939,6 +968,15 @@
             }
 
             document.getElementById("product-modal").classList.remove("hidden");
+        }
+
+        window.switchModalImage = function(url, btn) {
+            document.getElementById("modal-main-img").src = url;
+            if (selectedVariant) selectedVariant.imageUrl = url;
+            btn.parentElement.querySelectorAll('button').forEach(b => {
+                b.className = "w-14 h-14 rounded-lg overflow-hidden border-2 border-safari-border opacity-70 hover:opacity-100 transition-all bg-white flex items-center justify-center";
+            });
+            btn.className = "w-14 h-14 rounded-lg overflow-hidden border-2 border-safari-olive shadow-md transition-all bg-white flex items-center justify-center";
         }
 
         window.selectModalVariant = function(name, priceMod, imageUrl, btn) {
@@ -962,10 +1000,13 @@
 
         window.addModalItemToCart = function() {
             if (!selectedProduct) return;
+            let primaryImg = selectedProduct.image || '';
+            if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
+
             const finalPrice = parseFloat(selectedProduct.price) + (selectedVariant ? selectedVariant.priceMod : 0);
             cart.push({
                 ...selectedProduct,
-                image: selectedVariant && selectedVariant.imageUrl ? selectedVariant.imageUrl : selectedProduct.image,
+                image: selectedVariant && selectedVariant.imageUrl ? selectedVariant.imageUrl : primaryImg,
                 finalPrice,
                 selectedOption: selectedVariant ? selectedVariant.name : "Standard",
                 qty: 1
@@ -1068,6 +1109,9 @@
             }
 
             tbody.innerHTML = list.map(p => {
+                let primaryImg = p.image || '';
+                if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
+
                 const stockVal = p.stock !== undefined ? p.stock : 20;
                 const isLow = stockVal < 10;
                 const statusBadge = isLow 
@@ -1077,7 +1121,7 @@
                 return `
                     <tr class="border-b border-safari-border/50 hover:bg-safari-surface/50">
                         <td class="p-4 flex items-center gap-3">
-                            <img src="${p.image}" class="w-10 h-10 object-cover rounded-lg border">
+                            <img src="${primaryImg}" class="w-10 h-10 object-cover rounded-lg border">
                             <div>
                                 <span class="font-bold text-sm block">${p.name}</span>
                                 <span class="text-[10px] text-safari-espresso/50 font-mono">SKU: ${p.sku || 'N/A'}</span>
