@@ -71,7 +71,7 @@
             <div class="flex items-center gap-2 sm:gap-3">
                 <div id="auth-nav-container">
                     <button type="button" onclick="openAuthModal()" class="bg-safari-surface border border-safari-border hover:border-safari-olive px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 sm:gap-2 transition-all shadow-sm">
-                        <i class="fa-brands fa-google text-safari-terracotta"></i> <span id="auth-btn-text">Sign In</span>
+                        <i class="fa-solid fa-user text-safari-terracotta"></i> <span id="auth-btn-text">Sign In</span>
                     </button>
                 </div>
                 <!-- Management Dashboard Button (Visible only to admin) -->
@@ -316,31 +316,73 @@
         </div>
     </footer>
 
-    <!-- Customer Google Sign-In & Profile Modal -->
+    <!-- Customer Email/Password Sign-In & Profile Modal -->
     <div id="auth-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeAuthModal()"></div>
         <div class="bg-safari-parchment rounded-3xl max-w-md w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl">
             <div class="flex items-center justify-between mb-6 border-b border-safari-border pb-4">
                 <div class="flex items-center gap-2">
-                    <i class="fa-brands fa-google text-safari-terracotta text-lg"></i>
-                    <h3 class="font-heading font-black text-lg uppercase">Customer Sign In & Account</h3>
+                    <i class="fa-solid fa-user text-safari-terracotta text-lg"></i>
+                    <h3 class="font-heading font-black text-lg uppercase" id="auth-modal-title">Customer Sign In</h3>
                 </div>
                 <button type="button" onclick="closeAuthModal()" class="text-safari-espresso/60 hover:text-safari-espresso"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
 
-            <div id="auth-unauthenticated-view" class="space-y-5">
-                <p class="text-xs text-safari-espresso/80 leading-relaxed">
-                    Sign in securely with your Google account to create your verified customer profile, store delivery details, and place orders safely.
-                </p>
-                <button type="button" onclick="signInWithGoogle()" class="w-full bg-white hover:bg-safari-surface text-safari-espresso border border-safari-border py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-sm flex items-center justify-center gap-3">
-                    <i class="fa-brands fa-google text-red-500 text-base"></i> Continue with Google
-                </button>
+            <!-- Unauthenticated View (Login / Register Tabs) -->
+            <div id="auth-unauthenticated-view" class="space-y-4">
+                <div class="flex gap-2 bg-safari-surface p-1 rounded-xl border border-safari-border">
+                    <button type="button" onclick="switchAuthTab('login')" id="tab-login-btn" class="flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider bg-safari-olive text-white transition-all">Sign In</button>
+                    <button type="button" onclick="switchAuthTab('register')" id="tab-register-btn" class="flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso transition-all">Register</button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="login-form" onsubmit="handleFirebaseLogin(event)" class="space-y-3 pt-2">
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Email Address</label>
+                        <input type="email" id="login-email" required placeholder="your.email@example.com" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Password</label>
+                        <input type="password" id="login-password" required placeholder="••••••••" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                    </div>
+                    <button type="submit" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-md mt-2">
+                        Sign In →
+                    </button>
+                </form>
+
+                <!-- Register Form -->
+                <form id="register-form" onsubmit="handleFirebaseRegister(event)" class="space-y-3 pt-2 hidden">
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Full Name & Surname</label>
+                        <input type="text" id="reg-name" required placeholder="Carllo Swanepoel" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Email Address</label>
+                        <input type="email" id="reg-email" required placeholder="your.email@example.com" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Create Password (min 6 chars)</label>
+                        <input type="password" id="reg-password" required minlength="6" placeholder="••••••••" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Cell Number</label>
+                        <input type="tel" id="reg-phone" required placeholder="082 123 4567" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Delivery Address</label>
+                        <textarea id="reg-address" rows="2" required placeholder="Street, City, Postal Code" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-md mt-2">
+                        Create Account & Sign In →
+                    </button>
+                </form>
             </div>
 
+            <!-- Authenticated Profile View -->
             <div id="auth-authenticated-view" class="space-y-4 hidden">
                 <div class="bg-safari-surface p-4 rounded-2xl border border-safari-border text-center space-y-1">
                     <div id="user-display-email" class="font-heading font-bold text-xs text-safari-espresso"></div>
-                    <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2.5 py-0.5 rounded-full uppercase">Verified Google Session</span>
+                    <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2.5 py-0.5 rounded-full uppercase">Verified Firebase Session</span>
                 </div>
 
                 <form id="customer-profile-form" onsubmit="saveCustomerProfile(event)" class="space-y-3">
@@ -363,7 +405,7 @@
                         </div>
                     </div>
                     <button type="submit" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-md mt-2">
-                        Save Account Profile →
+                        Update Account Profile →
                     </button>
                 </form>
 
@@ -719,11 +761,11 @@
         </div>
     </div>
 
-    <!-- Firebase SDK Scripts & Popup Auth Logic -->
+    <!-- Firebase SDK Scripts & Email/Password Auth Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCWDrUEiZm3IftJfShyD2QsLZnOFdwo9g",
@@ -739,7 +781,6 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth(app);
-        const provider = new GoogleAuthProvider();
 
         const ADMIN_EMAIL = "csda.kettiesngoete@gmail.com";
 
@@ -879,14 +920,37 @@
             document.getElementById("auth-modal").classList.add("hidden");
         }
 
-        window.signInWithGoogle = async function() {
-            try {
-                const result = await signInWithPopup(auth, provider);
-                const user = result.user;
-                const googleEmail = user.email;
-                const googleName = user.displayName || "";
+        window.switchAuthTab = function(tab) {
+            const loginBtn = document.getElementById("tab-login-btn");
+            const regBtn = document.getElementById("tab-register-btn");
+            const loginForm = document.getElementById("login-form");
+            const regForm = document.getElementById("register-form");
+            const modalTitle = document.getElementById("auth-modal-title");
 
-                const isManagementAdmin = googleEmail.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+            if (tab === 'login') {
+                loginBtn.className = "flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider bg-safari-olive text-white transition-all";
+                regBtn.className = "flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso transition-all";
+                loginForm.classList.remove("hidden");
+                regForm.classList.add("hidden");
+                modalTitle.textContent = "Customer Sign In";
+            } else {
+                regBtn.className = "flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider bg-safari-olive text-white transition-all";
+                loginBtn.className = "flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso transition-all";
+                regForm.classList.remove("hidden");
+                loginForm.classList.add("hidden");
+                modalTitle.textContent = "Create Customer Account";
+            }
+        }
+
+        window.handleFirebaseLogin = async function(e) {
+            e.preventDefault();
+            const email = document.getElementById("login-email").value.trim();
+            const password = document.getElementById("login-password").value;
+
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                const isManagementAdmin = user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
 
                 if (isManagementAdmin) {
                     currentCustomer = {
@@ -894,15 +958,15 @@
                         name: "Carllo Swanepoel (Management)",
                         isAdmin: true
                     };
-                    alert("Management Admin verified successfully by Google.");
+                    alert("Management Admin signed in successfully.");
                 } else {
-                    const existing = customers.find(c => c.email.toLowerCase() === googleEmail.toLowerCase());
+                    const existing = customers.find(c => c.email.toLowerCase() === user.email.toLowerCase());
                     if (existing) {
                         currentCustomer = { ...existing, isAdmin: false };
                     } else {
                         currentCustomer = {
-                            email: googleEmail,
-                            name: googleName,
+                            email: user.email,
+                            name: user.email.split('@')[0],
                             phone: "",
                             address: "",
                             joinedDate: new Date().toISOString().split('T')[0],
@@ -915,8 +979,43 @@
                 updateAuthNavUI();
                 openAuthModal();
             } catch (error) {
-                console.error("Google Sign-In Error:", error);
-                alert("Google Sign-In failed: " + error.message);
+                console.error("Login Error:", error);
+                alert("Sign-in failed: " + error.message);
+            }
+        }
+
+        window.handleFirebaseRegister = async function(e) {
+            e.preventDefault();
+            const name = document.getElementById("reg-name").value.trim();
+            const email = document.getElementById("reg-email").value.trim();
+            const password = document.getElementById("reg-password").value;
+            const phone = document.getElementById("reg-phone").value.trim();
+            const address = document.getElementById("reg-address").value.trim();
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                const isManagementAdmin = user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+
+                currentCustomer = {
+                    email: user.email,
+                    name: name,
+                    phone: phone,
+                    address: address,
+                    joinedDate: new Date().toISOString().split('T')[0],
+                    isAdmin: isManagementAdmin
+                };
+
+                const docRef = await addDoc(collection(db, "customers"), currentCustomer);
+                currentCustomer.id = docRef.id;
+
+                localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
+                updateAuthNavUI();
+                openAuthModal();
+                alert("Account created and signed in successfully!");
+            } catch (error) {
+                console.error("Registration Error:", error);
+                alert("Registration failed: " + error.message);
             }
         }
 
@@ -950,7 +1049,10 @@
             }
         }
 
-        window.signOutCustomer = function() {
+        window.signOutCustomer = async function() {
+            try {
+                await signOut(auth);
+            } catch (e) {}
             currentCustomer = null;
             localStorage.removeItem("kng_customer_session");
             updateAuthNavUI();
@@ -1308,7 +1410,7 @@
         window.openCheckoutModal = function() {
             if (cart.length === 0) { alert("Your cart is empty!"); return; }
             if (!currentCustomer) {
-                alert("Please sign in with Google first to place your order.");
+                alert("Please sign in first to place your order.");
                 openAuthModal();
                 return;
             }
@@ -1348,7 +1450,7 @@
                 closeCheckoutModal();
                 document.getElementById("checkout-form").reset();
             } catch (err) {
-                alert("Order placed locally! (Configure Firebase credentials to persist online).");
+                alert("Order placed locally!");
                 cart = [];
                 updateCartUI();
                 closeCheckoutModal();
@@ -1404,7 +1506,6 @@
             if (!currentCustomer || !currentCustomer.isAdmin) return;
             document.getElementById("stat-total-products").textContent = products.length;
             document.getElementById("stat-total-customers").textContent = customers.length;
-            const lowStockCount = products.filter(p => (p.stock || 0) < 10).length;
             document.getElementById("stat-total-orders").textContent = orders.length;
             
             const totalRevenue = orders.reduce((sum, o) => sum + (o.total || 0), 0);
