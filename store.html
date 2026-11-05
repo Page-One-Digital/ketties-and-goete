@@ -53,14 +53,10 @@
     <!-- Sticky Navigation -->
     <nav class="sticky top-0 z-40 bg-safari-parchment/95 backdrop-blur-md border-b border-safari-border transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
+            <!-- Brand Logo Image -->
             <a href="#" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 sm:w-11 sm:h-11 bg-safari-espresso text-safari-parchment rounded-lg flex items-center justify-center font-heading font-black text-lg sm:text-xl shadow-md group-hover:bg-safari-olive transition-colors">
-                    K&G
-                </div>
-                <div>
-                    <span class="font-heading font-black text-lg sm:text-xl tracking-wider block leading-tight">KETTIES & GOETE</span>
-                    <span class="text-[9px] sm:text-[10px] tracking-widest text-safari-olive uppercase font-semibold">South African Heritage Gear</span>
+                <div class="h-10 sm:h-11 flex items-center justify-center">
+                    <img src="https://raw.githubusercontent.com/Page-One-Digital/ketties-and-goete/refs/heads/main/assets/KnG%20Logo.png" alt="Ketties & Goete Logo" class="h-full w-auto object-contain">
                 </div>
             </a>
 
@@ -112,10 +108,8 @@
                 </div>
             </div>
 
-            <!-- Dynamic Best Seller / Ou Kalahari Highlight Card -->
-            <div class="lg:col-span-5" id="hero-best-seller-container">
-                <!-- Dynamically populated via JavaScript from your Best Seller checkbox -->
-            </div>
+            <!-- Dynamic Best Seller Highlight Card -->
+            <div class="lg:col-span-5" id="hero-best-seller-container"></div>
         </div>
     </section>
 
@@ -281,7 +275,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 border-b border-safari-border/20 pb-10 sm:pb-12">
             <div class="space-y-4 md:col-span-2">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-safari-olive text-white rounded-lg flex items-center justify-center font-heading font-black text-lg">K&G</div>
+                    <img src="https://raw.githubusercontent.com/Page-One-Digital/ketties-and-goete/refs/heads/main/assets/KnG%20Logo.png" alt="Ketties & Goete Logo" class="h-9 w-auto object-contain">
                     <span class="font-heading font-black text-xl tracking-wider">KETTIES & GOETE</span>
                 </div>
                 <p class="text-safari-borderLight text-xs sm:text-sm max-w-sm">
@@ -721,7 +715,6 @@
             const container = document.getElementById("hero-best-seller-container");
             if (!container) return;
 
-            // Find product checked as Best Seller, or fallback to the first combo or product
             let bestSeller = products.find(p => p.isBestSeller === true) || products.find(p => p.category === 'Combos') || products[0];
 
             if (!bestSeller) {
@@ -768,7 +761,9 @@
 
             grid.innerHTML = filtered.map(p => {
                 let primaryImg = p.image || '';
-                if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
+                if (primaryImg.includes(',')) {
+                    primaryImg = primaryImg.split(',')[0].trim();
+                }
 
                 return `
                     <div class="bg-safari-surface border border-safari-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
@@ -1199,7 +1194,6 @@
             const id = document.getElementById("prod-edit-id").value;
             const isBestSellerChecked = document.getElementById("prod-bestseller").checked;
 
-            // If this product is set as Best Seller, unset it on all other products locally/remotely
             if (isBestSellerChecked) {
                 products.forEach(p => { p.isBestSeller = false; });
             }
