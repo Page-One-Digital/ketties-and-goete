@@ -719,11 +719,11 @@
         </div>
     </div>
 
-    <!-- Firebase SDK Scripts & Integrated Security Logic -->
+    <!-- Firebase SDK Scripts & Popup Auth Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-        import { getAuth, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCWDrUEiZm3IftJfShyD2QsLZnOFdwo9g",
@@ -784,49 +784,6 @@
                 description: "The SA Eagle represents the pinnacle of South African outdoor engineering."
             }
         ];
-
-        // Check for result when user returns from Google redirect
-        getRedirectResult(auth)
-          .then(async (result) => {
-            if (result && result.user) {
-              const user = result.user;
-              const googleEmail = user.email;
-              const googleName = user.displayName || "";
-
-              const isManagementAdmin = googleEmail.toLowerCase() === ADMIN_EMAIL.toLowerCase();
-
-              if (isManagementAdmin) {
-                currentCustomer = {
-                  email: ADMIN_EMAIL,
-                  name: "Carllo Swanepoel (Management)",
-                  isAdmin: true
-                };
-                alert("Management Admin verified successfully by Google.");
-              } else {
-                const existing = customers.find(c => c.email.toLowerCase() === googleEmail.toLowerCase());
-                if (existing) {
-                  currentCustomer = { ...existing, isAdmin: false };
-                } else {
-                  currentCustomer = {
-                    email: googleEmail,
-                    name: googleName,
-                    phone: "",
-                    address: "",
-                    joinedDate: new Date().toISOString().split('T')[0],
-                    isAdmin: false
-                  };
-                }
-              }
-
-              localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
-              updateAuthNavUI();
-              openAuthModal();
-            }
-          })
-          .catch((error) => {
-            console.error("Google Redirect Auth Error:", error);
-            alert("Google Sign-In failed: " + error.message);
-          });
 
         async function initDatabase() {
             try {
@@ -924,7 +881,39 @@
 
         window.signInWithGoogle = async function() {
             try {
-                await signInWithRedirect(auth, provider);
+                const result = await signInWithPopup(auth, provider);
+                const user = result.user;
+                const googleEmail = user.email;
+                const googleName = user.displayName || "";
+
+                const isManagementAdmin = googleEmail.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+
+                if (isManagementAdmin) {
+                    currentCustomer = {
+                        email: ADMIN_EMAIL,
+                        name: "Carllo Swanepoel (Management)",
+                        isAdmin: true
+                    };
+                    alert("Management Admin verified successfully by Google.");
+                } else {
+                    const existing = customers.find(c => c.email.toLowerCase() === googleEmail.toLowerCase());
+                    if (existing) {
+                        currentCustomer = { ...existing, isAdmin: false };
+                    } else {
+                        currentCustomer = {
+                            email: googleEmail,
+                            name: googleName,
+                            phone: "",
+                            address: "",
+                            joinedDate: new Date().toISOString().split('T')[0],
+                            isAdmin: false
+                        };
+                    }
+                }
+
+                localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
+                updateAuthNavUI();
+                openAuthModal();
             } catch (error) {
                 console.error("Google Sign-In Error:", error);
                 alert("Google Sign-In failed: " + error.message);
