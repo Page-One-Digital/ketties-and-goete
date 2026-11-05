@@ -604,10 +604,10 @@
                     <label for="prod-visible" class="text-xs font-semibold text-safari-espresso cursor-pointer">Product Visible to Public (Uncheck to mark Out of Stock / Hidden)</label>
                 </div>
 
-                <!-- Row 4: Variants comma-separated (Format: Name:+Price:ImageURL:Description) -->
+                <!-- Row 4: Variants comma-separated (Format: Name:+Price:ImageURL) -->
                 <div>
-                    <input type="text" id="prod-variants" placeholder="Variants format: Name:+Price:ImageURL:Description (Comma separated)" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
-                    <p class="text-[11px] text-safari-espresso/60 mt-1">Example: 1 Kettie:+0:https://img.com/1.jpg:Single standard kettie, 2 Ketties Combo:+100:https://img.com/2.jpg:Two ketties plus extra free targets and pouch!</p>
+                    <input type="text" id="prod-variants" placeholder="Variants format: Name:+Price:ImageURL (Comma separated)" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <p class="text-[11px] text-safari-espresso/60 mt-1">Example: Black:+0:https://img.com/black.jpg, Silver:+51:https://img.com/silver.jpg</p>
                 </div>
 
                 <!-- Row 5: Extra Spec / Detail 1 -->
@@ -676,7 +676,7 @@
                 visible: true,
                 sku: "KG-SA-EAGLE-BAG",
                 image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                variants: "Standard:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800:Includes protective case & spare bands., Deluxe Combo:+80:https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800:Includes deluxe carry bag, 200 clay balls and spare dual-tier rubber flatbands!",
+                variants: "Standard:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800, Deluxe Combo:+80:https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800",
                 extra1: "Includes protective case & spare bands",
                 extra2: "Weight: 450g total package",
                 extra3: "100% South African handcrafted steel",
@@ -690,7 +690,7 @@
                 visible: true,
                 sku: "KG-SL-SAE81-TE",
                 image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                variants: "1 Kettie:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800:Single standard SA Eagle slingshot with default precision fiber-optic sights., 2 Ketties Combo:+300:https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800:Buy 2 Ketties for a special discounted bundle price, plus get an extra pack of 100 clay ammunition spheres free!",
+                variants: "Black:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800, Silver:+51:https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800, Red:+51:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800, Yellow:+51:https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800, Blue:+51:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
                 extra1: "Dual Fiber Optic Sights",
                 extra2: "Weight: 280g",
                 extra3: "Quick-release Press-clip attachment",
@@ -786,17 +786,22 @@
             
             let variantName = "Standard";
             let priceMod = 0;
+            let variantImg = prod.image;
             if (prod.variants) {
                 const parts = prod.variants.split(',');
                 if (parts.length > 0) {
                     const sub = parts[0].split(':');
                     variantName = sub[0].trim();
                     priceMod = sub[1] ? parseFloat(sub[1].replace('+', '')) || 0 : 0;
+                    if (sub[2] && sub[2].startsWith('http')) {
+                        variantImg = sub[2].trim();
+                    }
                 }
             }
 
             cart.push({ 
                 ...prod, 
+                image: variantImg,
                 finalPrice: parseFloat(prod.price) + priceMod,
                 selectedOption: variantName, 
                 qty: 1 
@@ -887,28 +892,23 @@
                     return { 
                         name: parts[0] ? parts[0].trim() : "Option", 
                         priceMod: parts[1] ? parseFloat(parts[1].replace('+', '')) || 0 : 0,
-                        imageUrl: parts[2] && parts[2].startsWith('http') ? parts[2].trim() : selectedProduct.image,
-                        description: parts[3] ? parts[3].trim() : (parts[2] && !parts[2].startsWith('http') ? parts[2].trim() : selectedProduct.description)
+                        imageUrl: parts[2] && parts[2].startsWith('http') ? parts[2].trim() : selectedProduct.image
                     };
                 });
                 selectedVariant = variantsList[0];
 
                 varContainer.innerHTML = variantsList.map((v, i) => `
-                    <button type="button" onclick="selectModalVariant('${v.name.replace(/'/g, "\\'")}', ${v.priceMod}, '${v.imageUrl}', '${(v.description || '').replace(/'/g, "\\'")}', this)" class="px-4 py-2 rounded-lg text-xs border transition-all font-semibold ${i === 0 ? 'bg-safari-olive text-white border-safari-olive' : 'bg-safari-surface text-safari-espresso border-safari-border'}">
+                    <button type="button" onclick="selectModalVariant('${v.name.replace(/'/g, "\\'")}', ${v.priceMod}, '${v.imageUrl}', this)" class="px-4 py-2 rounded-lg text-xs border transition-all font-semibold ${i === 0 ? 'bg-safari-olive text-white border-safari-olive' : 'bg-safari-surface text-safari-espresso border-safari-border'}">
                         ${v.name}
                     </button>
                 `).join('');
 
-                // Apply initial variant image and description if specified
                 if (selectedVariant.imageUrl) {
                     document.getElementById("modal-main-img").src = selectedVariant.imageUrl;
                 }
-                if (selectedVariant.description) {
-                    document.getElementById("modal-desc").textContent = selectedVariant.description;
-                }
             } else {
                 varSection.classList.add("hidden");
-                selectedVariant = { name: "Standard", priceMod: 0, imageUrl: selectedProduct.image, description: selectedProduct.description };
+                selectedVariant = { name: "Standard", priceMod: 0, imageUrl: selectedProduct.image };
             }
 
             const extraContainer = document.getElementById("modal-extra-fields");
@@ -922,16 +922,13 @@
             document.getElementById("product-modal").classList.remove("hidden");
         }
 
-        window.selectModalVariant = function(name, priceMod, imageUrl, description, btn) {
-            selectedVariant = { name, priceMod, imageUrl, description };
+        window.selectModalVariant = function(name, priceMod, imageUrl, btn) {
+            selectedVariant = { name, priceMod, imageUrl };
             const finalP = parseFloat(selectedProduct.price) + priceMod;
             document.getElementById("modal-price").textContent = `R${finalP.toFixed(2)}`;
             
             if (imageUrl) {
                 document.getElementById("modal-main-img").src = imageUrl;
-            }
-            if (description) {
-                document.getElementById("modal-desc").textContent = description;
             }
 
             btn.parentElement.querySelectorAll('button').forEach(b => {
