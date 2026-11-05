@@ -3,38 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ketties & Goete | Authentic South African Outdoor Gear</title>
+    <title>Ketties & Goete | Online Store & Outdoor Gear</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Montserrat & Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- SheetJS for Excel (.xlsx) Export -->
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-
-    <!-- Tailwind Custom Theme Configuration -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         safari: {
-                            parchment: '#F4F2EC',
-                            surface: '#EBE6DC',
-                            espresso: '#2D2B28',
-                            olive: '#4B5320',
-                            oliveDark: '#353B16',
-                            terracotta: '#A35C3E',
-                            terracottaDark: '#84472F',
-                            border: '#C5B9AB',
-                            borderLight: '#DFD8CE'
+                            espresso: '#2C221E',
+                            olive: '#4A5320',
+                            oliveDark: '#383F17',
+                            terracotta: '#C85A32',
+                            terracottaDark: '#A64824',
+                            parchment: '#F9F6F0',
+                            surface: '#EFECE6',
+                            border: '#D8D0C5',
+                            borderLight: '#ECE6DC'
                         }
                     },
                     fontFamily: {
@@ -45,611 +32,510 @@
             }
         }
     </script>
+    
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- SheetJS for Excel Export -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
-<body class="bg-safari-parchment text-safari-espresso font-body antialiased selection:bg-safari-olive selection:text-white overflow-x-hidden">
+<body class="bg-safari-parchment text-safari-espresso font-body antialiased min-h-screen flex flex-col justify-between selection:bg-safari-olive selection:text-white">
 
     <!-- Top Announcement Bar -->
-    <div id="announcement-banner" class="bg-safari-espresso text-safari-parchment text-[11px] sm:text-xs font-medium py-2 px-3 text-center tracking-wider">
-        <span>🇿🇦 CRAFTED IN SOUTH AFRICA • FREE NATIONWIDE SHIPPING ON ORDERS OVER R600 • 100% NATURAL LATEX & BIO-CLAY</span>
+    <div id="announcement-banner" class="bg-safari-espresso text-safari-parchment text-xs font-bold py-2 px-4 text-center tracking-widest uppercase">
+        <span>Gear up for your next outdoor expedition • Free delivery on orders over R600 in Centurion</span>
     </div>
 
-    <!-- Sticky Navigation -->
-    <nav class="sticky top-0 z-40 bg-safari-parchment/95 backdrop-blur-md border-b border-safari-border transition-all">
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-safari-parchment/90 backdrop-blur-md border-b border-safari-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="h-10 sm:h-11 flex items-center justify-center">
-                    <img src="https://raw.githubusercontent.com/Page-One-Digital/ketties-and-goete/refs/heads/main/assets/KnG%20Logo.png" alt="Ketties & Goete Logo" class="h-full w-auto object-contain">
+            <a href="store.html" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-safari-espresso flex items-center justify-center text-safari-parchment font-heading font-black text-xl shadow">
+                    K
                 </div>
                 <div>
-                    <span class="font-heading font-black text-lg sm:text-xl tracking-wider block leading-tight">KETTIES & GOETE</span>
-                    <span class="text-[9px] sm:text-[10px] tracking-widest text-safari-olive uppercase font-semibold">South African Heritage Gear</span>
+                    <h1 class="font-heading font-black text-lg sm:text-xl tracking-wider text-safari-espresso uppercase">Ketties & Goete</h1>
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-safari-olive block">Tactical & Outdoor Outfitters</span>
                 </div>
             </a>
 
-            <!-- User Auth & Cart Actions -->
-            <div class="flex items-center gap-2 sm:gap-3">
-                <div id="auth-nav-container">
-                    <button type="button" onclick="openAuthModal()" class="bg-safari-surface border border-safari-border hover:border-safari-olive px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 sm:gap-2 transition-all shadow-sm">
-                        <i class="fa-brands fa-google text-safari-terracotta"></i> <span id="auth-btn-text">Sign In</span>
-                    </button>
-                </div>
-                <!-- Management Dashboard Button (Visible only to admin csda.kettiesngoete@gmail.com) -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                <!-- Management Admin Button (Hidden by default) -->
                 <div id="admin-nav-container" class="hidden">
-                    <button type="button" onclick="openAdminModal(event)" class="bg-safari-espresso text-safari-parchment hover:bg-safari-olive px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 sm:gap-2 transition-all shadow-sm">
-                        <i class="fa-solid fa-shield-halved text-safari-terracotta"></i> <span>Management</span>
+                    <button type="button" onclick="openAdminModal(event)" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-3.5 sm:px-4 py-2 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors flex items-center gap-2 shadow">
+                        <i class="fa-solid fa-gauge"></i>
+                        <span class="hidden sm:inline">Management</span>
                     </button>
                 </div>
-                <button type="button" onclick="toggleCartDrawer()" class="relative bg-safari-espresso text-safari-parchment hover:bg-safari-olive px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl flex items-center gap-1.5 sm:gap-2 font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-sm">
-                    <i class="fa-solid fa-shopping-bag text-sm"></i> <span class="hidden sm:inline">Cart</span>
-                    <span id="cart-badge" class="absolute -top-2 -right-2 bg-safari-terracotta text-white text-xs font-bold w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center shadow">0</span>
+
+                <!-- Customer Account Button -->
+                <button type="button" onclick="openAuthModal()" class="bg-safari-surface hover:bg-safari-border text-safari-espresso px-3.5 sm:px-4 py-2 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors flex items-center gap-2 border border-safari-border">
+                    <i class="fa-solid fa-user text-safari-olive"></i>
+                    <span id="auth-btn-text">Sign In</span>
+                </button>
+
+                <!-- Cart Toggle Button -->
+                <button type="button" onclick="toggleCartDrawer()" class="relative bg-safari-terracotta hover:bg-safari-terracottaDark text-white p-2.5 sm:px-4 sm:py-2 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors flex items-center gap-2 shadow">
+                    <i class="fa-solid fa-basket-shopping text-base"></i>
+                    <span class="hidden sm:inline">Cart</span>
+                    <span id="cart-badge" class="absolute -top-2 -right-2 bg-safari-espresso text-safari-parchment text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold border-2 border-safari-parchment">0</span>
                 </button>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="relative bg-safari-espresso text-safari-parchment overflow-hidden py-16 sm:py-20 lg:py-28">
-        <div class="absolute inset-0 z-0 opacity-40 sm:opacity-50 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1920');"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-safari-espresso/95 via-safari-espresso/70 to-transparent z-0"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            <div class="lg:col-span-7 space-y-5 sm:space-y-6 text-center lg:text-left">
-                <div class="inline-flex items-center gap-2 bg-safari-olive text-white px-3 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-widest uppercase shadow-sm">
-                    <span>⛰️</span> SOUTH AFRICAN VELD & HERITAGE GEAR
-                </div>
-                <h1 class="font-heading font-black text-3xl sm:text-5xl lg:text-6xl tracking-tight uppercase leading-tight sm:leading-none drop-shadow-md">
-                    GEAR YOU CAN <span class="bg-safari-olive text-white px-2.5 sm:px-3 py-1 inline-block mt-2 rounded shadow-inner">COUNT ON.</span>
-                </h1>
-                <p class="text-safari-parchment text-sm sm:text-lg max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow">
-                    Precision premium slingshots, therapeutic natural latex flatbands, and biodegradable clay pellets built for target precision and rugged outdoor expeditions.
+    <!-- Main Content Grid -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 w-full">
+        
+        <!-- Hero Banner Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 sm:mb-16 items-center">
+            <div class="lg:col-span-7 space-y-6">
+                <span class="bg-safari-olive/10 text-safari-olive text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-safari-olive/20 inline-block">
+                    Authentic South African Gear
+                </span>
+                <h2 class="font-heading font-black text-3xl sm:text-5xl text-safari-espresso uppercase leading-tight">
+                    Precision Craftsmanship for the Great Outdoors
+                </h2>
+                <p class="text-safari-espresso/80 text-sm sm:text-base leading-relaxed max-w-xl">
+                    Discover professional-grade slingshots, rugged outdoor equipment, and exclusive tactical bundles engineered for accuracy, durability, and adventure.
                 </p>
-                <div class="flex justify-center lg:justify-start pt-2">
-                    <a href="#shop" onclick="filterProducts('all')" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-all shadow-lg flex items-center justify-center gap-2">
-                        EXPLORE CATALOG <i class="fa-solid fa-arrow-right"></i>
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a href="#store-catalog" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-6 py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
+                        Browse Catalog
                     </a>
                 </div>
             </div>
-
-            <!-- Dynamic Best Seller Highlight Card -->
-            <div class="lg:col-span-5" id="hero-best-seller-container"></div>
-        </div>
-    </section>
-
-    <!-- Premium Category Hubs Between Hero & Store -->
-    <section class="py-12 sm:py-16 bg-safari-surface/50 border-b border-safari-border/60">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-safari-olive block mb-1">Shop By Collection</span>
-            <h2 class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase tracking-tight mb-6 sm:mb-8">Premium Category Hubs</h2>
             
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-                <a href="#shop" onclick="filterProducts('Ketties')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
-                        <i class="fa-solid fa-bullseye text-base sm:text-lg"></i>
-                    </div>
-                    <h3 class="font-heading font-black text-xs sm:text-sm uppercase text-safari-espresso mb-1 text-center">Slingshots</h3>
-                    <span class="text-[9px] sm:text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore</span>
-                </a>
-
-                <a href="#shop" onclick="filterProducts('Flatbands')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
-                        <i class="fa-solid fa-fire text-base sm:text-lg"></i>
-                    </div>
-                    <h3 class="font-heading font-black text-xs sm:text-sm uppercase text-safari-espresso mb-1 text-center">Bands & Sets</h3>
-                    <span class="text-[9px] sm:text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore</span>
-                </a>
-
-                <a href="#shop" onclick="filterProducts('Clay Pellets')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
-                        <i class="fa-solid fa-arrow-right text-base sm:text-lg"></i>
-                    </div>
-                    <h3 class="font-heading font-black text-xs sm:text-sm uppercase text-safari-espresso mb-1 text-center">Ammunition</h3>
-                    <span class="text-[9px] sm:text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore</span>
-                </a>
-
-                <a href="#shop" onclick="filterProducts('Accessories')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
-                        <i class="fa-solid fa-shield-halved text-base sm:text-lg"></i>
-                    </div>
-                    <h3 class="font-heading font-black text-xs sm:text-sm uppercase text-safari-espresso mb-1 text-center">Equipment</h3>
-                    <span class="text-[9px] sm:text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore</span>
-                </a>
-
-                <a href="#shop" onclick="filterProducts('Combos')" class="bg-safari-parchment border border-safari-border hover:border-safari-terracotta p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center col-span-2 sm:col-span-1">
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-terracotta group-hover:text-white transition-colors shadow-inner">
-                        <i class="fa-solid fa-wand-magic-sparkles text-base sm:text-lg"></i>
-                    </div>
-                    <h3 class="font-heading font-black text-xs sm:text-sm uppercase text-safari-espresso mb-1 text-center">Gift Bundles</h3>
-                    <span class="text-[9px] sm:text-[10px] text-safari-terracotta font-bold uppercase tracking-wider">Explore</span>
-                </a>
+            <div id="hero-best-seller-container" class="lg:col-span-5">
+                <!-- Dynamically Rendered Best Seller Card -->
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Main Shop Section with Left Sidebar Filters -->
-    <section id="shop" class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28">
-        <div class="mb-8 sm:mb-10 border-b border-safari-border pb-6 flex items-center justify-between">
-            <div>
-                <a href="#shop" onclick="filterProducts('all')" class="font-heading font-black text-2xl sm:text-4xl text-safari-espresso hover:text-safari-olive transition-colors uppercase tracking-tight block">
-                    SHOP THE CATALOG
-                </a>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <!-- Left Sidebar Filter Column -->
-            <div class="lg:col-span-3 bg-safari-surface border border-safari-border p-6 rounded-2xl shadow-sm sticky top-28 space-y-4">
-                <div class="flex items-center justify-between pb-3 border-b border-safari-border">
-                    <h3 class="font-heading font-bold text-xs uppercase tracking-widest text-safari-espresso">Filter Categories</h3>
-                    <i class="fa-solid fa-filter text-safari-olive text-xs"></i>
+        <!-- Store Catalog & Sidebar -->
+        <section id="store-catalog" class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            
+            <!-- Category Sidebar Filter -->
+            <aside class="lg:col-span-1 space-y-4">
+                <div class="bg-safari-surface/50 border border-safari-border rounded-2xl p-5 sticky top-28">
+                    <h3 class="font-heading font-black text-sm uppercase tracking-wider text-safari-espresso mb-4 pb-2 border-b border-safari-border flex items-center gap-2">
+                        <i class="fa-solid fa-filter text-safari-olive"></i> Categories
+                    </h3>
+                    <div id="sidebar-category-filters" class="space-y-2">
+                        <!-- Dynamically generated categories -->
+                    </div>
                 </div>
-                <div id="sidebar-category-filters" class="flex flex-col gap-2">
-                    <button type="button" onclick="filterProducts('all')" class="cat-btn active w-full text-left bg-safari-olive text-white px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between">
-                        <span>All Products</span>
-                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    </button>
+            </aside>
+
+            <!-- Product Cards Grid -->
+            <div class="lg:col-span-3">
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-safari-border">
+                    <h3 class="font-heading font-black text-xl uppercase tracking-wider text-safari-espresso">Product Catalog</h3>
+                </div>
+                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamically populated product cards -->
                 </div>
             </div>
 
-            <!-- Right Product Grid Column -->
-            <div class="lg:col-span-9">
-                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
-                    <div class="col-span-full text-center py-12 text-safari-espresso/60">
-                        <i class="fa-solid fa-spinner fa-spin text-3xl mb-3 text-safari-olive"></i>
-                        <p>Loading live catalog from Firebase database...</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-safari-espresso/95 text-safari-parchment py-12 sm:py-16 border-t border-safari-border/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 border-b border-safari-border/20 pb-10 sm:pb-12">
-            <div class="space-y-4 md:col-span-2">
-                <div class="flex items-center gap-3">
-                    <img src="https://raw.githubusercontent.com/Page-One-Digital/ketties-and-goete/refs/heads/main/assets/KnG%20Logo.png" alt="Ketties & Goete Logo" class="h-9 w-auto object-contain">
-                    <span class="font-heading font-black text-xl tracking-wider">KETTIES & GOETE</span>
-                </div>
-                <p class="text-safari-borderLight text-xs sm:text-sm max-w-sm">
-                    South Africa's premier destination for artisanal outdoor shooting gear, therapeutic flatbands, and heritage accessories. Built for precision and backyard adventure.
-                </p>
-                <div class="text-xs text-safari-border">
-                    © 2026 Ketties & Goete (Pty) Ltd. Proudly crafted in South Africa.
-                </div>
-            </div>
+    <footer class="bg-safari-espresso text-safari-parchment border-t border-safari-border mt-16 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
             <div>
-                <h4 class="font-heading font-bold text-xs sm:text-sm uppercase tracking-widest text-safari-olive mb-3 sm:mb-4">Quick Links</h4>
-                <ul class="space-y-2 text-xs sm:text-sm text-safari-borderLight">
-                    <li><a href="#shop" onclick="filterProducts('all')" class="hover:text-white transition-colors">Shop Catalog</a></li>
-                </ul>
+                <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
+                    <div class="w-8 h-8 rounded-lg bg-safari-olive flex items-center justify-center text-white font-heading font-black text-sm">K</div>
+                    <span class="font-heading font-bold text-base uppercase tracking-wider">Ketties & Goete</span>
+                </div>
+                <p class="text-xs text-safari-borderLight">Rugged South African outdoor gear & tactical equipment.</p>
             </div>
-            <div>
-                <h4 class="font-heading font-bold text-xs sm:text-sm uppercase tracking-widest text-safari-olive mb-3 sm:mb-4">Customer Support</h4>
-                <ul class="space-y-2 text-xs sm:text-sm text-safari-borderLight">
-                    <li><span>Centurion, Gauteng, South Africa</span></li>
-                    <li><span>support@kettiesandgoete.co.za</span></li>
-                    <li><span>Nationwide Courier Delivery</span></li>
-                </ul>
+            <div class="text-xs text-safari-borderLight">
+                &copy; 2026 Ketties en Goete. All rights reserved. Powered by CSDigital Agency.
             </div>
         </div>
     </footer>
 
-    <!-- Customer Log In / Account Modal (Exact Match to Pic 2 & Pic 3) -->
-    <div id="auth-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
-        <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeAuthModal()"></div>
-        <div class="bg-white rounded-3xl max-w-md w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl">
+    <!-- Cart Slide-over Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="toggleCartDrawer()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-md w-full bg-safari-parchment shadow-2xl flex flex-col justify-between border-l border-safari-border">
+            <div class="p-6 border-b border-safari-border flex items-center justify-between">
+                <h3 class="font-heading font-black text-lg uppercase tracking-wider text-safari-espresso">Shopping Cart</h3>
+                <button type="button" onclick="toggleCartDrawer()" class="w-8 h-8 rounded-lg bg-safari-surface flex items-center justify-center text-safari-espresso hover:bg-safari-border">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
             
-            <div class="flex items-center justify-between mb-6">
-                <h3 id="auth-modal-title" class="font-heading font-black text-2xl text-safari-espresso">Log In</h3>
-                <button type="button" onclick="closeAuthModal()" class="text-safari-terracotta hover:text-safari-terracottaDark text-xl font-bold"><i class="fa-solid fa-xmark"></i></button>
+            <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+                <!-- Cart items populate here -->
             </div>
 
-            <!-- Log In / Account View -->
-            <div id="auth-form-container" class="space-y-4">
-                <!-- Google Continue Button -->
-                <button type="button" onclick="signInWithGoogle()" class="w-full bg-white hover:bg-safari-parchment text-safari-espresso border border-amber-300 py-3.5 rounded-2xl font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-sm flex items-center justify-center gap-3">
-                    <span class="text-red-600 font-black text-base">G</span> Continue with Google
+            <div class="p-6 border-t border-safari-border bg-safari-surface/60 space-y-3">
+                <div class="flex justify-between text-xs font-semibold text-safari-espresso/80">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal">R0.00</span>
+                </div>
+                <div class="flex justify-between text-xs font-semibold text-safari-espresso/80">
+                    <span>Shipping (Free &gt; R600)</span>
+                    <span id="cart-shipping">R100.00</span>
+                </div>
+                <div class="flex justify-between text-base font-heading font-black text-safari-espresso pt-2 border-t border-safari-border">
+                    <span>Total</span>
+                    <span id="cart-total" class="text-safari-terracotta">R0.00</span>
+                </div>
+                <button type="button" onclick="openCheckoutModal()" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
+                    Proceed to Checkout
                 </button>
-
-                <!-- OR Divider -->
-                <div class="relative flex py-2 items-center">
-                    <div class="flex-grow border-t border-amber-300"></div>
-                    <span class="flex-shrink mx-4 text-amber-600 text-xs font-bold uppercase tracking-widest">OR</span>
-                    <div class="flex-grow border-t border-amber-300"></div>
-                </div>
-
-                <form onsubmit="handleManualAuth(event)" class="space-y-4">
-                    <div>
-                        <input type="email" id="input-email" required placeholder="Email Address" class="w-full bg-white border border-amber-300 rounded-2xl px-4 py-3 text-sm text-safari-espresso placeholder:text-gray-400 focus:outline-none focus:border-safari-olive">
-                    </div>
-                    <div>
-                        <input type="password" id="input-password" required placeholder="Password" class="w-full bg-white border border-amber-300 rounded-2xl px-4 py-3 text-sm text-safari-espresso placeholder:text-gray-400 focus:outline-none focus:border-safari-olive">
-                    </div>
-
-                    <!-- Additional profile fields for registration mode -->
-                    <div id="register-extra-fields" class="space-y-3 hidden">
-                        <input type="text" id="input-name" placeholder="Name & Surname" class="w-full bg-white border border-amber-300 rounded-2xl px-4 py-3 text-sm text-safari-espresso placeholder:text-gray-400 focus:outline-none focus:border-safari-olive">
-                        <input type="tel" id="input-phone" placeholder="Cell Number (e.g. 0821234567)" class="w-full bg-white border border-amber-300 rounded-2xl px-4 py-3 text-sm text-safari-espresso placeholder:text-gray-400 focus:outline-none focus:border-safari-olive">
-                        <textarea id="input-address" rows="2" placeholder="Delivery Address" class="w-full bg-white border border-amber-300 rounded-2xl px-4 py-3 text-sm text-safari-espresso placeholder:text-gray-400 focus:outline-none focus:border-safari-olive"></textarea>
-                    </div>
-
-                    <button type="submit" id="auth-submit-btn" class="w-full bg-[#738260] hover:bg-[#5f6c4e] text-white py-3.5 rounded-2xl font-heading font-bold text-xs uppercase tracking-wider transition-all shadow">
-                        Log In
-                    </button>
-                </form>
-
-                <div class="border-t border-amber-200 pt-4 text-center">
-                    <button type="button" onclick="toggleAuthMode()" id="auth-toggle-link" class="text-xs font-bold text-safari-terracotta hover:underline">
-                        Need an account? Create one here
-                    </button>
-                </div>
-            </div>
-
-            <!-- Authenticated Profile View -->
-            <div id="auth-profile-view" class="space-y-4 hidden text-center">
-                <div class="bg-safari-surface p-4 rounded-2xl border border-safari-border space-y-1">
-                    <div id="user-display-name" class="font-heading font-bold text-sm text-safari-espresso"></div>
-                    <div id="user-display-email" class="text-xs text-safari-espresso/70 font-mono"></div>
-                    <span class="inline-block mt-2 text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2.5 py-0.5 rounded-full uppercase">Verified Account</span>
-                </div>
-                <button type="button" onclick="signOutCustomer()" class="w-full bg-red-100 hover:bg-red-200 text-red-800 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all">
-                    Sign Out
-                </button>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Shopping Cart Drawer -->
-    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
-        <div class="absolute inset-0 bg-safari-espresso/60 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer()"></div>
-        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
-            <div class="w-screen max-w-md bg-safari-parchment border-l border-safari-border flex flex-col shadow-2xl">
-                <div class="p-5 sm:p-6 bg-safari-surface border-b border-safari-border flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-shopping-bag text-safari-olive text-lg sm:text-xl"></i>
-                        <h3 class="font-heading font-black text-base sm:text-lg uppercase">Your Shopping Cart</h3>
-                    </div>
-                    <button type="button" onclick="toggleCartDrawer()" class="text-safari-espresso/60 hover:text-safari-espresso p-2">
-                        <i class="fa-solid fa-xmark text-xl"></i>
-                    </button>
-                </div>
-                <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4"></div>
-                <div class="p-5 sm:p-6 bg-safari-surface border-t border-safari-border space-y-3 sm:space-y-4">
-                    <div class="flex items-center justify-between text-xs sm:text-sm">
-                        <span class="text-safari-espresso/70">Subtotal:</span>
-                        <span id="cart-subtotal" class="font-heading font-bold text-base sm:text-lg">R0.00</span>
-                    </div>
-                    <div class="flex items-center justify-between text-xs sm:text-sm">
-                        <span class="text-safari-espresso/70">Shipping (Nationwide):</span>
-                        <span id="cart-shipping" class="font-heading font-bold text-safari-olive">R100.00</span>
-                    </div>
-                    <div class="border-t border-safari-border pt-3 flex items-center justify-between">
-                        <span class="font-heading font-bold text-sm sm:text-base">Total:</span>
-                        <span id="cart-total" class="font-heading font-black text-xl sm:text-2xl text-safari-terracotta">R0.00</span>
-                    </div>
-                    <button type="button" onclick="openCheckoutModal()" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 sm:py-4 rounded-xl font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-colors shadow-md">
-                        Proceed to Checkout →
-                    </button>
-                </div>
             </div>
         </div>
     </div>
 
     <!-- Product Detail Modal -->
-    <div id="product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-3 sm:p-4">
-        <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductModal()"></div>
-        <div class="bg-safari-parchment rounded-2xl sm:rounded-3xl max-w-6xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 items-center my-auto max-h-[92vh] overflow-y-auto">
-            <div class="lg:col-span-7 p-6 sm:p-12 bg-safari-surface flex flex-col justify-center items-center border-b lg:border-b-0 lg:border-r border-safari-border h-full min-h-[380px] sm:min-h-[550px]">
-                <div class="rounded-2xl overflow-hidden h-[300px] sm:h-[420px] w-full flex items-center justify-center bg-safari-parchment p-4 sm:p-6 border border-safari-border/50 shadow-inner mb-4">
-                    <img id="modal-main-img" src="" alt="Product Image" class="max-h-[260px] sm:max-h-[380px] w-auto max-w-full object-contain mx-auto shadow-lg rounded-xl">
-                </div>
-                <div id="modal-thumbnails" class="flex flex-wrap gap-2.5 sm:gap-3 justify-center"></div>
-            </div>
-            <div class="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between h-full relative">
-                <button type="button" onclick="closeProductModal()" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-safari-espresso/60 hover:text-safari-espresso p-2 text-xl z-10">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-                <div class="space-y-3 sm:space-y-4">
-                    <span id="modal-cat" class="text-xs font-mono text-safari-olive uppercase tracking-widest font-bold">Category</span>
-                    <h3 id="modal-title" class="font-heading font-black text-xl sm:text-3xl text-safari-espresso uppercase leading-tight"></h3>
-                    <div class="flex items-baseline gap-3">
-                        <span class="font-heading font-black text-2xl sm:text-3xl text-safari-terracotta" id="modal-price"></span>
-                        <span class="text-[11px] sm:text-xs text-safari-espresso/60 font-medium">(Includes 15% VAT)</span>
+    <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeProductModal()"></div>
+        <div class="relative bg-safari-parchment border border-safari-border rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl overflow-y-auto max-h-[90vh]">
+            <button type="button" onclick="closeProductModal()" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-safari-surface flex items-center justify-center text-safari-espresso hover:bg-safari-border">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
+                <div>
+                    <div class="h-64 sm:h-72 bg-white rounded-xl overflow-hidden border border-safari-border mb-3 flex items-center justify-center">
+                        <img id="modal-main-img" src="" class="w-full h-full object-cover">
                     </div>
-                    <p id="modal-desc" class="text-safari-espresso/80 text-xs sm:text-sm leading-relaxed"></p>
-                    <div id="modal-variants-section" class="space-y-2 pt-2">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-safari-espresso">Select Option:</label>
+                    <div id="modal-thumbnails" class="flex gap-2 overflow-x-auto pb-1"></div>
+                </div>
+                <div class="space-y-4">
+                    <span id="modal-cat" class="text-[10px] uppercase font-bold tracking-widest text-safari-olive bg-safari-olive/10 px-2.5 py-1 rounded-md"></span>
+                    <h3 id="modal-title" class="font-heading font-black text-xl sm:text-2xl text-safari-espresso"></h3>
+                    <p id="modal-desc" class="text-xs sm:text-sm text-safari-espresso/80 leading-relaxed"></p>
+                    <div id="modal-variants-section" class="space-y-2 hidden">
+                        <label class="text-xs font-bold uppercase tracking-wider text-safari-espresso block">Select Option:</label>
                         <div id="modal-variants-container" class="flex flex-wrap gap-2"></div>
                     </div>
-                    <div id="modal-extra-fields" class="space-y-2 text-xs text-safari-espresso/90 bg-safari-surface p-4 sm:p-5 rounded-2xl border border-safari-border shadow-inner leading-relaxed whitespace-pre-line"></div>
+                    <div id="modal-extra-fields" class="text-xs text-safari-espresso/70 bg-safari-surface p-3 rounded-xl border border-safari-border whitespace-pre-line hidden"></div>
+                    <div class="flex items-center justify-between pt-4 border-t border-safari-border">
+                        <span id="modal-price" class="font-heading font-black text-2xl text-safari-terracotta"></span>
+                        <button type="button" onclick="addModalItemToCart()" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-6 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
+                            Add to Cart
+                        </button>
+                    </div>
                 </div>
-                <div class="pt-5 sm:pt-6 border-t border-safari-border/40 flex items-center gap-4 mt-6">
-                    <button type="button" onclick="addModalItemToCart()" class="flex-1 bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 sm:py-4 px-6 rounded-xl font-heading font-bold text-xs tracking-widest uppercase transition-colors shadow-lg flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-basket-shopping"></i> Add to Basket
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Auth Modal -->
+    <div id="auth-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeAuthModal()"></div>
+        <div class="relative bg-safari-parchment border border-safari-border rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl">
+            <button type="button" onclick="closeAuthModal()" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-safari-surface flex items-center justify-center text-safari-espresso hover:bg-safari-border">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 id="auth-modal-title" class="font-heading font-black text-xl uppercase tracking-wider text-safari-espresso mb-6 text-center">Log In</h3>
+            
+            <div id="auth-profile-view" class="hidden space-y-4 text-center">
+                <div class="w-16 h-16 bg-safari-olive text-white rounded-full flex items-center justify-center font-heading font-black text-2xl mx-auto shadow">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div>
+                    <h4 id="user-display-name" class="font-heading font-bold text-base text-safari-espresso"></h4>
+                    <p id="user-display-email" class="text-xs text-safari-espresso/60 font-mono"></p>
+                </div>
+                <button type="button" onclick="signOutCustomer()" class="w-full bg-safari-terracotta hover:bg-safari-terracottaDark text-white py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
+                    Sign Out
+                </button>
+            </div>
+
+            <div id="auth-form-container" class="space-y-4">
+                <!-- Google Auth Button (Popup-free redirect method) -->
+                <button type="button" onclick="signInWithGoogle()" class="w-full bg-white hover:bg-gray-50 text-safari-espresso border border-safari-border py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-3 shadow-sm">
+                    <i class="fa-brands fa-google text-red-500 text-base"></i> Continue with Google
+                </button>
+                <div class="flex items-center my-4">
+                    <div class="flex-grow border-t border-safari-border"></div>
+                    <span class="px-3 text-[10px] uppercase font-bold text-safari-espresso/40">or email</span>
+                    <div class="flex-grow border-t border-safari-border"></div>
+                </div>
+                <form id="auth-form" onsubmit="handleManualAuth(event)" class="space-y-3">
+                    <div id="register-extra-fields" class="space-y-3 hidden">
+                        <div>
+                            <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Full Name</label>
+                            <input type="text" id="input-name" class="w-full bg-white border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                        </div>
+                        <div>
+                            <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Cell Number</label>
+                            <input type="text" id="input-phone" class="w-full bg-white border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                        </div>
+                        <div>
+                            <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Delivery Address</label>
+                            <textarea id="input-address" class="w-full bg-white border border-safari-border rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-safari-olive h-16"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Email Address</label>
+                        <input type="email" id="input-email" required class="w-full bg-white border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                    </div>
+                    <button type="submit" id="auth-submit-btn" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow mt-2">
+                        Log In
                     </button>
-                </div>
+                    <button type="button" onclick="toggleAuthMode()" id="auth-toggle-link" class="w-full text-center text-[11px] text-safari-olive font-bold hover:underline pt-2 block">
+                        Need an account? Create one here
+                    </button>
+                </form>
             </div>
         </div>
     </div>
 
     <!-- Checkout Modal -->
-    <div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
-        <div class="fixed inset-0 bg-safari-espresso/70 backdrop-blur-sm" onclick="closeCheckoutModal()"></div>
-        <div class="bg-safari-parchment rounded-2xl max-w-xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
-            <div class="flex items-center justify-between mb-5 sm:mb-6 border-b border-safari-border pb-4">
-                <h3 class="font-heading font-black text-lg sm:text-xl uppercase">Secure Checkout</h3>
-                <button type="button" onclick="closeCheckoutModal()" class="text-safari-espresso/60 hover:text-safari-espresso"><i class="fa-solid fa-xmark text-xl"></i></button>
-            </div>
-            <form id="checkout-form" onsubmit="submitOrder(event)" class="space-y-3 sm:space-y-4">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+    <div id="checkout-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeCheckoutModal()"></div>
+        <div class="relative bg-safari-parchment border border-safari-border rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl overflow-y-auto max-h-[90vh]">
+            <button type="button" onclick="closeCheckoutModal()" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-safari-surface flex items-center justify-center text-safari-espresso hover:bg-safari-border">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="font-heading font-black text-xl uppercase tracking-wider text-safari-espresso mb-6">Checkout &amp; Delivery</h3>
+            <form id="checkout-form" onsubmit="submitOrder(event)" class="space-y-4">
+                <div>
+                    <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Recipient Name</label>
+                    <input type="text" id="order-name" required class="w-full bg-white border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Full Name</label>
-                        <input type="text" id="order-name" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-safari-olive">
+                        <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Phone Number</label>
+                        <input type="text" id="order-phone" required class="w-full bg-white border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Phone Number</label>
-                        <input type="tel" id="order-phone" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-safari-olive">
+                        <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Email Address</label>
+                        <input type="email" id="order-email" required class="w-full bg-white border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Email Address</label>
-                    <input type="email" id="order-email" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-safari-olive">
+                    <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Delivery Address / Centurion Dropoff</label>
+                    <textarea id="order-address" required class="w-full bg-white border border-safari-border rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-safari-olive h-20"></textarea>
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Delivery Address (Street, City, Postal Code)</label>
-                    <textarea id="order-address" rows="3" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-safari-olive"></textarea>
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Payment Method</label>
-                    <select id="order-payment" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-safari-olive">
-                        <option value="Yoco Card / EFT Payment">Yoco Secure Card / Instant EFT</option>
-                        <option value="Direct EFT Bank Transfer">Direct Bank Transfer (EFT)</option>
+                    <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Payment Method</label>
+                    <select id="order-payment" class="w-full bg-white border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                        <option value="Yoco Card / EFT Payment Link">Yoco Secure Payment Link</option>
+                        <option value="Direct EFT Bank Transfer">Direct EFT Bank Transfer</option>
+                        <option value="Cash on Delivery / Pickup">Cash on Delivery / Pickup</option>
                     </select>
                 </div>
-                <button type="submit" class="w-full bg-safari-terracotta hover:bg-safari-terracottaDark text-white py-3.5 sm:py-4 rounded-xl font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-colors shadow-lg mt-2">
-                    Place Order & Sync with Firebase →
+                <button type="submit" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow mt-4">
+                    Place Order &amp; Sync
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- Management Portal Modal (Strictly locked to csda.kettiesngoete@gmail.com) -->
-    <div id="admin-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-3 sm:p-4">
-        <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeAdminModal()"></div>
-        <div class="bg-safari-parchment rounded-2xl max-w-6xl w-full border border-safari-border relative z-10 p-4 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
-            
-            <div class="bg-safari-espresso text-safari-parchment p-6 sm:p-8 rounded-2xl mb-6 sm:mb-8 shadow-lg relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-                <div class="absolute right-0 top-0 bottom-0 w-1/3 bg-cover bg-center opacity-10 pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800');"></div>
+    <!-- Management Admin Dashboard Modal -->
+    <div id="admin-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeAdminModal()"></div>
+        <div class="relative bg-safari-parchment border border-safari-border rounded-2xl max-w-6xl w-full p-6 sm:p-8 shadow-2xl overflow-y-auto max-h-[92vh]">
+            <button type="button" onclick="closeAdminModal()" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-safari-surface flex items-center justify-center text-safari-espresso hover:bg-safari-border">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-safari-border">
                 <div>
-                    <div class="inline-flex items-center gap-2 bg-safari-terracotta text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-3 shadow">
-                        <i class="fa-solid fa-lock text-[9px]"></i> Secure Management Portal • csda.kettiesngoete@gmail.com
-                    </div>
-                    <h2 class="font-heading font-black text-xl sm:text-3xl uppercase tracking-tight">Ketties & Goete Management Dashboard</h2>
-                    <p class="text-safari-borderLight text-xs sm:text-sm mt-1">Manage inventory database, customer accounts, announcement bar, and review orders.</p>
-                </div>
-                <div class="flex flex-wrap gap-2 sm:gap-3 relative z-10 w-full md:w-auto">
-                    <button type="button" onclick="closeAdminModal()" class="flex-1 md:flex-none bg-safari-surface/10 hover:bg-safari-surface/20 border border-safari-border text-safari-parchment px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 backdrop-blur-sm">
-                        <i class="fa-solid fa-store"></i> Return to Store
-                    </button>
-                    <button type="button" onclick="openNewProductModal()" class="flex-1 md:flex-none bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow">
-                        <i class="fa-solid fa-plus"></i> Add New Product
-                    </button>
+                    <h3 class="font-heading font-black text-xl uppercase tracking-wider text-safari-espresso">Management Dashboard</h3>
+                    <span class="text-xs text-safari-olive font-bold">Authorized Admin: csda.kettiesngoete@gmail.com</span>
                 </div>
             </div>
 
-            <!-- Stats Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 sm:mb-8">
-                <div class="bg-safari-surface border border-safari-border p-5 sm:p-6 rounded-2xl shadow-sm relative overflow-hidden">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-xs font-bold uppercase tracking-widest text-safari-espresso/70">Total Products</span>
-                        <i class="fa-solid fa-box-open text-safari-olive text-lg"></i>
-                    </div>
-                    <div id="stat-total-products" class="font-heading font-black text-2xl sm:text-4xl text-safari-espresso mb-1">0</div>
-                    <span class="text-[11px] text-safari-espresso/60 block">Active in catalog database</span>
+            <!-- Dashboard Stats Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                <div class="bg-white p-4 rounded-xl border border-safari-border shadow-sm">
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-safari-espresso/60 block mb-1">Total Products</span>
+                    <span id="stat-total-products" class="font-heading font-black text-2xl text-safari-olive">0</span>
                 </div>
-                <div class="bg-safari-surface border border-safari-border p-5 sm:p-6 rounded-2xl shadow-sm relative overflow-hidden">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-xs font-bold uppercase tracking-widest text-safari-espresso/70">Customer Accounts</span>
-                        <i class="fa-solid fa-users text-safari-olive text-lg"></i>
-                    </div>
-                    <div id="stat-total-customers" class="font-heading font-black text-2xl sm:text-4xl text-safari-espresso mb-1">0</div>
-                    <span class="text-[11px] text-safari-espresso/60 block">Registered profiles</span>
+                <div class="bg-white p-4 rounded-xl border border-safari-border shadow-sm">
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-safari-espresso/60 block mb-1">Registered Customers</span>
+                    <span id="stat-total-customers" class="font-heading font-black text-2xl text-safari-olive">0</span>
                 </div>
-                <div class="bg-safari-surface border border-safari-border p-5 sm:p-6 rounded-2xl shadow-sm relative overflow-hidden">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-xs font-bold uppercase tracking-widest text-safari-espresso/70">Total Orders</span>
-                        <i class="fa-solid fa-receipt text-safari-olive text-lg"></i>
-                    </div>
-                    <div id="stat-total-orders" class="font-heading font-black text-2xl sm:text-4xl text-safari-espresso mb-1">0</div>
-                    <span class="text-[11px] text-safari-espresso/60 block">Recorded transactions</span>
+                <div class="bg-white p-4 rounded-xl border border-safari-border shadow-sm">
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-safari-espresso/60 block mb-1">Total Orders</span>
+                    <span id="stat-total-orders" class="font-heading font-black text-2xl text-safari-olive">0</span>
                 </div>
-                <div class="bg-safari-surface border border-safari-border p-5 sm:p-6 rounded-2xl shadow-sm relative overflow-hidden">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-xs font-bold uppercase tracking-widest text-safari-espresso/70">Total Revenue</span>
-                        <span class="font-heading font-black text-safari-terracotta text-lg">R</span>
-                    </div>
-                    <div id="stat-total-revenue" class="font-heading font-black text-xl sm:text-3xl text-safari-espresso mb-1">R0.00</div>
-                    <span class="text-[11px] text-safari-espresso/60 block">Gross sales (ZAR)</span>
+                <div class="bg-white p-4 rounded-xl border border-safari-border shadow-sm">
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-safari-espresso/60 block mb-1">Total Revenue</span>
+                    <span id="stat-total-revenue" class="font-heading font-black text-2xl text-safari-terracotta">R0.00</span>
                 </div>
             </div>
 
-            <!-- Admin Tabs -->
-            <div class="flex flex-wrap gap-2 sm:gap-4 mb-6 border-b border-safari-border pb-4">
-                <button type="button" onclick="switchAdminTab('products')" id="admin-tab-prod" class="bg-safari-olive text-white px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-boxes-stacked"></i> Inventory Database (<span id="prod-count-badge">0</span>)
+            <!-- Admin Tab Selectors -->
+            <div class="flex flex-wrap gap-2 mb-6">
+                <button type="button" id="admin-tab-prod" onclick="switchAdminTab('products')" class="bg-safari-olive text-white px-4 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-box"></i> Products (<span id="prod-count-badge">0</span>)
                 </button>
-                <button type="button" onclick="switchAdminTab('customers')" id="admin-tab-cust" class="bg-safari-surface text-safari-espresso border border-safari-border px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-users"></i> Customer Accounts (<span id="cust-count-badge">0</span>)
+                <button type="button" id="admin-tab-cust" onclick="switchAdminTab('customers')" class="bg-safari-surface text-safari-espresso border border-safari-border px-4 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-users"></i> Customers (<span id="cust-count-badge">0</span>)
                 </button>
-                <button type="button" onclick="switchAdminTab('settings')" id="admin-tab-set" class="bg-safari-surface text-safari-espresso border border-safari-border px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-gear"></i> Site Settings & Banner
-                </button>
-                <button type="button" onclick="switchAdminTab('orders')" id="admin-tab-ord" class="bg-safari-surface text-safari-espresso border border-safari-border px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
+                <button type="button" id="admin-tab-ord" onclick="switchAdminTab('orders')" class="bg-safari-surface text-safari-espresso border border-safari-border px-4 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
                     <i class="fa-solid fa-clipboard-list"></i> Orders (<span id="ord-count-badge">0</span>)
                 </button>
+                <button type="button" id="admin-tab-set" onclick="switchAdminTab('settings')" class="bg-safari-surface text-safari-espresso border border-safari-border px-4 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </button>
             </div>
 
-            <!-- Products Panel -->
+            <!-- Products Management Panel -->
             <div id="admin-panel-products" class="space-y-4">
-                <div class="bg-safari-surface p-4 sm:p-6 rounded-2xl border border-safari-border">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-                        <h4 class="font-heading font-bold text-base uppercase">Stock & Product Database</h4>
-                        <div class="relative w-full sm:w-auto">
-                            <input type="text" id="admin-search" oninput="filterAdminProducts(this.value)" placeholder="Search products..." class="bg-safari-parchment border border-safari-border rounded-xl px-4 py-2 text-xs w-full sm:w-72 focus:outline-none focus:border-safari-olive">
-                            <i class="fa-solid fa-search absolute right-3 top-3 text-safari-espresso/40 text-xs"></i>
-                        </div>
-                    </div>
-                    <div class="overflow-x-auto border border-safari-border rounded-xl bg-safari-parchment">
-                        <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[650px]">
-                            <thead>
-                                <tr class="bg-safari-border/30 border-b border-safari-border font-heading text-[10px] sm:text-[11px] uppercase tracking-wider text-safari-espresso/70">
-                                    <th class="p-3 sm:p-4">Product</th>
-                                    <th class="p-3 sm:p-4">Category</th>
-                                    <th class="p-3 sm:p-4">Price (ZAR)</th>
-                                    <th class="p-3 sm:p-4">Stock Level</th>
-                                    <th class="p-3 sm:p-4">Status</th>
-                                    <th class="p-3 sm:p-4 text-right">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="admin-product-table-body"></tbody>
-                        </table>
-                    </div>
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <input type="text" placeholder="Search inventory..." oninput="filterAdminProducts(this.value)" class="w-full sm:w-72 bg-white border border-safari-border rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-safari-olive">
+                    <button type="button" onclick="openNewProductModal()" class="w-full sm:w-auto bg-safari-olive hover:bg-safari-oliveDark text-white px-4 py-2 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
+                        + Add New Product
+                    </button>
+                </div>
+                <div class="bg-white rounded-xl border border-safari-border overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-safari-surface border-b border-safari-border text-[10px] uppercase font-bold tracking-wider text-safari-espresso/70">
+                                <th class="p-3 sm:p-4">Product Name</th>
+                                <th class="p-3 sm:p-4">Category</th>
+                                <th class="p-3 sm:p-4">Price</th>
+                                <th class="p-3 sm:p-4">Stock</th>
+                                <th class="p-3 sm:p-4">Status</th>
+                                <th class="p-3 sm:p-4 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-product-table-body">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <!-- Customer Accounts Panel with Excel Download -->
+            <!-- Customers Management Panel -->
             <div id="admin-panel-customers" class="space-y-4 hidden">
-                <div class="bg-safari-surface p-4 sm:p-6 rounded-2xl border border-safari-border space-y-4">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                        <div>
-                            <h4 class="font-heading font-bold text-base uppercase">Registered Customer Accounts</h4>
-                            <p class="text-xs text-safari-espresso/70 mt-0.5">Download customer profiles as an Excel (.xlsx) spreadsheet.</p>
-                        </div>
-                        <button type="button" onclick="exportCustomersToExcel()" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all shadow flex items-center gap-2">
-                            <i class="fa-solid fa-file-excel"></i> Download Customers (Excel)
-                        </button>
-                    </div>
-                    <div class="overflow-x-auto border border-safari-border rounded-xl bg-safari-parchment">
-                        <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[650px]">
-                            <thead>
-                                <tr class="bg-safari-border/30 border-b border-safari-border font-heading text-[10px] sm:text-[11px] uppercase tracking-wider text-safari-espresso/70">
-                                    <th class="p-3 sm:p-4">Name & Surname</th>
-                                    <th class="p-3 sm:p-4">Email Address</th>
-                                    <th class="p-3 sm:p-4">Cell Number</th>
-                                    <th class="p-3 sm:p-4">Delivery Address</th>
-                                    <th class="p-3 sm:p-4">Joined Date</th>
-                                </tr>
-                            </thead>
-                            <tbody id="admin-customer-table-body"></tbody>
-                        </table>
-                    </div>
+                <div class="flex justify-end">
+                    <button type="button" onclick="exportCustomersToExcel()" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-4 py-2 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow flex items-center gap-2">
+                        <i class="fa-solid fa-file-excel"></i> Export Customers to Excel
+                    </button>
+                </div>
+                <div class="bg-white rounded-xl border border-safari-border overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-safari-surface border-b border-safari-border text-[10px] uppercase font-bold tracking-wider text-safari-espresso/70">
+                                <th class="p-3 sm:p-4">Name</th>
+                                <th class="p-3 sm:p-4">Email</th>
+                                <th class="p-3 sm:p-4">Phone</th>
+                                <th class="p-3 sm:p-4">Address</th>
+                                <th class="p-3 sm:p-4">Joined</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-customer-table-body">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <!-- Settings & Announcement Banner Panel -->
-            <div id="admin-panel-settings" class="space-y-4 hidden">
-                <div class="bg-safari-surface p-6 rounded-2xl border border-safari-border space-y-4">
-                    <h4 class="font-heading font-bold text-base uppercase">Editable Top Announcement Bar</h4>
-                    <p class="text-xs text-safari-espresso/70">Update the message displayed at the very top of your website header instantly.</p>
+            <!-- Orders Management Panel -->
+            <div id="admin-panel-orders" class="space-y-4 hidden">
+                <div class="bg-white rounded-xl border border-safari-border overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-safari-surface border-b border-safari-border text-[10px] uppercase font-bold tracking-wider text-safari-espresso/70">
+                                <th class="p-3 sm:p-4">Order ID</th>
+                                <th class="p-3 sm:p-4">Customer</th>
+                                <th class="p-3 sm:p-4">Contact</th>
+                                <th class="p-3 sm:p-4">Items</th>
+                                <th class="p-3 sm:p-4">Total</th>
+                                <th class="p-3 sm:p-4">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-order-table-body">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Settings Management Panel -->
+            <div id="admin-panel-settings" class="space-y-6 hidden">
+                <div class="bg-white p-6 rounded-xl border border-safari-border space-y-4">
+                    <h4 class="font-heading font-bold text-sm uppercase tracking-wider text-safari-espresso">Store Announcement Banner</h4>
                     <form onsubmit="saveAnnouncementBanner(event)" class="space-y-3">
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider mb-1 text-safari-espresso">Banner Message Text</label>
-                            <textarea id="admin-banner-text" rows="2" required class="w-full bg-safari-parchment border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive">🇿🇦 CRAFTED IN SOUTH AFRICA • FREE NATIONWIDE SHIPPING ON ORDERS OVER R600 • 100% NATURAL LATEX & BIO-CLAY</textarea>
-                        </div>
-                        <button type="submit" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-6 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all shadow">
-                            Save & Update Banner Live →
+                        <input type="text" id="admin-banner-text" class="w-full bg-safari-parchment border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive" placeholder="Announcement banner text...">
+                        <button type="submit" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
+                            Update Banner
                         </button>
                     </form>
                 </div>
             </div>
-
-            <!-- Orders Panel -->
-            <div id="admin-panel-orders" class="space-y-4 hidden">
-                <div class="bg-safari-surface p-4 sm:p-6 rounded-2xl border border-safari-border">
-                    <h4 class="font-heading font-bold text-base mb-4 uppercase">Client Orders & Transactions</h4>
-                    <div class="overflow-x-auto border border-safari-border rounded-xl bg-safari-parchment">
-                        <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[650px]">
-                            <thead>
-                                <tr class="bg-safari-border/30 border-b border-safari-border font-heading text-[10px] sm:text-[11px] uppercase tracking-wider text-safari-espresso/70">
-                                    <th class="p-3 sm:p-4">Order ID</th>
-                                    <th class="p-3 sm:p-4">Customer</th>
-                                    <th class="p-3 sm:p-4">Contact</th>
-                                    <th class="p-3 sm:p-4">Items Ordered</th>
-                                    <th class="p-3 sm:p-4">Total</th>
-                                    <th class="p-3 sm:p-4">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody id="admin-order-table-body"></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 
-    <!-- Add / Edit Product Modal -->
-    <div id="product-form-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-3 sm:p-4">
-        <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductFormModal()"></div>
-        <div class="bg-safari-parchment rounded-2xl sm:rounded-3xl max-w-2xl w-full border border-safari-border relative z-10 p-5 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
+    <!-- Product Edit / Add Modal -->
+    <div id="product-form-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeProductFormModal()"></div>
+        <div class="relative bg-safari-parchment border border-safari-border rounded-2xl max-w-xl w-full p-6 sm:p-8 shadow-2xl overflow-y-auto max-h-[90vh]">
+            <button type="button" onclick="closeProductFormModal()" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-safari-surface flex items-center justify-center text-safari-espresso hover:bg-safari-border">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="font-heading font-black text-xl uppercase tracking-wider text-safari-espresso mb-6">Product Configuration</h3>
             <form id="product-action-form" onsubmit="handleProductSubmit(event)" class="space-y-4">
                 <input type="hidden" id="prod-edit-id">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input type="text" id="prod-name" placeholder="Product Name (e.g., Ou Kalahari Combo)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
-                    <input type="number" step="0.01" id="prod-price" placeholder="Base Price in ZAR (e.g., 550.00)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                <div>
+                    <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Product Name</label>
+                    <input type="text" id="prod-name" required class="w-full bg-white border border-safari-border rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-safari-olive">
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input type="text" id="prod-cat" placeholder="Category (e.g., Combos)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
-                    <input type="text" id="prod-img" placeholder="Image URL(s) separated by commas" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
-                </div>
-                <p class="text-[11px] text-safari-espresso/60 -mt-2">Tip: For multiple images, separate URLs with commas (e.g. url1.jpg, url2.jpg)</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div class="flex items-center gap-3 bg-safari-surface border border-safari-border rounded-xl px-4 py-3.5 shadow-sm">
-                        <input type="checkbox" id="prod-visible" checked class="w-4 h-4 text-safari-olive rounded border-safari-border focus:ring-safari-olive cursor-pointer">
-                        <label for="prod-visible" class="text-xs font-semibold text-safari-espresso cursor-pointer">Visible in Catalog</label>
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Price (R)</label>
+                        <input type="number" step="0.01" id="prod-price" required class="w-full bg-white border border-safari-border rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-safari-olive">
                     </div>
-                    <div class="flex items-center gap-3 bg-safari-surface border border-safari-border rounded-xl px-4 py-3.5 shadow-sm">
-                        <input type="checkbox" id="prod-bestseller" class="w-4 h-4 text-safari-terracotta rounded border-safari-border focus:ring-safari-terracotta cursor-pointer">
-                        <label for="prod-bestseller" class="text-xs font-bold text-safari-terracotta cursor-pointer">★ Set as Best Seller Combo</label>
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Category</label>
+                        <input type="text" id="prod-cat" required class="w-full bg-white border border-safari-border rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-safari-olive" placeholder="e.g. Combos, Ketties">
                     </div>
                 </div>
                 <div>
-                    <input type="text" id="prod-variants" placeholder="Variants format: Name:+Price:ImageURL (Comma separated)" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Image URL(s) (Comma separated for multiple)</label>
+                    <input type="text" id="prod-img" required class="w-full bg-white border border-safari-border rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-safari-olive">
                 </div>
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-safari-espresso/70 mb-1">Specification Bubble 1</label>
-                    <textarea id="prod-extra-1" rows="3" placeholder="Press Enter to list items downwards..." class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
+                    <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Variants (Name:PriceOffset:ImageURL, comma separated)</label>
+                    <input type="text" id="prod-variants" class="w-full bg-white border border-safari-border rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-safari-olive" placeholder="Standard:+0, Premium:+50">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Extra Bullet 1</label>
+                        <input type="text" id="prod-extra-1" class="w-full bg-white border border-safari-border rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-safari-olive">
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Extra Bullet 2</label>
+                        <input type="text" id="prod-extra-2" class="w-full bg-white border border-safari-border rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-safari-olive">
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Extra Bullet 3</label>
+                        <input type="text" id="prod-extra-3" class="w-full bg-white border border-safari-border rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-safari-olive">
+                    </div>
                 </div>
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-safari-espresso/70 mb-1">Specification Bubble 2</label>
-                    <textarea id="prod-extra-2" rows="2" placeholder="Specification bullet 2..." class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
+                    <label class="text-[10px] uppercase font-bold text-safari-espresso block mb-1">Description</label>
+                    <textarea id="prod-desc" required class="w-full bg-white border border-safari-border rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-safari-olive h-20"></textarea>
                 </div>
-                <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-safari-espresso/70 mb-1">Specification Bubble 3</label>
-                    <textarea id="prod-extra-3" rows="2" placeholder="Specification bullet 3..." class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
+                <div class="flex items-center gap-6 pt-2">
+                    <label class="flex items-center gap-2 text-xs font-bold cursor-pointer">
+                        <input type="checkbox" id="prod-visible" checked class="rounded text-safari-olive focus:ring-safari-olive"> Visible in Store
+                    </label>
+                    <label class="flex items-center gap-2 text-xs font-bold cursor-pointer">
+                        <input type="checkbox" id="prod-bestseller" class="rounded text-safari-olive focus:ring-safari-olive"> Set as Hero Best Seller
+                    </label>
                 </div>
-                <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-safari-espresso/70 mb-1">Product Description</label>
-                    <textarea id="prod-desc" rows="3" placeholder="Product Description" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
-                </div>
-                <div class="flex items-center gap-4 pt-2">
-                    <button type="button" onclick="closeProductFormModal()" class="flex-1 bg-amber-100 hover:bg-amber-200 text-amber-900 py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow-sm">
-                        Cancel
-                    </button>
-                    <button type="submit" class="flex-1 bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow-md">
-                        Save Product
-                    </button>
-                </div>
+                <button type="submit" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow mt-4">
+                    Save Product
+                </button>
             </form>
         </div>
     </div>
 
-    <!-- Firebase SDK Scripts & Integrated Security Logic -->
+    <!-- Firebase SDK Scripts & Core Store Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+        import { getAuth, signInWithRedirect, getRedirectResult, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
         import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -719,7 +605,6 @@
                     }
                 }
             } catch (err) {
-                console.log("Firebase offline. Using local products.", err);
                 products = defaultProducts;
                 renderProducts();
                 renderSidebarCategories();
@@ -733,26 +618,41 @@
                     document.getElementById("announcement-banner").innerHTML = `<span>${text}</span>`;
                     document.getElementById("admin-banner-text").value = text;
                 }
-            } catch (err) {
-                console.log("Banner settings load offline.");
-            }
+            } catch (err) {}
 
-            // Listen to Firebase Auth state
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    const email = user.email;
-                    const isManagementAdmin = email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+            // Handle return from Google Auth redirect
+            getRedirectResult(auth).then(async (result) => {
+                if (result && result.user) {
+                    const user = result.user;
+                    const isManagementAdmin = user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
 
                     currentCustomer = {
-                        email: email,
-                        name: user.displayName || (isManagementAdmin ? "Carllo Swanepoel (Management)" : ""),
+                        email: user.email,
+                        name: user.displayName || (isManagementAdmin ? "Carllo Swanepoel (Management)" : "Google Customer"),
                         phone: user.phoneNumber || "",
                         address: "",
                         joinedDate: new Date().toISOString().split('T')[0],
                         isAdmin: isManagementAdmin
                     };
+
+                    const existing = customers.find(c => c.email.toLowerCase() === user.email.toLowerCase());
+                    if (!existing && !isManagementAdmin) {
+                        const docRef = await addDoc(collection(db, "customers"), currentCustomer);
+                        currentCustomer.id = docRef.id;
+                    } else if (existing) {
+                        currentCustomer.id = existing.id;
+                    }
+
+                    localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
                     updateAuthNavUI();
-                } else {
+                    alert("Successfully signed in with Google!");
+                }
+            }).catch((error) => {
+                console.log("Redirect sign-in error:", error);
+            });
+
+            onAuthStateChanged(auth, (user) => {
+                if (!user) {
                     const savedCust = localStorage.getItem("kng_customer_session");
                     if (savedCust) {
                         currentCustomer = JSON.parse(savedCust);
@@ -770,7 +670,7 @@
                 renderSidebarCategories();
                 renderHeroBestSeller();
                 if (currentCustomer && currentCustomer.isAdmin) renderAdminDashboard();
-            }, (error) => { console.log("Product snapshot error", error); });
+            }, (error) => {});
 
             onSnapshot(collection(db, "customers"), (snapshot) => {
                 customers = [];
@@ -778,7 +678,7 @@
                     customers.push({ id: docSnap.id, ...docSnap.data() });
                 });
                 if (currentCustomer && currentCustomer.isAdmin) renderAdminDashboard();
-            }, (err) => { console.log("Customer snapshot error", err); });
+            }, (err) => {});
 
             onSnapshot(collection(db, "orders"), (snapshot) => {
                 orders = [];
@@ -786,7 +686,7 @@
                     orders.push({ id: docSnap.id, ...docSnap.data() });
                 });
                 if (currentCustomer && currentCustomer.isAdmin) renderAdminDashboard();
-            }, (err) => { console.log("Order snapshot error", err); });
+            }, (err) => {});
         }
 
         window.saveAnnouncementBanner = async function(e) {
@@ -797,12 +697,9 @@
             try {
                 await setDoc(doc(db, "settings", "announcement"), { text: newText });
                 alert("Announcement banner updated successfully!");
-            } catch (err) {
-                alert("Banner updated locally!");
-            }
+            } catch (err) {}
         }
 
-        // Modal Auth Handling (Matching Pic 2 & Pic 3)
         window.openAuthModal = function() {
             document.getElementById("auth-modal").classList.remove("hidden");
             if (currentCustomer) {
@@ -842,58 +739,13 @@
             }
         }
 
+        // Clean popup-free redirect sign in
         window.signInWithGoogle = async function() {
             const provider = new GoogleAuthProvider();
             try {
-                const result = await signInWithPopup(auth, provider);
-                const user = result.user;
-                const isManagementAdmin = user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
-
-                currentCustomer = {
-                    email: user.email,
-                    name: user.displayName || (isManagementAdmin ? "Carllo Swanepoel (Management)" : "Google Customer"),
-                    phone: user.phoneNumber || "",
-                    address: "",
-                    joinedDate: new Date().toISOString().split('T')[0],
-                    isAdmin: isManagementAdmin
-                };
-
-                // Check if customer exists in Firestore
-                const existing = customers.find(c => c.email.toLowerCase() === user.email.toLowerCase());
-                if (!existing && !isManagementAdmin) {
-                    const docRef = await addDoc(collection(db, "customers"), currentCustomer);
-                    currentCustomer.id = docRef.id;
-                } else if (existing) {
-                    currentCustomer.id = existing.id;
-                    currentCustomer.name = existing.name || currentCustomer.name;
-                    currentCustomer.phone = existing.phone || "";
-                    currentCustomer.address = existing.address || "";
-                }
-
-                localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
-                updateAuthNavUI();
-                closeAuthModal();
-                alert("Successfully signed in with Google!");
+                await signInWithRedirect(auth, provider);
             } catch (err) {
-                console.log("Firebase Auth popup error, falling back to simulated prompt:", err);
-                // Fallback simulation matching Pic 3 if Firebase Auth popup is restricted by browser settings
-                const googleEmail = prompt("Choose a Google account to continue with:", "carllo@gmail.com");
-                if (!googleEmail || !googleEmail.includes("@")) return;
-
-                const isManagementAdmin = googleEmail.toLowerCase() === ADMIN_EMAIL.toLowerCase();
-                currentCustomer = {
-                    email: googleEmail,
-                    name: isManagementAdmin ? "Carllo Swanepoel (Management)" : googleEmail.split('@')[0],
-                    phone: "",
-                    address: "",
-                    joinedDate: new Date().toISOString().split('T')[0],
-                    isAdmin: isManagementAdmin
-                };
-
-                localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
-                updateAuthNavUI();
-                closeAuthModal();
-                alert("Signed in successfully with " + googleEmail);
+                alert("Google Sign-In Error: " + err.message);
             }
         }
 
@@ -914,9 +766,7 @@
                 try {
                     const docRef = await addDoc(collection(db, "customers"), currentCustomer);
                     currentCustomer.id = docRef.id;
-                } catch (err) {
-                    console.log("Customer save offline");
-                }
+                } catch (err) {}
                 alert("Account created and registered successfully!");
             } else {
                 const existing = customers.find(c => c.email.toLowerCase() === email.toLowerCase());
@@ -937,9 +787,7 @@
         }
 
         window.signOutCustomer = async function() {
-            try {
-                await signOut(auth);
-            } catch (err) {}
+            try { await signOut(auth); } catch (err) {}
             currentCustomer = null;
             localStorage.removeItem("kng_customer_session");
             updateAuthNavUI();
@@ -966,7 +814,6 @@
             }
         }
 
-        // Excel Export for Customers
         window.exportCustomersToExcel = function() {
             if (!currentCustomer || !currentCustomer.isAdmin) return;
             if (customers.length === 0) {
@@ -1338,7 +1185,7 @@
                 closeCheckoutModal();
                 document.getElementById("checkout-form").reset();
             } catch (err) {
-                alert("Order placed locally! (Configure Firebase credentials to persist online).");
+                alert("Order placed locally!");
                 cart = [];
                 updateCartUI();
                 closeCheckoutModal();
@@ -1394,7 +1241,6 @@
             if (!currentCustomer || !currentCustomer.isAdmin) return;
             document.getElementById("stat-total-products").textContent = products.length;
             document.getElementById("stat-total-customers").textContent = customers.length;
-            const lowStockCount = products.filter(p => (p.stock || 0) < 10).length;
             document.getElementById("stat-total-orders").textContent = orders.length;
             
             const totalRevenue = orders.reduce((sum, o) => sum + (o.total || 0), 0);
