@@ -702,6 +702,14 @@
             }
         ];
 
+        // Prevent Enter key inside input fields or textareas from triggering form submit
+        document.getElementById('product-action-form').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                return false;
+            }
+        });
+
         async function initDatabase() {
             try {
                 const querySnapshot = await getDocs(collection(db, "products"));
