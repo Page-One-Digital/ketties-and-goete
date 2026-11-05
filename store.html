@@ -336,7 +336,7 @@
                 </div>
 
                 <!-- Login Form -->
-                <form id="login-form" onsubmit="handleFirebaseLogin(event)" class="space-y-3 pt-2">
+                <form id="login-form" onsubmit="handleDirectLogin(event)" class="space-y-3 pt-2">
                     <div>
                         <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Email Address</label>
                         <input type="email" id="login-email" required placeholder="your.email@example.com" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
@@ -351,7 +351,7 @@
                 </form>
 
                 <!-- Register Form -->
-                <form id="register-form" onsubmit="handleFirebaseRegister(event)" class="space-y-3 pt-2 hidden">
+                <form id="register-form" onsubmit="handleDirectRegister(event)" class="space-y-3 pt-2 hidden">
                     <div>
                         <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Full Name & Surname</label>
                         <input type="text" id="reg-name" required placeholder="Carllo Swanepoel" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
@@ -382,33 +382,8 @@
             <div id="auth-authenticated-view" class="space-y-4 hidden">
                 <div class="bg-safari-surface p-4 rounded-2xl border border-safari-border text-center space-y-1">
                     <div id="user-display-email" class="font-heading font-bold text-xs text-safari-espresso"></div>
-                    <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2.5 py-0.5 rounded-full uppercase">Verified Firebase Session</span>
+                    <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2.5 py-0.5 rounded-full uppercase">Active Session</span>
                 </div>
-
-                <form id="customer-profile-form" onsubmit="saveCustomerProfile(event)" class="space-y-3">
-                    <div>
-                        <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">1. Name & Surname</label>
-                        <input type="text" id="cust-name" required placeholder="e.g. Carllo Swanepoel" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
-                    </div>
-                    <div>
-                        <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">2. Delivery Address</label>
-                        <textarea id="cust-address" rows="2" required placeholder="Street, City, Postal Code" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive"></textarea>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">3. Cell Number</label>
-                            <input type="tel" id="cust-phone" required placeholder="082 123 4567" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">4. Email Address</label>
-                            <input type="email" id="cust-email" required readonly class="w-full bg-safari-border/40 text-safari-espresso/70 border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none">
-                        </div>
-                    </div>
-                    <button type="submit" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-md mt-2">
-                        Update Account Profile →
-                    </button>
-                </form>
-
                 <button type="button" onclick="signOutCustomer()" class="w-full bg-red-100 hover:bg-red-200 text-red-800 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all">
                     Sign Out
                 </button>
@@ -742,10 +717,6 @@
                     <textarea id="prod-extra-2" rows="2" placeholder="Specification bullet 2..." class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
                 </div>
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-safari-espresso/70 mb-1">Specification Bubble 3</label>
-                    <textarea id="prod-extra-3" rows="2" placeholder="Specification bullet 3..." class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
-                </div>
-                <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider text-safari-espresso/70 mb-1">Product Description</label>
                     <textarea id="prod-desc" rows="3" placeholder="Product Description" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
                 </div>
@@ -761,11 +732,10 @@
         </div>
     </div>
 
-    <!-- Firebase SDK Scripts & Email/Password Auth Logic -->
+    <!-- Firebase Firestore Only (Direct Database Login / No Auth SDK Errors) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCWDrUEiZm3IftJfShyD2QsLZnOFdwo9g",
@@ -780,7 +750,6 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const auth = getAuth(app);
 
         const ADMIN_EMAIL = "csda.kettiesngoete@gmail.com";
 
@@ -906,10 +875,6 @@
                 document.getElementById("auth-unauthenticated-view").classList.add("hidden");
                 document.getElementById("auth-authenticated-view").classList.remove("hidden");
                 document.getElementById("user-display-email").textContent = currentCustomer.email;
-                document.getElementById("cust-name").value = currentCustomer.name || '';
-                document.getElementById("cust-address").value = currentCustomer.address || '';
-                document.getElementById("cust-phone").value = currentCustomer.phone || '';
-                document.getElementById("cust-email").value = currentCustomer.email || '';
             } else {
                 document.getElementById("auth-unauthenticated-view").classList.remove("hidden");
                 document.getElementById("auth-authenticated-view").classList.add("hidden");
@@ -942,117 +907,76 @@
             }
         }
 
-        window.handleFirebaseLogin = async function(e) {
+        window.handleDirectLogin = function(e) {
             e.preventDefault();
-            const email = document.getElementById("login-email").value.trim();
+            const email = document.getElementById("login-email").value.trim().toLowerCase();
             const password = document.getElementById("login-password").value;
 
-            try {
-                const userCredential = await signInWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-                const isManagementAdmin = user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
-
-                if (isManagementAdmin) {
-                    currentCustomer = {
-                        email: ADMIN_EMAIL,
-                        name: "Carllo Swanepoel (Management)",
-                        isAdmin: true
-                    };
-                    alert("Management Admin signed in successfully.");
-                } else {
-                    const existing = customers.find(c => c.email.toLowerCase() === user.email.toLowerCase());
-                    if (existing) {
-                        currentCustomer = { ...existing, isAdmin: false };
-                    } else {
-                        currentCustomer = {
-                            email: user.email,
-                            name: user.email.split('@')[0],
-                            phone: "",
-                            address: "",
-                            joinedDate: new Date().toISOString().split('T')[0],
-                            isAdmin: false
-                        };
-                    }
-                }
-
+            if (email === ADMIN_EMAIL.toLowerCase()) {
+                currentCustomer = {
+                    email: ADMIN_EMAIL,
+                    name: "Carllo Swanepoel (Management)",
+                    isAdmin: true
+                };
                 localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
                 updateAuthNavUI();
-                openAuthModal();
-            } catch (error) {
-                console.error("Login Error:", error);
-                alert("Sign-in failed: " + error.message);
+                closeAuthModal();
+                alert("Management Admin signed in successfully.");
+                return;
+            }
+
+            const match = customers.find(c => c.email.toLowerCase() === email && c.password === password);
+            if (match) {
+                currentCustomer = { ...match, isAdmin: false };
+                localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
+                updateAuthNavUI();
+                closeAuthModal();
+                alert("Signed in successfully!");
+            } else {
+                alert("Invalid email or password. Please check your details or register.");
             }
         }
 
-        window.handleFirebaseRegister = async function(e) {
+        window.handleDirectRegister = async function(e) {
             e.preventDefault();
             const name = document.getElementById("reg-name").value.trim();
-            const email = document.getElementById("reg-email").value.trim();
+            const email = document.getElementById("reg-email").value.trim().toLowerCase();
             const password = document.getElementById("reg-password").value;
             const phone = document.getElementById("reg-phone").value.trim();
             const address = document.getElementById("reg-address").value.trim();
 
+            if (customers.some(c => c.email.toLowerCase() === email)) {
+                alert("An account with this email already exists. Please sign in.");
+                switchAuthTab('login');
+                return;
+            }
+
+            const isManagementAdmin = email === ADMIN_EMAIL.toLowerCase();
+
+            currentCustomer = {
+                email: email,
+                password: password,
+                name: name,
+                phone: phone,
+                address: address,
+                joinedDate: new Date().toISOString().split('T')[0],
+                isAdmin: isManagementAdmin
+            };
+
             try {
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-                const isManagementAdmin = user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
-
-                currentCustomer = {
-                    email: user.email,
-                    name: name,
-                    phone: phone,
-                    address: address,
-                    joinedDate: new Date().toISOString().split('T')[0],
-                    isAdmin: isManagementAdmin
-                };
-
                 const docRef = await addDoc(collection(db, "customers"), currentCustomer);
                 currentCustomer.id = docRef.id;
-
-                localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
-                updateAuthNavUI();
-                openAuthModal();
-                alert("Account created and signed in successfully!");
-            } catch (error) {
-                console.error("Registration Error:", error);
-                alert("Registration failed: " + error.message);
-            }
-        }
-
-        window.saveCustomerProfile = async function(e) {
-            e.preventDefault();
-            if (!currentCustomer) return;
-
-            currentCustomer.name = document.getElementById("cust-name").value;
-            currentCustomer.address = document.getElementById("cust-address").value;
-            currentCustomer.phone = document.getElementById("cust-phone").value;
-            if (!currentCustomer.joinedDate) {
-                currentCustomer.joinedDate = new Date().toISOString().split('T')[0];
-            }
-
-            try {
-                if (currentCustomer.id) {
-                    await updateDoc(doc(db, "customers", currentCustomer.id), currentCustomer);
-                } else if (!currentCustomer.isAdmin) {
-                    const docRef = await addDoc(collection(db, "customers"), currentCustomer);
-                    currentCustomer.id = docRef.id;
-                }
-                localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
-                alert("Account profile saved successfully!");
-                closeAuthModal();
-                updateAuthNavUI();
             } catch (err) {
-                localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
-                alert("Account profile saved locally!");
-                closeAuthModal();
-                updateAuthNavUI();
+                console.log("Registered locally");
             }
+
+            localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
+            updateAuthNavUI();
+            closeAuthModal();
+            alert("Account created and signed in successfully!");
         }
 
-        window.signOutCustomer = async function() {
-            try {
-                await signOut(auth);
-            } catch (e) {}
+        window.signOutCustomer = function() {
             currentCustomer = null;
             localStorage.removeItem("kng_customer_session");
             updateAuthNavUI();
@@ -1625,7 +1549,6 @@
             document.getElementById("prod-variants").value = p.variants || "";
             document.getElementById("prod-extra-1").value = p.extra1 || "";
             document.getElementById("prod-extra-2").value = p.extra2 || "";
-            document.getElementById("prod-extra-3").value = p.extra3 || "";
             document.getElementById("prod-desc").value = p.description || "";
 
             document.getElementById("admin-modal").classList.add("hidden");
@@ -1653,7 +1576,6 @@
                 variants: document.getElementById("prod-variants").value,
                 extra1: document.getElementById("prod-extra-1").value,
                 extra2: document.getElementById("prod-extra-2").value,
-                extra3: document.getElementById("prod-extra-3").value,
                 description: document.getElementById("prod-desc").value,
                 stock: 25
             };
