@@ -723,6 +723,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCWDrUEiZm3IftJfShyD2QsLZnOFdwo9g",
@@ -735,6 +736,8 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
 
         const ADMIN_EMAIL = "csda.kettiesngoete@gmail.com";
 
@@ -854,7 +857,7 @@
             }
         }
 
-        // Google Sign-In & Strict Management Authorization
+        // Real Google Auth Popup Sign-In
         window.openAuthModal = function() {
             document.getElementById("auth-modal").classList.remove("hidden");
             if (currentCustomer) {
@@ -875,38 +878,45 @@
             document.getElementById("auth-modal").classList.add("hidden");
         }
 
-        window.signInWithGoogle = function() {
-            const googleEmail = prompt("Google Sign-In:\nEnter your email address:", "carllo@gmail.com");
-            if (!googleEmail || !googleEmail.includes("@")) return;
+        window.signInWithGoogle = async function() {
+            try {
+                const result = await signInWithPopup(auth, provider);
+                const user = result.user;
+                const googleEmail = user.email;
+                const googleName = user.displayName || "";
 
-            const isManagementAdmin = googleEmail.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+                const isManagementAdmin = googleEmail.toLowerCase() === ADMIN_EMAIL.toLowerCase();
 
-            if (isManagementAdmin) {
-                currentCustomer = {
-                    email: ADMIN_EMAIL,
-                    name: "Carllo Swanepoel (Management)",
-                    isAdmin: true
-                };
-                alert("Management Admin verified successfully.");
-            } else {
-                const existing = customers.find(c => c.email.toLowerCase() === googleEmail.toLowerCase());
-                if (existing) {
-                    currentCustomer = { ...existing, isAdmin: false };
-                } else {
+                if (isManagementAdmin) {
                     currentCustomer = {
-                        email: googleEmail,
-                        name: "",
-                        phone: "",
-                        address: "",
-                        joinedDate: new Date().toISOString().split('T')[0],
-                        isAdmin: false
+                        email: ADMIN_EMAIL,
+                        name: "Carllo Swanepoel (Management)",
+                        isAdmin: true
                     };
+                    alert("Management Admin verified successfully by Google.");
+                } else {
+                    const existing = customers.find(c => c.email.toLowerCase() === googleEmail.toLowerCase());
+                    if (existing) {
+                        currentCustomer = { ...existing, isAdmin: false };
+                    } else {
+                        currentCustomer = {
+                            email: googleEmail,
+                            name: googleName,
+                            phone: "",
+                            address: "",
+                            joinedDate: new Date().toISOString().split('T')[0],
+                            isAdmin: false
+                        };
+                    }
                 }
-            }
 
-            localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
-            updateAuthNavUI();
-            openAuthModal();
+                localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
+                updateAuthNavUI();
+                openAuthModal();
+            } catch (error) {
+                console.error("Google Sign-In Error:", error);
+                alert("Google Sign-In failed: " + error.message);
+            }
         }
 
         window.saveCustomerProfile = async function(e) {
