@@ -45,8 +45,8 @@
 </head>
 <body class="bg-safari-parchment text-safari-espresso font-body antialiased selection:bg-safari-olive selection:text-white overflow-x-hidden">
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-safari-espresso text-safari-parchment text-[11px] sm:text-xs font-medium py-2 px-3 text-center tracking-wider">
+    <!-- Top Announcement Bar (Editable via Admin Dashboard) -->
+    <div id="announcement-banner" class="bg-safari-espresso text-safari-parchment text-[11px] sm:text-xs font-medium py-2 px-3 text-center tracking-wider">
         <span>🇿🇦 CRAFTED IN SOUTH AFRICA • FREE NATIONWIDE SHIPPING ON ORDERS OVER R600 • 100% NATURAL LATEX & BIO-CLAY</span>
     </div>
 
@@ -102,12 +102,10 @@
                 <p class="text-safari-parchment text-sm sm:text-lg max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow">
                     Precision premium slingshots, therapeutic natural latex flatbands, and biodegradable clay pellets built for target precision and rugged outdoor expeditions.
                 </p>
-                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
-                    <a href="#shop" onclick="filterProducts('all')" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-all shadow-lg flex items-center justify-center gap-2">
+                <!-- Extra button removed; single primary Explore Catalog button retained -->
+                <div class="flex justify-center lg:justify-start pt-2">
+                    <a href="#shop" onclick="filterProducts('all')" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-all shadow-lg flex items-center justify-center gap-2">
                         EXPLORE CATALOG <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    <a href="#combos" class="bg-safari-espresso/80 hover:bg-safari-espresso border border-safari-border text-safari-parchment px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-all backdrop-blur-sm shadow-md text-center">
-                        BUY COMBO SPECIAL
                     </a>
                 </div>
             </div>
@@ -444,7 +442,7 @@
                         <i class="fa-solid fa-lock text-[9px]"></i> Secure Portal • Authorized Personnel Only
                     </div>
                     <h2 class="font-heading font-black text-xl sm:text-3xl uppercase tracking-tight">Ketties & Goete Admin Dashboard</h2>
-                    <p class="text-safari-borderLight text-xs sm:text-sm mt-1">Manage inventory database, monitor stock levels, and review customer records & orders.</p>
+                    <p class="text-safari-borderLight text-xs sm:text-sm mt-1">Manage inventory database, announcement bar, and review customer orders.</p>
                 </div>
                 <div class="flex flex-wrap gap-2 sm:gap-3 relative z-10 w-full md:w-auto">
                     <button type="button" onclick="closeAdminModal()" class="flex-1 md:flex-none bg-safari-surface/10 hover:bg-safari-surface/20 border border-safari-border text-safari-parchment px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 backdrop-blur-sm">
@@ -497,6 +495,9 @@
                 <button type="button" onclick="switchAdminTab('products')" id="admin-tab-prod" class="bg-safari-olive text-white px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
                     <i class="fa-solid fa-boxes-stacked"></i> Inventory Database (<span id="prod-count-badge">0</span>)
                 </button>
+                <button type="button" onclick="switchAdminTab('settings')" id="admin-tab-set" class="bg-safari-surface text-safari-espresso border border-safari-border px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-gear"></i> Site Settings & Banner
+                </button>
                 <button type="button" onclick="switchAdminTab('orders')" id="admin-tab-ord" class="bg-safari-surface text-safari-espresso border border-safari-border px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
                     <i class="fa-solid fa-clipboard-list"></i> Client Records & Orders (<span id="ord-count-badge">0</span>)
                 </button>
@@ -528,6 +529,24 @@
                             <tbody id="admin-product-table-body"></tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+
+            <!-- Settings & Announcement Banner Panel -->
+            <div id="admin-panel-settings" class="space-y-4 hidden">
+                <div class="bg-safari-surface p-6 rounded-2xl border border-safari-border space-y-4">
+                    <h4 class="font-heading font-bold text-base uppercase">Editable Top Announcement Bar</h4>
+                    <p class="text-xs text-safari-espresso/70">Update the message displayed at the very top of your website header instantly.</p>
+                    
+                    <form onsubmit="saveAnnouncementBanner(event)" class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider mb-1 text-safari-espresso">Banner Message Text</label>
+                            <textarea id="admin-banner-text" rows="2" required class="w-full bg-safari-parchment border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive">🇿🇦 CRAFTED IN SOUTH AFRICA • FREE NATIONWIDE SHIPPING ON ORDERS OVER R600 • 100% NATURAL LATEX & BIO-CLAY</textarea>
+                        </div>
+                        <button type="submit" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-6 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all shadow">
+                            Save & Update Banner Live →
+                        </button>
+                    </form>
                 </div>
             </div>
 
@@ -626,7 +645,7 @@
     <!-- Firebase SDK Scripts -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCWDrUEiZm3IftJfShyD2QsLZnOFdwo9g",
@@ -649,19 +668,19 @@
 
         const defaultProducts = [
             {
-                name: "OU KALAHARI COMBO SPECIAL",
+                name: "OU KALAHARI & CAMO CARRY BAG - KETTIE COMBO",
                 category: "Combos",
-                price: 550.00,
+                price: 590.00,
                 stock: 20,
                 visible: true,
                 isBestSeller: true,
-                sku: "KG-OU-KALAHARI",
+                sku: "KG-OU-KALAHARI-COMBO",
                 image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
                 variants: "Standard:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
                 extra1: "• Complete heavy-duty hardwood slingshot setup.\n• Dual-tier natural latex flatbands & target leather pouch.\n• 100 biodegradable clay spheres.",
-                extra2: "• Calibrated for precision outdoor target practice.",
+                extra2: "• Gear up for your next outdoor expedition.",
                 extra3: "• Limited wilderness edition.",
-                description: "Complete heavy-duty hardwood slingshot setup with dual-tier natural latex flatbands, target leather pouch, and 100 biodegradable clay spheres."
+                description: "Gear up for your next outdoor expedition with the premier Ou Kalahari Combo from Ketties & Goete. Designed for rugged accuracy."
             },
             {
                 name: "KETTIE - SA EAGLE SLINGSHOT",
@@ -696,6 +715,18 @@
                 renderAdminDashboard();
             }
 
+            // Load Announcement Banner text from Firestore settings
+            try {
+                const bannerDoc = await getDoc(doc(db, "settings", "announcement"));
+                if (bannerDoc.exists() && bannerDoc.data().text) {
+                    const text = bannerDoc.data().text;
+                    document.getElementById("announcement-banner").innerHTML = `<span>${text}</span>`;
+                    document.getElementById("admin-banner-text").value = text;
+                }
+            } catch (err) {
+                console.log("Banner settings load offline.");
+            }
+
             onSnapshot(collection(db, "products"), (snapshot) => {
                 products = [];
                 snapshot.forEach((docSnap) => {
@@ -713,6 +744,19 @@
                 });
                 renderAdminDashboard();
             }, (err) => { console.log("Order snapshot error", err); });
+        }
+
+        window.saveAnnouncementBanner = async function(e) {
+            e.preventDefault();
+            const newText = document.getElementById("admin-banner-text").value;
+            document.getElementById("announcement-banner").innerHTML = `<span>${newText}</span>`;
+            
+            try {
+                await setDoc(doc(db, "settings", "announcement"), { text: newText });
+                alert("Announcement banner updated successfully!");
+            } catch (err) {
+                alert("Banner updated locally!");
+            }
         }
 
         window.renderHeroBestSeller = function() {
@@ -1062,20 +1106,28 @@
 
         window.switchAdminTab = function(tab) {
             const prodTab = document.getElementById("admin-tab-prod");
+            const setTab = document.getElementById("admin-tab-set");
             const ordTab = document.getElementById("admin-tab-ord");
             const prodPanel = document.getElementById("admin-panel-products");
+            const setPanel = document.getElementById("admin-panel-settings");
             const ordPanel = document.getElementById("admin-panel-orders");
+
+            prodTab.className = "bg-safari-surface text-safari-espresso border border-safari-border px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
+            setTab.className = "bg-safari-surface text-safari-espresso border border-safari-border px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
+            ordTab.className = "bg-safari-surface text-safari-espresso border border-safari-border px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
+            prodPanel.classList.add("hidden");
+            setPanel.classList.add("hidden");
+            ordPanel.classList.add("hidden");
 
             if (tab === 'products') {
                 prodTab.className = "bg-safari-olive text-white px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
-                ordTab.className = "bg-safari-surface text-safari-espresso border border-safari-border px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
                 prodPanel.classList.remove("hidden");
-                ordPanel.classList.add("hidden");
+            } else if (tab === 'settings') {
+                setTab.className = "bg-safari-olive text-white px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
+                setPanel.classList.remove("hidden");
             } else {
                 ordTab.className = "bg-safari-olive text-white px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
-                prodTab.className = "bg-safari-surface text-safari-espresso border border-safari-border px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
                 ordPanel.classList.remove("hidden");
-                prodPanel.classList.add("hidden");
             }
         }
 
