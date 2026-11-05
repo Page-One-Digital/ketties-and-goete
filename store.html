@@ -43,10 +43,10 @@
         }
     </script>
 </head>
-<body class="bg-safari-parchment text-safari-espresso font-body antialiased selection:bg-safari-olive selection:text-white">
+<body class="bg-safari-parchment text-safari-espresso font-body antialiased selection:bg-safari-olive selection:text-white overflow-x-hidden">
 
     <!-- Top Announcement Bar -->
-    <div class="bg-safari-espresso text-safari-parchment text-xs font-medium py-2 px-4 text-center tracking-wider">
+    <div class="bg-safari-espresso text-safari-parchment text-[11px] sm:text-xs font-medium py-2 px-3 text-center tracking-wider">
         <span>🇿🇦 CRAFTED IN SOUTH AFRICA • FREE NATIONWIDE SHIPPING ON ORDERS OVER R600 • 100% NATURAL LATEX & BIO-CLAY</span>
     </div>
 
@@ -55,12 +55,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Brand Logo -->
             <a href="#" class="flex items-center gap-3 group">
-                <div class="w-11 h-11 bg-safari-espresso text-safari-parchment rounded-lg flex items-center justify-center font-heading font-black text-xl shadow-md group-hover:bg-safari-olive transition-colors">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 bg-safari-espresso text-safari-parchment rounded-lg flex items-center justify-center font-heading font-black text-lg sm:text-xl shadow-md group-hover:bg-safari-olive transition-colors">
                     K&G
                 </div>
                 <div>
-                    <span class="font-heading font-black text-xl tracking-wider block leading-tight">KETTIES & GOETE</span>
-                    <span class="text-[10px] tracking-widest text-safari-olive uppercase font-semibold">South African Heritage Gear</span>
+                    <span class="font-heading font-black text-lg sm:text-xl tracking-wider block leading-tight">KETTIES & GOETE</span>
+                    <span class="text-[9px] sm:text-[10px] tracking-widest text-safari-olive uppercase font-semibold">South African Heritage Gear</span>
                 </div>
             </a>
 
@@ -74,39 +74,39 @@
             </div>
 
             <!-- Dashboard & Cart Actions -->
-            <div class="flex items-center gap-4">
-                <button type="button" onclick="openAdminModal(event)" class="bg-safari-surface border border-safari-border hover:border-safari-olive px-4 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-all shadow-sm">
-                    <i class="fa-solid fa-shield-halved text-safari-olive"></i> Dashboard
+            <div class="flex items-center gap-2 sm:gap-4">
+                <button type="button" onclick="openAdminModal(event)" class="bg-safari-surface border border-safari-border hover:border-safari-olive px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 sm:gap-2 transition-all shadow-sm">
+                    <i class="fa-solid fa-shield-halved text-safari-olive"></i> <span class="hidden sm:inline">Dashboard</span>
                 </button>
-                <button type="button" onclick="toggleCartDrawer()" class="relative bg-safari-espresso text-safari-parchment hover:bg-safari-olive px-4 py-2.5 rounded-xl flex items-center gap-2 font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-sm">
-                    <i class="fa-solid fa-shopping-bag text-sm"></i> Cart
-                    <span id="cart-badge" class="absolute -top-2 -right-2 bg-safari-terracotta text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center shadow">0</span>
+                <button type="button" onclick="toggleCartDrawer()" class="relative bg-safari-espresso text-safari-parchment hover:bg-safari-olive px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl flex items-center gap-1.5 sm:gap-2 font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-sm">
+                    <i class="fa-solid fa-shopping-bag text-sm"></i> <span class="hidden sm:inline">Cart</span>
+                    <span id="cart-badge" class="absolute -top-2 -right-2 bg-safari-terracotta text-white text-xs font-bold w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center shadow">0</span>
                 </button>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative bg-safari-espresso text-safari-parchment overflow-hidden py-20 lg:py-28">
-        <div class="absolute inset-0 z-0 opacity-50 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1920');"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-safari-espresso/90 via-safari-espresso/60 to-transparent z-0"></div>
+    <section class="relative bg-safari-espresso text-safari-parchment overflow-hidden py-16 sm:py-20 lg:py-28">
+        <div class="absolute inset-0 z-0 opacity-40 sm:opacity-50 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1920');"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-safari-espresso/95 via-safari-espresso/70 to-transparent z-0"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-7 space-y-6">
-                <div class="inline-flex items-center gap-2 bg-safari-olive text-white px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            <div class="lg:col-span-7 space-y-5 sm:space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 bg-safari-olive text-white px-3 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-widest uppercase shadow-sm">
                     <span>⛰️</span> SOUTH AFRICAN VELD & HERITAGE GEAR
                 </div>
-                <h1 class="font-heading font-black text-4xl sm:text-5xl lg:text-6xl tracking-tight uppercase leading-none drop-shadow-md">
-                    GEAR YOU CAN <span class="bg-safari-olive text-white px-3 py-1 inline-block mt-2 rounded shadow-inner">COUNT ON.</span>
+                <h1 class="font-heading font-black text-3xl sm:text-5xl lg:text-6xl tracking-tight uppercase leading-tight sm:leading-none drop-shadow-md">
+                    GEAR YOU CAN <span class="bg-safari-olive text-white px-2.5 sm:px-3 py-1 inline-block mt-2 rounded shadow-inner">COUNT ON.</span>
                 </h1>
-                <p class="text-safari-parchment text-base sm:text-lg max-w-xl font-medium leading-relaxed drop-shadow">
+                <p class="text-safari-parchment text-sm sm:text-lg max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow">
                     Precision premium slingshots, therapeutic natural latex flatbands, and biodegradable clay pellets built for target precision and rugged outdoor expeditions.
                 </p>
-                <div class="flex flex-wrap gap-4 pt-2">
-                    <a href="#shop" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-8 py-4 rounded-xl font-heading font-bold text-sm tracking-wider uppercase transition-all shadow-lg flex items-center gap-2">
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
+                    <a href="#shop" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-all shadow-lg flex items-center justify-center gap-2">
                         EXPLORE CATALOG <i class="fa-solid fa-arrow-right"></i>
                     </a>
-                    <a href="#combos" class="bg-safari-espresso/80 hover:bg-safari-espresso border border-safari-border text-safari-parchment px-8 py-4 rounded-xl font-heading font-bold text-sm tracking-wider uppercase transition-all backdrop-blur-sm shadow-md">
+                    <a href="#combos" class="bg-safari-espresso/80 hover:bg-safari-espresso border border-safari-border text-safari-parchment px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-all backdrop-blur-sm shadow-md text-center">
                         BUY COMBO SPECIAL
                     </a>
                 </div>
@@ -114,22 +114,22 @@
 
             <!-- Featured Highlight Card -->
             <div class="lg:col-span-5">
-                <div class="bg-safari-espresso/95 border border-safari-border/40 rounded-2xl p-6 sm:p-8 shadow-2xl backdrop-blur-md relative">
-                    <div class="absolute -top-3 right-6 bg-safari-terracotta text-white font-heading font-bold text-xs uppercase px-3 py-1 rounded-full shadow">
+                <div class="bg-safari-espresso/95 border border-safari-border/40 rounded-2xl p-5 sm:p-8 shadow-2xl backdrop-blur-md relative">
+                    <div class="absolute -top-3 right-6 bg-safari-terracotta text-white font-heading font-bold text-[11px] sm:text-xs uppercase px-3 py-1 rounded-full shadow">
                         Best Seller Combo
                     </div>
-                    <div class="rounded-xl overflow-hidden mb-6 h-56 border border-safari-border/30 bg-white flex items-center justify-center">
+                    <div class="rounded-xl overflow-hidden mb-5 sm:mb-6 h-48 sm:h-56 border border-safari-border/30 bg-white flex items-center justify-center">
                         <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800" alt="Ou Kalahari Combo Special" class="w-full h-full object-cover">
                     </div>
-                    <span class="text-xs uppercase tracking-widest text-safari-olive font-bold">Limited Wilderness Edition</span>
-                    <h3 class="font-heading font-black text-2xl text-white mt-1 mb-2">Ou Kalahari Combo Special</h3>
-                    <p class="text-safari-borderLight text-sm mb-6">Complete heavy-duty hardwood slingshot setup with dual-tier natural latex flatbands, target leather pouch, and 100 biodegradable clay spheres.</p>
+                    <span class="text-[11px] sm:text-xs uppercase tracking-widest text-safari-olive font-bold">Limited Wilderness Edition</span>
+                    <h3 class="font-heading font-black text-xl sm:text-2xl text-white mt-1 mb-2">Ou Kalahari Combo Special</h3>
+                    <p class="text-safari-borderLight text-xs sm:text-sm mb-5 sm:mb-6 leading-relaxed">Complete heavy-duty hardwood slingshot setup with dual-tier natural latex flatbands, target leather pouch, and 100 biodegradable clay spheres.</p>
                     <div class="flex items-center justify-between">
                         <div>
-                            <span class="text-xs text-safari-border line-through block">R680.00</span>
-                            <span class="font-heading font-black text-2xl text-safari-terracotta">R550.00</span>
+                            <span class="text-[11px] sm:text-xs text-safari-border line-through block">R680.00</span>
+                            <span class="font-heading font-black text-xl sm:text-2xl text-safari-terracotta">R550.00</span>
                         </div>
-                        <button type="button" onclick="addComboToCart()" class="bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-6 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
+                        <button type="button" onclick="addComboToCart()" class="bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
                             Add Combo to Cart
                         </button>
                     </div>
@@ -139,79 +139,79 @@
     </section>
 
     <!-- Premium Category Hubs Between Hero & Store -->
-    <section class="py-16 bg-safari-surface/50 border-b border-safari-border/60">
+    <section class="py-12 sm:py-16 bg-safari-surface/50 border-b border-safari-border/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span class="text-[11px] font-bold uppercase tracking-widest text-safari-olive block mb-1">Shop By Collection</span>
-            <h2 class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase tracking-tight mb-8">Premium Category Hubs</h2>
+            <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-safari-olive block mb-1">Shop By Collection</span>
+            <h2 class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase tracking-tight mb-6 sm:mb-8">Premium Category Hubs</h2>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
                 <!-- Slingshots Hub -->
-                <a href="#shop" onclick="filterProducts('Ketties')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
-                    <div class="w-12 h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
-                        <i class="fa-solid fa-bullseye text-lg"></i>
+                <a href="#shop" onclick="filterProducts('Ketties')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
+                        <i class="fa-solid fa-bullseye text-base sm:text-lg"></i>
                     </div>
-                    <h3 class="font-heading font-black text-sm uppercase text-safari-espresso mb-1">Slingshots</h3>
-                    <span class="text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore Items</span>
+                    <h3 class="font-heading font-black text-xs sm:text-sm uppercase text-safari-espresso mb-1 text-center">Slingshots</h3>
+                    <span class="text-[9px] sm:text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore</span>
                 </a>
 
                 <!-- Bands Hub -->
-                <a href="#shop" onclick="filterProducts('Flatbands')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
-                    <div class="w-12 h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
-                        <i class="fa-solid fa-fire text-lg"></i>
+                <a href="#shop" onclick="filterProducts('Flatbands')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
+                        <i class="fa-solid fa-fire text-base sm:text-lg"></i>
                     </div>
-                    <h3 class="font-heading font-black text-sm uppercase text-safari-espresso mb-1">Bands & Band Sets</h3>
-                    <span class="text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore Items</span>
+                    <h3 class="font-heading font-black text-xs sm:text-sm uppercase text-safari-espresso mb-1 text-center">Bands & Sets</h3>
+                    <span class="text-[9px] sm:text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore</span>
                 </a>
 
                 <!-- Ammunition Hub -->
-                <a href="#shop" onclick="filterProducts('Clay Pellets')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
-                    <div class="w-12 h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
-                        <i class="fa-solid fa-arrow-right text-lg"></i>
+                <a href="#shop" onclick="filterProducts('Clay Pellets')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
+                        <i class="fa-solid fa-arrow-right text-base sm:text-lg"></i>
                     </div>
-                    <h3 class="font-heading font-black text-sm uppercase text-safari-espresso mb-1">Ammunition</h3>
-                    <span class="text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore Items</span>
+                    <h3 class="font-heading font-black text-xs sm:text-sm uppercase text-safari-espresso mb-1 text-center">Ammunition</h3>
+                    <span class="text-[9px] sm:text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore</span>
                 </a>
 
                 <!-- Equipment & Gear Hub -->
-                <a href="#shop" onclick="filterProducts('Accessories')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
-                    <div class="w-12 h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
-                        <i class="fa-solid fa-shield-halved text-lg"></i>
+                <a href="#shop" onclick="filterProducts('Accessories')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
+                        <i class="fa-solid fa-shield-halved text-base sm:text-lg"></i>
                     </div>
-                    <h3 class="font-heading font-black text-sm uppercase text-safari-espresso mb-1">Equipment & Gear</h3>
-                    <span class="text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore Items</span>
+                    <h3 class="font-heading font-black text-xs sm:text-sm uppercase text-safari-espresso mb-1 text-center">Equipment</h3>
+                    <span class="text-[9px] sm:text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore</span>
                 </a>
 
                 <!-- Gift Bundles Hub -->
-                <a href="#shop" onclick="filterProducts('Combos')" class="bg-safari-parchment border border-safari-border hover:border-safari-terracotta p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center sm:col-span-2 lg:col-span-1">
-                    <div class="w-12 h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-3 group-hover:bg-safari-terracotta group-hover:text-white transition-colors shadow-inner">
-                        <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+                <a href="#shop" onclick="filterProducts('Combos')" class="bg-safari-parchment border border-safari-border hover:border-safari-terracotta p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center col-span-2 sm:col-span-1">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-terracotta group-hover:text-white transition-colors shadow-inner">
+                        <i class="fa-solid fa-wand-magic-sparkles text-base sm:text-lg"></i>
                     </div>
-                    <h3 class="font-heading font-black text-sm uppercase text-safari-espresso mb-1">Gift Bundles</h3>
-                    <span class="text-[10px] text-safari-terracotta font-bold uppercase tracking-wider">Explore Items</span>
+                    <h3 class="font-heading font-black text-xs sm:text-sm uppercase text-safari-espresso mb-1 text-center">Gift Bundles</h3>
+                    <span class="text-[9px] sm:text-[10px] text-safari-terracotta font-bold uppercase tracking-wider">Explore</span>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Main WooCommerce Shop Section -->
-    <section id="shop" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 border-b border-safari-border pb-6">
+    <section id="shop" class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 border-b border-safari-border pb-6 gap-4">
             <div>
                 <span class="text-xs font-semibold uppercase tracking-widest text-safari-olive block mb-1">WooCommerce Style Catalog</span>
-                <h2 class="font-heading font-black text-3xl sm:text-4xl text-safari-espresso">SHOOTING GEAR & ACCESSORIES</h2>
+                <h2 class="font-heading font-black text-2xl sm:text-4xl text-safari-espresso">SHOOTING GEAR & ACCESSORIES</h2>
             </div>
             <!-- Category Filter Tabs -->
-            <div class="flex flex-wrap gap-2 mt-4 md:mt-0" id="category-filters">
-                <button type="button" onclick="filterProducts('all')" class="cat-btn active bg-safari-olive text-white px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">All Items</button>
-                <button type="button" onclick="filterProducts('Ketties')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Ketties</button>
-                <button type="button" onclick="filterProducts('Flatbands')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Flatbands</button>
-                <button type="button" onclick="filterProducts('Clay Pellets')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Clay Pellets</button>
-                <button type="button" onclick="filterProducts('Combos')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Combos</button>
+            <div class="flex flex-wrap gap-2" id="category-filters">
+                <button type="button" onclick="filterProducts('all')" class="cat-btn active bg-safari-olive text-white px-3 sm:px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">All Items</button>
+                <button type="button" onclick="filterProducts('Ketties')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-3 sm:px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Ketties</button>
+                <button type="button" onclick="filterProducts('Flatbands')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-3 sm:px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Flatbands</button>
+                <button type="button" onclick="filterProducts('Clay Pellets')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-3 sm:px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Clay Pellets</button>
+                <button type="button" onclick="filterProducts('Combos')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-3 sm:px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Combos</button>
             </div>
         </div>
 
         <!-- Product Grid -->
-        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
             <div class="col-span-full text-center py-12 text-safari-espresso/60">
                 <i class="fa-solid fa-spinner fa-spin text-3xl mb-3 text-safari-olive"></i>
                 <p>Loading live catalog from Firebase database...</p>
@@ -220,42 +220,38 @@
     </section>
 
     <!-- Why Choose Ketties & Goete? Grid Section -->
-    <section class="py-16 bg-safari-surface/40 border-t border-safari-border/50">
+    <section class="py-12 sm:py-16 bg-safari-surface/40 border-t border-safari-border/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span class="text-[11px] font-bold uppercase tracking-widest text-safari-olive block mb-1">Unmatched Utility</span>
-            <h2 class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase tracking-tight mb-12">Why Choose Ketties & Goete?</h2>
+            <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-safari-olive block mb-1">Unmatched Utility</span>
+            <h2 class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase tracking-tight mb-8 sm:mb-12">Why Choose Ketties & Goete?</h2>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-                <!-- Card 1 -->
-                <div class="bg-safari-parchment p-8 rounded-2xl border border-safari-border shadow-sm">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 text-left">
+                <div class="bg-safari-parchment p-6 sm:p-8 rounded-2xl border border-safari-border shadow-sm">
                     <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center font-heading font-black text-xs text-safari-olive mb-4 shadow-inner">
                         ZA
                     </div>
-                    <h3 class="font-heading font-black text-base text-safari-espresso mb-2">100% South African Made</h3>
+                    <h3 class="font-heading font-black text-sm sm:text-base text-safari-espresso mb-2">100% South African Made</h3>
                     <p class="text-xs text-safari-espresso/70 leading-relaxed">Customized and calibrated by specialized local manufacturing and precision steel-smiths in Pretoria, Gauteng. Built to last.</p>
                 </div>
-                <!-- Card 2 -->
-                <div class="bg-safari-parchment p-8 rounded-2xl border border-safari-border shadow-sm">
+                <div class="bg-safari-parchment p-6 sm:p-8 rounded-2xl border border-safari-border shadow-sm">
                     <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center font-heading font-black text-xs text-safari-olive mb-4 shadow-inner">
                         <i class="fa-solid fa-bullseye text-safari-olive"></i>
                     </div>
-                    <h3 class="font-heading font-black text-base text-safari-espresso mb-2">Precision Target Calibrations</h3>
+                    <h3 class="font-heading font-black text-sm sm:text-base text-safari-espresso mb-2">Precision Target Calibrations</h3>
                     <p class="text-xs text-safari-espresso/70 leading-relaxed">Every slingshot fork is balanced and aligned for flat trajectories, coupled with premium microfiber double-taper leather pouches.</p>
                 </div>
-                <!-- Card 3 -->
-                <div class="bg-safari-parchment p-8 rounded-2xl border border-safari-border shadow-sm">
+                <div class="bg-safari-parchment p-6 sm:p-8 rounded-2xl border border-safari-border shadow-sm">
                     <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center font-heading font-black text-xs text-safari-olive mb-4 shadow-inner">
                         <i class="fa-solid fa-fire text-safari-olive"></i>
                     </div>
-                    <h3 class="font-heading font-black text-base text-safari-espresso mb-2">Natural Latex Elasticity</h3>
+                    <h3 class="font-heading font-black text-sm sm:text-base text-safari-espresso mb-2">Natural Latex Elasticity</h3>
                     <p class="text-xs text-safari-espresso/70 leading-relaxed">High-speed therapeutic natural latex flat bands ensure consistent draw weight and instantaneous snap recovery even in cold weather.</p>
                 </div>
-                <!-- Card 4 -->
-                <div class="bg-safari-parchment p-8 rounded-2xl border border-safari-border shadow-sm">
+                <div class="bg-safari-parchment p-6 sm:p-8 rounded-2xl border border-safari-border shadow-sm">
                     <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center font-heading font-black text-xs text-safari-olive mb-4 shadow-inner">
                         <i class="fa-solid fa-shield-halved text-safari-olive"></i>
                     </div>
-                    <h3 class="font-heading font-black text-base text-safari-espresso mb-2">Biodegradable Ammunition</h3>
+                    <h3 class="font-heading font-black text-sm sm:text-base text-safari-espresso mb-2">Biodegradable Ammunition</h3>
                     <p class="text-xs text-safari-espresso/70 leading-relaxed">Our Klei Balletjies explode safely into natural clay powder on impact, preventing lawnmower damage and protecting veld birds.</p>
                 </div>
             </div>
@@ -263,26 +259,24 @@
     </section>
 
     <!-- Preserving Backyard Family Adventure Heritage Section -->
-    <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-safari-surface/70 border border-safari-border p-8 sm:p-12 rounded-3xl shadow-sm">
-            <!-- Left: Hardwood Precision Image Box -->
-            <div class="lg:col-span-5 rounded-2xl overflow-hidden border border-safari-border shadow-md bg-white h-80 sm:h-96 flex items-center justify-center relative">
+    <section class="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center bg-safari-surface/70 border border-safari-border p-6 sm:p-12 rounded-3xl shadow-sm">
+            <div class="lg:col-span-5 rounded-2xl overflow-hidden border border-safari-border shadow-md bg-white h-72 sm:h-96 flex items-center justify-center relative">
                 <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800" alt="Hardwood precision finish" class="w-full h-full object-cover">
                 <span class="absolute bottom-4 left-4 bg-safari-espresso/90 text-safari-parchment text-[11px] font-mono px-3 py-1 rounded-lg uppercase tracking-wider">Hardwood Precision Finish</span>
             </div>
-            <!-- Right: Content -->
-            <div class="lg:col-span-7 space-y-6">
-                <span class="text-[11px] font-bold uppercase tracking-widest text-safari-olive">Veld Heritage & Legacy</span>
-                <h2 class="font-heading font-black text-3xl sm:text-4xl text-safari-espresso uppercase leading-tight">Preserving Backyard Family Adventure</h2>
-                <p class="text-safari-espresso/80 text-sm leading-relaxed font-light">
+            <div class="lg:col-span-7 space-y-5 sm:space-y-6">
+                <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-safari-olive">Veld Heritage & Legacy</span>
+                <h2 class="font-heading font-black text-2xl sm:text-4xl text-safari-espresso uppercase leading-tight">Preserving Backyard Family Adventure</h2>
+                <p class="text-safari-espresso/80 text-xs sm:text-sm leading-relaxed font-light">
                     For generations, the traditional "kettie" has been a fixture of growing up in South Africa. It taught young boys and girls the value of hand-eye coordination, precision target practice, patience, and a deep respect for the bush.
                 </p>
-                <p class="text-safari-espresso/80 text-sm leading-relaxed font-light">
+                <p class="text-safari-espresso/80 text-xs sm:text-sm leading-relaxed font-light">
                     At Ketties & Goete, we are bringing this traditional art form into the 21st century. By pairing heavy-duty carbon steel forks, real polished wood scales, and fiber-optic posture sights with fully biodegradable clay ammo, we ensure the next generation can shoot safely, ecologically, and with unmatched accuracy.
                 </p>
                 <div>
-                    <a href="#shop" class="inline-block bg-safari-espresso hover:bg-safari-olive text-safari-parchment px-8 py-4 rounded-xl font-heading font-bold text-xs uppercase tracking-widest transition-colors shadow">
-                        Read Our Heritage Veld Blogs
+                    <a href="#shop" class="inline-block bg-safari-espresso hover:bg-safari-olive text-safari-parchment px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-heading font-bold text-xs uppercase tracking-widest transition-colors shadow text-center">
+                        Explore Heritage Catalog
                     </a>
                 </div>
             </div>
@@ -290,11 +284,11 @@
     </section>
 
     <!-- Stay In The Loop Newsletter Section -->
-    <section class="py-16 bg-safari-espresso text-safari-parchment">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-            <span class="text-[11px] font-bold uppercase tracking-widest text-safari-olive">Join The Adventure</span>
-            <h2 class="font-heading font-black text-3xl sm:text-4xl uppercase tracking-tight">Stay In The Loop</h2>
-            <p class="text-safari-borderLight text-sm max-w-lg mx-auto font-light">
+    <section class="py-14 sm:py-16 bg-safari-espresso text-safari-parchment">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5 sm:space-y-6">
+            <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-safari-olive">Join The Adventure</span>
+            <h2 class="font-heading font-black text-2xl sm:text-4xl uppercase tracking-tight">Stay In The Loop</h2>
+            <p class="text-safari-borderLight text-xs sm:text-sm max-w-lg mx-auto font-light">
                 Subscribe to our newsletter to receive notification on brand new slingshot releases, winter combo launches, and precision targeting guides!
             </p>
             <form onsubmit="event.preventDefault(); alert('Thank you for subscribing to Ketties & Goete!'); this.reset();" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto pt-2">
@@ -307,14 +301,14 @@
     </section>
 
     <!-- Footer -->
-    <footer id="combos" class="bg-safari-espresso/95 text-safari-parchment py-16 border-t border-safari-border/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 border-b border-safari-border/20 pb-12">
+    <footer id="combos" class="bg-safari-espresso/95 text-safari-parchment py-12 sm:py-16 border-t border-safari-border/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 border-b border-safari-border/20 pb-10 sm:pb-12">
             <div class="space-y-4 md:col-span-2">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 bg-safari-olive text-white rounded-lg flex items-center justify-center font-heading font-black text-lg">K&G</div>
                     <span class="font-heading font-black text-xl tracking-wider">KETTIES & GOETE</span>
                 </div>
-                <p class="text-safari-borderLight text-sm max-w-sm">
+                <p class="text-safari-borderLight text-xs sm:text-sm max-w-sm">
                     South Africa's premier destination for artisanal outdoor shooting gear, therapeutic flatbands, and heritage accessories. Built for precision and backyard adventure.
                 </p>
                 <div class="text-xs text-safari-border">
@@ -322,15 +316,15 @@
                 </div>
             </div>
             <div>
-                <h4 class="font-heading font-bold text-sm uppercase tracking-widest text-safari-olive mb-4">Quick Links</h4>
-                <ul class="space-y-2 text-sm text-safari-borderLight">
+                <h4 class="font-heading font-bold text-xs sm:text-sm uppercase tracking-widest text-safari-olive mb-3 sm:mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-xs sm:text-sm text-safari-borderLight">
                     <li><a href="#shop" class="hover:text-white transition-colors">Shop Catalog</a></li>
                     <li><a href="#" onclick="openAdminModal(event)" class="hover:text-white transition-colors">Admin Dashboard</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="font-heading font-bold text-sm uppercase tracking-widest text-safari-olive mb-4">Customer Support</h4>
-                <ul class="space-y-2 text-sm text-safari-borderLight">
+                <h4 class="font-heading font-bold text-xs sm:text-sm uppercase tracking-widest text-safari-olive mb-3 sm:mb-4">Customer Support</h4>
+                <ul class="space-y-2 text-xs sm:text-sm text-safari-borderLight">
                     <li><span>Centurion, Gauteng, South Africa</span></li>
                     <li><span>support@kettiesandgoete.co.za</span></li>
                     <li><span>Nationwide Courier Delivery</span></li>
@@ -344,30 +338,30 @@
         <div class="absolute inset-0 bg-safari-espresso/60 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer()"></div>
         <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
             <div class="w-screen max-w-md bg-safari-parchment border-l border-safari-border flex flex-col shadow-2xl">
-                <div class="p-6 bg-safari-surface border-b border-safari-border flex items-center justify-between">
+                <div class="p-5 sm:p-6 bg-safari-surface border-b border-safari-border flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-shopping-bag text-safari-olive text-xl"></i>
-                        <h3 class="font-heading font-black text-lg uppercase">Your Shopping Cart</h3>
+                        <i class="fa-solid fa-shopping-bag text-safari-olive text-lg sm:text-xl"></i>
+                        <h3 class="font-heading font-black text-base sm:text-lg uppercase">Your Shopping Cart</h3>
                     </div>
                     <button type="button" onclick="toggleCartDrawer()" class="text-safari-espresso/60 hover:text-safari-espresso p-2">
                         <i class="fa-solid fa-xmark text-xl"></i>
                     </button>
                 </div>
-                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
-                <div class="p-6 bg-safari-surface border-t border-safari-border space-y-4">
-                    <div class="flex items-center justify-between text-sm">
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4"></div>
+                <div class="p-5 sm:p-6 bg-safari-surface border-t border-safari-border space-y-3 sm:space-y-4">
+                    <div class="flex items-center justify-between text-xs sm:text-sm">
                         <span class="text-safari-espresso/70">Subtotal:</span>
-                        <span id="cart-subtotal" class="font-heading font-bold text-lg">R0.00</span>
+                        <span id="cart-subtotal" class="font-heading font-bold text-base sm:text-lg">R0.00</span>
                     </div>
-                    <div class="flex items-center justify-between text-sm">
+                    <div class="flex items-center justify-between text-xs sm:text-sm">
                         <span class="text-safari-espresso/70">Shipping (Nationwide):</span>
                         <span id="cart-shipping" class="font-heading font-bold text-safari-olive">R100.00</span>
                     </div>
                     <div class="border-t border-safari-border pt-3 flex items-center justify-between">
-                        <span class="font-heading font-bold text-base">Total:</span>
-                        <span id="cart-total" class="font-heading font-black text-2xl text-safari-terracotta">R0.00</span>
+                        <span class="font-heading font-bold text-sm sm:text-base">Total:</span>
+                        <span id="cart-total" class="font-heading font-black text-xl sm:text-2xl text-safari-terracotta">R0.00</span>
                     </div>
-                    <button type="button" onclick="openCheckoutModal()" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-4 rounded-xl font-heading font-bold text-sm tracking-wider uppercase transition-colors shadow-md">
+                    <button type="button" onclick="openCheckoutModal()" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 sm:py-4 rounded-xl font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-colors shadow-md">
                         Proceed to Checkout →
                     </button>
                 </div>
@@ -376,33 +370,33 @@
     </div>
 
     <!-- Product Detail Modal -->
-    <div id="product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+    <div id="product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-3 sm:p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductModal()"></div>
-        <div class="bg-safari-parchment rounded-3xl max-w-6xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 items-center">
+        <div class="bg-safari-parchment rounded-2xl sm:rounded-3xl max-w-6xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 items-center my-auto max-h-[92vh] overflow-y-auto">
             
             <!-- Left: Expanded Image Container & Gallery Thumbnails -->
-            <div class="lg:col-span-7 p-8 sm:p-12 bg-safari-surface flex flex-col justify-center items-center border-r border-safari-border h-full min-h-[550px]">
-                <div class="rounded-2xl overflow-hidden h-[420px] w-full flex items-center justify-center bg-safari-parchment p-6 border border-safari-border/50 shadow-inner mb-4">
-                    <img id="modal-main-img" src="" alt="Product Image" class="max-h-[380px] w-auto max-w-full object-contain mx-auto shadow-lg rounded-xl">
+            <div class="lg:col-span-7 p-6 sm:p-12 bg-safari-surface flex flex-col justify-center items-center border-b lg:border-b-0 lg:border-r border-safari-border h-full min-h-[380px] sm:min-h-[550px]">
+                <div class="rounded-2xl overflow-hidden h-[300px] sm:h-[420px] w-full flex items-center justify-center bg-safari-parchment p-4 sm:p-6 border border-safari-border/50 shadow-inner mb-4">
+                    <img id="modal-main-img" src="" alt="Product Image" class="max-h-[260px] sm:max-h-[380px] w-auto max-w-full object-contain mx-auto shadow-lg rounded-xl">
                 </div>
                 <!-- Gallery Thumbnails Row -->
-                <div id="modal-thumbnails" class="flex flex-wrap gap-3 justify-center"></div>
+                <div id="modal-thumbnails" class="flex flex-wrap gap-2.5 sm:gap-3 justify-center"></div>
             </div>
 
             <!-- Right: Content & Bulleted Specs -->
-            <div class="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between h-full relative">
-                <button type="button" onclick="closeProductModal()" class="absolute top-6 right-6 text-safari-espresso/60 hover:text-safari-espresso p-2 text-xl z-10">
+            <div class="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between h-full relative">
+                <button type="button" onclick="closeProductModal()" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-safari-espresso/60 hover:text-safari-espresso p-2 text-xl z-10">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
 
-                <div class="space-y-4">
+                <div class="space-y-3 sm:space-y-4">
                     <span id="modal-cat" class="text-xs font-mono text-safari-olive uppercase tracking-widest font-bold">Category</span>
-                    <h3 id="modal-title" class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase leading-tight"></h3>
+                    <h3 id="modal-title" class="font-heading font-black text-xl sm:text-3xl text-safari-espresso uppercase leading-tight"></h3>
                     <div class="flex items-baseline gap-3">
-                        <span class="font-heading font-black text-3xl text-safari-terracotta" id="modal-price"></span>
-                        <span class="text-xs text-safari-espresso/60 font-medium">(Includes 15% VAT)</span>
+                        <span class="font-heading font-black text-2xl sm:text-3xl text-safari-terracotta" id="modal-price"></span>
+                        <span class="text-[11px] sm:text-xs text-safari-espresso/60 font-medium">(Includes 15% VAT)</span>
                     </div>
-                    <p id="modal-desc" class="text-safari-espresso/80 text-sm leading-relaxed"></p>
+                    <p id="modal-desc" class="text-safari-espresso/80 text-xs sm:text-sm leading-relaxed"></p>
 
                     <!-- Variants Selector -->
                     <div id="modal-variants-section" class="space-y-2 pt-2">
@@ -411,11 +405,11 @@
                     </div>
 
                     <!-- Extra Fields/Specs formatted as spacious bullet points -->
-                    <div id="modal-extra-fields" class="space-y-2.5 text-xs text-safari-espresso/90 bg-safari-surface p-5 rounded-2xl border border-safari-border shadow-inner leading-relaxed whitespace-pre-line"></div>
+                    <div id="modal-extra-fields" class="space-y-2 text-xs text-safari-espresso/90 bg-safari-surface p-4 sm:p-5 rounded-2xl border border-safari-border shadow-inner leading-relaxed whitespace-pre-line"></div>
                 </div>
 
-                <div class="pt-6 border-t border-safari-border/40 flex items-center gap-4 mt-6">
-                    <button type="button" onclick="addModalItemToCart()" class="flex-1 bg-safari-olive hover:bg-safari-oliveDark text-white py-4 px-6 rounded-xl font-heading font-bold text-xs tracking-widest uppercase transition-colors shadow-lg flex items-center justify-center gap-2">
+                <div class="pt-5 sm:pt-6 border-t border-safari-border/40 flex items-center gap-4 mt-6">
+                    <button type="button" onclick="addModalItemToCart()" class="flex-1 bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 sm:py-4 px-6 rounded-xl font-heading font-bold text-xs tracking-widest uppercase transition-colors shadow-lg flex items-center justify-center gap-2">
                         <i class="fa-solid fa-basket-shopping"></i> Add to Basket
                     </button>
                 </div>
@@ -426,13 +420,13 @@
     <!-- Checkout Modal -->
     <div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/70 backdrop-blur-sm" onclick="closeCheckoutModal()"></div>
-        <div class="bg-safari-parchment rounded-2xl max-w-xl w-full border border-safari-border relative z-10 p-8 shadow-2xl">
-            <div class="flex items-center justify-between mb-6 border-b border-safari-border pb-4">
-                <h3 class="font-heading font-black text-xl uppercase">Secure Checkout</h3>
+        <div class="bg-safari-parchment rounded-2xl max-w-xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-5 sm:mb-6 border-b border-safari-border pb-4">
+                <h3 class="font-heading font-black text-lg sm:text-xl uppercase">Secure Checkout</h3>
                 <button type="button" onclick="closeCheckoutModal()" class="text-safari-espresso/60 hover:text-safari-espresso"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
-            <form id="checkout-form" onsubmit="submitOrder(event)" class="space-y-4">
-                <div class="grid grid-cols-2 gap-4">
+            <form id="checkout-form" onsubmit="submitOrder(event)" class="space-y-3 sm:space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div>
                         <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Full Name</label>
                         <input type="text" id="order-name" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-safari-olive">
@@ -457,7 +451,7 @@
                         <option value="Direct EFT Bank Transfer">Direct Bank Transfer (EFT)</option>
                     </select>
                 </div>
-                <button type="submit" class="w-full bg-safari-terracotta hover:bg-safari-terracottaDark text-white py-4 rounded-xl font-heading font-bold text-sm tracking-wider uppercase transition-colors shadow-lg mt-2">
+                <button type="submit" class="w-full bg-safari-terracotta hover:bg-safari-terracottaDark text-white py-3.5 sm:py-4 rounded-xl font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-colors shadow-lg mt-2">
                     Place Order & Sync with Firebase →
                 </button>
             </form>
@@ -465,93 +459,96 @@
     </div>
 
     <!-- Admin Management Portal Modal -->
-    <div id="admin-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+    <div id="admin-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-3 sm:p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeAdminModal()"></div>
-        <div class="bg-safari-parchment rounded-2xl max-w-6xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
+        <div class="bg-safari-parchment rounded-2xl max-w-6xl w-full border border-safari-border relative z-10 p-4 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
             
-            <div class="bg-safari-espresso text-safari-parchment p-8 rounded-2xl mb-8 shadow-lg relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div class="bg-safari-espresso text-safari-parchment p-6 sm:p-8 rounded-2xl mb-6 sm:mb-8 shadow-lg relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                 <div class="absolute right-0 top-0 bottom-0 w-1/3 bg-cover bg-center opacity-10 pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800');"></div>
                 <div>
                     <div class="inline-flex items-center gap-2 bg-safari-terracotta text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-3 shadow">
                         <i class="fa-solid fa-lock text-[9px]"></i> Secure Portal • Authorized Personnel Only
                     </div>
-                    <h2 class="font-heading font-black text-2xl sm:text-4xl uppercase tracking-tight">Ketties & Goete Admin Dashboard</h2>
-                    <p class="text-safari-borderLight text-xs sm:text-sm mt-1">Manage inventory database, monitor stock levels, and review customer client records & orders.</p>
+                    <h2 class="font-heading font-black text-xl sm:text-3xl uppercase tracking-tight">Ketties & Goete Admin Dashboard</h2>
+                    <p class="text-safari-borderLight text-xs sm:text-sm mt-1">Manage inventory database, monitor stock levels, and review customer records & orders.</p>
                 </div>
-                <div class="flex flex-wrap gap-3 relative z-10">
-                    <button type="button" onclick="closeAdminModal()" class="bg-safari-surface/10 hover:bg-safari-surface/20 border border-safari-border text-safari-parchment px-5 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 backdrop-blur-sm">
+                <div class="flex flex-wrap gap-2 sm:gap-3 relative z-10 w-full md:w-auto">
+                    <button type="button" onclick="closeAdminModal()" class="flex-1 md:flex-none bg-safari-surface/10 hover:bg-safari-surface/20 border border-safari-border text-safari-parchment px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 backdrop-blur-sm">
                         <i class="fa-solid fa-store"></i> Return to Store
                     </button>
-                    <button type="button" onclick="openNewProductModal()" class="bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-5 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow">
+                    <button type="button" onclick="openNewProductModal()" class="flex-1 md:flex-none bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow">
                         <i class="fa-solid fa-plus"></i> Add New Product
                     </button>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                <div class="bg-safari-surface border border-safari-border p-6 rounded-2xl shadow-sm relative overflow-hidden">
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 sm:mb-8">
+                <div class="bg-safari-surface border border-safari-border p-5 sm:p-6 rounded-2xl shadow-sm relative overflow-hidden">
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-xs font-bold uppercase tracking-widest text-safari-espresso/70">Total Products</span>
                         <i class="fa-solid fa-box-open text-safari-olive text-lg"></i>
                     </div>
-                    <div id="stat-total-products" class="font-heading font-black text-3xl sm:text-4xl text-safari-espresso mb-1">0</div>
+                    <div id="stat-total-products" class="font-heading font-black text-2xl sm:text-4xl text-safari-espresso mb-1">0</div>
                     <span class="text-[11px] text-safari-espresso/60 block">Active in catalog database</span>
                 </div>
-                <div class="bg-safari-surface border border-safari-border p-6 rounded-2xl shadow-sm relative overflow-hidden">
+                <div class="bg-safari-surface border border-safari-border p-5 sm:p-6 rounded-2xl shadow-sm relative overflow-hidden">
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-xs font-bold uppercase tracking-widest text-safari-espresso/70">Low Stock Alerts</span>
                         <i class="fa-solid fa-triangle-exclamation text-amber-600 text-lg"></i>
                     </div>
-                    <div id="stat-low-stock" class="font-heading font-black text-3xl sm:text-4xl text-safari-espresso mb-1">0</div>
+                    <div id="stat-low-stock" class="font-heading font-black text-2xl sm:text-4xl text-safari-espresso mb-1">0</div>
                     <span class="text-[11px] text-safari-espresso/60 block">Items below 10 units</span>
                 </div>
-                <div class="bg-safari-surface border border-safari-border p-6 rounded-2xl shadow-sm relative overflow-hidden">
+                <div class="bg-safari-surface border border-safari-border p-5 sm:p-6 rounded-2xl shadow-sm relative overflow-hidden">
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-xs font-bold uppercase tracking-widest text-safari-espresso/70">Total Client Orders</span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-safari-espresso/70">Total Orders</span>
                         <i class="fa-solid fa-receipt text-safari-olive text-lg"></i>
                     </div>
-                    <div id="stat-total-orders" class="font-heading font-black text-3xl sm:text-4xl text-safari-espresso mb-1">0</div>
+                    <div id="stat-total-orders" class="font-heading font-black text-2xl sm:text-4xl text-safari-espresso mb-1">0</div>
                     <span class="text-[11px] text-safari-espresso/60 block">Recorded transactions</span>
                 </div>
-                <div class="bg-safari-surface border border-safari-border p-6 rounded-2xl shadow-sm relative overflow-hidden">
+                <div class="bg-safari-surface border border-safari-border p-5 sm:p-6 rounded-2xl shadow-sm relative overflow-hidden">
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-xs font-bold uppercase tracking-widest text-safari-espresso/70">Total Revenue</span>
                         <span class="font-heading font-black text-safari-terracotta text-lg">R</span>
                     </div>
-                    <div id="stat-total-revenue" class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso mb-1">R0.00</div>
+                    <div id="stat-total-revenue" class="font-heading font-black text-xl sm:text-3xl text-safari-espresso mb-1">R0.00</div>
                     <span class="text-[11px] text-safari-espresso/60 block">Gross sales (ZAR)</span>
                 </div>
             </div>
 
-            <div class="flex gap-4 mb-6 border-b border-safari-border pb-4">
-                <button type="button" onclick="switchAdminTab('products')" id="admin-tab-prod" class="bg-safari-olive text-white px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
+            <!-- Admin Tabs -->
+            <div class="flex flex-wrap gap-2 sm:gap-4 mb-6 border-b border-safari-border pb-4">
+                <button type="button" onclick="switchAdminTab('products')" id="admin-tab-prod" class="bg-safari-olive text-white px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
                     <i class="fa-solid fa-boxes-stacked"></i> Inventory Database (<span id="prod-count-badge">0</span>)
                 </button>
-                <button type="button" onclick="switchAdminTab('orders')" id="admin-tab-ord" class="bg-safari-surface text-safari-espresso border border-safari-border px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
+                <button type="button" onclick="switchAdminTab('orders')" id="admin-tab-ord" class="bg-safari-surface text-safari-espresso border border-safari-border px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
                     <i class="fa-solid fa-clipboard-list"></i> Client Records & Orders (<span id="ord-count-badge">0</span>)
                 </button>
             </div>
 
+            <!-- Products Panel -->
             <div id="admin-panel-products" class="space-y-4">
-                <div class="bg-safari-surface p-6 rounded-2xl border border-safari-border">
+                <div class="bg-safari-surface p-4 sm:p-6 rounded-2xl border border-safari-border">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
                         <h4 class="font-heading font-bold text-base uppercase">Stock & Product Database</h4>
-                        <div class="relative">
-                            <input type="text" id="admin-search" oninput="filterAdminProducts(this.value)" placeholder="Search products by name..." class="bg-safari-parchment border border-safari-border rounded-xl px-4 py-2 text-xs w-full sm:w-72 focus:outline-none focus:border-safari-olive">
+                        <div class="relative w-full sm:w-auto">
+                            <input type="text" id="admin-search" oninput="filterAdminProducts(this.value)" placeholder="Search products..." class="bg-safari-parchment border border-safari-border rounded-xl px-4 py-2 text-xs w-full sm:w-72 focus:outline-none focus:border-safari-olive">
                             <i class="fa-solid fa-search absolute right-3 top-3 text-safari-espresso/40 text-xs"></i>
                         </div>
                     </div>
                     
                     <div class="overflow-x-auto border border-safari-border rounded-xl bg-safari-parchment">
-                        <table class="w-full text-left border-collapse text-sm">
+                        <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[650px]">
                             <thead>
-                                <tr class="bg-safari-border/30 border-b border-safari-border font-heading text-[11px] uppercase tracking-wider text-safari-espresso/70">
-                                    <th class="p-4">Product</th>
-                                    <th class="p-4">Category</th>
-                                    <th class="p-4">Price (ZAR)</th>
-                                    <th class="p-4">Stock Level</th>
-                                    <th class="p-4">Status</th>
-                                    <th class="p-4 text-right">Actions</th>
+                                <tr class="bg-safari-border/30 border-b border-safari-border font-heading text-[10px] sm:text-[11px] uppercase tracking-wider text-safari-espresso/70">
+                                    <th class="p-3 sm:p-4">Product</th>
+                                    <th class="p-3 sm:p-4">Category</th>
+                                    <th class="p-3 sm:p-4">Price (ZAR)</th>
+                                    <th class="p-3 sm:p-4">Stock Level</th>
+                                    <th class="p-3 sm:p-4">Status</th>
+                                    <th class="p-3 sm:p-4 text-right">Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="admin-product-table-body"></tbody>
@@ -560,19 +557,20 @@
                 </div>
             </div>
 
+            <!-- Orders Panel -->
             <div id="admin-panel-orders" class="space-y-4 hidden">
-                <div class="bg-safari-surface p-6 rounded-2xl border border-safari-border">
+                <div class="bg-safari-surface p-4 sm:p-6 rounded-2xl border border-safari-border">
                     <h4 class="font-heading font-bold text-base mb-4 uppercase">Client Orders & Transactions</h4>
                     <div class="overflow-x-auto border border-safari-border rounded-xl bg-safari-parchment">
-                        <table class="w-full text-left border-collapse text-sm">
+                        <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[650px]">
                             <thead>
-                                <tr class="bg-safari-border/30 border-b border-safari-border font-heading text-[11px] uppercase tracking-wider text-safari-espresso/70">
-                                    <th class="p-4">Order ID</th>
-                                    <th class="p-4">Customer</th>
-                                    <th class="p-4">Contact</th>
-                                    <th class="p-4">Items Ordered</th>
-                                    <th class="p-4">Total</th>
-                                    <th class="p-4">Status</th>
+                                <tr class="bg-safari-border/30 border-b border-safari-border font-heading text-[10px] sm:text-[11px] uppercase tracking-wider text-safari-espresso/70">
+                                    <th class="p-3 sm:p-4">Order ID</th>
+                                    <th class="p-3 sm:p-4">Customer</th>
+                                    <th class="p-3 sm:p-4">Contact</th>
+                                    <th class="p-3 sm:p-4">Items Ordered</th>
+                                    <th class="p-3 sm:p-4">Total</th>
+                                    <th class="p-3 sm:p-4">Status</th>
                                 </tr>
                             </thead>
                             <tbody id="admin-order-table-body"></tbody>
@@ -585,63 +583,54 @@
     </div>
 
     <!-- Add / Edit Product Modal -->
-    <div id="product-form-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+    <div id="product-form-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-3 sm:p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductFormModal()"></div>
-        <div class="bg-safari-parchment rounded-3xl max-w-2xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
+        <div class="bg-safari-parchment rounded-2xl sm:rounded-3xl max-w-2xl w-full border border-safari-border relative z-10 p-5 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
             
             <form id="product-action-form" onsubmit="handleProductSubmit(event)" class="space-y-4">
                 <input type="hidden" id="prod-edit-id">
 
-                <!-- Row 1: Product Name & Base Price -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <input type="text" id="prod-name" placeholder="Product Name (e.g., Garlic & Herb Butter)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                     <input type="number" step="0.01" id="prod-price" placeholder="Base Price in ZAR (e.g., 65.00)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
 
-                <!-- Row 2: Category & Image URL (Supports multiple comma-separated URLs) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <input type="text" id="prod-cat" placeholder="Category (e.g., Compound Butter)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                     <input type="text" id="prod-img" placeholder="Image URL(s) separated by commas" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
                 <p class="text-[11px] text-safari-espresso/60 -mt-2">Tip: For multiple images, separate URLs with commas (e.g. url1.jpg, url2.jpg)</p>
 
-                <!-- Row 3: Visibility Checkbox -->
                 <div class="flex items-center gap-3 bg-safari-surface border border-safari-border rounded-xl px-4 py-3.5 shadow-sm">
                     <input type="checkbox" id="prod-visible" checked class="w-4 h-4 text-safari-olive rounded border-safari-border focus:ring-safari-olive cursor-pointer">
                     <label for="prod-visible" class="text-xs font-semibold text-safari-espresso cursor-pointer">Product Visible to Public (Uncheck to mark Out of Stock / Hidden)</label>
                 </div>
 
-                <!-- Row 4: Variants comma-separated -->
                 <div>
                     <input type="text" id="prod-variants" placeholder="Variants format: Name:+Price:ImageURL (Comma separated)" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                     <p class="text-[11px] text-safari-espresso/60 mt-1">Example: Black:+0:https://img.com/black.jpg, Silver:+51:https://img.com/silver.jpg</p>
                 </div>
 
-                <!-- Row 5: Extra Spec / Detail 1 -->
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider text-safari-espresso/70 mb-1">Specification Bubble 1</label>
                     <textarea id="prod-extra-1" rows="3" placeholder="• Press Enter here to list items downwards..." class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
                 </div>
 
-                <!-- Row 6: Extra Spec / Detail 2 -->
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider text-safari-espresso/70 mb-1">Specification Bubble 2</label>
                     <textarea id="prod-extra-2" rows="2" placeholder="Specification bullet 2..." class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
                 </div>
 
-                <!-- Row 7: Extra Spec / Detail 3 -->
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider text-safari-espresso/70 mb-1">Specification Bubble 3</label>
                     <textarea id="prod-extra-3" rows="2" placeholder="Specification bullet 3..." class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
                 </div>
 
-                <!-- Row 8: Product Description -->
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider text-safari-espresso/70 mb-1">Product Description</label>
                     <textarea id="prod-desc" rows="3" placeholder="Product Description" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
                 </div>
 
-                <!-- Bottom Action Buttons -->
                 <div class="flex items-center gap-4 pt-2">
                     <button type="button" onclick="closeProductFormModal()" class="flex-1 bg-amber-100 hover:bg-amber-200 text-amber-900 py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow-sm">
                         Cancel
@@ -709,7 +698,6 @@
             }
         ];
 
-        // Prevent Enter key inside input fields or textareas from triggering form submit
         document.getElementById('product-action-form').addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
@@ -761,7 +749,6 @@
             }
 
             grid.innerHTML = filtered.map(p => {
-                // Support multiple images separated by comma; pick the first one for grid thumbnail
                 let primaryImg = p.image || '';
                 if (primaryImg.includes(',')) {
                     primaryImg = primaryImg.split(',')[0].trim();
@@ -770,20 +757,20 @@
                 return `
                     <div class="bg-safari-surface border border-safari-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
                         <div>
-                            <div class="h-60 overflow-hidden relative cursor-pointer bg-white flex items-center justify-center" onclick="openProductModal('${p.id}')">
+                            <div class="h-56 sm:h-60 overflow-hidden relative cursor-pointer bg-white flex items-center justify-center" onclick="openProductModal('${p.id}')">
                                 <img src="${primaryImg}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                 <span class="absolute top-3 left-3 bg-safari-espresso/90 text-safari-parchment text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-md">
                                     ${p.category}
                                 </span>
                             </div>
-                            <div class="p-5">
-                                <h3 class="font-heading font-black text-lg text-safari-espresso mb-1 line-clamp-1 cursor-pointer hover:text-safari-olive" onclick="openProductModal('${p.id}')">${p.name}</h3>
+                            <div class="p-4 sm:p-5">
+                                <h3 class="font-heading font-black text-base sm:text-lg text-safari-espresso mb-1 line-clamp-1 cursor-pointer hover:text-safari-olive" onclick="openProductModal('${p.id}')">${p.name}</h3>
                                 <p class="text-xs text-safari-espresso/70 line-clamp-2 mb-4">${p.description}</p>
                             </div>
                         </div>
-                        <div class="p-5 pt-0 flex items-center justify-between border-t border-safari-border/40 mt-auto">
-                            <span class="font-heading font-black text-xl text-safari-terracotta">R${parseFloat(p.price).toFixed(2)}</span>
-                            <button type="button" onclick="addToCart('${p.id}')" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-4 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
+                        <div class="p-4 sm:p-5 pt-0 flex items-center justify-between border-t border-safari-border/40 mt-auto">
+                            <span class="font-heading font-black text-lg sm:text-xl text-safari-terracotta">R${parseFloat(p.price).toFixed(2)}</span>
+                            <button type="button" onclick="addToCart('${p.id}')" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
                                 Add to Cart
                             </button>
                         </div>
@@ -862,10 +849,10 @@
             }
 
             container.innerHTML = cart.map((item, index) => `
-                <div class="flex items-center gap-4 bg-safari-parchment p-3 rounded-xl border border-safari-border">
-                    <img src="${item.image}" class="w-16 h-16 object-cover rounded-lg border border-safari-border">
+                <div class="flex items-center gap-3 sm:gap-4 bg-safari-parchment p-3 rounded-xl border border-safari-border">
+                    <img src="${item.image}" class="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-lg border border-safari-border">
                     <div class="flex-1">
-                        <h4 class="font-heading font-bold text-sm line-clamp-1">${item.name}</h4>
+                        <h4 class="font-heading font-bold text-xs sm:text-sm line-clamp-1">${item.name}</h4>
                         <span class="text-[10px] text-safari-olive font-bold block leading-snug">${item.selectedOption}</span>
                         <span class="text-xs text-safari-terracotta font-bold mt-1 block">R${parseFloat(item.finalPrice).toFixed(2)}</span>
                         <div class="flex items-center gap-2 mt-1.5">
@@ -915,11 +902,10 @@
             document.getElementById("modal-desc").textContent = selectedProduct.description || "";
             document.getElementById("modal-price").textContent = `R${parseFloat(selectedProduct.price).toFixed(2)}`;
 
-            // Render thumbnails if multiple images exist
             const thumbContainer = document.getElementById("modal-thumbnails");
             if (imageList.length > 1) {
                 thumbContainer.innerHTML = imageList.map((url, idx) => `
-                    <button type="button" onclick="switchModalImage('${url}', this)" class="w-14 h-14 rounded-lg overflow-hidden border-2 ${idx === 0 ? 'border-safari-olive shadow-md' : 'border-safari-border opacity-70'} hover:opacity-100 transition-all bg-white flex items-center justify-center">
+                    <button type="button" onclick="switchModalImage('${url}', this)" class="w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden border-2 ${idx === 0 ? 'border-safari-olive shadow-md' : 'border-safari-border opacity-70'} hover:opacity-100 transition-all bg-white flex items-center justify-center">
                         <img src="${url}" class="w-full h-full object-cover">
                     </button>
                 `).join('');
@@ -943,7 +929,7 @@
                 selectedVariant = variantsList[0];
 
                 varContainer.innerHTML = variantsList.map((v, i) => `
-                    <button type="button" onclick="selectModalVariant('${v.name.replace(/'/g, "\\'")}', ${v.priceMod}, '${v.imageUrl}', this)" class="px-4 py-2 rounded-lg text-xs border transition-all font-semibold ${i === 0 ? 'bg-safari-olive text-white border-safari-olive' : 'bg-safari-surface text-safari-espresso border-safari-border'}">
+                    <button type="button" onclick="selectModalVariant('${v.name.replace(/'/g, "\\'")}', ${v.priceMod}, '${v.imageUrl}', this)" class="px-3.5 sm:px-4 py-2 rounded-lg text-xs border transition-all font-semibold ${i === 0 ? 'bg-safari-olive text-white border-safari-olive' : 'bg-safari-surface text-safari-espresso border-safari-border'}">
                         ${v.name}
                     </button>
                 `).join('');
@@ -956,7 +942,6 @@
                 selectedVariant = { name: "Standard", priceMod: 0, imageUrl: imageList[0] };
             }
 
-            // Render extra fields
             const extraContainer = document.getElementById("modal-extra-fields");
             let combinedExtras = [selectedProduct.extra1, selectedProduct.extra2, selectedProduct.extra3].filter(Boolean).join('\n');
 
@@ -974,9 +959,9 @@
             document.getElementById("modal-main-img").src = url;
             if (selectedVariant) selectedVariant.imageUrl = url;
             btn.parentElement.querySelectorAll('button').forEach(b => {
-                b.className = "w-14 h-14 rounded-lg overflow-hidden border-2 border-safari-border opacity-70 hover:opacity-100 transition-all bg-white flex items-center justify-center";
+                b.className = "w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden border-2 border-safari-border opacity-70 hover:opacity-100 transition-all bg-white flex items-center justify-center";
             });
-            btn.className = "w-14 h-14 rounded-lg overflow-hidden border-2 border-safari-olive shadow-md transition-all bg-white flex items-center justify-center";
+            btn.className = "w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden border-2 border-safari-olive shadow-md transition-all bg-white flex items-center justify-center";
         }
 
         window.selectModalVariant = function(name, priceMod, imageUrl, btn) {
@@ -989,9 +974,9 @@
             }
 
             btn.parentElement.querySelectorAll('button').forEach(b => {
-                b.className = "px-4 py-2 rounded-lg text-xs border transition-all font-semibold bg-safari-surface text-safari-espresso border-safari-border";
+                b.className = "px-3.5 sm:px-4 py-2 rounded-lg text-xs border transition-all font-semibold bg-safari-surface text-safari-espresso border-safari-border";
             });
-            btn.className = "px-4 py-2 rounded-lg text-xs border transition-all font-semibold bg-safari-olive text-white border-safari-olive";
+            btn.className = "px-3.5 sm:px-4 py-2 rounded-lg text-xs border transition-all font-semibold bg-safari-olive text-white border-safari-olive";
         }
 
         window.closeProductModal = function() {
@@ -1072,13 +1057,13 @@
             const ordPanel = document.getElementById("admin-panel-orders");
 
             if (tab === 'products') {
-                prodTab.className = "bg-safari-olive text-white px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
-                ordTab.className = "bg-safari-surface text-safari-espresso border border-safari-border px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
+                prodTab.className = "bg-safari-olive text-white px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
+                ordTab.className = "bg-safari-surface text-safari-espresso border border-safari-border px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
                 prodPanel.classList.remove("hidden");
                 ordPanel.classList.add("hidden");
             } else {
-                ordTab.className = "bg-safari-olive text-white px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
-                prodTab.className = "bg-safari-surface text-safari-espresso border border-safari-border px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
+                ordTab.className = "bg-safari-olive text-white px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
+                prodTab.className = "bg-safari-surface text-safari-espresso border border-safari-border px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2";
                 ordPanel.classList.remove("hidden");
                 prodPanel.classList.add("hidden");
             }
@@ -1115,31 +1100,31 @@
                 const stockVal = p.stock !== undefined ? p.stock : 20;
                 const isLow = stockVal < 10;
                 const statusBadge = isLow 
-                    ? `<span class="bg-red-100 text-red-700 font-bold text-[10px] px-2.5 py-1 rounded-full uppercase">Low Stock</span>`
-                    : `<span class="bg-emerald-100 text-emerald-800 font-bold text-[10px] px-2.5 py-1 rounded-full uppercase">In Stock</span>`;
+                    ? `<span class="bg-red-100 text-red-700 font-bold text-[9px] sm:text-[10px] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full uppercase">Low Stock</span>`
+                    : `<span class="bg-emerald-100 text-emerald-800 font-bold text-[9px] sm:text-[10px] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full uppercase">In Stock</span>`;
 
                 return `
                     <tr class="border-b border-safari-border/50 hover:bg-safari-surface/50">
-                        <td class="p-4 flex items-center gap-3">
-                            <img src="${primaryImg}" class="w-10 h-10 object-cover rounded-lg border">
+                        <td class="p-3 sm:p-4 flex items-center gap-3">
+                            <img src="${primaryImg}" class="w-9 h-9 sm:w-10 sm:h-10 object-cover rounded-lg border">
                             <div>
-                                <span class="font-bold text-sm block">${p.name}</span>
-                                <span class="text-[10px] text-safari-espresso/50 font-mono">SKU: ${p.sku || 'N/A'}</span>
+                                <span class="font-bold text-xs sm:text-sm block">${p.name}</span>
+                                <span class="text-[9px] sm:text-[10px] text-safari-espresso/50 font-mono">SKU: ${p.sku || 'N/A'}</span>
                             </div>
                         </td>
-                        <td class="p-4 text-xs uppercase font-semibold text-safari-olive">${p.category}</td>
-                        <td class="p-4 font-heading font-bold text-safari-terracotta">R${parseFloat(p.price).toFixed(2)}</td>
-                        <td class="p-4">
-                            <div class="flex items-center gap-2">
-                                <span class="font-bold text-sm w-12">${stockVal} units</span>
-                                <button type="button" onclick="quickAdjustStock('${p.id}', 1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-safari-olive hover:text-white transition-colors">+</button>
-                                <button type="button" onclick="quickAdjustStock('${p.id}', -1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-red-600 hover:text-white transition-colors">-</button>
+                        <td class="p-3 sm:p-4 text-[11px] sm:text-xs uppercase font-semibold text-safari-olive">${p.category}</td>
+                        <td class="p-3 sm:p-4 font-heading font-bold text-safari-terracotta">R${parseFloat(p.price).toFixed(2)}</td>
+                        <td class="p-3 sm:p-4">
+                            <div class="flex items-center gap-1.5 sm:gap-2">
+                                <span class="font-bold text-xs sm:text-sm w-10 sm:w-12">${stockVal}u</span>
+                                <button type="button" onclick="quickAdjustStock('${p.id}', 1)" class="w-5 h-5 sm:w-6 sm:h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-safari-olive hover:text-white transition-colors">+</button>
+                                <button type="button" onclick="quickAdjustStock('${p.id}', -1)" class="w-5 h-5 sm:w-6 sm:h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-red-600 hover:text-white transition-colors">-</button>
                             </div>
                         </td>
-                        <td class="p-4">${statusBadge}</td>
-                        <td class="p-4 text-right space-x-1">
-                            <button type="button" onclick="openEditProductModal('${p.id}')" class="bg-safari-olive text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-safari-oliveDark transition-colors">Edit</button>
-                            <button type="button" onclick="deleteProduct('${p.id}')" class="bg-safari-terracotta text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-safari-terracottaDark transition-colors">Delete</button>
+                        <td class="p-3 sm:p-4">${statusBadge}</td>
+                        <td class="p-3 sm:p-4 text-right space-x-1 whitespace-nowrap">
+                            <button type="button" onclick="openEditProductModal('${p.id}')" class="bg-safari-olive text-white px-2.5 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-bold uppercase tracking-wider hover:bg-safari-oliveDark transition-colors">Edit</button>
+                            <button type="button" onclick="deleteProduct('${p.id}')" class="bg-safari-terracotta text-white px-2.5 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-bold uppercase tracking-wider hover:bg-safari-terracottaDark transition-colors">Del</button>
                         </td>
                     </tr>
                 `;
@@ -1247,12 +1232,12 @@
             }
             tbody.innerHTML = orders.map(o => `
                 <tr class="border-b border-safari-border/50">
-                    <td class="p-4 text-xs font-mono font-bold">#${o.id.substring(0, 8)}</td>
-                    <td class="p-4 font-bold text-sm">${o.name}</td>
-                    <td class="p-4 text-xs text-safari-espresso/70">${o.phone}<br>${o.email}</td>
-                    <td class="p-4 text-xs">${o.items.map(i => `${i.qty}x ${i.name} (${i.selectedOption} - R${i.finalPrice})`).join(', ')}</td>
-                    <td class="p-4 font-heading font-bold text-safari-terracotta">R${parseFloat(o.total).toFixed(2)}</td>
-                    <td class="p-4"><span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">${o.status}</span></td>
+                    <td class="p-3 sm:p-4 text-xs font-mono font-bold">#${o.id.substring(0, 8)}</td>
+                    <td class="p-3 sm:p-4 font-bold text-xs sm:text-sm">${o.name}</td>
+                    <td class="p-3 sm:p-4 text-[11px] sm:text-xs text-safari-espresso/70">${o.phone}<br>${o.email}</td>
+                    <td class="p-3 sm:p-4 text-[11px] sm:text-xs">${o.items.map(i => `${i.qty}x ${i.name} (${i.selectedOption} - R${i.finalPrice})`).join(', ')}</td>
+                    <td class="p-3 sm:p-4 font-heading font-bold text-safari-terracotta">R${parseFloat(o.total).toFixed(2)}</td>
+                    <td class="p-3 sm:p-4"><span class="bg-amber-100 text-amber-800 text-[9px] sm:text-[10px] font-bold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full uppercase">${o.status}</span></td>
                 </tr>
             `).join('');
         }
