@@ -723,15 +723,17 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+        import { getAuth, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCWDrUEiZm3IftJfShyD2QsLZnOFdwo9g",
             authDomain: "ketties-n-goete.firebaseapp.com",
+            databaseURL: "https://ketties-n-goete-default-rtdb.europe-west1.firebasedatabase.app",
             projectId: "ketties-n-goete",
             storageBucket: "ketties-n-goete.firebasestorage.app",
             messagingSenderId: "33272737255",
-            appId: "1:33272737255:web:55ca69854bd4001c26142"
+            appId: "1:33272737255:web:55ca69854bd4001c26142",
+            measurementId: "G-RWZ63YNWPR"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -782,6 +784,49 @@
                 description: "The SA Eagle represents the pinnacle of South African outdoor engineering."
             }
         ];
+
+        // Check for result when user returns from Google redirect
+        getRedirectResult(auth)
+          .then(async (result) => {
+            if (result && result.user) {
+              const user = result.user;
+              const googleEmail = user.email;
+              const googleName = user.displayName || "";
+
+              const isManagementAdmin = googleEmail.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+
+              if (isManagementAdmin) {
+                currentCustomer = {
+                  email: ADMIN_EMAIL,
+                  name: "Carllo Swanepoel (Management)",
+                  isAdmin: true
+                };
+                alert("Management Admin verified successfully by Google.");
+              } else {
+                const existing = customers.find(c => c.email.toLowerCase() === googleEmail.toLowerCase());
+                if (existing) {
+                  currentCustomer = { ...existing, isAdmin: false };
+                } else {
+                  currentCustomer = {
+                    email: googleEmail,
+                    name: googleName,
+                    phone: "",
+                    address: "",
+                    joinedDate: new Date().toISOString().split('T')[0],
+                    isAdmin: false
+                  };
+                }
+              }
+
+              localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
+              updateAuthNavUI();
+              openAuthModal();
+            }
+          })
+          .catch((error) => {
+            console.error("Google Redirect Auth Error:", error);
+            alert("Google Sign-In failed: " + error.message);
+          });
 
         async function initDatabase() {
             try {
@@ -857,7 +902,6 @@
             }
         }
 
-        // Real Google Auth Popup Sign-In
         window.openAuthModal = function() {
             document.getElementById("auth-modal").classList.remove("hidden");
             if (currentCustomer) {
@@ -880,39 +924,7 @@
 
         window.signInWithGoogle = async function() {
             try {
-                const result = await signInWithPopup(auth, provider);
-                const user = result.user;
-                const googleEmail = user.email;
-                const googleName = user.displayName || "";
-
-                const isManagementAdmin = googleEmail.toLowerCase() === ADMIN_EMAIL.toLowerCase();
-
-                if (isManagementAdmin) {
-                    currentCustomer = {
-                        email: ADMIN_EMAIL,
-                        name: "Carllo Swanepoel (Management)",
-                        isAdmin: true
-                    };
-                    alert("Management Admin verified successfully by Google.");
-                } else {
-                    const existing = customers.find(c => c.email.toLowerCase() === googleEmail.toLowerCase());
-                    if (existing) {
-                        currentCustomer = { ...existing, isAdmin: false };
-                    } else {
-                        currentCustomer = {
-                            email: googleEmail,
-                            name: googleName,
-                            phone: "",
-                            address: "",
-                            joinedDate: new Date().toISOString().split('T')[0],
-                            isAdmin: false
-                        };
-                    }
-                }
-
-                localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
-                updateAuthNavUI();
-                openAuthModal();
+                await signInWithRedirect(auth, provider);
             } catch (error) {
                 console.error("Google Sign-In Error:", error);
                 alert("Google Sign-In failed: " + error.message);
@@ -976,7 +988,6 @@
             }
         }
 
-        // Excel Export for Customers
         window.exportCustomersToExcel = function() {
             if (!currentCustomer || !currentCustomer.isAdmin) return;
             if (customers.length === 0) {
