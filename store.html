@@ -112,28 +112,9 @@
                 </div>
             </div>
 
-            <!-- Featured Highlight Card -->
-            <div class="lg:col-span-5">
-                <div class="bg-safari-espresso/95 border border-safari-border/40 rounded-2xl p-5 sm:p-8 shadow-2xl backdrop-blur-md relative">
-                    <div class="absolute -top-3 right-6 bg-safari-terracotta text-white font-heading font-bold text-[11px] sm:text-xs uppercase px-3 py-1 rounded-full shadow">
-                        Best Seller Combo
-                    </div>
-                    <div class="rounded-xl overflow-hidden mb-5 sm:mb-6 h-48 sm:h-56 border border-safari-border/30 bg-white flex items-center justify-center">
-                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800" alt="Ou Kalahari Combo Special" class="w-full h-full object-cover">
-                    </div>
-                    <span class="text-[11px] sm:text-xs uppercase tracking-widest text-safari-olive font-bold">Limited Wilderness Edition</span>
-                    <h3 class="font-heading font-black text-xl sm:text-2xl text-white mt-1 mb-2">Ou Kalahari Combo Special</h3>
-                    <p class="text-safari-borderLight text-xs sm:text-sm mb-5 sm:mb-6 leading-relaxed">Complete heavy-duty hardwood slingshot setup with dual-tier natural latex flatbands, target leather pouch, and 100 biodegradable clay spheres.</p>
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <span class="text-[11px] sm:text-xs text-safari-border line-through block">R680.00</span>
-                            <span class="font-heading font-black text-xl sm:text-2xl text-safari-terracotta">R550.00</span>
-                        </div>
-                        <button type="button" onclick="addComboToCart()" class="bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
-                            Add Combo to Cart
-                        </button>
-                    </div>
-                </div>
+            <!-- Dynamic Best Seller / Ou Kalahari Highlight Card -->
+            <div class="lg:col-span-5" id="hero-best-seller-container">
+                <!-- Dynamically populated via JavaScript from your Best Seller checkbox -->
             </div>
         </div>
     </section>
@@ -145,7 +126,6 @@
             <h2 class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase tracking-tight mb-6 sm:mb-8">Premium Category Hubs</h2>
             
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-                <!-- Slingshots Hub -->
                 <a href="#shop" onclick="filterProducts('Ketties')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
                     <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
                         <i class="fa-solid fa-bullseye text-base sm:text-lg"></i>
@@ -154,7 +134,6 @@
                     <span class="text-[9px] sm:text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore</span>
                 </a>
 
-                <!-- Bands Hub -->
                 <a href="#shop" onclick="filterProducts('Flatbands')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
                     <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
                         <i class="fa-solid fa-fire text-base sm:text-lg"></i>
@@ -163,7 +142,6 @@
                     <span class="text-[9px] sm:text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore</span>
                 </a>
 
-                <!-- Ammunition Hub -->
                 <a href="#shop" onclick="filterProducts('Clay Pellets')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
                     <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
                         <i class="fa-solid fa-arrow-right text-base sm:text-lg"></i>
@@ -172,7 +150,6 @@
                     <span class="text-[9px] sm:text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore</span>
                 </a>
 
-                <!-- Equipment & Gear Hub -->
                 <a href="#shop" onclick="filterProducts('Accessories')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center">
                     <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
                         <i class="fa-solid fa-shield-halved text-base sm:text-lg"></i>
@@ -181,7 +158,6 @@
                     <span class="text-[9px] sm:text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore</span>
                 </a>
 
-                <!-- Gift Bundles Hub -->
                 <a href="#shop" onclick="filterProducts('Combos')" class="bg-safari-parchment border border-safari-border hover:border-safari-terracotta p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center col-span-2 sm:col-span-1">
                     <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-terracotta group-hover:text-white transition-colors shadow-inner">
                         <i class="fa-solid fa-wand-magic-sparkles text-base sm:text-lg"></i>
@@ -591,29 +567,35 @@
                 <input type="hidden" id="prod-edit-id">
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input type="text" id="prod-name" placeholder="Product Name (e.g., Garlic & Herb Butter)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
-                    <input type="number" step="0.01" id="prod-price" placeholder="Base Price in ZAR (e.g., 65.00)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <input type="text" id="prod-name" placeholder="Product Name (e.g., Ou Kalahari Combo)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <input type="number" step="0.01" id="prod-price" placeholder="Base Price in ZAR (e.g., 550.00)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input type="text" id="prod-cat" placeholder="Category (e.g., Compound Butter)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <input type="text" id="prod-cat" placeholder="Category (e.g., Combos)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                     <input type="text" id="prod-img" placeholder="Image URL(s) separated by commas" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
                 <p class="text-[11px] text-safari-espresso/60 -mt-2">Tip: For multiple images, separate URLs with commas (e.g. url1.jpg, url2.jpg)</p>
 
-                <div class="flex items-center gap-3 bg-safari-surface border border-safari-border rounded-xl px-4 py-3.5 shadow-sm">
-                    <input type="checkbox" id="prod-visible" checked class="w-4 h-4 text-safari-olive rounded border-safari-border focus:ring-safari-olive cursor-pointer">
-                    <label for="prod-visible" class="text-xs font-semibold text-safari-espresso cursor-pointer">Product Visible to Public (Uncheck to mark Out of Stock / Hidden)</label>
+                <!-- Visibility & Best Seller Toggles -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="flex items-center gap-3 bg-safari-surface border border-safari-border rounded-xl px-4 py-3.5 shadow-sm">
+                        <input type="checkbox" id="prod-visible" checked class="w-4 h-4 text-safari-olive rounded border-safari-border focus:ring-safari-olive cursor-pointer">
+                        <label for="prod-visible" class="text-xs font-semibold text-safari-espresso cursor-pointer">Visible in Catalog</label>
+                    </div>
+                    <div class="flex items-center gap-3 bg-safari-surface border border-safari-border rounded-xl px-4 py-3.5 shadow-sm">
+                        <input type="checkbox" id="prod-bestseller" class="w-4 h-4 text-safari-terracotta rounded border-safari-border focus:ring-safari-terracotta cursor-pointer">
+                        <label for="prod-bestseller" class="text-xs font-bold text-safari-terracotta cursor-pointer">★ Set as Best Seller Combo</label>
+                    </div>
                 </div>
 
                 <div>
                     <input type="text" id="prod-variants" placeholder="Variants format: Name:+Price:ImageURL (Comma separated)" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
-                    <p class="text-[11px] text-safari-espresso/60 mt-1">Example: Black:+0:https://img.com/black.jpg, Silver:+51:https://img.com/silver.jpg</p>
                 </div>
 
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider text-safari-espresso/70 mb-1">Specification Bubble 1</label>
-                    <textarea id="prod-extra-1" rows="3" placeholder="• Press Enter here to list items downwards..." class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
+                    <textarea id="prod-extra-1" rows="3" placeholder="Press Enter to list items downwards..." class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
                 </div>
 
                 <div>
@@ -669,18 +651,19 @@
 
         const defaultProducts = [
             {
-                name: "OU KALAHARI & CAMO CARRY BAG - KETTIE COMBO",
+                name: "OU KALAHARI COMBO SPECIAL",
                 category: "Combos",
-                price: 590.00,
+                price: 550.00,
                 stock: 20,
                 visible: true,
-                sku: "KG-SA-EAGLE-BAG",
-                image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800, https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800",
-                variants: "Standard:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800, Deluxe Combo:+80:https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800",
-                extra1: "• 1 x Ou Kalahari Kettie: Features a premium metal frame combined with ergonomic wood-grain handle scales.\n• 1 x Camo Bag: Heavy-duty tactical pouch with belt loops.\n• 1 x Pack of 50 Clay Ammo Balls & Extra Bands.",
-                extra2: "• Calibrated for high-velocity precision shooting.\n• 100% biodegradable and eco-friendly components.",
-                extra3: "• Backed by Ketties & Goete lifetime structural warranty.",
-                description: "Gear up for your next outdoor expedition with the premier Ou Kalahari Combo. Built for family adventures, this tactical package pairs our flagship wooden-accented slingshot with high-grade field gear."
+                isBestSeller: true,
+                sku: "KG-OU-KALAHARI",
+                image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
+                variants: "Standard:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
+                extra1: "• Complete heavy-duty hardwood slingshot setup.\n• Dual-tier natural latex flatbands & target leather pouch.\n• 100 biodegradable clay spheres.",
+                extra2: "• Calibrated for precision outdoor target practice.",
+                extra3: "• Limited wilderness edition.",
+                description: "Complete heavy-duty hardwood slingshot setup with dual-tier natural latex flatbands, target leather pouch, and 100 biodegradable clay spheres."
             },
             {
                 name: "KETTIE - SA EAGLE SLINGSHOT",
@@ -688,13 +671,14 @@
                 price: 370.00,
                 stock: 25,
                 visible: true,
+                isBestSeller: false,
                 sku: "KG-SL-SAE81-TE",
                 image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                variants: "Black:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800, Silver:+51:https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800",
+                variants: "Black:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
                 extra1: "• Dual Fiber Optic Sights for low-light targeting.\n• 280g lightweight ergonomic carbon steel frame.",
                 extra2: "• Quick-release Press-clip band attachment.",
                 extra3: "• Includes natural latex flatband set.",
-                description: "The SA Eagle represents the pinnacle of South African outdoor engineering. Precision-forged with high-tensile steel and paracord-wrapped stable ergonomic grip."
+                description: "The SA Eagle represents the pinnacle of South African outdoor engineering."
             }
         ];
 
@@ -710,6 +694,7 @@
                 console.log("Firebase offline. Using local products.", err);
                 products = defaultProducts;
                 renderProducts();
+                renderHeroBestSeller();
                 renderAdminDashboard();
             }
 
@@ -719,6 +704,7 @@
                     products.push({ id: docSnap.id, ...docSnap.data() });
                 });
                 renderProducts();
+                renderHeroBestSeller();
                 renderAdminDashboard();
             }, (error) => { console.log("Product snapshot error", error); });
 
@@ -729,6 +715,45 @@
                 });
                 renderAdminDashboard();
             }, (err) => { console.log("Order snapshot error", err); });
+        }
+
+        window.renderHeroBestSeller = function() {
+            const container = document.getElementById("hero-best-seller-container");
+            if (!container) return;
+
+            // Find product checked as Best Seller, or fallback to the first combo or product
+            let bestSeller = products.find(p => p.isBestSeller === true) || products.find(p => p.category === 'Combos') || products[0];
+
+            if (!bestSeller) {
+                container.innerHTML = "";
+                return;
+            }
+
+            let primaryImg = bestSeller.image || '';
+            if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
+
+            container.innerHTML = `
+                <div class="bg-safari-espresso/95 border border-safari-border/40 rounded-2xl p-5 sm:p-8 shadow-2xl backdrop-blur-md relative">
+                    <div class="absolute -top-3 right-6 bg-safari-terracotta text-white font-heading font-bold text-[11px] sm:text-xs uppercase px-3 py-1 rounded-full shadow">
+                        Best Seller Combo
+                    </div>
+                    <div class="rounded-xl overflow-hidden mb-5 sm:mb-6 h-48 sm:h-56 border border-safari-border/30 bg-white flex items-center justify-center cursor-pointer" onclick="openProductModal('${bestSeller.id}')">
+                        <img src="${primaryImg}" alt="${bestSeller.name}" class="w-full h-full object-cover">
+                    </div>
+                    <span class="text-[11px] sm:text-xs uppercase tracking-widest text-safari-olive font-bold">${bestSeller.category}</span>
+                    <h3 class="font-heading font-black text-xl sm:text-2xl text-white mt-1 mb-2 cursor-pointer hover:text-safari-olive" onclick="openProductModal('${bestSeller.id}')">${bestSeller.name}</h3>
+                    <p class="text-safari-borderLight text-xs sm:text-sm mb-5 sm:mb-6 leading-relaxed line-clamp-2">${bestSeller.description || ''}</p>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] sm:text-xs text-safari-border line-through block">R${(parseFloat(bestSeller.price) * 1.2).toFixed(2)}</span>
+                            <span class="font-heading font-black text-xl sm:text-2xl text-safari-terracotta">R${parseFloat(bestSeller.price).toFixed(2)}</span>
+                        </div>
+                        <button type="button" onclick="addToCart('${bestSeller.id}')" class="bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
+                            Add Combo to Cart
+                        </button>
+                    </div>
+                </div>
+            `;
         }
 
         window.renderProducts = function() {
@@ -743,9 +768,7 @@
 
             grid.innerHTML = filtered.map(p => {
                 let primaryImg = p.image || '';
-                if (primaryImg.includes(',')) {
-                    primaryImg = primaryImg.split(',')[0].trim();
-                }
+                if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
 
                 return `
                     <div class="bg-safari-surface border border-safari-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
@@ -818,11 +841,6 @@
             });
             updateCartUI();
             toggleCartDrawer();
-        }
-
-        window.addComboToCart = function() {
-            const combo = products.find(p => p.name.includes("OU KALAHARI") || p.category === "Combos") || products[0];
-            if (combo) addToCart(combo.id);
         }
 
         window.updateCartUI = function() {
@@ -1096,12 +1114,14 @@
                     ? `<span class="bg-red-100 text-red-700 font-bold text-[9px] sm:text-[10px] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full uppercase">Low Stock</span>`
                     : `<span class="bg-emerald-100 text-emerald-800 font-bold text-[9px] sm:text-[10px] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full uppercase">In Stock</span>`;
 
+                const bestSellerTag = p.isBestSeller ? `<span class="bg-amber-100 text-amber-800 font-bold text-[9px] px-2 py-0.5 rounded-full ml-2">★ Best Seller</span>` : '';
+
                 return `
                     <tr class="border-b border-safari-border/50 hover:bg-safari-surface/50">
                         <td class="p-3 sm:p-4 flex items-center gap-3">
                             <img src="${primaryImg}" class="w-9 h-9 sm:w-10 sm:h-10 object-cover rounded-lg border">
                             <div>
-                                <span class="font-bold text-xs sm:text-sm block">${p.name}</span>
+                                <span class="font-bold text-xs sm:text-sm block">${p.name} ${bestSellerTag}</span>
                                 <span class="text-[9px] sm:text-[10px] text-safari-espresso/50 font-mono">SKU: ${p.sku || 'N/A'}</span>
                             </div>
                         </td>
@@ -1146,6 +1166,7 @@
             document.getElementById("prod-edit-id").value = "";
             document.getElementById("product-action-form").reset();
             document.getElementById("prod-visible").checked = true;
+            document.getElementById("prod-bestseller").checked = false;
             document.getElementById("product-form-modal").classList.remove("hidden");
         }
 
@@ -1158,6 +1179,7 @@
             document.getElementById("prod-cat").value = p.category;
             document.getElementById("prod-img").value = p.image;
             document.getElementById("prod-visible").checked = p.visible !== false;
+            document.getElementById("prod-bestseller").checked = p.isBestSeller === true;
             document.getElementById("prod-variants").value = p.variants || "";
             document.getElementById("prod-extra-1").value = p.extra1 || "";
             document.getElementById("prod-extra-2").value = p.extra2 || "";
@@ -1175,19 +1197,26 @@
         window.handleProductSubmit = async function(e) {
             e.preventDefault();
             const id = document.getElementById("prod-edit-id").value;
+            const isBestSellerChecked = document.getElementById("prod-bestseller").checked;
+
+            // If this product is set as Best Seller, unset it on all other products locally/remotely
+            if (isBestSellerChecked) {
+                products.forEach(p => { p.isBestSeller = false; });
+            }
+
             const data = {
                 name: document.getElementById("prod-name").value,
                 price: parseFloat(document.getElementById("prod-price").value),
                 category: document.getElementById("prod-cat").value,
                 image: document.getElementById("prod-img").value,
                 visible: document.getElementById("prod-visible").checked,
+                isBestSeller: isBestSellerChecked,
                 variants: document.getElementById("prod-variants").value,
                 extra1: document.getElementById("prod-extra-1").value,
                 extra2: document.getElementById("prod-extra-2").value,
                 extra3: document.getElementById("prod-extra-3").value,
                 description: document.getElementById("prod-desc").value,
-                stock: 25,
-                thumbs: [document.getElementById("prod-img").value]
+                stock: 25
             };
 
             try {
@@ -1200,6 +1229,7 @@
                 }
                 closeProductFormModal();
                 renderAdminDashboard();
+                renderHeroBestSeller();
             } catch (err) {
                 alert("Saved successfully!");
                 closeProductFormModal();
@@ -1213,6 +1243,7 @@
             } catch (err) {
                 products = products.filter(p => p.id !== id);
                 renderAdminDashboard();
+                renderHeroBestSeller();
             }
         }
 
