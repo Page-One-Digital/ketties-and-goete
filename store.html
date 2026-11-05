@@ -578,7 +578,7 @@
         </div>
     </div>
 
-    <!-- Add / Edit Product Modal - Refined to match your reference image -->
+    <!-- Add / Edit Product Modal -->
     <div id="product-form-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductFormModal()"></div>
         <div class="bg-safari-parchment rounded-3xl max-w-2xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
@@ -629,7 +629,7 @@
                     <textarea id="prod-desc" rows="3" placeholder="Product Description" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
                 </div>
 
-                <!-- Bottom Action Buttons matching reference image style -->
+                <!-- Bottom Action Buttons -->
                 <div class="flex items-center gap-4 pt-2">
                     <button type="button" onclick="closeProductFormModal()" class="flex-1 bg-amber-100 hover:bg-amber-200 text-amber-900 py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow-sm">
                         Cancel
@@ -689,7 +689,7 @@
                 visible: true,
                 sku: "KG-SL-SAE81-TE",
                 image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                variants: "Forest Green:+0, Desert Sand:+0, Tactical Black:+0",
+                variants: "Black:+0, Silver:+51, Red:+51, Yellow:+51, Blue:+51",
                 extra1: "Dual Fiber Optic Sights",
                 extra2: "Weight: 280g",
                 extra3: "Quick-release Press-clip attachment",
@@ -886,9 +886,10 @@
                 });
                 selectedVariant = variantsList[0];
 
+                // Render variant buttons without showing the price addition (+R51) text on the button
                 varContainer.innerHTML = variantsList.map((v, i) => `
                     <button type="button" onclick="selectModalVariant('${v.name}', ${v.priceMod}, this)" class="px-4 py-2 rounded-lg text-xs border transition-all font-semibold ${i === 0 ? 'bg-safari-olive text-white border-safari-olive' : 'bg-safari-surface text-safari-espresso border-safari-border'}">
-                        ${v.name} ${v.priceMod > 0 ? `(+R${v.priceMod})` : ''}
+                        ${v.name}
                     </button>
                 `).join('');
             } else {
