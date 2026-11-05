@@ -177,8 +177,8 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <!-- Left Sidebar Filter Column -->
-            <div class="lg:col-span-3 bg-safari-surface border border-safari-border p-6 rounded-2xl shadow-sm sticky top-28 space-y-4">
+            <!-- Left Sidebar Filter Column (Fixed z-index to z-10 so it stays underneath modals and header) -->
+            <div class="lg:col-span-3 bg-safari-surface border border-safari-border p-6 rounded-2xl shadow-sm sticky top-28 z-10 space-y-4">
                 <div class="flex items-center justify-between pb-3 border-b border-safari-border">
                     <h3 class="font-heading font-bold text-xs uppercase tracking-widest text-safari-espresso">Filter Categories</h3>
                     <i class="fa-solid fa-filter text-safari-olive text-xs"></i>
@@ -969,7 +969,6 @@
                     name, email, phone, address,
                     joinedDate: new Date().toISOString().split('T')[0]
                 };
-                // Secure: Password handled strictly by Firebase Auth. Only customer profile metadata stored in Firestore.
                 await setDoc(doc(db, "customers", cred.user.uid), profile);
                 setCurrentCustomer(cred.user, profile);
                 document.getElementById("register-form").reset();
