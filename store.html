@@ -102,7 +102,6 @@
                 <p class="text-safari-parchment text-sm sm:text-lg max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow">
                     Precision premium slingshots, therapeutic natural latex flatbands, and biodegradable clay pellets built for target precision and rugged outdoor expeditions.
                 </p>
-                <!-- Extra button removed; single primary Explore Catalog button retained -->
                 <div class="flex justify-center lg:justify-start pt-2">
                     <a href="#shop" onclick="filterProducts('all')" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-all shadow-lg flex items-center justify-center gap-2">
                         EXPLORE CATALOG <i class="fa-solid fa-arrow-right"></i>
@@ -165,28 +164,40 @@
         </div>
     </section>
 
-    <!-- Main WooCommerce Shop Section -->
+    <!-- Main Shop Section with Left Sidebar Filters -->
     <section id="shop" class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 border-b border-safari-border pb-6 gap-4">
+        <div class="mb-8 sm:mb-10 border-b border-safari-border pb-6 flex items-center justify-between">
             <div>
-                <span class="text-xs font-semibold uppercase tracking-widest text-safari-olive block mb-1">WooCommerce Style Catalog</span>
-                <h2 class="font-heading font-black text-2xl sm:text-4xl text-safari-espresso">SHOOTING GEAR & ACCESSORIES</h2>
-            </div>
-            <!-- Category Filter Tabs -->
-            <div class="flex flex-wrap gap-2" id="category-filters">
-                <button type="button" onclick="filterProducts('all')" class="cat-btn active bg-safari-olive text-white px-3 sm:px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">All Items</button>
-                <button type="button" onclick="filterProducts('Ketties')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-3 sm:px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Ketties</button>
-                <button type="button" onclick="filterProducts('Flatbands')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-3 sm:px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Flatbands</button>
-                <button type="button" onclick="filterProducts('Clay Pellets')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-3 sm:px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Clay Pellets</button>
-                <button type="button" onclick="filterProducts('Combos')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-3 sm:px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Combos</button>
+                <a href="#shop" onclick="filterProducts('all')" class="font-heading font-black text-2xl sm:text-4xl text-safari-espresso hover:text-safari-olive transition-colors uppercase tracking-tight block">
+                    SHOP THE CATALOG
+                </a>
             </div>
         </div>
 
-        <!-- Product Grid -->
-        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
-            <div class="col-span-full text-center py-12 text-safari-espresso/60">
-                <i class="fa-solid fa-spinner fa-spin text-3xl mb-3 text-safari-olive"></i>
-                <p>Loading live catalog from Firebase database...</p>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Left Sidebar Filter Column -->
+            <div class="lg:col-span-3 bg-safari-surface border border-safari-border p-6 rounded-2xl shadow-sm sticky top-28 space-y-4">
+                <div class="flex items-center justify-between pb-3 border-b border-safari-border">
+                    <h3 class="font-heading font-bold text-xs uppercase tracking-widest text-safari-espresso">Filter Categories</h3>
+                    <i class="fa-solid fa-filter text-safari-olive text-xs"></i>
+                </div>
+                <!-- Dynamic Category Filter Buttons Container -->
+                <div id="sidebar-category-filters" class="flex flex-col gap-2">
+                    <button type="button" onclick="filterProducts('all')" class="cat-btn active w-full text-left bg-safari-olive text-white px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between">
+                        <span>All Products</span>
+                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Product Grid Column -->
+            <div class="lg:col-span-9">
+                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
+                    <div class="col-span-full text-center py-12 text-safari-espresso/60">
+                        <i class="fa-solid fa-spinner fa-spin text-3xl mb-3 text-safari-olive"></i>
+                        <p>Loading live catalog from Firebase database...</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -711,11 +722,11 @@
                 console.log("Firebase offline. Using local products.", err);
                 products = defaultProducts;
                 renderProducts();
+                renderSidebarCategories();
                 renderHeroBestSeller();
                 renderAdminDashboard();
             }
 
-            // Load Announcement Banner text from Firestore settings
             try {
                 const bannerDoc = await getDoc(doc(db, "settings", "announcement"));
                 if (bannerDoc.exists() && bannerDoc.data().text) {
@@ -733,6 +744,7 @@
                     products.push({ id: docSnap.id, ...docSnap.data() });
                 });
                 renderProducts();
+                renderSidebarCategories();
                 renderHeroBestSeller();
                 renderAdminDashboard();
             }, (error) => { console.log("Product snapshot error", error); });
@@ -757,6 +769,39 @@
             } catch (err) {
                 alert("Banner updated locally!");
             }
+        }
+
+        window.renderSidebarCategories = function() {
+            const container = document.getElementById("sidebar-category-filters");
+            if (!container) return;
+
+            // Extract unique categories from products database dynamically
+            const categoriesSet = new Set();
+            products.forEach(p => {
+                if (p.category && p.category.trim() !== "") {
+                    categoriesSet.add(p.category.trim());
+                }
+            });
+            const categories = Array.from(categoriesSet).sort();
+
+            let html = `
+                <button type="button" onclick="filterProducts('all')" class="cat-btn ${currentFilter === 'all' ? 'active bg-safari-olive text-white' : 'bg-safari-surface/70 hover:bg-safari-surface text-safari-espresso'} w-full text-left px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between border border-safari-border/60">
+                    <span>All Products</span>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                </button>
+            `;
+
+            categories.forEach(cat => {
+                const isActive = currentFilter.toLowerCase() === cat.toLowerCase();
+                html += `
+                    <button type="button" onclick="filterProducts('${cat.replace(/'/g, "\\'")}')" class="cat-btn ${isActive ? 'active bg-safari-olive text-white' : 'bg-safari-surface/70 hover:bg-safari-surface text-safari-espresso'} w-full text-left px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between border border-safari-border/60">
+                        <span>${cat}</span>
+                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </button>
+                `;
+            });
+
+            container.innerHTML = html;
         }
 
         window.renderHeroBestSeller = function() {
@@ -840,16 +885,7 @@
 
         window.filterProducts = function(cat) {
             currentFilter = cat;
-            document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.classList.remove('bg-safari-olive', 'text-white');
-                btn.classList.add('bg-safari-surface', 'text-safari-espresso', 'border', 'border-safari-border');
-            });
-            document.querySelectorAll('.cat-btn').forEach(btn => {
-                if(btn.textContent.includes(cat) || (cat === 'all' && btn.textContent.includes('All'))) {
-                    btn.classList.remove('bg-safari-surface', 'text-safari-espresso', 'border', 'border-safari-border');
-                    btn.classList.add('bg-safari-olive', 'text-white');
-                }
-            });
+            renderSidebarCategories();
             renderProducts();
         }
 
