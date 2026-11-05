@@ -236,7 +236,7 @@
                 </div>
                 <!-- Card 2 -->
                 <div class="bg-safari-parchment p-8 rounded-2xl border border-safari-border shadow-sm">
-                    <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center text-safari-espresso mb-4 shadow-inner">
+                    <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center font-heading font-black text-xs text-safari-olive mb-4 shadow-inner">
                         <i class="fa-solid fa-bullseye text-safari-olive"></i>
                     </div>
                     <h3 class="font-heading font-black text-base text-safari-espresso mb-2">Precision Target Calibrations</h3>
@@ -244,7 +244,7 @@
                 </div>
                 <!-- Card 3 -->
                 <div class="bg-safari-parchment p-8 rounded-2xl border border-safari-border shadow-sm">
-                    <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center text-safari-espresso mb-4 shadow-inner">
+                    <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center font-heading font-black text-xs text-safari-olive mb-4 shadow-inner">
                         <i class="fa-solid fa-fire text-safari-olive"></i>
                     </div>
                     <h3 class="font-heading font-black text-base text-safari-espresso mb-2">Natural Latex Elasticity</h3>
@@ -252,7 +252,7 @@
                 </div>
                 <!-- Card 4 -->
                 <div class="bg-safari-parchment p-8 rounded-2xl border border-safari-border shadow-sm">
-                    <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center text-safari-espresso mb-4 shadow-inner">
+                    <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center font-heading font-black text-xs text-safari-olive mb-4 shadow-inner">
                         <i class="fa-solid fa-shield-halved text-safari-olive"></i>
                     </div>
                     <h3 class="font-heading font-black text-base text-safari-espresso mb-2">Biodegradable Ammunition</h3>
@@ -375,16 +375,20 @@
         </div>
     </div>
 
-    <!-- Product Detail Modal -->
+    <!-- Product Detail Modal (Expanded Image & Bulleted Specs) -->
     <div id="product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductModal()"></div>
-        <div class="bg-safari-parchment rounded-3xl max-w-5xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2 items-center">
-            <div class="p-8 bg-safari-surface flex flex-col justify-center items-center border-r border-safari-border h-full">
-                <div class="rounded-2xl overflow-hidden max-h-[500px] w-full flex items-center justify-center bg-safari-parchment/60 p-4 border border-safari-border/40 shadow-inner">
-                    <img id="modal-main-img" src="" alt="Product Image" class="max-h-[450px] w-auto max-w-full object-contain mx-auto shadow-md rounded-lg">
+        <div class="bg-safari-parchment rounded-3xl max-w-6xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 items-center">
+            
+            <!-- Left: Expanded Image Container (Wider Column & Larger Display) -->
+            <div class="lg:col-span-7 p-8 sm:p-12 bg-safari-surface flex flex-col justify-center items-center border-r border-safari-border h-full min-h-[550px]">
+                <div class="rounded-2xl overflow-hidden h-full max-h-[620px] w-full flex items-center justify-center bg-safari-parchment p-6 border border-safari-border/50 shadow-inner">
+                    <img id="modal-main-img" src="" alt="Product Image" class="max-h-[580px] w-auto max-w-full object-contain mx-auto shadow-lg rounded-xl">
                 </div>
             </div>
-            <div class="p-8 sm:p-10 flex flex-col justify-between h-full relative">
+
+            <!-- Right: Content & Bulleted Specs -->
+            <div class="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between h-full relative">
                 <button onclick="closeProductModal()" class="absolute top-6 right-6 text-safari-espresso/60 hover:text-safari-espresso p-2 text-xl z-10">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
@@ -404,8 +408,8 @@
                         <div id="modal-variants-container" class="flex flex-wrap gap-2"></div>
                     </div>
 
-                    <!-- Extra Fields/Specs -->
-                    <div id="modal-extra-fields" class="space-y-1.5 text-xs text-safari-espresso/80 bg-safari-surface p-3.5 rounded-xl border border-safari-border"></div>
+                    <!-- Extra Fields/Specs formatted as spacious bullet points -->
+                    <div id="modal-extra-fields" class="space-y-2.5 text-xs text-safari-espresso/90 bg-safari-surface p-5 rounded-2xl border border-safari-border shadow-inner leading-relaxed"></div>
                 </div>
 
                 <div class="pt-6 border-t border-safari-border/40 flex items-center gap-4 mt-6">
@@ -612,17 +616,17 @@
 
                 <!-- Row 5: Extra Spec / Detail 1 -->
                 <div>
-                    <input type="text" id="prod-extra-1" placeholder="Specification / Shelf Life (e.g., Shelf life 6 months refrigerated)" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <input type="text" id="prod-extra-1" placeholder="Specification bullet 1" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
 
                 <!-- Row 6: Extra Spec / Detail 2 -->
                 <div>
-                    <input type="text" id="prod-extra-2" placeholder="Weight or Size Details (e.g., Net Weight 160g jar)" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <input type="text" id="prod-extra-2" placeholder="Specification bullet 2" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
 
                 <!-- Row 7: Extra Spec / Detail 3 -->
                 <div>
-                    <input type="text" id="prod-extra-3" placeholder="Additional Notes / Storage (e.g., Keep refrigerated below 4°C)" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <input type="text" id="prod-extra-3" placeholder="Specification bullet 3" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
 
                 <!-- Row 8: Product Description -->
@@ -669,7 +673,7 @@
 
         const defaultProducts = [
             {
-                name: "SA EAGLE & CARRY BAG",
+                name: "OU KALAHARI & CAMO CARRY BAG - KETTIE COMBO",
                 category: "Combos",
                 price: 590.00,
                 stock: 20,
@@ -677,10 +681,10 @@
                 sku: "KG-SA-EAGLE-BAG",
                 image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
                 variants: "Standard:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800, Deluxe Combo:+80:https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800",
-                extra1: "Includes protective case & spare bands",
-                extra2: "Weight: 450g total package",
-                extra3: "100% South African handcrafted steel",
-                description: "WHAT'S INSIDE THE PACK: * 1x Kettie - SA Eagle * 1x Brown/Camo Carry Bag * 1x Pack 50 of Clay Ammo Balls"
+                extra1: "1 x Ou Kalahari Kettie: Features a premium metal frame combined with ergonomic, rich wood-grain handle scales for superior balance, a comfortable grip, and high-tension durability.",
+                extra2: "1 x Camo Bag: A rugged, heavy-duty tactical camo pouch equipped with belt loops and secure button fastening to keep your gear organized in the field.",
+                extra3: "1 x Pack of 50 Clay Ammo Balls & Set of Extra High-Performance Replacement Bands.",
+                description: "Gear up for your next outdoor expedition with the premier Ou Kalahari Combo. Built for family adventures, this tactical package pairs our flagship wooden-accented slingshot with high-grade field gear."
             },
             {
                 name: "KETTIE - SA EAGLE SLINGSHOT",
@@ -690,10 +694,10 @@
                 visible: true,
                 sku: "KG-SL-SAE81-TE",
                 image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                variants: "Black:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800, Silver:+51:https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800, Red:+51:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800, Yellow:+51:https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800, Blue:+51:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                extra1: "Dual Fiber Optic Sights",
-                extra2: "Weight: 280g",
-                extra3: "Quick-release Press-clip attachment",
+                variants: "Black:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800, Silver:+51:https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800, Red:+51:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800, Yellow:+51:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800, Blue:+51:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
+                extra1: "Dual Fiber Optic Sights for superior low-light targeting precision.",
+                extra2: "Weight: 280g lightweight and ergonomic frame.",
+                extra3: "Quick-release Press-clip attachment for swift band replacement.",
                 description: "The SA Eagle represents the pinnacle of South African outdoor engineering. Precision-forged with high-tensile steel and paracord-wrapped stable ergonomic grip."
             }
         ];
@@ -811,7 +815,7 @@
         }
 
         window.addComboToCart = function() {
-            const combo = products.find(p => p.name.includes("SA EAGLE") || p.category === "Combos") || products[0];
+            const combo = products.find(p => p.name.includes("OU KALAHARI") || p.category === "Combos") || products[0];
             if (combo) addToCart(combo.id);
         }
 
@@ -911,13 +915,19 @@
                 selectedVariant = { name: "Standard", priceMod: 0, imageUrl: selectedProduct.image };
             }
 
+            // Render extra fields as clean, spacious bullet points
             const extraContainer = document.getElementById("modal-extra-fields");
-            let extraHTML = "";
-            if (selectedProduct.extra1) extraHTML += `<div>• ${selectedProduct.extra1}</div>`;
-            if (selectedProduct.extra2) extraHTML += `<div>• ${selectedProduct.extra2}</div>`;
-            if (selectedProduct.extra3) extraHTML += `<div>• ${selectedProduct.extra3}</div>`;
-            extraContainer.innerHTML = extraHTML;
-            extraContainer.style.display = extraHTML ? "block" : "none";
+            let bullets = [];
+            if (selectedProduct.extra1) bullets.push(selectedProduct.extra1);
+            if (selectedProduct.extra2) bullets.push(selectedProduct.extra2);
+            if (selectedProduct.extra3) bullets.push(selectedProduct.extra3);
+
+            if (bullets.length > 0) {
+                extraContainer.innerHTML = `<ul class="space-y-2 list-disc pl-4">` + bullets.map(b => `<li class="leading-relaxed">${b}</li>`).join('') + `</ul>`;
+                extraContainer.style.display = "block";
+            } else {
+                extraContainer.style.display = "none";
+            }
 
             document.getElementById("product-modal").classList.remove("hidden");
         }
