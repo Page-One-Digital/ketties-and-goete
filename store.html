@@ -75,10 +75,10 @@
 
             <!-- Dashboard & Cart Actions -->
             <div class="flex items-center gap-4">
-                <button onclick="openAdminModal(event)" class="bg-safari-surface border border-safari-border hover:border-safari-olive px-4 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-all shadow-sm">
+                <button type="button" onclick="openAdminModal(event)" class="bg-safari-surface border border-safari-border hover:border-safari-olive px-4 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-all shadow-sm">
                     <i class="fa-solid fa-shield-halved text-safari-olive"></i> Dashboard
                 </button>
-                <button onclick="toggleCartDrawer()" class="relative bg-safari-espresso text-safari-parchment hover:bg-safari-olive px-4 py-2.5 rounded-xl flex items-center gap-2 font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-sm">
+                <button type="button" onclick="toggleCartDrawer()" class="relative bg-safari-espresso text-safari-parchment hover:bg-safari-olive px-4 py-2.5 rounded-xl flex items-center gap-2 font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-sm">
                     <i class="fa-solid fa-shopping-bag text-sm"></i> Cart
                     <span id="cart-badge" class="absolute -top-2 -right-2 bg-safari-terracotta text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center shadow">0</span>
                 </button>
@@ -129,7 +129,7 @@
                             <span class="text-xs text-safari-border line-through block">R680.00</span>
                             <span class="font-heading font-black text-2xl text-safari-terracotta">R550.00</span>
                         </div>
-                        <button onclick="addComboToCart()" class="bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-6 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
+                        <button type="button" onclick="addComboToCart()" class="bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-6 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
                             Add Combo to Cart
                         </button>
                     </div>
@@ -202,11 +202,11 @@
             </div>
             <!-- Category Filter Tabs -->
             <div class="flex flex-wrap gap-2 mt-4 md:mt-0" id="category-filters">
-                <button onclick="filterProducts('all')" class="cat-btn active bg-safari-olive text-white px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">All Items</button>
-                <button onclick="filterProducts('Ketties')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Ketties</button>
-                <button onclick="filterProducts('Flatbands')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Flatbands</button>
-                <button onclick="filterProducts('Clay Pellets')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Clay Pellets</button>
-                <button onclick="filterProducts('Combos')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Combos</button>
+                <button type="button" onclick="filterProducts('all')" class="cat-btn active bg-safari-olive text-white px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">All Items</button>
+                <button type="button" onclick="filterProducts('Ketties')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Ketties</button>
+                <button type="button" onclick="filterProducts('Flatbands')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Flatbands</button>
+                <button type="button" onclick="filterProducts('Clay Pellets')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Clay Pellets</button>
+                <button type="button" onclick="filterProducts('Combos')" class="cat-btn bg-safari-surface border border-safari-border hover:border-safari-olive text-safari-espresso px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">Combos</button>
             </div>
         </div>
 
@@ -349,7 +349,7 @@
                         <i class="fa-solid fa-shopping-bag text-safari-olive text-xl"></i>
                         <h3 class="font-heading font-black text-lg uppercase">Your Shopping Cart</h3>
                     </div>
-                    <button onclick="toggleCartDrawer()" class="text-safari-espresso/60 hover:text-safari-espresso p-2">
+                    <button type="button" onclick="toggleCartDrawer()" class="text-safari-espresso/60 hover:text-safari-espresso p-2">
                         <i class="fa-solid fa-xmark text-xl"></i>
                     </button>
                 </div>
@@ -367,7 +367,7 @@
                         <span class="font-heading font-bold text-base">Total:</span>
                         <span id="cart-total" class="font-heading font-black text-2xl text-safari-terracotta">R0.00</span>
                     </div>
-                    <button onclick="openCheckoutModal()" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-4 rounded-xl font-heading font-bold text-sm tracking-wider uppercase transition-colors shadow-md">
+                    <button type="button" onclick="openCheckoutModal()" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-4 rounded-xl font-heading font-bold text-sm tracking-wider uppercase transition-colors shadow-md">
                         Proceed to Checkout →
                     </button>
                 </div>
@@ -375,12 +375,12 @@
         </div>
     </div>
 
-    <!-- Product Detail Modal (Expanded Image & Bulleted Specs) -->
+    <!-- Product Detail Modal -->
     <div id="product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductModal()"></div>
         <div class="bg-safari-parchment rounded-3xl max-w-6xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 items-center">
             
-            <!-- Left: Expanded Image Container (Wider Column & Larger Display) -->
+            <!-- Left: Expanded Image Container -->
             <div class="lg:col-span-7 p-8 sm:p-12 bg-safari-surface flex flex-col justify-center items-center border-r border-safari-border h-full min-h-[550px]">
                 <div class="rounded-2xl overflow-hidden h-full max-h-[620px] w-full flex items-center justify-center bg-safari-parchment p-6 border border-safari-border/50 shadow-inner">
                     <img id="modal-main-img" src="" alt="Product Image" class="max-h-[580px] w-auto max-w-full object-contain mx-auto shadow-lg rounded-xl">
@@ -389,7 +389,7 @@
 
             <!-- Right: Content & Bulleted Specs -->
             <div class="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between h-full relative">
-                <button onclick="closeProductModal()" class="absolute top-6 right-6 text-safari-espresso/60 hover:text-safari-espresso p-2 text-xl z-10">
+                <button type="button" onclick="closeProductModal()" class="absolute top-6 right-6 text-safari-espresso/60 hover:text-safari-espresso p-2 text-xl z-10">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
 
@@ -413,7 +413,7 @@
                 </div>
 
                 <div class="pt-6 border-t border-safari-border/40 flex items-center gap-4 mt-6">
-                    <button onclick="addModalItemToCart()" class="flex-1 bg-safari-olive hover:bg-safari-oliveDark text-white py-4 px-6 rounded-xl font-heading font-bold text-xs tracking-widest uppercase transition-colors shadow-lg flex items-center justify-center gap-2">
+                    <button type="button" onclick="addModalItemToCart()" class="flex-1 bg-safari-olive hover:bg-safari-oliveDark text-white py-4 px-6 rounded-xl font-heading font-bold text-xs tracking-widest uppercase transition-colors shadow-lg flex items-center justify-center gap-2">
                         <i class="fa-solid fa-basket-shopping"></i> Add to Basket
                     </button>
                 </div>
@@ -427,7 +427,7 @@
         <div class="bg-safari-parchment rounded-2xl max-w-xl w-full border border-safari-border relative z-10 p-8 shadow-2xl">
             <div class="flex items-center justify-between mb-6 border-b border-safari-border pb-4">
                 <h3 class="font-heading font-black text-xl uppercase">Secure Checkout</h3>
-                <button onclick="closeCheckoutModal()" class="text-safari-espresso/60 hover:text-safari-espresso"><i class="fa-solid fa-xmark text-xl"></i></button>
+                <button type="button" onclick="closeCheckoutModal()" class="text-safari-espresso/60 hover:text-safari-espresso"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
             <form id="checkout-form" onsubmit="submitOrder(event)" class="space-y-4">
                 <div class="grid grid-cols-2 gap-4">
@@ -477,10 +477,10 @@
                     <p class="text-safari-borderLight text-xs sm:text-sm mt-1">Manage inventory database, monitor stock levels, and review customer client records & orders.</p>
                 </div>
                 <div class="flex flex-wrap gap-3 relative z-10">
-                    <button onclick="closeAdminModal()" class="bg-safari-surface/10 hover:bg-safari-surface/20 border border-safari-border text-safari-parchment px-5 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 backdrop-blur-sm">
+                    <button type="button" onclick="closeAdminModal()" class="bg-safari-surface/10 hover:bg-safari-surface/20 border border-safari-border text-safari-parchment px-5 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 backdrop-blur-sm">
                         <i class="fa-solid fa-store"></i> Return to Store
                     </button>
-                    <button onclick="openNewProductModal()" class="bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-5 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow">
+                    <button type="button" onclick="openNewProductModal()" class="bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-5 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow">
                         <i class="fa-solid fa-plus"></i> Add New Product
                     </button>
                 </div>
@@ -522,10 +522,10 @@
             </div>
 
             <div class="flex gap-4 mb-6 border-b border-safari-border pb-4">
-                <button onclick="switchAdminTab('products')" id="admin-tab-prod" class="bg-safari-olive text-white px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
+                <button type="button" onclick="switchAdminTab('products')" id="admin-tab-prod" class="bg-safari-olive text-white px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
                     <i class="fa-solid fa-boxes-stacked"></i> Inventory Database (<span id="prod-count-badge">0</span>)
                 </button>
-                <button onclick="switchAdminTab('orders')" id="admin-tab-ord" class="bg-safari-surface text-safari-espresso border border-safari-border px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
+                <button type="button" onclick="switchAdminTab('orders')" id="admin-tab-ord" class="bg-safari-surface text-safari-espresso border border-safari-border px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2">
                     <i class="fa-solid fa-clipboard-list"></i> Client Records & Orders (<span id="ord-count-badge">0</span>)
                 </button>
             </div>
@@ -761,7 +761,7 @@
                     </div>
                     <div class="p-5 pt-0 flex items-center justify-between border-t border-safari-border/40 mt-auto">
                         <span class="font-heading font-black text-xl text-safari-terracotta">R${parseFloat(p.price).toFixed(2)}</span>
-                        <button onclick="addToCart('${p.id}')" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-4 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
+                        <button type="button" onclick="addToCart('${p.id}')" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-4 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow">
                             Add to Cart
                         </button>
                     </div>
@@ -843,12 +843,12 @@
                         <span class="text-[10px] text-safari-olive font-bold block leading-snug">${item.selectedOption}</span>
                         <span class="text-xs text-safari-terracotta font-bold mt-1 block">R${parseFloat(item.finalPrice).toFixed(2)}</span>
                         <div class="flex items-center gap-2 mt-1.5">
-                            <button onclick="updateCartItemQty(${index}, -1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs">-</button>
+                            <button type="button" onclick="updateCartItemQty(${index}, -1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs">-</button>
                             <span class="text-xs font-bold">${item.qty}</span>
-                            <button onclick="updateCartItemQty(${index}, 1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs">+</button>
+                            <button type="button" onclick="updateCartItemQty(${index}, 1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs">+</button>
                         </div>
                     </div>
-                    <button onclick="removeFromCart(${index})" class="text-safari-espresso/40 hover:text-red-600 p-2"><i class="fa-solid fa-trash text-sm"></i></button>
+                    <button type="button" onclick="removeFromCart(${index})" class="text-safari-espresso/40 hover:text-red-600 p-2"><i class="fa-solid fa-trash text-sm"></i></button>
                 </div>
             `).join('');
 
@@ -1079,14 +1079,14 @@
                         <td class="p-4">
                             <div class="flex items-center gap-2">
                                 <span class="font-bold text-sm w-12">${stockVal} units</span>
-                                <button onclick="quickAdjustStock('${p.id}', 1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-safari-olive hover:text-white transition-colors">+</button>
-                                <button onclick="quickAdjustStock('${p.id}', -1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-red-600 hover:text-white transition-colors">-</button>
+                                <button type="button" onclick="quickAdjustStock('${p.id}', 1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-safari-olive hover:text-white transition-colors">+</button>
+                                <button type="button" onclick="quickAdjustStock('${p.id}', -1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-red-600 hover:text-white transition-colors">-</button>
                             </div>
                         </td>
                         <td class="p-4">${statusBadge}</td>
                         <td class="p-4 text-right space-x-1">
-                            <button onclick="openEditProductModal('${p.id}')" class="bg-safari-olive text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-safari-oliveDark transition-colors">Edit</button>
-                            <button onclick="deleteProduct('${p.id}')" class="bg-safari-terracotta text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-safari-terracottaDark transition-colors">Delete</button>
+                            <button type="button" onclick="openEditProductModal('${p.id}')" class="bg-safari-olive text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-safari-oliveDark transition-colors">Edit</button>
+                            <button type="button" onclick="deleteProduct('${p.id}')" class="bg-safari-terracotta text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-safari-terracottaDark transition-colors">Delete</button>
                         </td>
                     </tr>
                 `;
