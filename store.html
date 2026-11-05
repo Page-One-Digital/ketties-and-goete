@@ -732,25 +732,28 @@
         </div>
     </div>
 
-    <!-- Firebase Firestore Only (Direct Database Login / No Auth SDK Errors) -->
+    <!-- Firebase Firestore & Auth Script -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
+        // Tip: paste your config straight from Firebase Console using the copy button
         const firebaseConfig = {
-            apiKey: "AIzaSyCWDrUEiZm3IftJfShyD2QsLZnOFdwo9g",
+            apiKey: "AIzaSyCWDrUEiZm3IftJFbShyD2QsLZnOFdwo9g",
             authDomain: "ketties-n-goete.firebaseapp.com",
-            databaseURL: "https://ketties-n-goete-default-rtdb.europe-west1.firebasedatabase.app",
             projectId: "ketties-n-goete",
             storageBucket: "ketties-n-goete.firebasestorage.app",
             messagingSenderId: "33272737255",
-            appId: "1:33272737255:web:55ca69854bd4001c26142",
+            appId: "1:33272737255:web:55ca698584bd4001c26142",
             measurementId: "G-RWZ63YNWPR"
         };
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const auth = getAuth(app);
 
+        // UI only. Real admin enforcement happens in firestore.rules (by UID).
         const ADMIN_EMAIL = "csda.kettiesngoete@gmail.com";
 
         let products = [];
@@ -797,21 +800,6 @@
 
         async function initDatabase() {
             try {
-                const querySnapshot = await getDocs(collection(db, "products"));
-                if (querySnapshot.empty) {
-                    for (let p of defaultProducts) {
-                        await addDoc(collection(db, "products"), p);
-                    }
-                }
-            } catch (err) {
-                console.log("Firebase offline. Using local products.", err);
-                products = defaultProducts;
-                renderProducts();
-                renderSidebarCategories();
-                renderHeroBestSeller();
-            }
-
-            try {
                 const bannerDoc = await getDoc(doc(db, "settings", "announcement"));
                 if (bannerDoc.exists() && bannerDoc.data().text) {
                     const text = bannerDoc.data().text;
@@ -819,13 +807,7 @@
                     document.getElementById("admin-banner-text").value = text;
                 }
             } catch (err) {
-                console.log("Banner settings load offline.");
-            }
-
-            const savedCust = localStorage.getItem("kng_customer_session");
-            if (savedCust) {
-                currentCustomer = JSON.parse(savedCust);
-                updateAuthNavUI();
+                console.log("Banner settings load failed.", err);
             }
 
             onSnapshot(collection(db, "products"), (snapshot) => {
@@ -837,103 +819,99 @@
                 renderSidebarCategories();
                 renderHeroBestSeller();
                 if (currentCustomer && currentCustomer.isAdmin) renderAdminDashboard();
-            }, (error) => { console.log("Product snapshot error", error); });
+            }, (error) => {
+                console.log("Product snapshot error", error);
+                products = defaultProducts;
+                renderProducts();
+                renderSidebarCategories();
+                renderHeroBestSeller();
+            });
 
-            onSnapshot(collection(db, "customers"), (snapshot) => {
-                customers = [];
-                snapshot.forEach((docSnap) => {
-                    customers.push({ id: docSnap.id, ...docSnap.data() });
-                });
-                if (currentCustomer && currentCustomer.isAdmin) renderAdminDashboard();
-            }, (err) => { console.log("Customer snapshot error", err); });
-
-            onSnapshot(collection(db, "orders"), (snapshot) => {
-                orders = [];
-                snapshot.forEach((docSnap) => {
-                    orders.push({ id: docSnap.id, ...docSnap.data() });
-                });
-                if (currentCustomer && currentCustomer.isAdmin) renderAdminDashboard();
-            }, (err) => { console.log("Order snapshot error", err); });
+            // Keep the session in sync with Firebase Auth (survives page reloads)
+            onAuthStateChanged(auth, async (user) => {
+                if (registering) return; // registration handler sets the session itself
+                if (!user) {
+                    currentCustomer = null;
+                    stopAdminListeners();
+                    updateAuthNavUI();
+                    return;
+                }
+                let profile = null;
+                try {
+                    const snap = await getDoc(doc(db, "customers", user.uid));
+                    if (snap.exists()) profile = snap.data();
+                } catch (err) {
+                    console.log("Profile load failed", err);
+                }
+                setCurrentCustomer(user, profile);
+            });
         }
 
-        window.saveAnnouncementBanner = async function(e) {
-            e.preventDefault();
-            if (!currentCustomer || !currentCustomer.isAdmin) return;
-            const newText = document.getElementById("admin-banner-text").value;
-            document.getElementById("announcement-banner").innerHTML = `<span>${newText}</span>`;
-            try {
-                await setDoc(doc(db, "settings", "announcement"), { text: newText });
-                alert("Announcement banner updated successfully!");
-            } catch (err) {
-                alert("Banner updated locally!");
+        let registering = false;
+        let unsubCustomers = null;
+        let unsubOrders = null;
+
+        function friendlyAuthError(err) {
+            const map = {
+                'auth/email-already-in-use': 'An account with this email already exists. Please sign in.',
+                'auth/invalid-credential': 'Invalid email or password.',
+                'auth/invalid-email': 'That email address does not look valid.',
+                'auth/weak-password': 'Password must be at least 6 characters.',
+                'auth/too-many-requests': 'Too many attempts. Please wait a few minutes and try again.',
+                'auth/network-request-failed': 'Network error. Please check your connection.',
+                'auth/operation-not-allowed': 'Email/Password sign-in is not enabled in Firebase yet.'
+            };
+            return map[err.code] || err.message;
+        }
+
+        function setCurrentCustomer(user, profile) {
+            currentCustomer = {
+                uid: user.uid,
+                email: user.email,
+                name: (profile && profile.name) || '',
+                phone: (profile && profile.phone) || '',
+                address: (profile && profile.address) || '',
+                isAdmin: (user.email || '').toLowerCase() === ADMIN_EMAIL.toLowerCase()
+            };
+            updateAuthNavUI();
+            if (currentCustomer.isAdmin) startAdminListeners(); else stopAdminListeners();
+        }
+
+        function startAdminListeners() {
+            if (!unsubCustomers) {
+                unsubCustomers = onSnapshot(collection(db, "customers"), (snapshot) => {
+                    customers = [];
+                    snapshot.forEach((d) => customers.push({ id: d.id, ...d.data() }));
+                    if (currentCustomer && currentCustomer.isAdmin) renderAdminDashboard();
+                }, (err) => console.log("Customer snapshot error", err));
+            }
+            if (!unsubOrders) {
+                unsubOrders = onSnapshot(collection(db, "orders"), (snapshot) => {
+                    orders = [];
+                    snapshot.forEach((d) => orders.push({ id: d.id, ...d.data() }));
+                    if (currentCustomer && currentCustomer.isAdmin) renderAdminDashboard();
+                }, (err) => console.log("Order snapshot error", err));
             }
         }
 
-        window.openAuthModal = function() {
-            document.getElementById("auth-modal").classList.remove("hidden");
-            if (currentCustomer) {
-                document.getElementById("auth-unauthenticated-view").classList.add("hidden");
-                document.getElementById("auth-authenticated-view").classList.remove("hidden");
-                document.getElementById("user-display-email").textContent = currentCustomer.email;
-            } else {
-                document.getElementById("auth-unauthenticated-view").classList.remove("hidden");
-                document.getElementById("auth-authenticated-view").classList.add("hidden");
-            }
+        function stopAdminListeners() {
+            if (unsubCustomers) { unsubCustomers(); unsubCustomers = null; }
+            if (unsubOrders) { unsubOrders(); unsubOrders = null; }
+            customers = [];
+            orders = [];
         }
 
-        window.closeAuthModal = function() {
-            document.getElementById("auth-modal").classList.add("hidden");
-        }
-
-        window.switchAuthTab = function(tab) {
-            const loginBtn = document.getElementById("tab-login-btn");
-            const regBtn = document.getElementById("tab-register-btn");
-            const loginForm = document.getElementById("login-form");
-            const regForm = document.getElementById("register-form");
-            const modalTitle = document.getElementById("auth-modal-title");
-
-            if (tab === 'login') {
-                loginBtn.className = "flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider bg-safari-olive text-white transition-all";
-                regBtn.className = "flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso transition-all";
-                loginForm.classList.remove("hidden");
-                regForm.classList.add("hidden");
-                modalTitle.textContent = "Customer Sign In";
-            } else {
-                regBtn.className = "flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider bg-safari-olive text-white transition-all";
-                loginBtn.className = "flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso transition-all";
-                regForm.classList.remove("hidden");
-                loginForm.classList.add("hidden");
-                modalTitle.textContent = "Create Customer Account";
-            }
-        }
-
-        window.handleDirectLogin = function(e) {
+        window.handleDirectLogin = async function(e) {
             e.preventDefault();
             const email = document.getElementById("login-email").value.trim().toLowerCase();
             const password = document.getElementById("login-password").value;
-
-            if (email === ADMIN_EMAIL.toLowerCase()) {
-                currentCustomer = {
-                    email: ADMIN_EMAIL,
-                    name: "Carllo Swanepoel (Management)",
-                    isAdmin: true
-                };
-                localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
-                updateAuthNavUI();
-                closeAuthModal();
-                alert("Management Admin signed in successfully.");
-                return;
-            }
-
-            const match = customers.find(c => c.email.toLowerCase() === email && c.password === password);
-            if (match) {
-                currentCustomer = { ...match, isAdmin: false };
-                localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
-                updateAuthNavUI();
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                document.getElementById("login-form").reset();
                 closeAuthModal();
                 alert("Signed in successfully!");
-            } else {
-                alert("Invalid email or password. Please check your details or register.");
+            } catch (err) {
+                alert("Sign in failed: " + friendlyAuthError(err));
             }
         }
 
@@ -945,42 +923,34 @@
             const phone = document.getElementById("reg-phone").value.trim();
             const address = document.getElementById("reg-address").value.trim();
 
-            if (customers.some(c => c.email.toLowerCase() === email)) {
-                alert("An account with this email already exists. Please sign in.");
-                switchAuthTab('login');
-                return;
-            }
-
-            const isManagementAdmin = email === ADMIN_EMAIL.toLowerCase();
-
-            currentCustomer = {
-                email: email,
-                password: password,
-                name: name,
-                phone: phone,
-                address: address,
-                joinedDate: new Date().toISOString().split('T')[0],
-                isAdmin: isManagementAdmin
-            };
-
+            registering = true;
             try {
-                const docRef = await addDoc(collection(db, "customers"), currentCustomer);
-                currentCustomer.id = docRef.id;
+                const cred = await createUserWithEmailAndPassword(auth, email, password);
+                const profile = {
+                    name, email, phone, address,
+                    joinedDate: new Date().toISOString().split('T')[0]
+                };
+                // Profile only. The password is handled by Firebase Auth and never stored by us.
+                await setDoc(doc(db, "customers", cred.user.uid), profile);
+                setCurrentCustomer(cred.user, profile);
+                document.getElementById("register-form").reset();
+                closeAuthModal();
+                alert("Account created and signed in successfully!");
             } catch (err) {
-                console.log("Registered locally");
+                alert("Registration failed: " + friendlyAuthError(err));
+            } finally {
+                registering = false;
             }
-
-            localStorage.setItem("kng_customer_session", JSON.stringify(currentCustomer));
-            updateAuthNavUI();
-            closeAuthModal();
-            alert("Account created and signed in successfully!");
         }
 
-        window.signOutCustomer = function() {
-            currentCustomer = null;
-            localStorage.removeItem("kng_customer_session");
-            updateAuthNavUI();
+        window.signOutCustomer = async function() {
+            try {
+                await signOut(auth);
+            } catch (err) {
+                console.log("Sign out error", err);
+            }
             closeAuthModal();
+            closeAdminModal();
             alert("Signed out successfully.");
         }
 
@@ -1355,6 +1325,7 @@
         window.submitOrder = async function(e) {
             e.preventDefault();
             const orderData = {
+                uid: currentCustomer ? currentCustomer.uid : null,
                 name: document.getElementById("order-name").value,
                 phone: document.getElementById("order-phone").value,
                 email: document.getElementById("order-email").value,
