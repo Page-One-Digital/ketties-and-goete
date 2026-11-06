@@ -50,7 +50,7 @@
 
     <!-- Top Announcement Bar (Editable via Management Dashboard) -->
     <div id="announcement-banner" class="bg-safari-espresso text-safari-parchment text-[11px] sm:text-xs font-medium py-2 px-3 text-center tracking-wider">
-        <span>🇿🇦 CRAFTED IN SOUTH AFRICA • FREE NATIONWIDE SHIPPING ON ORDERS OVER R600 • 100% NATURAL LATEX & BIO-CLAY</span>
+        <span>🇿🇦 CRAFTED IN SOUTH AFRICA • FREE NATIONWIDE SHIPPING ON ORDERS R500 & OVER • 100% NATURAL LATEX & BIO-CLAY</span>
     </div>
 
     <!-- Sticky Navigation -->
@@ -690,7 +690,7 @@
                     <form onsubmit="saveAnnouncementBanner(event)" class="space-y-3">
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider mb-1 text-safari-espresso">Banner Message Text</label>
-                            <textarea id="admin-banner-text" rows="2" required class="w-full bg-safari-parchment border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive">🇿🇦 CRAFTED IN SOUTH AFRICA • FREE NATIONWIDE SHIPPING ON ORDERS OVER R600 • 100% NATURAL LATEX & BIO-CLAY</textarea>
+                            <textarea id="admin-banner-text" rows="2" required class="w-full bg-safari-parchment border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive">🇿🇦 CRAFTED IN SOUTH AFRICA • FREE NATIONWIDE SHIPPING ON ORDERS R500 & OVER • 100% NATURAL LATEX & BIO-CLAY</textarea>
                         </div>
                         <button type="submit" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-6 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all shadow cursor-pointer">
                             Save & Update Banner Live →
@@ -1295,6 +1295,7 @@
             const badge = document.getElementById("cart-badge");
             const container = document.getElementById("cart-items-container");
             const subtotalEl = document.getElementById("cart-subtotal");
+            const shippingEl = document.getElementById("cart-shipping");
             const totalEl = document.getElementById("cart-total");
 
             const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
@@ -1303,6 +1304,7 @@
             if (cart.length === 0) {
                 container.innerHTML = `<div class="text-center py-12 text-safari-espresso/60"><i class="fa-solid fa-basket-shopping text-4xl mb-3 text-safari-border"></i><p class="text-sm">Your cart is currently empty.</p></div>`;
                 subtotalEl.textContent = "R0.00";
+                shippingEl.textContent = "R100.00";
                 totalEl.textContent = "R0.00";
                 return;
             }
@@ -1325,8 +1327,11 @@
             `).join('');
 
             const subtotal = cart.reduce((sum, item) => sum + (item.finalPrice * item.qty), 0);
-            const shipping = subtotal > 600 ? 0 : 100;
-            document.getElementById("cart-shipping").textContent = shipping === 0 ? "FREE" : "R100.00";
+            const shipping = subtotal >= 500 ? 0 : 100;
+            
+            shippingEl.textContent = shipping === 0 ? "FREE (Orders R500+)" : "R100.00";
+            shippingEl.className = shipping === 0 ? "font-heading font-bold text-emerald-700" : "font-heading font-bold text-safari-olive";
+            
             subtotalEl.textContent = `R${subtotal.toFixed(2)}`;
             totalEl.textContent = `R${(subtotal + shipping).toFixed(2)}`;
         }
@@ -1485,7 +1490,7 @@
             const paymentMethod = document.getElementById("order-payment").value;
 
             const subtotal = cart.reduce((sum, item) => sum + (item.finalPrice * item.qty), 0);
-            const shipping = subtotal > 600 ? 0 : 100;
+            const shipping = subtotal >= 500 ? 0 : 100;
             const total = subtotal + shipping;
 
             const orderData = {
@@ -1502,7 +1507,6 @@
                 const orderId = docRef.id;
 
                 if (paymentMethod.includes("PayFast")) {
-                    // Populate and submit hidden PayFast form
                     const siteUrl = window.location.href.split('?')[0];
                     document.getElementById("pf-return").value = siteUrl + "?status=success";
                     document.getElementById("pf-cancel").value = siteUrl + "?status=cancel";
