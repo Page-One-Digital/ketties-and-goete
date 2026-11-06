@@ -177,7 +177,7 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <!-- Left Sidebar Filter Column (Static normal flow on mobile, sticky only on large screens) -->
+            <!-- Left Sidebar Filter Column -->
             <div class="lg:col-span-3 bg-safari-surface border border-safari-border p-6 rounded-2xl shadow-sm lg:sticky lg:top-28 z-10 space-y-4">
                 <div class="flex items-center justify-between pb-3 border-b border-safari-border">
                     <h3 class="font-heading font-bold text-xs uppercase tracking-widest text-safari-espresso">Filter Categories</h3>
@@ -284,7 +284,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer with 4 Store Policies Links -->
     <footer class="bg-safari-espresso/95 text-safari-parchment py-12 sm:py-16 border-t border-safari-border/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 border-b border-safari-border/20 pb-10 sm:pb-12">
             <div class="space-y-4 md:col-span-2">
@@ -300,21 +300,51 @@
                 </div>
             </div>
             <div>
-                <h4 class="font-heading font-bold text-xs sm:text-sm uppercase tracking-widest text-safari-olive mb-3 sm:mb-4">Quick Links</h4>
+                <h4 class="font-heading font-bold text-xs sm:text-sm uppercase tracking-widest text-safari-olive mb-3 sm:mb-4">Store Policies</h4>
                 <ul class="space-y-2 text-xs sm:text-sm text-safari-borderLight">
-                    <li><a href="#shop" onclick="filterProducts('all')" class="hover:text-white transition-colors">Shop Catalog</a></li>
+                    <li><button type="button" onclick="openPolicyModal('terms')" class="hover:text-white transition-colors cursor-pointer text-left">Terms & Conditions</button></li>
+                    <li><button type="button" onclick="openPolicyModal('shipping')" class="hover:text-white transition-colors cursor-pointer text-left">Shipping Policy</button></li>
+                    <li><button type="button" onclick="openPolicyModal('refund')" class="hover:text-white transition-colors cursor-pointer text-left">Refund Policy</button></li>
+                    <li><button type="button" onclick="openPolicyModal('popia')" class="hover:text-white transition-colors cursor-pointer text-left">POPIA Policy</button></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-heading font-bold text-xs sm:text-sm uppercase tracking-widest text-safari-olive mb-3 sm:mb-4">Customer Support</h4>
                 <ul class="space-y-2 text-xs sm:text-sm text-safari-borderLight">
-                    <li><span>Centurion, Gauteng, South Africa</span></li>
-                    <li><span>support@kettiesandgoete.co.za</span></li>
+                    <li><span>Heidelberg, 1442</span></li>
+                    <li><span>071 870 1626</span></li>
+                    <li><span>KettiesEnGoete@gmail.com</span></li>
                     <li><span>Nationwide Courier Delivery</span></li>
                 </ul>
             </div>
         </div>
     </footer>
+
+    <!-- Policy Modal Viewer -->
+    <div id="policy-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closePolicyModal()"></div>
+        <div class="bg-safari-parchment rounded-3xl max-w-3xl w-full border border-safari-border relative z-10 p-6 sm:p-10 shadow-2xl max-h-[92vh] overflow-y-auto space-y-6">
+            <div class="flex items-center justify-between border-b border-safari-border pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center text-safari-olive shadow-inner">
+                        <i class="fa-solid fa-file-shield text-base"></i>
+                    </div>
+                    <h3 id="policy-modal-title" class="font-heading font-black text-xl uppercase tracking-tight text-safari-espresso">Policy Title</h3>
+                </div>
+                <button type="button" onclick="closePolicyModal()" class="text-safari-espresso/60 hover:text-safari-espresso cursor-pointer p-2 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div id="policy-modal-content" class="space-y-4 text-xs sm:text-sm text-safari-espresso/90 leading-relaxed">
+                <!-- Dynamically populated policy content -->
+            </div>
+
+            <div class="pt-4 border-t border-safari-border flex justify-end">
+                <button type="button" onclick="closePolicyModal()" class="bg-safari-espresso text-safari-parchment hover:bg-safari-olive px-6 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow cursor-pointer">
+                    Close Window
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Customer Email/Password Sign-In & Profile Modal -->
     <div id="auth-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
@@ -505,7 +535,7 @@
         </div>
     </div>
 
-    <!-- Management Portal Modal (Strictly locked to csda.kettiesngoete@gmail.com) -->
+    <!-- Management Portal Modal -->
     <div id="admin-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-3 sm:p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeAdminModal()"></div>
         <div class="bg-safari-parchment rounded-2xl max-w-6xl w-full border border-safari-border relative z-10 p-4 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
@@ -738,7 +768,6 @@
         import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-        // Tip: paste your config straight from Firebase Console using the copy button
         const firebaseConfig = {
             apiKey: "AIzaSyCWDrUEiZm3IftJFbShyD2QsLZnOFdwo9g",
             authDomain: "ketties-n-goete.firebaseapp.com",
@@ -753,7 +782,6 @@
         const db = getFirestore(app);
         const auth = getAuth(app);
 
-        // UI only. Real admin enforcement happens in firestore.rules (by UID).
         const ADMIN_EMAIL = "csda.kettiesngoete@gmail.com";
 
         let products = [];
@@ -764,6 +792,69 @@
         let selectedProduct = null;
         let selectedVariant = null;
         let currentCustomer = null;
+
+        // Policy Content Store
+        const policiesData = {
+            terms: {
+                title: "Terms & Conditions",
+                content: `
+                    <p class="font-bold text-safari-espresso mb-2">Ketties en Goete | Heidelberg, 1442</p>
+                    <div class="space-y-3">
+                        <p><strong>1. General:</strong> These Terms and Conditions apply to all purchases made from Ketties en Goete. By placing an order, you agree to these terms.</p>
+                        <p><strong>2. Products:</strong> We strive to ensure that all product descriptions, images and prices are accurate. Product colours and finishes may vary slightly from the images displayed.</p>
+                        <p><strong>3. Pricing:</strong> All prices are quoted in South African Rand (ZAR) and are subject to change without prior notice.</p>
+                        <p><strong>4. Payment:</strong> Orders are processed once payment has been received and cleared.</p>
+                        <p><strong>5. Shipping:</strong> Orders are dispatched in accordance with our Shipping Policy.</p>
+                        <p><strong>6. Returns and Refunds:</strong> Returns and refunds are handled according to our Refund Policy.</p>
+                        <p><strong>7. Limitation of Liability:</strong> Ketties en Goete shall not be liable for any indirect or consequential damages arising from the use or misuse of any product.</p>
+                        <p><strong>8. Governing Law:</strong> These Terms and Conditions are governed by the laws of the Republic of South Africa.</p>
+                    </div>
+                `
+            },
+            shipping: {
+                title: "Shipping Policy",
+                content: `
+                    <p class="font-bold text-safari-espresso mb-2">Ketties en Goete | Heidelberg, 1442</p>
+                    <div class="space-y-3">
+                        <p><strong>1. Processing:</strong> Orders are processed within 1–3 business days after payment has been confirmed[cite: 6].</p>
+                        <p><strong>2. Coverage:</strong> Delivery is available throughout South Africa[cite: 6].</p>
+                        <p><strong>3. Partners:</strong> Delivery is made using reputable courier partners to the customer's selected delivery address or collection locker where applicable[cite: 6].</p>
+                        <p><strong>4. Transit Times:</strong> Delivery times generally range from 2–5 business days depending on the destination[cite: 6].</p>
+                        <p><strong>5. Tracking:</strong> Customers will receive tracking information once the order has been dispatched[cite: 6].</p>
+                        <p><strong>6. Force Majeure:</strong> Ketties en Goete is not responsible for delays caused by courier companies, adverse weather, strikes or circumstances beyond our control[cite: 6].</p>
+                    </div>
+                `
+            },
+            refund: {
+                title: "Refund Policy",
+                content: `
+                    <p class="font-bold text-safari-espresso mb-2">Ketties en Goete | Heidelberg, 1442</p>
+                    <div class="space-y-3">
+                        <p><strong>1. Customer Satisfaction:</strong> Customer satisfaction is important to us[cite: 5].</p>
+                        <p><strong>2. Damaged or Incorrect Items:</strong> If your order arrives damaged or incorrect, please notify us within 7 days of receiving your order[cite: 5].</p>
+                        <p><strong>3. Condition:</strong> Where applicable, products must be returned unused and in their original packaging[cite: 5].</p>
+                        <p><strong>4. Inspection:</strong> Once the returned item has been inspected and approved, a replacement, repair or refund will be processed[cite: 5].</p>
+                        <p><strong>5. Method:</strong> Refunds will be made to the original payment method where possible[cite: 5].</p>
+                        <p><strong>6. Shipping Fees:</strong> Shipping costs are generally non-refundable unless the return is due to our error or a defective product[cite: 5].</p>
+                        <p><strong>7. Custom Orders:</strong> Custom-made or personalised products may not be eligible for return unless defective[cite: 5].</p>
+                    </div>
+                `
+            },
+            popia: {
+                title: "POPIA Policy (Protection of Personal Information)",
+                content: `
+                    <p class="font-bold text-safari-espresso mb-2">Ketties en Goete | Heidelberg, 1442</p>
+                    <div class="space-y-3">
+                        <p><strong>1. Introduction:</strong> Ketties en Goete is committed to protecting your personal information in compliance with the Protection of Personal Information Act (POPIA), Act No. 4 of 2013.</p>
+                        <p><strong>2. Collection of Personal Information:</strong> We collect personal details (such as your full name, email address, cell phone number, and delivery address) strictly when you register an account, subscribe, or place an order on our store.</p>
+                        <p><strong>3. Purpose of Processing:</strong> Your information is collected and processed solely for order fulfillment, nationwide courier delivery, customer communication, and maintaining secure user authentication records.</p>
+                        <p><strong>4. Confidentiality & Security:</strong> We implement strict technical and organizational security measures (including secure Firebase infrastructure and restricted database access) to safeguard your personal data against unauthorized access, loss, or disclosure.</p>
+                        <p><strong>5. Retention of Records:</strong> Personal information is retained only as long as necessary to fulfill legal, tax, and operational requirements.</p>
+                        <p><strong>6. Customer Rights:</strong> You have the legal right to request access to your personal information held by us, request corrections, or object to the processing of your personal data by contacting us directly at KettiesEnGoete@gmail.com.</p>
+                    </div>
+                `
+            }
+        };
 
         const defaultProducts = [
             {
@@ -827,9 +918,8 @@
                 renderHeroBestSeller();
             });
 
-            // Keep the session in sync with Firebase Auth (survives page reloads)
             onAuthStateChanged(auth, async (user) => {
-                if (registering) return; // registration handler sets the session itself
+                if (registering) return;
                 if (!user) {
                     currentCustomer = null;
                     stopAdminListeners();
@@ -901,7 +991,19 @@
             orders = [];
         }
 
-        // Explicitly exposed window functions for modal and navigation UI clicks
+        // Policy Modal Handlers
+        window.openPolicyModal = function(policyKey) {
+            const policy = policiesData[policyKey];
+            if (!policy) return;
+            document.getElementById("policy-modal-title").textContent = policy.title;
+            document.getElementById("policy-modal-content").innerHTML = policy.content;
+            document.getElementById("policy-modal").classList.remove("hidden");
+        }
+
+        window.closePolicyModal = function() {
+            document.getElementById("policy-modal").classList.add("hidden");
+        }
+
         window.openAuthModal = function() {
             document.getElementById("auth-modal").classList.remove("hidden");
             if (currentCustomer) {
@@ -1640,3 +1742,4 @@
     </script>
 </body>
 </html>
+```[cite: 5, 6]
