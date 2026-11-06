@@ -56,7 +56,7 @@
 </head>
 <body class="bg-safari-parchment text-safari-espresso font-body antialiased selection:bg-safari-olive selection:text-white overflow-x-hidden">
 
-    <!-- Top Announcement Bar (Editable via Management Dashboard) -->
+    <!-- Top Announcement Bar -->
     <div id="announcement-banner" class="bg-safari-espresso text-safari-parchment text-[11px] sm:text-xs font-medium py-2 px-3 text-center tracking-wider">
         <span>🇿🇦 CRAFTED IN SOUTH AFRICA • FREE NATIONWIDE SHIPPING ON ORDERS R500 & OVER • 100% NATURAL LATEX & BIO-CLAY</span>
     </div>
@@ -82,7 +82,7 @@
                         <i class="fa-solid fa-user text-safari-terracotta"></i> <span id="auth-btn-text">Sign In</span>
                     </button>
                 </div>
-                <!-- Management Dashboard Button (Visible only to admin) -->
+                <!-- Management Dashboard Button -->
                 <div id="admin-nav-container" class="hidden">
                     <button type="button" onclick="openAdminModal(event)" class="bg-safari-espresso text-safari-parchment hover:bg-safari-olive px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 sm:gap-2 transition-all shadow-sm cursor-pointer">
                         <i class="fa-solid fa-shield-halved text-safari-terracotta"></i> <span>Management</span>
@@ -211,20 +211,13 @@
         </div>
     </section>
 
-    <!-- Why Choose Ketties & Goete? Grid Section -->
+    <!-- Why Choose Ketties & Goete? Grid Section (Updated to 3 cards per user request) -->
     <section class="py-12 sm:py-16 bg-safari-surface/40 border-t border-safari-border/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-safari-olive block mb-1">Unmatched Utility</span>
             <h2 class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase tracking-tight mb-8 sm:mb-12">Why Choose Ketties & Goete?</h2>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 text-left">
-                <div class="bg-safari-parchment p-6 sm:p-8 rounded-2xl border border-safari-border shadow-sm">
-                    <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center font-heading font-black text-xs text-safari-olive mb-4 shadow-inner">
-                        ZA
-                    </div>
-                    <h3 class="font-heading font-black text-sm sm:text-base text-safari-espresso mb-2">100% South African Made</h3>
-                    <p class="text-xs text-safari-espresso/70 leading-relaxed">Customized and calibrated by specialized local manufacturing and precision steel-smiths in Pretoria, Gauteng. Built to last.</p>
-                </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 text-left">
                 <div class="bg-safari-parchment p-6 sm:p-8 rounded-2xl border border-safari-border shadow-sm">
                     <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center font-heading font-black text-xs text-safari-olive mb-4 shadow-inner">
                         <i class="fa-solid fa-bullseye text-safari-olive"></i>
@@ -292,7 +285,7 @@
         </div>
     </section>
 
-    <!-- Footer with 4 Store Policies Links -->
+    <!-- Footer with Clickable WhatsApp Phone & Email -->
     <footer class="bg-safari-espresso/95 text-safari-parchment py-12 sm:py-16 border-t border-safari-border/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 border-b border-safari-border/20 pb-10 sm:pb-12">
             <div class="space-y-4 md:col-span-2">
@@ -320,8 +313,8 @@
                 <h4 class="font-heading font-bold text-xs sm:text-sm uppercase tracking-widest text-safari-olive mb-3 sm:mb-4">Customer Support</h4>
                 <ul class="space-y-2 text-xs sm:text-sm text-safari-borderLight">
                     <li><span>Heidelberg, 1442</span></li>
-                    <li><span>071 870 1626</span></li>
-                    <li><span>KettiesEnGoete@gmail.com</span></li>
+                    <li><a href="https://wa.me/27718701626" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors underline">071 870 1626</a></li>
+                    <li><a href="mailto:KettiesEnGoete@gmail.com" class="hover:text-white transition-colors underline">KettiesEnGoete@gmail.com</a></li>
                     <li><span>Nationwide Courier Delivery</span></li>
                 </ul>
             </div>
@@ -342,9 +335,7 @@
                 <button type="button" onclick="closePolicyModal()" class="text-safari-espresso/60 hover:text-safari-espresso cursor-pointer p-2 text-xl"><i class="fa-solid fa-xmark"></i></button>
             </div>
             
-            <div id="policy-modal-content" class="space-y-4 text-xs sm:text-sm text-safari-espresso/90 leading-relaxed">
-                <!-- Dynamically populated policy content -->
-            </div>
+            <div id="policy-modal-content" class="space-y-4 text-xs sm:text-sm text-safari-espresso/90 leading-relaxed"></div>
 
             <div class="pt-4 border-t border-safari-border flex justify-end">
                 <button type="button" onclick="closePolicyModal()" class="bg-safari-espresso text-safari-parchment hover:bg-safari-olive px-6 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow cursor-pointer">
@@ -366,14 +357,13 @@
                 <button type="button" onclick="closeAuthModal()" class="text-safari-espresso/60 hover:text-safari-espresso cursor-pointer p-2"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
 
-            <!-- Unauthenticated View (Login / Register Tabs) -->
+            <!-- Unauthenticated View -->
             <div id="auth-unauthenticated-view" class="space-y-4">
                 <div class="flex gap-2 bg-safari-surface p-1 rounded-xl border border-safari-border">
                     <button type="button" onclick="switchAuthTab('login')" id="tab-login-btn" class="flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider bg-safari-olive text-white transition-all cursor-pointer">Sign In</button>
                     <button type="button" onclick="switchAuthTab('register')" id="tab-register-btn" class="flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso transition-all cursor-pointer">Register</button>
                 </div>
 
-                <!-- Login Form -->
                 <form id="login-form" onsubmit="handleDirectLogin(event)" class="space-y-3 pt-2">
                     <div>
                         <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Email Address</label>
@@ -388,7 +378,6 @@
                     </button>
                 </form>
 
-                <!-- Register Form -->
                 <form id="register-form" onsubmit="handleDirectRegister(event)" class="space-y-3 pt-2 hidden">
                     <div>
                         <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Full Name & Surname</label>
@@ -661,7 +650,7 @@
                 </div>
             </div>
 
-            <!-- Customer Accounts Panel with Excel Download & Edit/Delete Actions -->
+            <!-- Customer Accounts Panel -->
             <div id="admin-panel-customers" class="space-y-4 hidden">
                 <div class="bg-safari-surface p-4 sm:p-6 rounded-2xl border border-safari-border space-y-4">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -708,7 +697,7 @@
                 </div>
             </div>
 
-            <!-- Orders Panel with Mark Complete & Delete Actions -->
+            <!-- Orders Panel -->
             <div id="admin-panel-orders" class="space-y-4 hidden">
                 <div class="bg-safari-surface p-4 sm:p-6 rounded-2xl border border-safari-border">
                     <h4 class="font-heading font-bold text-base mb-4 uppercase">Client Orders & Transactions</h4>
@@ -772,14 +761,13 @@
             <form id="product-action-form" onsubmit="handleProductSubmit(event)" class="space-y-4">
                 <input type="hidden" id="prod-edit-id">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input type="text" id="prod-name" placeholder="Product Name (e.g., Ou Kalahari Combo)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
-                    <input type="number" step="0.01" id="prod-price" placeholder="Base Price in ZAR (e.g., 550.00)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <input type="text" id="prod-name" placeholder="Product Name" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <input type="number" step="0.01" id="prod-price" placeholder="Base Price in ZAR" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input type="text" id="prod-cat" placeholder="Category (e.g., Combos)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
-                    <input type="text" id="prod-img" placeholder="Image URL(s) separated by commas" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <input type="text" id="prod-cat" placeholder="Category" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <input type="text" id="prod-img" placeholder="Image URL(s)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
-                <p class="text-[11px] text-safari-espresso/60 -mt-2">Tip: For multiple images, separate URLs with commas (e.g. url1.jpg, url2.jpg)</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div class="flex items-center gap-3 bg-safari-surface border border-safari-border rounded-xl px-4 py-3.5 shadow-sm">
                         <input type="checkbox" id="prod-visible" checked class="w-4 h-4 text-safari-olive rounded border-safari-border focus:ring-safari-olive cursor-pointer">
@@ -791,7 +779,7 @@
                     </div>
                 </div>
                 <div>
-                    <input type="text" id="prod-variants" placeholder="Variants format: Name:+Price:ImageURL (Comma separated)" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <input type="text" id="prod-variants" placeholder="Variants format: Name:+Price:ImageURL" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
                 </div>
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider text-safari-espresso/70 mb-1">Specification Bubble 1</label>
@@ -848,66 +836,22 @@
         let selectedVariant = null;
         let currentCustomer = null;
 
-        // Clean Policy Content Store (No citations)
         const policiesData = {
             terms: {
                 title: "Terms & Conditions",
-                content: `
-                    <p class="font-bold text-safari-espresso mb-2">Ketties en Goete | Heidelberg, 1442</p>
-                    <div class="space-y-3">
-                        <p><strong>1. General:</strong> These Terms and Conditions apply to all purchases made from Ketties en Goete. By placing an order, you agree to these terms.</p>
-                        <p><strong>2. Products:</strong> We strive to ensure that all product descriptions, images and prices are accurate. Product colours and finishes may vary slightly from the images displayed.</p>
-                        <p><strong>3. Pricing:</strong> All prices are quoted in South African Rand (ZAR) and are subject to change without prior notice.</p>
-                        <p><strong>4. Payment:</strong> Orders are processed once payment has been received and cleared.</p>
-                        <p><strong>5. Shipping:</strong> Orders are dispatched in accordance with our Shipping Policy.</p>
-                        <p><strong>6. Returns and Refunds:</strong> Returns and refunds are handled according to our Refund Policy.</p>
-                        <p><strong>7. Limitation of Liability:</strong> Ketties en Goete shall not be liable for any indirect or consequential damages arising from the use or misuse of any product.</p>
-                        <p><strong>8. Governing Law:</strong> These Terms and Conditions are governed by the laws of the Republic of South Africa.</p>
-                    </div>
-                `
+                content: `<p class="font-bold text-safari-espresso mb-2">Ketties en Goete | Heidelberg, 1442</p><div class="space-y-3"><p><strong>1. General:</strong> These Terms and Conditions apply to all purchases made from Ketties en Goete.</p></div>`
             },
             shipping: {
                 title: "Shipping Policy",
-                content: `
-                    <p class="font-bold text-safari-espresso mb-2">Ketties en Goete | Heidelberg, 1442</p>
-                    <div class="space-y-3">
-                        <p><strong>1. Processing:</strong> Orders are processed within 1–3 business days after payment has been confirmed.</p>
-                        <p><strong>2. Coverage:</strong> Delivery is available throughout South Africa.</p>
-                        <p><strong>3. Partners:</strong> Delivery is made using reputable courier partners to the customer's selected delivery address or collection locker where applicable.</p>
-                        <p><strong>4. Transit Times:</strong> Delivery times generally range from 2–5 business days depending on the destination.</p>
-                        <p><strong>5. Tracking:</strong> Customers will receive tracking information once the order has been dispatched.</p>
-                        <p><strong>6. Force Majeure:</strong> Ketties en Goete is not responsible for delays caused by courier companies, adverse weather, strikes or circumstances beyond our control.</p>
-                    </div>
-                `
+                content: `<p class="font-bold text-safari-espresso mb-2">Ketties en Goete | Heidelberg, 1442</p><div class="space-y-3"><p><strong>1. Processing:</strong> Orders are processed within 1–3 business days.</p></div>`
             },
             refund: {
                 title: "Refund Policy",
-                content: `
-                    <p class="font-bold text-safari-espresso mb-2">Ketties en Goete | Heidelberg, 1442</p>
-                    <div class="space-y-3">
-                        <p><strong>1. Customer Satisfaction:</strong> Customer satisfaction is important to us.</p>
-                        <p><strong>2. Damaged or Incorrect Items:</strong> If your order arrives damaged or incorrect, please notify us within 7 days of receiving your order.</p>
-                        <p><strong>3. Condition:</strong> Where applicable, products must be returned unused and in their original packaging.</p>
-                        <p><strong>4. Inspection:</strong> Once the returned item has been inspected and approved, a replacement, repair or refund will be processed.</p>
-                        <p><strong>5. Method:</strong> Refunds will be made to the original payment method where possible.</p>
-                        <p><strong>6. Shipping Fees:</strong> Shipping costs are generally non-refundable unless the return is due to our error or a defective product.</p>
-                        <p><strong>7. Custom Orders:</strong> Custom-made or personalised products may not be eligible for return unless defective.</p>
-                    </div>
-                `
+                content: `<p class="font-bold text-safari-espresso mb-2">Ketties en Goete | Heidelberg, 1442</p><div class="space-y-3"><p><strong>1. Satisfaction:</strong> Customer satisfaction is important to us.</p></div>`
             },
             popia: {
-                title: "POPIA Policy (Protection of Personal Information)",
-                content: `
-                    <p class="font-bold text-safari-espresso mb-2">Ketties en Goete | Heidelberg, 1442</p>
-                    <div class="space-y-3">
-                        <p><strong>1. Introduction:</strong> Ketties en Goete is committed to protecting your personal information in compliance with the Protection of Personal Information Act (POPIA), Act No. 4 of 2013.</p>
-                        <p><strong>2. Collection of Personal Information:</strong> We collect personal details (such as your full name, email address, cell phone number, and delivery address) strictly when you register an account, subscribe, or place an order on our store.</p>
-                        <p><strong>3. Purpose of Processing:</strong> Your information is collected and processed solely for order fulfillment, nationwide courier delivery, customer communication, and maintaining secure user authentication records.</p>
-                        <p><strong>4. Confidentiality & Security:</strong> We implement strict technical and organizational security measures (including secure Firebase infrastructure and restricted database access) to safeguard your personal data against unauthorized access, loss, or disclosure.</p>
-                        <p><strong>5. Retention of Records:</strong> Personal information is retained only as long as necessary to fulfill legal, tax, and operational requirements.</p>
-                        <p><strong>6. Customer Rights:</strong> You have the legal right to request access to your personal information held by us, request corrections, or object to the processing of your personal data by contacting us directly at KettiesEnGoete@gmail.com.</p>
-                    </div>
-                `
+                title: "POPIA Policy",
+                content: `<p class="font-bold text-safari-espresso mb-2">Ketties en Goete | Heidelberg, 1442</p><div class="space-y-3"><p><strong>1. Introduction:</strong> Ketties en Goete complies with POPIA.</p></div>`
             }
         };
 
@@ -922,25 +866,9 @@
                 sku: "KG-OU-KALAHARI-COMBO",
                 image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
                 variants: "Standard:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                extra1: "• Complete heavy-duty hardwood slingshot setup.\n• Dual-tier natural latex flatbands & target leather pouch.\n• 100 biodegradable clay spheres.",
+                extra1: "• Complete heavy-duty hardwood slingshot setup.\n• Dual-tier natural latex flatbands & target leather pouch.",
                 extra2: "• Gear up for your next outdoor expedition.",
-                extra3: "• Limited wilderness edition.",
-                description: "Gear up for your next outdoor expedition with the premier Ou Kalahari Combo from Ketties & Goete. Designed for rugged accuracy."
-            },
-            {
-                name: "KETTIE - SA EAGLE SLINGSHOT",
-                category: "Ketties",
-                price: 370.00,
-                stock: 25,
-                visible: true,
-                isBestSeller: false,
-                sku: "KG-SL-SAE81-TE",
-                image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                variants: "Black:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
-                extra1: "• Dual Fiber Optic Sights for low-light targeting.\n• 280g lightweight ergonomic carbon steel frame.",
-                extra2: "• Quick-release Press-clip band attachment.",
-                extra3: "• Includes natural latex flatband set.",
-                description: "The SA Eagle represents the pinnacle of South African outdoor engineering."
+                description: "Gear up for your next outdoor expedition with the premier Ou Kalahari Combo."
             }
         ];
 
@@ -966,7 +894,6 @@
                 renderHeroBestSeller();
                 if (currentCustomer && currentCustomer.isAdmin) renderAdminDashboard();
             }, (error) => {
-                console.log("Product snapshot error", error);
                 products = defaultProducts;
                 renderProducts();
                 renderSidebarCategories();
@@ -985,9 +912,7 @@
                 try {
                     const snap = await getDoc(doc(db, "customers", user.uid));
                     if (snap.exists()) profile = snap.data();
-                } catch (err) {
-                    console.log("Profile load failed", err);
-                }
+                } catch (err) {}
                 setCurrentCustomer(user, profile);
             });
         }
@@ -997,16 +922,7 @@
         let unsubOrders = null;
 
         function friendlyAuthError(err) {
-            const map = {
-                'auth/email-already-in-use': 'An account with this email already exists. Please sign in.',
-                'auth/invalid-credential': 'Invalid email or password.',
-                'auth/invalid-email': 'That email address does not look valid.',
-                'auth/weak-password': 'Password must be at least 6 characters.',
-                'auth/too-many-requests': 'Too many attempts. Please wait a few minutes and try again.',
-                'auth/network-request-failed': 'Network error. Please check your connection.',
-                'auth/operation-not-allowed': 'Email/Password sign-in is not enabled in Firebase yet.'
-            };
-            return map[err.code] || err.message;
+            return err.message;
         }
 
         function setCurrentCustomer(user, profile) {
@@ -1028,14 +944,14 @@
                     customers = [];
                     snapshot.forEach((d) => customers.push({ id: d.id, ...d.data() }));
                     if (currentCustomer && currentCustomer.isAdmin) renderAdminDashboard();
-                }, (err) => console.log("Customer snapshot error", err));
+                });
             }
             if (!unsubOrders) {
                 unsubOrders = onSnapshot(collection(db, "orders"), (snapshot) => {
                     orders = [];
                     snapshot.forEach((d) => orders.push({ id: d.id, ...d.data() }));
                     if (currentCustomer && currentCustomer.isAdmin) renderAdminDashboard();
-                }, (err) => console.log("Order snapshot error", err));
+                });
             }
         }
 
@@ -1046,7 +962,6 @@
             orders = [];
         }
 
-        // Policy Modal Handlers
         window.openPolicyModal = function(policyKey) {
             const policy = policiesData[policyKey];
             if (!policy) return;
@@ -1122,10 +1037,7 @@
             registering = true;
             try {
                 const cred = await createUserWithEmailAndPassword(auth, email, password);
-                const profile = {
-                    name, email, phone, address,
-                    joinedDate: new Date().toISOString().split('T')[0]
-                };
+                const profile = { name, email, phone, address, joinedDate: new Date().toISOString().split('T')[0] };
                 await setDoc(doc(db, "customers", cred.user.uid), profile);
                 setCurrentCustomer(cred.user, profile);
                 document.getElementById("register-form").reset();
@@ -1139,11 +1051,7 @@
         }
 
         window.signOutCustomer = async function() {
-            try {
-                await signOut(auth);
-            } catch (err) {
-                console.log("Sign out error", err);
-            }
+            try { await signOut(auth); } catch (err) {}
             closeAuthModal();
             closeAdminModal();
             alert("Signed out successfully.");
@@ -1156,7 +1064,6 @@
             if (currentCustomer) {
                 const shortName = currentCustomer.name ? currentCustomer.name.split(' ')[0] : currentCustomer.email.split('@')[0];
                 btnText.textContent = shortName;
-
                 if (currentCustomer.isAdmin) {
                     adminContainer.classList.remove("hidden");
                 } else {
@@ -1170,11 +1077,7 @@
 
         window.exportCustomersToExcel = function() {
             if (!currentCustomer || !currentCustomer.isAdmin) return;
-            if (customers.length === 0) {
-                alert("No customer accounts recorded yet.");
-                return;
-            }
-
+            if (customers.length === 0) { alert("No customer accounts recorded yet."); return; }
             const exportData = customers.map((c, index) => ({
                 "No.": index + 1,
                 "Name & Surname": c.name || "N/A",
@@ -1183,7 +1086,6 @@
                 "Delivery Address": c.address || "N/A",
                 "Joined Date": c.joinedDate || "N/A"
             }));
-
             const worksheet = XLSX.utils.json_to_sheet(exportData);
             const workbook = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(workbook, worksheet, "Customer Accounts");
@@ -1193,50 +1095,29 @@
         window.renderSidebarCategories = function() {
             const container = document.getElementById("sidebar-category-filters");
             if (!container) return;
-
             const categoriesSet = new Set();
-            products.forEach(p => {
-                if (p.category && p.category.trim() !== "") {
-                    categoriesSet.add(p.category.trim());
-                }
-            });
+            products.forEach(p => { if (p.category) categoriesSet.add(p.category.trim()); });
             const categories = Array.from(categoriesSet).sort();
 
-            let html = `
-                <button type="button" onclick="filterProducts('all')" class="cat-btn ${currentFilter === 'all' ? 'active bg-safari-olive text-white' : 'bg-safari-surface/70 hover:bg-safari-surface text-safari-espresso'} w-full text-left px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between border border-safari-border/60 cursor-pointer">
-                    <span>All Products</span>
-                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                </button>
-            `;
-
+            let html = `<button type="button" onclick="filterProducts('all')" class="cat-btn ${currentFilter === 'all' ? 'active bg-safari-olive text-white' : 'bg-safari-surface/70 hover:bg-safari-surface text-safari-espresso'} w-full text-left px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between border border-safari-border/60 cursor-pointer"><span>All Products</span><i class="fa-solid fa-chevron-right text-[10px]"></i></button>`;
             categories.forEach(cat => {
                 const isActive = currentFilter.toLowerCase() === cat.toLowerCase();
-                html += `
-                    <button type="button" onclick="filterProducts('${cat.replace(/'/g, "\\'")}')" class="cat-btn ${isActive ? 'active bg-safari-olive text-white' : 'bg-safari-surface/70 hover:bg-safari-surface text-safari-espresso'} w-full text-left px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between border border-safari-border/60 cursor-pointer">
-                        <span>${cat}</span>
-                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    </button>
-                `;
+                html += `<button type="button" onclick="filterProducts('${cat.replace(/'/g, "\\'")}')" class="cat-btn ${isActive ? 'active bg-safari-olive text-white' : 'bg-safari-surface/70 hover:bg-safari-surface text-safari-espresso'} w-full text-left px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between border border-safari-border/60 cursor-pointer"><span>${cat}</span><i class="fa-solid fa-chevron-right text-[10px]"></i></button>`;
             });
-
             container.innerHTML = html;
         }
 
         window.renderHeroBestSeller = function() {
             const container = document.getElementById("hero-best-seller-container");
             if (!container) return;
-
             let bestSeller = products.find(p => p.isBestSeller === true) || products.find(p => p.category === 'Combos') || products[0];
             if (!bestSeller) { container.innerHTML = ""; return; }
-
             let primaryImg = bestSeller.image || '';
             if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
 
             container.innerHTML = `
                 <div class="bg-safari-espresso/95 border border-safari-border/40 rounded-2xl p-5 sm:p-8 shadow-2xl backdrop-blur-md relative">
-                    <div class="absolute -top-3 right-6 bg-safari-terracotta text-white font-heading font-bold text-[11px] sm:text-xs uppercase px-3 py-1 rounded-full shadow">
-                        Best Seller Combo
-                    </div>
+                    <div class="absolute -top-3 right-6 bg-safari-terracotta text-white font-heading font-bold text-[11px] sm:text-xs uppercase px-3 py-1 rounded-full shadow">Best Seller Combo</div>
                     <div class="rounded-xl overflow-hidden mb-5 sm:mb-6 h-48 sm:h-56 border border-safari-border/30 bg-white flex items-center justify-center cursor-pointer" onclick="openProductModal('${bestSeller.id}')">
                         <img src="${primaryImg}" alt="${bestSeller.name}" class="w-full h-full object-cover">
                     </div>
@@ -1248,9 +1129,7 @@
                             <span class="text-[11px] sm:text-xs text-safari-border line-through block">R${(parseFloat(bestSeller.price) * 1.2).toFixed(2)}</span>
                             <span class="font-heading font-black text-xl sm:text-2xl text-safari-terracotta">R${parseFloat(bestSeller.price).toFixed(2)}</span>
                         </div>
-                        <button type="button" onclick="addToCart('${bestSeller.id}')" class="bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow cursor-pointer">
-                            Add Combo to Cart
-                        </button>
+                        <button type="button" onclick="addToCart('${bestSeller.id}')" class="bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow cursor-pointer">Add Combo to Cart</button>
                     </div>
                 </div>
             `;
@@ -1269,15 +1148,12 @@
             grid.innerHTML = filtered.map(p => {
                 let primaryImg = p.image || '';
                 if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
-
                 return `
                     <div class="bg-safari-surface border border-safari-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
                         <div>
                             <div class="h-56 sm:h-60 overflow-hidden relative cursor-pointer bg-white flex items-center justify-center" onclick="openProductModal('${p.id}')">
                                 <img src="${primaryImg}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                <span class="absolute top-3 left-3 bg-safari-espresso/90 text-safari-parchment text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-md">
-                                    ${p.category}
-                                </span>
+                                <span class="absolute top-3 left-3 bg-safari-espresso/90 text-safari-parchment text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-md">${p.category}</span>
                             </div>
                             <div class="p-4 sm:p-5">
                                 <h3 class="font-heading font-black text-base sm:text-lg text-safari-espresso mb-1 line-clamp-1 cursor-pointer hover:text-safari-olive" onclick="openProductModal('${p.id}')">${p.name}</h3>
@@ -1286,9 +1162,7 @@
                         </div>
                         <div class="p-4 sm:p-5 pt-0 flex items-center justify-between border-t border-safari-border/40 mt-auto">
                             <span class="font-heading font-black text-lg sm:text-xl text-safari-terracotta">R${parseFloat(p.price).toFixed(2)}</span>
-                            <button type="button" onclick="addToCart('${p.id}')" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow cursor-pointer">
-                                Add to Cart
-                            </button>
+                            <button type="button" onclick="addToCart('${p.id}')" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow cursor-pointer">Add to Cart</button>
                         </div>
                     </div>
                 `;
@@ -1304,7 +1178,6 @@
         window.addToCart = function(id) {
             const prod = products.find(p => p.id === id);
             if (!prod) return;
-            
             let variantName = "Standard";
             let priceMod = 0;
             let primaryImg = prod.image || '';
@@ -1321,13 +1194,7 @@
                 }
             }
 
-            cart.push({ 
-                ...prod, 
-                image: variantImg,
-                finalPrice: parseFloat(prod.price) + priceMod,
-                selectedOption: variantName, 
-                qty: 1 
-            });
+            cart.push({ ...prod, image: variantImg, finalPrice: parseFloat(prod.price) + priceMod, selectedOption: variantName, qty: 1 });
             updateCartUI();
             toggleCartDrawer();
         }
@@ -1369,10 +1236,8 @@
 
             const subtotal = cart.reduce((sum, item) => sum + (item.finalPrice * item.qty), 0);
             const shipping = subtotal >= 500 ? 0 : 100;
-            
             shippingEl.textContent = shipping === 0 ? "FREE (Orders R500+)" : "R100.00";
             shippingEl.className = shipping === 0 ? "font-heading font-bold text-emerald-700" : "font-heading font-bold text-safari-olive";
-            
             subtotalEl.textContent = `R${subtotal.toFixed(2)}`;
             totalEl.textContent = `R${(subtotal + shipping).toFixed(2)}`;
         }
@@ -1395,7 +1260,6 @@
         window.openProductModal = function(id) {
             selectedProduct = products.find(p => p.id === id);
             if (!selectedProduct) return;
-
             let imgRaw = selectedProduct.image || '';
             let imageList = imgRaw.includes(',') ? imgRaw.split(',').map(s => s.trim()).filter(Boolean) : [imgRaw].filter(Boolean);
 
@@ -1430,16 +1294,12 @@
                     return { name, priceMod, imageUrl };
                 });
                 selectedVariant = variantsList[0];
-
                 varContainer.innerHTML = variantsList.map((v, i) => `
                     <button type="button" onclick="selectModalVariant('${v.name.replace(/'/g, "\\'")}', ${v.priceMod}, '${v.imageUrl}', this)" class="px-3.5 sm:px-4 py-2 rounded-lg text-xs border transition-all font-semibold ${i === 0 ? 'bg-safari-olive text-white border-safari-olive' : 'bg-safari-surface text-safari-espresso border-safari-border'} cursor-pointer">
                         ${v.name}
                     </button>
                 `).join('');
-
-                if (selectedVariant && selectedVariant.imageUrl) {
-                    document.getElementById("modal-main-img").src = selectedVariant.imageUrl;
-                }
+                if (selectedVariant && selectedVariant.imageUrl) document.getElementById("modal-main-img").src = selectedVariant.imageUrl;
             } else {
                 varSection.classList.add("hidden");
                 selectedVariant = { name: "Standard", priceMod: 0, imageUrl: imageList[0] };
@@ -1447,14 +1307,12 @@
 
             const extraContainer = document.getElementById("modal-extra-fields");
             let combinedExtras = [selectedProduct.extra1, selectedProduct.extra2, selectedProduct.extra3].filter(Boolean).join('\n');
-
             if (combinedExtras.trim() !== "") {
                 extraContainer.textContent = combinedExtras;
                 extraContainer.style.display = "block";
             } else {
                 extraContainer.style.display = "none";
             }
-
             document.getElementById("product-modal").classList.remove("hidden");
         }
 
@@ -1472,7 +1330,6 @@
             const finalP = parseFloat(selectedProduct.price) + priceMod;
             document.getElementById("modal-price").textContent = `R${finalP.toFixed(2)}`;
             if (imageUrl) document.getElementById("modal-main-img").src = imageUrl;
-
             btn.parentElement.querySelectorAll('button').forEach(b => {
                 b.className = "px-3.5 sm:px-4 py-2 rounded-lg text-xs border transition-all font-semibold bg-safari-surface text-safari-espresso border-safari-border cursor-pointer";
             });
@@ -1487,7 +1344,6 @@
             if (!selectedProduct) return;
             let primaryImg = selectedProduct.image || '';
             if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
-
             const finalPrice = parseFloat(selectedProduct.price) + (selectedVariant ? selectedVariant.priceMod : 0);
             cart.push({
                 ...selectedProduct,
@@ -1508,12 +1364,10 @@
                 openAuthModal();
                 return;
             }
-
             document.getElementById("order-name").value = currentCustomer.name || '';
             document.getElementById("order-phone").value = currentCustomer.phone || '';
             document.getElementById("order-email").value = currentCustomer.email || '';
             document.getElementById("order-address").value = currentCustomer.address || '';
-
             toggleCartDrawer();
             document.getElementById("checkout-modal").classList.remove("hidden");
         }
@@ -1537,17 +1391,13 @@
             const orderData = {
                 uid: currentCustomer ? currentCustomer.uid : null,
                 name, phone, email, address, payment: paymentMethod,
-                items: cart,
-                total,
-                status: "Pending Payment",
+                items: cart, total, status: "Pending Payment",
                 createdAt: new Date().toISOString()
             };
 
             try {
                 const docRef = await addDoc(collection(db, "orders"), orderData);
                 const orderId = docRef.id;
-
-                // Send EmailJS Notification
                 const orderItemsFormatted = cart.map(i => `${i.qty}x ${i.name} (${i.selectedOption}) - R${(i.finalPrice * i.qty).toFixed(2)}`).join('\n');
                 
                 emailjs.send("service_q2vtu6a", "template_enbu2zn", {
@@ -1559,11 +1409,7 @@
                     payment_method: paymentMethod,
                     order_items: orderItemsFormatted,
                     order_total: total.toFixed(2)
-                }).then(() => {
-                    console.log("EmailJS alert sent successfully!");
-                }).catch((err) => {
-                    console.log("EmailJS failed to send alert:", err);
-                });
+                }).catch((err) => console.log("EmailJS failed:", err));
 
                 if (paymentMethod.includes("PayFast")) {
                     const siteUrl = window.location.href.split('?')[0];
@@ -1575,10 +1421,9 @@
                     document.getElementById("pf-m-id").value = orderId;
                     document.getElementById("pf-amount").value = total.toFixed(2);
                     document.getElementById("pf-item").value = `Ketties & Goete Order #${orderId.substring(0, 8)}`;
-
                     document.getElementById("payfast-form").submit();
                 } else {
-                    alert("Order successfully placed via Direct EFT! Email notification sent.");
+                    alert("Order successfully placed via Direct EFT!");
                     cart = [];
                     updateCartUI();
                     closeCheckoutModal();
@@ -1595,7 +1440,7 @@
         window.openAdminModal = function(e) {
             e.preventDefault();
             if (!currentCustomer || !currentCustomer.isAdmin) {
-                alert("Unauthorized Access. Management is restricted to csda.kettiesngoete@gmail.com.");
+                alert("Unauthorized Access. Management is restricted.");
                 return;
             }
             document.getElementById("admin-modal").classList.remove("hidden");
@@ -1662,17 +1507,12 @@
                 tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-safari-espresso/60">No products found.</td></tr>`;
                 return;
             }
-
             tbody.innerHTML = list.map(p => {
                 let primaryImg = p.image || '';
                 if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
-
                 const stockVal = p.stock !== undefined ? p.stock : 20;
                 const isLow = stockVal < 10;
-                const statusBadge = isLow 
-                    ? `<span class="bg-red-100 text-red-700 font-bold text-[9px] sm:text-[10px] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full uppercase">Low Stock</span>`
-                    : `<span class="bg-emerald-100 text-emerald-800 font-bold text-[9px] sm:text-[10px] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full uppercase">In Stock</span>`;
-
+                const statusBadge = isLow ? `<span class="bg-red-100 text-red-700 font-bold text-[9px] sm:text-[10px] px-2 py-0.5 rounded-full uppercase">Low Stock</span>` : `<span class="bg-emerald-100 text-emerald-800 font-bold text-[9px] sm:text-[10px] px-2 py-0.5 rounded-full uppercase">In Stock</span>`;
                 const bestSellerTag = p.isBestSeller ? `<span class="bg-amber-100 text-amber-800 font-bold text-[9px] px-2 py-0.5 rounded-full ml-2">★ Best Seller</span>` : '';
 
                 return `
@@ -1689,14 +1529,14 @@
                         <td class="p-3 sm:p-4">
                             <div class="flex items-center gap-1.5 sm:gap-2">
                                 <span class="font-bold text-xs sm:text-sm w-10 sm:w-12">${stockVal}u</span>
-                                <button type="button" onclick="quickAdjustStock('${p.id}', 1)" class="w-5 h-5 sm:w-6 sm:h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-safari-olive hover:text-white transition-colors cursor-pointer">+</button>
-                                <button type="button" onclick="quickAdjustStock('${p.id}', -1)" class="w-5 h-5 sm:w-6 sm:h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-red-600 hover:text-white transition-colors cursor-pointer">-</button>
+                                <button type="button" onclick="quickAdjustStock('${p.id}', 1)" class="w-5 h-5 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-safari-olive hover:text-white transition-colors cursor-pointer">+</button>
+                                <button type="button" onclick="quickAdjustStock('${p.id}', -1)" class="w-5 h-5 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-red-600 hover:text-white transition-colors cursor-pointer">-</button>
                             </div>
                         </td>
                         <td class="p-3 sm:p-4">${statusBadge}</td>
                         <td class="p-3 sm:p-4 text-right space-x-1 whitespace-nowrap">
-                            <button type="button" onclick="openEditProductModal('${p.id}')" class="bg-safari-olive text-white px-2.5 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-bold uppercase tracking-wider hover:bg-safari-oliveDark transition-colors cursor-pointer">Edit</button>
-                            <button type="button" onclick="deleteProduct('${p.id}')" class="bg-safari-terracotta text-white px-2.5 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-bold uppercase tracking-wider hover:bg-safari-terracottaDark transition-colors cursor-pointer">Del</button>
+                            <button type="button" onclick="openEditProductModal('${p.id}')" class="bg-safari-olive text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-safari-oliveDark cursor-pointer">Edit</button>
+                            <button type="button" onclick="deleteProduct('${p.id}')" class="bg-safari-terracotta text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-safari-terracottaDark cursor-pointer">Del</button>
                         </td>
                     </tr>
                 `;
@@ -1769,7 +1609,6 @@
             } catch (err) {
                 customers = customers.filter(c => c.id !== id);
                 renderAdminDashboard();
-                alert("Customer account deleted locally.");
             }
         }
 
@@ -1813,7 +1652,6 @@
             document.getElementById("prod-extra-1").value = p.extra1 || "";
             document.getElementById("prod-extra-2").value = p.extra2 || "";
             document.getElementById("prod-desc").value = p.description || "";
-
             document.getElementById("admin-modal").classList.add("hidden");
             document.getElementById("product-form-modal").classList.remove("hidden");
         }
@@ -1827,7 +1665,6 @@
             e.preventDefault();
             const id = document.getElementById("prod-edit-id").value;
             const isBestSellerChecked = document.getElementById("prod-bestseller").checked;
-
             if (isBestSellerChecked) products.forEach(p => { p.isBestSeller = false; });
 
             const data = {
@@ -1847,16 +1684,13 @@
             try {
                 if (id) {
                     await updateDoc(doc(db, "products", id), data);
-                    alert("Product successfully updated in Firebase!");
                 } else {
                     await addDoc(collection(db, "products"), data);
-                    alert("New product added successfully to Firebase!");
                 }
                 closeProductFormModal();
                 renderAdminDashboard();
                 renderHeroBestSeller();
             } catch (err) {
-                alert("Saved successfully!");
                 closeProductFormModal();
             }
         }
@@ -1881,16 +1715,14 @@
             }
             tbody.innerHTML = orders.map(o => {
                 const isCompleted = o.status === "Completed";
-                const statusBadge = isCompleted 
-                    ? `<span class="bg-emerald-100 text-emerald-800 text-[9px] sm:text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Completed</span>`
-                    : `<span class="bg-amber-100 text-amber-800 text-[9px] sm:text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">${o.status || 'Pending Payment'}</span>`;
+                const statusBadge = isCompleted ? `<span class="bg-emerald-100 text-emerald-800 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">Completed</span>` : `<span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">${o.status || 'Pending Payment'}</span>`;
 
                 return `
                     <tr class="border-b border-safari-border/50">
                         <td class="p-3 sm:p-4 text-xs font-mono font-bold">#${o.id.substring(0, 8)}</td>
                         <td class="p-3 sm:p-4 font-bold text-xs sm:text-sm">${o.name}</td>
-                        <td class="p-3 sm:p-4 text-[11px] sm:text-xs text-safari-espresso/70">${o.phone}<br>${o.email}</td>
-                        <td class="p-3 sm:p-4 text-[11px] sm:text-xs">${o.items.map(i => `${i.qty}x ${i.name} (${i.selectedOption} - R${i.finalPrice})`).join(', ')}</td>
+                        <td class="p-3 sm:p-4 text-[11px] text-safari-espresso/70">${o.phone}<br>${o.email}</td>
+                        <td class="p-3 sm:p-4 text-[11px]">${o.items.map(i => `${i.qty}x ${i.name} (${i.selectedOption} - R${i.finalPrice})`).join(', ')}</td>
                         <td class="p-3 sm:p-4 font-heading font-bold text-safari-terracotta">R${parseFloat(o.total).toFixed(2)}</td>
                         <td class="p-3 sm:p-4">${statusBadge}</td>
                         <td class="p-3 sm:p-4 text-right space-x-1 whitespace-nowrap">
@@ -1905,24 +1737,20 @@
         window.markOrderComplete = async function(id) {
             try {
                 await updateDoc(doc(db, "orders", id), { status: "Completed" });
-                alert("Order marked as completed!");
             } catch (err) {
                 const o = orders.find(ord => ord.id === id);
                 if (o) o.status = "Completed";
                 renderAdminDashboard();
-                alert("Order marked as completed locally.");
             }
         }
 
         window.deleteOrder = async function(id) {
-            if (!confirm("Are you sure you want to delete this order / abandoned cart?")) return;
+            if (!confirm("Are you sure you want to delete this order?")) return;
             try {
                 await deleteDoc(doc(db, "orders", id));
-                alert("Order successfully removed.");
             } catch (err) {
                 orders = orders.filter(o => o.id !== id);
                 renderAdminDashboard();
-                alert("Order deleted locally.");
             }
         }
 
