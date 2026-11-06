@@ -19,6 +19,14 @@
     <!-- SheetJS for Excel (.xlsx) Export -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("f_j9xjJoRgsrmsdda");
+        })();
+    </script>
+
     <!-- Tailwind Custom Theme Configuration -->
     <script>
         tailwind.config = {
@@ -529,7 +537,7 @@
                     </select>
                 </div>
                 <button type="submit" class="w-full bg-safari-terracotta hover:bg-safari-terracottaDark text-white py-3.5 sm:py-4 rounded-xl font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-colors shadow-lg mt-2 cursor-pointer">
-                    Proceed to PayFast Secure Checkout →
+                    Proceed to Order & Send Alert →
                 </button>
             </form>
         </div>
@@ -1539,6 +1547,24 @@
                 const docRef = await addDoc(collection(db, "orders"), orderData);
                 const orderId = docRef.id;
 
+                // Send EmailJS Notification
+                const orderItemsFormatted = cart.map(i => `${i.qty}x ${i.name} (${i.selectedOption}) - R${(i.finalPrice * i.qty).toFixed(2)}`).join('\n');
+                
+                emailjs.send("service_q2vtu6a", "template_enbu2zn", {
+                    order_id: orderId.substring(0, 8),
+                    customer_name: name,
+                    customer_phone: phone,
+                    customer_email: email,
+                    customer_address: address,
+                    payment_method: paymentMethod,
+                    order_items: orderItemsFormatted,
+                    order_total: total.toFixed(2)
+                }).then(() => {
+                    console.log("EmailJS alert sent successfully!");
+                }).catch((err) => {
+                    console.log("EmailJS failed to send alert:", err);
+                });
+
                 if (paymentMethod.includes("PayFast")) {
                     const siteUrl = window.location.href.split('?')[0];
                     document.getElementById("pf-return").value = siteUrl + "?status=success";
@@ -1552,7 +1578,7 @@
 
                     document.getElementById("payfast-form").submit();
                 } else {
-                    alert("Order successfully placed via Direct EFT!");
+                    alert("Order successfully placed via Direct EFT! Email notification sent.");
                     cart = [];
                     updateCartUI();
                     closeCheckoutModal();
