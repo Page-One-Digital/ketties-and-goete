@@ -87,24 +87,7 @@
             Precision premium slingshots, therapeutic natural latex flatbands, and biodegradable clay pellets built for target precision and backyard family expeditions.
         </p>
 
-        <!-- Countdown Timer -->
-        <div class="grid grid-cols-4 gap-3 max-w-md mx-auto pt-2">
-            <div class="earth-card p-4 rounded-2xl text-center">
-                <span id="hours" class="font-bold text-2xl sm:text-3xl text-white block">00</span>
-                <span class="text-[10px] uppercase tracking-widest text-[#D4C5B9] mt-1 block font-semibold">Hours</span>
-            </div>
-            <div class="earth-card p-4 rounded-2xl text-center">
-                <span id="minutes" class="font-bold text-2xl sm:text-3xl text-white block">00</span>
-                <span class="text-[10px] uppercase tracking-widest text-[#D4C5B9] mt-1 block font-semibold">Mins</span>
-            </div>
-            <div class="earth-card p-4 rounded-2xl text-center">
-                <span id="seconds" class="font-bold text-2xl sm:text-3xl text-white block">00</span>
-                <span class="text-[10px] uppercase tracking-widest text-[#D4C5B9] mt-1 block font-semibold">Secs</span>
-            </div>
-            <!-- If launching today within hours, showing Hours/Mins/Secs or adding Days back if needed. Using standard 4-block setup below: -->
-        </div>
-        
-        <!-- Restructured 4-Block Countdown Grid for Hours/Mins/Secs precision -->
+        <!-- Clean Single 3-Block Countdown Timer for Today at 5 PM -->
         <div class="grid grid-cols-3 gap-3 max-w-sm mx-auto pt-2">
             <div class="earth-card p-4 rounded-2xl text-center">
                 <span id="hours" class="font-bold text-2xl sm:text-3xl text-white block">00</span>
@@ -179,7 +162,7 @@
         lucide.createIcons();
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // Target Launch Date: Today (Friday 6 November 2026) at 17:00 (5:00 PM) SAST
+        // Target Launch Date: Today at 17:00 (5:00 PM) SAST
         const targetTime = new Date('2026-11-06T17:00:00+02:00').getTime();
 
         function updateCountdown() {
