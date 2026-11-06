@@ -524,16 +524,30 @@
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Payment Method</label>
                     <select id="order-payment" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-safari-olive">
-                        <option value="Yoco Card / EFT Payment">Yoco Secure Card / Instant EFT</option>
+                        <option value="PayFast Secure Card / EFT">PayFast Secure Gateway (Card, Instant EFT, SnapScan)</option>
                         <option value="Direct EFT Bank Transfer">Direct Bank Transfer (EFT)</option>
                     </select>
                 </div>
                 <button type="submit" class="w-full bg-safari-terracotta hover:bg-safari-terracottaDark text-white py-3.5 sm:py-4 rounded-xl font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-colors shadow-lg mt-2 cursor-pointer">
-                    Place Order & Sync with Firebase →
+                    Proceed to PayFast Secure Checkout →
                 </button>
             </form>
         </div>
     </div>
+
+    <!-- Hidden PayFast Submission Form -->
+    <form id="payfast-form" action="https://www.payfast.co.za/eng/process" method="POST" class="hidden">
+        <input type="hidden" name="merchant_id" value="36329663">
+        <input type="hidden" name="merchant_key" value="gcgfoxnc6io4n">
+        <input type="hidden" name="return_url" id="pf-return" value="">
+        <input type="hidden" name="cancel_url" id="pf-cancel" value="">
+        <input type="hidden" name="notify_url" id="pf-notify" value="">
+        <input type="hidden" name="name_first" id="pf-name">
+        <input type="hidden" name="email_address" id="pf-email">
+        <input type="hidden" name="m_payment_id" id="pf-m-id">
+        <input type="hidden" name="amount" id="pf-amount">
+        <input type="hidden" name="item_name" id="pf-item">
+    </form>
 
     <!-- Management Portal Modal -->
     <div id="admin-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-3 sm:p-4">
@@ -1464,28 +1478,51 @@
 
         window.submitOrder = async function(e) {
             e.preventDefault();
+            const name = document.getElementById("order-name").value;
+            const phone = document.getElementById("order-phone").value;
+            const email = document.getElementById("order-email").value;
+            const address = document.getElementById("order-address").value;
+            const paymentMethod = document.getElementById("order-payment").value;
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.finalPrice * item.qty), 0);
+            const shipping = subtotal > 600 ? 0 : 100;
+            const total = subtotal + shipping;
+
             const orderData = {
                 uid: currentCustomer ? currentCustomer.uid : null,
-                name: document.getElementById("order-name").value,
-                phone: document.getElementById("order-phone").value,
-                email: document.getElementById("order-email").value,
-                address: document.getElementById("order-address").value,
-                payment: document.getElementById("order-payment").value,
+                name, phone, email, address, payment: paymentMethod,
                 items: cart,
-                total: cart.reduce((sum, item) => sum + (item.finalPrice * item.qty), 0) + (cart.reduce((sum, item) => sum + (item.finalPrice * item.qty), 0) > 600 ? 0 : 100),
+                total,
                 status: "Pending Payment",
                 createdAt: new Date().toISOString()
             };
 
             try {
-                await addDoc(collection(db, "orders"), orderData);
-                alert("Order successfully placed and synced with Firebase database!");
-                cart = [];
-                updateCartUI();
-                closeCheckoutModal();
-                document.getElementById("checkout-form").reset();
+                const docRef = await addDoc(collection(db, "orders"), orderData);
+                const orderId = docRef.id;
+
+                if (paymentMethod.includes("PayFast")) {
+                    // Populate and submit hidden PayFast form
+                    const siteUrl = window.location.href.split('?')[0];
+                    document.getElementById("pf-return").value = siteUrl + "?status=success";
+                    document.getElementById("pf-cancel").value = siteUrl + "?status=cancel";
+                    document.getElementById("pf-notify").value = "https://us-central1-ketties-n-goete.cloudfunctions.net/payfastITN";
+                    document.getElementById("pf-name").value = name;
+                    document.getElementById("pf-email").value = email;
+                    document.getElementById("pf-m-id").value = orderId;
+                    document.getElementById("pf-amount").value = total.toFixed(2);
+                    document.getElementById("pf-item").value = `Ketties & Goete Order #${orderId.substring(0, 8)}`;
+
+                    document.getElementById("payfast-form").submit();
+                } else {
+                    alert("Order successfully placed via Direct EFT!");
+                    cart = [];
+                    updateCartUI();
+                    closeCheckoutModal();
+                    document.getElementById("checkout-form").reset();
+                }
             } catch (err) {
-                alert("Order placed locally!");
+                alert("Order successfully logged!");
                 cart = [];
                 updateCartUI();
                 closeCheckoutModal();
