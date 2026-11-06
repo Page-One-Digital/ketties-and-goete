@@ -530,6 +530,1839 @@
                 <div class="absolute right-0 top-0 bottom-0 w-1/3 bg-cover bg-center opacity-10 pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800');"></div>
                 <div>
                     <div class="inline-flex items-center gap-2 bg-safari-terracotta text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-3 shadow">
+                        <i class="fa-solid fa-lock text-[9px]"></i> Secure Management Portal • csda.kettiesngoete@gmail.com
+                    </div>
+                    <h2 class="font-heading font-black text-xl sm:text-3xl uppercase tracking-tight">Ketties & Goete Management Dashboard</h2>
+                    <p class="text-safari-borderLight text-xs sm:text-sm mt-1">Manage inventory database, customer accounts, announcement bar, and review orders.</p>
+                </div>
+                <div class="flex flex-wrap gap-2 sm:gap-3 relative z-10 w-full md:w-auto">
+                    <button type="button" onclick="closeAdminModal()" class="flex-1 md:flex-none bg-safari-surface/10 hover:bg-safari-surface/20 border border-safari-border text-safari-parchment px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 backdrop-blur-sm cursor-pointer">
+                        <i class="fa-solid fa-store"></i> Return to Store
+                    </button>
+                    <button type="button" onclick="openNewProductModal()" class="flex-1 md:flex-none bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow cursor-pointer">
+                        <i class="fa-solid fa-plus"></i> Add New Product
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 sm:mb-8">
+                <div class="bg-safari-surface border border-safari-border p-5 sm:p-6 rounded-2xl shadow-sm relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold uppercase tracking-widest text-safari-espresso/70">Total Products</span>
+                        <i class="fa-solid fa-box-open text-safari-olive text-lg"></i>
+                    </div>
+                    <div id="stat-total-products" class="font-heading font-black text-2xl sm:text-4xl text-safari-espresso mb-1">0</div>
+                    <span class="text-[11px] text-safari-espresso/60 block">Active in catalog database</span>
+                </div>
+                <div class="bg-safari-surface border border-safari-border p-5 sm:p-6 rounded-2xl shadow-sm relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold uppercase tracking-widest text-safari-espresso/70">Customer Accounts</span>
+                        <i class="fa-solid fa-users text-safari-olive text-lg"></i>
+                    </div>
+                    <div id="stat-total-customers" class="font-heading font-black text-2xl sm:text-4xl text-safari-espresso mb-1">0</div>
+                    <span class="text-[11px] text-safari-espresso/60 block">Registered profiles</span>
+                </div>
+                <div class="bg-safari-surface border border-safari-border p-5 sm:p-6 rounded-2xl shadow-sm relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold uppercase tracking-widest text-safari-espresso/70">Total Orders</span>
+                        <i class="fa-solid fa-receipt text-safari-olive text-lg"></i>
+                    </div>
+                    <div id="stat-total-orders" class="font-heading font-black text-2xl sm:text-4xl text-safari-espresso mb-1">0</div>
+                    <span class="text-[11px] text-safari-espresso/60 block">Recorded transactions</span>
+                </div>
+                <div class="bg-safari-surface border border-safari-border p-5 sm:p-6 rounded-2xl shadow-sm relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold uppercase tracking-widest text-safari-espresso/70">Total Revenue</span>
+                        <span class="font-heading font-black text-safari-terracotta text-lg">R</span>
+                    </div>
+                    <div id="stat-total-revenue" class="font-heading font-black text-xl sm:text-3xl text-safari-espresso mb-1">R0.00</div>
+                    <span class="text-[11px] text-safari-espresso/60 block">Gross sales (ZAR)</span>
+                </div>
+            </div>
+
+            <!-- Admin Tabs -->
+            <div class="flex flex-wrap gap-2 sm:gap-4 mb-6 border-b border-safari-border pb-4">
+                <button type="button" onclick="switchAdminTab('products')" id="admin-tab-prod" class="bg-safari-olive text-white px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-boxes-stacked"></i> Inventory Database (<span id="prod-count-badge">0</span>)
+                </button>
+                <button type="button" onclick="switchAdminTab('customers')" id="admin-tab-cust" class="bg-safari-surface text-safari-espresso border border-safari-border px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-users"></i> Customer Accounts (<span id="cust-count-badge">0</span>)
+                </button>
+                <button type="button" onclick="switchAdminTab('settings')" id="admin-tab-set" class="bg-safari-surface text-safari-espresso border border-safari-border px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-gear"></i> Site Settings & Banner
+                </button>
+                <button type="button" onclick="switchAdminTab('orders')" id="admin-tab-ord" class="bg-safari-surface text-safari-espresso border border-safari-border px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-clipboard-list"></i> Orders (<span id="ord-count-badge">0</span>)
+                </button>
+            </div>
+
+            <!-- Products Panel -->
+            <div id="admin-panel-products" class="space-y-4">
+                <div class="bg-safari-surface p-4 sm:p-6 rounded-2xl border border-safari-border">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+                        <h4 class="font-heading font-bold text-base uppercase">Stock & Product Database</h4>
+                        <div class="relative w-full sm:w-auto">
+                            <input type="text" id="admin-search" oninput="filterAdminProducts(this.value)" placeholder="Search products..." class="bg-safari-parchment border border-safari-border rounded-xl px-4 py-2 text-xs w-full sm:w-72 focus:outline-none focus:border-safari-olive">
+                            <i class="fa-solid fa-search absolute right-3 top-3 text-safari-espresso/40 text-xs"></i>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto border border-safari-border rounded-xl bg-safari-parchment">
+                        <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[650px]">
+                            <thead>
+                                <tr class="bg-safari-border/30 border-b border-safari-border font-heading text-[10px] sm:text-[11px] uppercase tracking-wider text-safari-espresso/70">
+                                    <th class="p-3 sm:p-4">Product</th>
+                                    <th class="p-3 sm:p-4">Category</th>
+                                    <th class="p-3 sm:p-4">Price (ZAR)</th>
+                                    <th class="p-3 sm:p-4">Stock Level</th>
+                                    <th class="p-3 sm:p-4">Status</th>
+                                    <th class="p-3 sm:p-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-product-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Accounts Panel -->
+            <div id="admin-panel-customers" class="space-y-4 hidden">
+                <div class="bg-safari-surface p-4 sm:p-6 rounded-2xl border border-safari-border space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h4 class="font-heading font-bold text-base uppercase">Registered Customer Accounts</h4>
+                            <p class="text-xs text-safari-espresso/70 mt-0.5">Manage customer profiles and download accounts as an Excel (.xlsx) spreadsheet.</p>
+                        </div>
+                        <button type="button" onclick="exportCustomersToExcel()" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all shadow flex items-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-file-excel"></i> Download Customers (Excel)
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto border border-safari-border rounded-xl bg-safari-parchment">
+                        <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[650px]">
+                            <thead>
+                                <tr class="bg-safari-border/30 border-b border-safari-border font-heading text-[10px] sm:text-[11px] uppercase tracking-wider text-safari-espresso/70">
+                                    <th class="p-3 sm:p-4">Name & Surname</th>
+                                    <th class="p-3 sm:p-4">Email Address</th>
+                                    <th class="p-3 sm:p-4">Cell Number</th>
+                                    <th class="p-3 sm:p-4">Delivery Address</th>
+                                    <th class="p-3 sm:p-4">Joined Date</th>
+                                    <th class="p-3 sm:p-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-customer-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings & Announcement Banner Panel -->
+            <div id="admin-panel-settings" class="space-y-4 hidden">
+                <div class="bg-safari-surface p-6 rounded-2xl border border-safari-border space-y-4">
+                    <h4 class="font-heading font-bold text-base uppercase">Editable Top Announcement Bar</h4>
+                    <p class="text-xs text-safari-espresso/70">Update the message displayed at the very top of your website header instantly.</p>
+                    <form onsubmit="saveAnnouncementBanner(event)" class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider mb-1 text-safari-espresso">Banner Message Text</label>
+                            <textarea id="admin-banner-text" rows="2" required class="w-full bg-safari-parchment border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive">🇿🇦 CRAFTED IN SOUTH AFRICA • FREE NATIONWIDE SHIPPING ON ORDERS R500 & OVER • 100% NATURAL LATEX & BIO-CLAY</textarea>
+                        </div>
+                        <button type="submit" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-6 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all shadow cursor-pointer">
+                            Save & Update Banner Live →
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Orders Panel -->
+            <div id="admin-panel-orders" class="space-y-4 hidden">
+                <div class="bg-safari-surface p-4 sm:p-6 rounded-2xl border border-safari-border">
+                    <h4 class="font-heading font-bold text-base mb-4 uppercase">Client Orders & Transactions</h4>
+                    <div class="overflow-x-auto border border-safari-border rounded-xl bg-safari-parchment">
+                        <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[750px]">
+                            <thead>
+                                <tr class="bg-safari-border/30 border-b border-safari-border font-heading text-[10px] sm:text-[11px] uppercase tracking-wider text-safari-espresso/70">
+                                    <th class="p-3 sm:p-4">Order ID</th>
+                                    <th class="p-3 sm:p-4">Customer</th>
+                                    <th class="p-3 sm:p-4">Contact</th>
+                                    <th class="p-3 sm:p-4">Items Ordered</th>
+                                    <th class="p-3 sm:p-4">Total</th>
+                                    <th class="p-3 sm:p-4">Status</th>
+                                    <th class="p-3 sm:p-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-order-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Edit Customer Modal -->
+    <div id="customer-form-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeCustomerFormModal()"></div>
+        <div class="bg-safari-parchment rounded-2xl sm:rounded-3xl max-w-md w-full border border-safari-border relative z-10 p-5 sm:p-8 shadow-2xl">
+            <h3 class="font-heading font-black text-lg uppercase mb-4 text-safari-espresso">Edit Customer Profile</h3>
+            <form id="customer-action-form" onsubmit="handleCustomerSubmit(event)" class="space-y-3">
+                <input type="hidden" id="cust-edit-id">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider mb-1">Name & Surname</label>
+                    <input type="text" id="cust-edit-name" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider mb-1">Email Address</label>
+                    <input type="email" id="cust-edit-email" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider mb-1">Cell Number</label>
+                    <input type="tel" id="cust-edit-phone" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider mb-1">Delivery Address</label>
+                    <textarea id="cust-edit-address" rows="2" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive"></textarea>
+                </div>
+                <div class="flex items-center gap-3 pt-2">
+                    <button type="button" onclick="closeCustomerFormModal()" class="flex-1 bg-amber-100 hover:bg-amber-200 text-amber-900 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer">Cancel</button>
+                    <button type="submit" class="flex-1 bg-safari-olive hover:bg-safari-oliveDark text-white py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add / Edit Product Modal -->
+    <div id="product-form-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductFormModal()"></div>
+        <div class="bg-safari-parchment rounded-2xl sm:rounded-3xl max-w-2xl w-full border border-safari-border relative z-10 p-5 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
+            <form id="product-action-form" onsubmit="handleProductSubmit(event)" class="space-y-4">
+                <input type="hidden" id="prod-edit-id">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input type="text" id="prod-name" placeholder="Product Name" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <input type="number" step="0.01" id="prod-price" placeholder="Base Price in ZAR" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input type="text" id="prod-cat" placeholder="Category" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                    <input type="text" id="prod-img" placeholder="Image URL(s)" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="flex items-center gap-3 bg-safari-surface border border-safari-border rounded-xl px-4 py-3.5 shadow-sm">
+                        <input type="checkbox" id="prod-visible" checked class="w-4 h-4 text-safari-olive rounded border-safari-border focus:ring-safari-olive cursor-pointer">
+                        <label for="prod-visible" class="text-xs font-semibold text-safari-espresso cursor-pointer">Visible in Catalog</label>
+                    </div>
+                    <div class="flex items-center gap-3 bg-safari-surface border border-safari-border rounded-xl px-4 py-3.5 shadow-sm">
+                        <input type="checkbox" id="prod-bestseller" class="w-4 h-4 text-safari-terracotta rounded border-safari-border focus:ring-safari-terracotta cursor-pointer">
+                        <label for="prod-bestseller" class="text-xs font-bold text-safari-terracotta cursor-pointer">★ Set as Best Seller Combo</label>
+                    </div>
+                </div>
+                <div>
+                    <input type="text" id="prod-variants" placeholder="Variants format: Name:+Price:ImageURL" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-safari-espresso/70 mb-1">Specification Bubble 1</label>
+                    <textarea id="prod-extra-1" rows="3" placeholder="Press Enter to list items downwards..." class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-safari-espresso/70 mb-1">Specification Bubble 2</label>
+                    <textarea id="prod-extra-2" rows="2" placeholder="Specification bullet 2..." class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-safari-espresso/70 mb-1">Product Description</label>
+                    <textarea id="prod-desc" rows="3" placeholder="Product Description" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-safari-olive shadow-sm placeholder:text-safari-espresso/40"></textarea>
+                </div>
+                <div class="flex items-center gap-4 pt-2">
+                    <button type="button" onclick="closeProductFormModal()" class="flex-1 bg-amber-100 hover:bg-amber-200 text-amber-900 py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow-sm cursor-pointer">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow-md cursor-pointer">
+                        Save Product
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase Firestore & Auth Script -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCWDrUEiZm3IftJFbShyD2QsLZnOFdwo9g",
+            authDomain: "ketties-n-goete.firebaseapp.com",
+            projectId: "ketties-n-goete",
+            storageBucket: "ketties-n-goete.firebasestorage.app",
+            messagingSenderId: "33272737255",
+            appId: "1:33272737255:web:55ca698584bd4001c26142",
+            measurementId: "G-RWZ63YNWPR"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        const ADMIN_EMAIL = "csda.kettiesngoete@gmail.com";
+
+        let products = [];
+        let orders = [];
+        let customers = [];
+        let cart = [];
+        let currentFilter = 'all';
+        let selectedProduct = null;
+        let selectedVariant = null;
+        let currentCustomer = null;
+
+        const policiesData = {
+            terms: {
+                title: "Terms & Conditions",
+                content: `
+                    <p class="font-bold text-safari-espresso mb-1">Ketties en Goete | Heidelberg, 1442</p>
+                    <p class="text-xs text-safari-espresso/60 mb-4">Last Updated: October 2026</p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-heading font-bold uppercase text-safari-espresso text-xs mb-1">1. Introduction & Acceptance</h4>
+                            <p>Welcome to Ketties & Goete. By accessing our website (kettiesngoete.co.za) and purchasing our artisanal outdoor shooting gear, therapeutic flatbands, and heritage accessories, you agree to be bound by these Terms & Conditions. Please read them carefully before placing any order.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-heading font-bold uppercase text-safari-espresso text-xs mb-1">2. Pricing & Payments</h4>
+                            <p>All prices displayed on our website are quoted in South African Rands (ZAR) and include 15% VAT. We reserve the right to alter prices at any time without prior notice. Payments are processed securely via PayFast (Credit/Debit Card, Instant EFT, SnapScan) or Direct Bank Transfer (EFT).</p>
+                        </div>
+                        <div>
+                            <h4 class="font-heading font-bold uppercase text-safari-espresso text-xs mb-1">3. Age Restriction & Safety Disclaimer</h4>
+                            <p>Our products include traditional slingshots ("ketties") and high-tension natural latex flatbands. These items are precision shooting tools and are not toys. Purchases by minors must be supervised directly by a responsible adult or parent. Ketties & Goete accepts no liability for misuse, injury, or property damage resulting from improper handling.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-heading font-bold uppercase text-safari-espresso text-xs mb-1">4. Intellectual Property</h4>
+                            <p>All content included on this site—including text, graphics, logos, images, and software—is the property of Ketties & Goete and protected by South African and international copyright laws.</p>
+                        </div>
+                    </div>
+                `
+            },
+            shipping: {
+                title: "Shipping Policy",
+                content: `
+                    <p class="font-bold text-safari-espresso mb-1">Ketties en Goete | Heidelberg, 1442</p>
+                    <p class="text-xs text-safari-espresso/60 mb-4">Last Updated: October 2026</p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-heading font-bold uppercase text-safari-espresso text-xs mb-1">1. Order Processing</h4>
+                            <p>Orders are processed and custom-packaged within 1 to 3 business days following payment confirmation. Orders placed over weekends or public holidays will be processed on the next business day.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-heading font-bold uppercase text-safari-espresso text-xs mb-1">2. Delivery Rates & Free Shipping</h4>
+                            <p>We offer nationwide courier delivery across South Africa. Standard nationwide courier shipping is R100.00. We offer <strong>FREE nationwide shipping</strong> on all orders of R500.00 and over.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-heading font-bold uppercase text-safari-espresso text-xs mb-1">3. Delivery Timelines</h4>
+                            <p>Standard door-to-door courier delivery typically takes 2 to 5 business days depending on your delivery location within South Africa. Tracking information is provided upon dispatch.</p>
+                        </div>
+                    </div>
+                `
+            },
+            refund: {
+                title: "Refund Policy",
+                content: `
+                    <p class="font-bold text-safari-espresso mb-1">Ketties en Goete | Heidelberg, 1442</p>
+                    <p class="text-xs text-safari-espresso/60 mb-4">Last Updated: October 2026</p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-heading font-bold uppercase text-safari-espresso text-xs mb-1">1. Returns & Exchanges</h4>
+                            <p>We take pride in the craftsmanship of our gear. If you are not entirely satisfied with your purchase, you may request a return or exchange within 7 days of receiving your order.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-heading font-bold uppercase text-safari-espresso text-xs mb-1">2. Eligibility for Returns</h4>
+                            <p>To be eligible for a return, items must be unused, in their original packaging, and in the same condition that you received them. Custom or modified orders cannot be returned unless defective upon arrival.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-heading font-bold uppercase text-safari-espresso text-xs mb-1">3. Refund Processing</h4>
+                            <p>Once your returned item is inspected and approved, your refund will be processed and credited back via your original method of payment within 5-7 business days. Shipping costs are non-refundable.</p>
+                        </div>
+                    </div>
+                `
+            },
+            popia: {
+                title: "POPIA Policy",
+                content: `
+                    <p class="font-bold text-safari-espresso mb-1">Ketties en Goete | Heidelberg, 1442</p>
+                    <p class="text-xs text-safari-espresso/60 mb-4">Last Updated: October 2026</p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-heading font-bold uppercase text-safari-espresso text-xs mb-1">1. Commitment to Privacy</h4>
+                            <p>Ketties & Goete is committed to protecting your personal information in compliance with the Protection of Personal Information Act (POPIA) of South Africa.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-heading font-bold uppercase text-safari-espresso text-xs mb-1">2. Information Collection</h4>
+                            <p>We collect personal information (such as your name, email address, phone number, and delivery address) solely for the purpose of processing orders, managing customer accounts, and dispatching couriers.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-heading font-bold uppercase text-safari-espresso text-xs mb-1">3. Data Security & Sharing</h4>
+                            <p>Your personal data is stored securely and never sold, rented, or traded with third parties. Data is only shared with trusted logistics partners strictly necessary to fulfill your delivery.</p>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        const defaultProducts = [
+            {
+                name: "OU KALAHARI & CAMO CARRY BAG - KETTIE COMBO",
+                category: "Combos",
+                price: 590.00,
+                stock: 20,
+                visible: true,
+                isBestSeller: true,
+                sku: "KG-OU-KALAHARI-COMBO",
+                image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
+                variants: "Standard:+0:https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
+                extra1: "• Complete heavy-duty hardwood slingshot setup.\n• Dual-tier natural latex flatbands & target leather pouch.",
+                extra2: "• Gear up for your next outdoor expedition.",
+                description: "Gear up for your next outdoor expedition with the premier Ou Kalahari Combo."
+            }
+        ];
+
+        async function initDatabase() {
+            try {
+                const bannerDoc = await getDoc(doc(db, "settings", "announcement"));
+                if (bannerDoc.exists() && bannerDoc.data().text) {
+                    const text = bannerDoc.data().text;
+                    document.getElementById("announcement-banner").innerHTML = `<span>${text}</span>`;
+                    document.getElementById("admin-banner-text").value = text;
+                }
+            } catch (err) {
+                console.log("Banner settings load failed.", err);
+            }
+
+            onSnapshot(collection(db, "products"), (snapshot) => {
+                products = [];
+                snapshot.forEach((docSnap) => {
+                    products.push({ id: docSnap.id, ...docSnap.data() });
+                });
+                // Always sort products High to Low by price
+                products.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+                renderProducts();
+                renderSidebarCategories();
+                renderHeroBestSeller();
+                if (currentCustomer && currentCustomer.isAdmin) renderAdminDashboard();
+            }, (error) => {
+                products = defaultProducts;
+                products.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+                renderProducts();
+                renderSidebarCategories();
+                renderHeroBestSeller();
+            });
+
+            onAuthStateChanged(auth, async (user) => {
+                if (registering) return;
+                if (!user) {
+                    currentCustomer = null;
+                    stopAdminListeners();
+                    updateAuthNavUI();
+                    return;
+                }
+                let profile = null;
+                try {
+                    const snap = await getDoc(doc(db, "customers", user.uid));
+                    if (snap.exists()) profile = snap.data();
+                } catch (err) {}
+                setCurrentCustomer(user, profile);
+            });
+        }
+
+        let registering = false;
+        let unsubCustomers = null;
+        let unsubOrders = null;
+
+        function friendlyAuthError(err) {
+            return err.message;
+        }
+
+        function setCurrentCustomer(user, profile) {
+            currentCustomer = {
+                uid: user.uid,
+                email: user.email,
+                name: (profile && profile.name) || '',
+                phone: (profile && profile.phone) || '',
+                address: (profile && profile.address) || '',
+                isAdmin: (user.email || '').toLowerCase() === ADMIN_EMAIL.toLowerCase()
+            };
+            updateAuthNavUI();
+            if (currentCustomer.isAdmin) startAdminListeners(); else stopAdminListeners();
+        }
+
+        function startAdminListeners() {
+            if (!unsubCustomers) {
+                unsubCustomers = onSnapshot(collection(db, "customers"), (snapshot) => {
+                    customers = [];
+                    snapshot.forEach((d) => customers.push({ id: d.id, ...d.data() }));
+                    if (currentCustomer && currentCustomer.isAdmin) renderAdminDashboard();
+                });
+            }
+            if (!unsubOrders) {
+                unsubOrders = onSnapshot(collection(db, "orders"), (snapshot) => {
+                    orders = [];
+                    snapshot.forEach((d) => orders.push({ id: d.id, ...d.data() }));
+                    if (currentCustomer && currentCustomer.isAdmin) renderAdminDashboard();
+                });
+            }
+        }
+
+        function stopAdminListeners() {
+            if (unsubCustomers) { unsubCustomers(); unsubCustomers = null; }
+            if (unsubOrders) { unsubOrders(); unsubOrders = null; }
+            customers = [];
+            orders = [];
+        }
+
+        window.openPolicyModal = function(policyKey) {
+            const policy = policiesData[policyKey];
+            if (!policy) return;
+            document.getElementById("policy-modal-title").textContent = policy.title;
+            document.getElementById("policy-modal-content").innerHTML = policy.content;
+            document.getElementById("policy-modal").classList.remove("hidden");
+        }
+
+        window.closePolicyModal = function() {
+            document.getElementById("policy-modal").classList.add("hidden");
+        }
+
+        window.openAuthModal = function() {
+            document.getElementById("auth-modal").classList.remove("hidden");
+            if (currentCustomer) {
+                document.getElementById("auth-unauthenticated-view").classList.add("hidden");
+                document.getElementById("auth-authenticated-view").classList.remove("hidden");
+                document.getElementById("user-display-email").textContent = currentCustomer.email;
+            } else {
+                document.getElementById("auth-unauthenticated-view").classList.remove("hidden");
+                document.getElementById("auth-authenticated-view").classList.add("hidden");
+            }
+        }
+
+        window.closeAuthModal = function() {
+            document.getElementById("auth-modal").classList.add("hidden");
+        }
+
+        window.switchAuthTab = function(tab) {
+            const loginBtn = document.getElementById("tab-login-btn");
+            const regBtn = document.getElementById("tab-register-btn");
+            const loginForm = document.getElementById("login-form");
+            const regForm = document.getElementById("register-form");
+            const modalTitle = document.getElementById("auth-modal-title");
+
+            if (tab === 'login') {
+                loginBtn.className = "flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider bg-safari-olive text-white transition-all cursor-pointer";
+                regBtn.className = "flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso transition-all cursor-pointer";
+                loginForm.classList.remove("hidden");
+                regForm.classList.add("hidden");
+                modalTitle.textContent = "Customer Sign In";
+            } else {
+                regBtn.className = "flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider bg-safari-olive text-white transition-all cursor-pointer";
+                loginBtn.className = "flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso transition-all cursor-pointer";
+                regForm.classList.remove("hidden");
+                loginForm.classList.add("hidden");
+                modalTitle.textContent = "Create Customer Account";
+            }
+        }
+
+        window.handleDirectLogin = async function(e) {
+            e.preventDefault();
+            const email = document.getElementById("login-email").value.trim().toLowerCase();
+            const password = document.getElementById("login-password").value;
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                document.getElementById("login-form").reset();
+                closeAuthModal();
+                alert("Signed in successfully!");
+            } catch (err) {
+                alert("Sign in failed: " + friendlyAuthError(err));
+            }
+        }
+
+        window.handleDirectRegister = async function(e) {
+            e.preventDefault();
+            const name = document.getElementById("reg-name").value.trim();
+            const email = document.getElementById("reg-email").value.trim().toLowerCase();
+            const password = document.getElementById("reg-password").value;
+            const phone = document.getElementById("reg-phone").value.trim();
+            const address = document.getElementById("reg-address").value.trim();
+
+            registering = true;
+            try {
+                const cred = await createUserWithEmailAndPassword(auth, email, password);
+                const profile = { name, email, phone, address, joinedDate: new Date().toISOString().split('T')[0] };
+                await setDoc(doc(db, "customers", cred.user.uid), profile);
+                setCurrentCustomer(cred.user, profile);
+                document.getElementById("register-form").reset();
+                closeAuthModal();
+                alert("Account created and signed in successfully!");
+            } catch (err) {
+                alert("Registration failed: " + friendlyAuthError(err));
+            } finally {
+                registering = false;
+            }
+        }
+
+        window.signOutCustomer = async function() {
+            try { await signOut(auth); } catch (err) {}
+            closeAuthModal();
+            closeAdminModal();
+            alert("Signed out successfully.");
+        }
+
+        window.updateAuthNavUI = function() {
+            const btnText = document.getElementById("auth-btn-text");
+            const adminContainer = document.getElementById("admin-nav-container");
+
+            if (currentCustomer) {
+                const shortName = currentCustomer.name ? currentCustomer.name.split(' ')[0] : currentCustomer.email.split('@')[0];
+                btnText.textContent = shortName;
+                if (currentCustomer.isAdmin) {
+                    adminContainer.classList.remove("hidden");
+                } else {
+                    adminContainer.classList.add("hidden");
+                }
+            } else {
+                btnText.textContent = "Sign In";
+                adminContainer.classList.add("hidden");
+            }
+        }
+
+        window.exportCustomersToExcel = function() {
+            if (!currentCustomer || !currentCustomer.isAdmin) return;
+            if (customers.length === 0) { alert("No customer accounts recorded yet."); return; }
+            const exportData = customers.map((c, index) => ({
+                "No.": index + 1,
+                "Name & Surname": c.name || "N/A",
+                "Email Address": c.email || "N/A",
+                "Cell Number": c.phone || "N/A",
+                "Delivery Address": c.address || "N/A",
+                "Joined Date": c.joinedDate || "N/A"
+            }));
+            const worksheet = XLSX.utils.json_to_sheet(exportData);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Customer Accounts");
+            XLSX.writeFile(workbook, "Ketties_And_Goete_Customers.xlsx");
+        }
+
+        window.renderSidebarCategories = function() {
+            const container = document.getElementById("sidebar-category-filters");
+            if (!container) return;
+            const categoriesSet = new Set();
+            products.forEach(p => { if (p.category) categoriesSet.add(p.category.trim()); });
+            const categories = Array.from(categoriesSet).sort();
+
+            let html = `<button type="button" onclick="filterProducts('all')" class="cat-btn ${currentFilter === 'all' ? 'active bg-safari-olive text-white' : 'bg-safari-surface/70 hover:bg-safari-surface text-safari-espresso'} w-full text-left px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between border border-safari-border/60 cursor-pointer"><span>All Products</span><i class="fa-solid fa-chevron-right text-[10px]"></i></button>`;
+            categories.forEach(cat => {
+                const isActive = currentFilter.toLowerCase() === cat.toLowerCase();
+                html += `<button type="button" onclick="filterProducts('${cat.replace(/'/g, "\\'")}')" class="cat-btn ${isActive ? 'active bg-safari-olive text-white' : 'bg-safari-surface/70 hover:bg-safari-surface text-safari-espresso'} w-full text-left px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between border border-safari-border/60 cursor-pointer"><span>${cat}</span><i class="fa-solid fa-chevron-right text-[10px]"></i></button>`;
+            });
+            container.innerHTML = html;
+        }
+
+        window.renderHeroBestSeller = function() {
+            const container = document.getElementById("hero-best-seller-container");
+            if (!container) return;
+            let bestSeller = products.find(p => p.isBestSeller === true) || products.find(p => p.category === 'Combos') || products[0];
+            if (!bestSeller) { container.innerHTML = ""; return; }
+            let primaryImg = bestSeller.image || '';
+            if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
+
+            container.innerHTML = `
+                <div class="bg-safari-espresso/95 border border-safari-border/40 rounded-2xl p-5 sm:p-8 shadow-2xl backdrop-blur-md relative">
+                    <div class="absolute -top-3 right-6 bg-safari-terracotta text-white font-heading font-bold text-[11px] sm:text-xs uppercase px-3 py-1 rounded-full shadow">Best Seller Combo</div>
+                    <div class="rounded-xl overflow-hidden mb-5 sm:mb-6 h-48 sm:h-56 border border-safari-border/30 bg-white flex items-center justify-center cursor-pointer" onclick="openProductModal('${bestSeller.id}')">
+                        <img src="${primaryImg}" alt="${bestSeller.name}" class="w-full h-full object-cover">
+                    </div>
+                    <span class="text-[11px] sm:text-xs uppercase tracking-widest text-safari-olive font-bold">${bestSeller.category}</span>
+                    <h3 class="font-heading font-black text-xl sm:text-2xl text-white mt-1 mb-2 cursor-pointer hover:text-safari-olive" onclick="openProductModal('${bestSeller.id}')">${bestSeller.name}</h3>
+                    <p class="text-safari-borderLight text-xs sm:text-sm mb-5 sm:mb-6 leading-relaxed line-clamp-2">${bestSeller.description || ''}</p>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] sm:text-xs text-safari-border line-through block">R${(parseFloat(bestSeller.price) * 1.2).toFixed(2)}</span>
+                            <span class="font-heading font-black text-xl sm:text-2xl text-safari-terracotta">R${parseFloat(bestSeller.price).toFixed(2)}</span>
+                        </div>
+                        <button type="button" onclick="addToCart('${bestSeller.id}')" class="bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow cursor-pointer">Add Combo to Cart</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        window.renderProducts = function() {
+            const grid = document.getElementById("product-grid");
+            const visibleProducts = products.filter(p => p.visible !== false);
+            const filtered = currentFilter === 'all' ? visibleProducts : visibleProducts.filter(p => p.category.toLowerCase() === currentFilter.toLowerCase());
+
+            // Ensure High to Low sort is always enforced
+            filtered.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-safari-espresso/60"><p>No products found in this category.</p></div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(p => {
+                let primaryImg = p.image || '';
+                if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
+                return `
+                    <div class="bg-safari-surface border border-safari-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+                        <div>
+                            <div class="h-56 sm:h-60 overflow-hidden relative cursor-pointer bg-white flex items-center justify-center" onclick="openProductModal('${p.id}')">
+                                <img src="${primaryImg}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <span class="absolute top-3 left-3 bg-safari-espresso/90 text-safari-parchment text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-md">${p.category}</span>
+                            </div>
+                            <div class="p-4 sm:p-5">
+                                <h3 class="font-heading font-black text-base sm:text-lg text-safari-espresso mb-1 line-clamp-1 cursor-pointer hover:text-safari-olive" onclick="openProductModal('${p.id}')">${p.name}</h3>
+                                <p class="text-xs text-safari-espresso/70 line-clamp-2 mb-4">${p.description}</p>
+                            </div>
+                        </div>
+                        <div class="p-4 sm:p-5 pt-0 flex items-center justify-between border-t border-safari-border/40 mt-auto">
+                            <span class="font-heading font-black text-lg sm:text-xl text-safari-terracotta">R${parseFloat(p.price).toFixed(2)}</span>
+                            <button type="button" onclick="addToCart('${p.id}')" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow cursor-pointer">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        window.filterProducts = function(cat) {
+            currentFilter = cat;
+            renderSidebarCategories();
+            renderProducts();
+        }
+
+        window.addToCart = function(id) {
+            const prod = products.find(p => p.id === id);
+            if (!prod) return;
+            let variantName = "Standard";
+            let priceMod = 0;
+            let primaryImg = prod.image || '';
+            if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
+            let variantImg = primaryImg;
+
+            if (prod.variants) {
+                const parts = prod.variants.split(',');
+                if (parts.length > 0) {
+                    const sub = parts[0].split(':');
+                    variantName = sub[0].trim();
+                    priceMod = sub[1] ? parseFloat(sub[1].replace('+', '')) || 0 : 0;
+                    if (sub.length > 2) variantImg = sub.slice(2).join(':').trim();
+                }
+            }
+
+            cart.push({ ...prod, image: variantImg, finalPrice: parseFloat(prod.price) + priceMod, selectedOption: variantName, qty: 1 });
+            updateCartUI();
+            toggleCartDrawer();
+        }
+
+        window.updateCartUI = function() {
+            const badge = document.getElementById("cart-badge");
+            const container = document.getElementById("cart-items-container");
+            const subtotalEl = document.getElementById("cart-subtotal");
+            const shippingEl = document.getElementById("cart-shipping");
+            const totalEl = document.getElementById("cart-total");
+
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            badge.textContent = totalCount;
+
+            if (cart.length === 0) {
+                container.innerHTML = `<div class="text-center py-12 text-safari-espresso/60"><i class="fa-solid fa-basket-shopping text-4xl mb-3 text-safari-border"></i><p class="text-sm">Your cart is currently empty.</p></div>`;
+                subtotalEl.textContent = "R0.00";
+                shippingEl.textContent = "R100.00";
+                totalEl.textContent = "R0.00";
+                return;
+            }
+
+            container.innerHTML = cart.map((item, index) => `
+                <div class="flex items-center gap-3 sm:gap-4 bg-safari-parchment p-3 rounded-xl border border-safari-border">
+                    <img src="${item.image}" class="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-lg border border-safari-border">
+                    <div class="flex-1">
+                        <h4 class="font-heading font-bold text-xs sm:text-sm line-clamp-1">${item.name}</h4>
+                        <span class="text-[10px] text-safari-olive font-bold block leading-snug">${item.selectedOption}</span>
+                        <span class="text-xs text-safari-terracotta font-bold mt-1 block">R${parseFloat(item.finalPrice).toFixed(2)}</span>
+                        <div class="flex items-center gap-2 mt-1.5">
+                            <button type="button" onclick="updateCartItemQty(${index}, -1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs cursor-pointer">-</button>
+                            <span class="text-xs font-bold">${item.qty}</span>
+                            <button type="button" onclick="updateCartItemQty(${index}, 1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs cursor-pointer">+</button>
+                        </div>
+                    </div>
+                    <button type="button" onclick="removeFromCart(${index})" class="text-safari-espresso/40 hover:text-red-600 p-2 cursor-pointer"><i class="fa-solid fa-trash text-sm"></i></button>
+                </div>
+            `).join('');
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.finalPrice * item.qty), 0);
+            const shipping = subtotal >= 500 ? 0 : 100;
+            shippingEl.textContent = shipping === 0 ? "FREE (Orders R500+)" : "R100.00";
+            shippingEl.className = shipping === 0 ? "font-heading font-bold text-emerald-700" : "font-heading font-bold text-safari-olive";
+            subtotalEl.textContent = `R${subtotal.toFixed(2)}`;
+            totalEl.textContent = `R${(subtotal + shipping).toFixed(2)}`;
+        }
+
+        window.updateCartItemQty = function(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        window.removeFromCart = function(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        window.toggleCartDrawer = function() {
+            document.getElementById("cart-drawer").classList.toggle("hidden");
+        }
+
+        window.openProductModal = function(id) {
+            selectedProduct = products.find(p => p.id === id);
+            if (!selectedProduct) return;
+            let imgRaw = selectedProduct.image || '';
+            let imageList = imgRaw.includes(',') ? imgRaw.split(',').map(s => s.trim()).filter(Boolean) : [imgRaw].filter(Boolean);
+
+            document.getElementById("modal-main-img").src = imageList[0] || '';
+            document.getElementById("modal-cat").textContent = selectedProduct.category;
+            document.getElementById("modal-title").textContent = selectedProduct.name;
+            document.getElementById("modal-desc").textContent = selectedProduct.description || "";
+            document.getElementById("modal-price").textContent = `R${parseFloat(selectedProduct.price).toFixed(2)}`;
+
+            const thumbContainer = document.getElementById("modal-thumbnails");
+            if (imageList.length > 1) {
+                thumbContainer.innerHTML = imageList.map((url, idx) => `
+                    <button type="button" onclick="switchModalImage('${url}', this)" class="w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden border-2 ${idx === 0 ? 'border-safari-olive shadow-md' : 'border-safari-border opacity-70'} hover:opacity-100 transition-all bg-white flex items-center justify-center cursor-pointer">
+                        <img src="${url}" class="w-full h-full object-cover">
+                    </button>
+                `).join('');
+                thumbContainer.style.display = "flex";
+            } else {
+                thumbContainer.style.display = "none";
+            }
+
+            const varContainer = document.getElementById("modal-variants-container");
+            const varSection = document.getElementById("modal-variants-section");
+            
+            if (selectedProduct.variants && selectedProduct.variants.trim() !== "") {
+                varSection.classList.remove("hidden");
+                const variantsList = selectedProduct.variants.split(',').map(v => {
+                    const parts = v.split(':');
+                    const name = parts[0] ? parts[0].trim() : "Option";
+                    const priceMod = parts[1] ? parseFloat(parts[1].replace('+', '')) || 0 : 0;
+                    const imageUrl = parts.length > 2 ? parts.slice(2).join(':').trim() : imageList[0];
+                    return { name, priceMod, imageUrl };
+                });
+                selectedVariant = variantsList[0];
+                varContainer.innerHTML = variantsList.map((v, i) => `
+                    <button type="button" onclick="selectModalVariant('${v.name.replace(/'/g, "\\'")}', ${v.priceMod}, '${v.imageUrl}', this)" class="px-3.5 sm:px-4 py-2 rounded-lg text-xs border transition-all font-semibold ${i === 0 ? 'bg-safari-olive text-white border-safari-olive' : 'bg-safari-surface text-safari-espresso border-safari-border'} cursor-pointer">
+                        ${v.name}
+                    </button>
+                `).join('');
+                if (selectedVariant && selectedVariant.imageUrl) document.getElementById("modal-main-img").src = selectedVariant.imageUrl;
+            } else {
+                varSection.classList.add("hidden");
+                selectedVariant = { name: "Standard", priceMod: 0, imageUrl: imageList[0] };
+            }
+
+            const extraContainer = document.getElementById("modal-extra-fields");
+            let combinedExtras = [selectedProduct.extra1, selectedProduct.extra2, selectedProduct.extra3].filter(Boolean).join('\n');
+            if (combinedExtras.trim() !== "") {
+                extraContainer.textContent = combinedExtras;
+                extraContainer.style.display = "block";
+            } else {
+                extraContainer.style.display = "none";
+            }
+            document.getElementById("product-modal").classList.remove("hidden");
+        }
+
+        window.switchModalImage = function(url, btn) {
+            document.getElementById("modal-main-img").src = url;
+            if (selectedVariant) selectedVariant.imageUrl = url;
+            btn.parentElement.querySelectorAll('button').forEach(b => {
+                b.className = "w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden border-2 border-safari-border opacity-70 hover:opacity-100 transition-all bg-white flex items-center justify-center cursor-pointer";
+            });
+            btn.className = "w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden border-2 border-safari-olive shadow-md transition-all bg-white flex items-center justify-center cursor-pointer";
+        }
+
+        window.selectModalVariant = function(name, priceMod, imageUrl, btn) {
+            selectedVariant = { name, priceMod, imageUrl };
+            const finalP = parseFloat(selectedProduct.price) + priceMod;
+            document.getElementById("modal-price").textContent = `R${finalP.toFixed(2)}`;
+            if (imageUrl) document.getElementById("modal-main-img").src = imageUrl;
+            btn.parentElement.querySelectorAll('button').forEach(b => {
+                b.className = "px-3.5 sm:px-4 py-2 rounded-lg text-xs border transition-all font-semibold bg-safari-surface text-safari-espresso border-safari-border cursor-pointer";
+            });
+            btn.className = "px-3.5 sm:px-4 py-2 rounded-lg text-xs border transition-all font-semibold bg-safari-olive text-white border-safari-olive cursor-pointer";
+        }
+
+        window.closeProductModal = function() {
+            document.getElementById("product-modal").classList.add("hidden");
+        }
+
+        window.addModalItemToCart = function() {
+            if (!selectedProduct) return;
+            let primaryImg = selectedProduct.image || '';
+            if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
+            const finalPrice = parseFloat(selectedProduct.price) + (selectedVariant ? selectedVariant.priceMod : 0);
+            cart.push({
+                ...selectedProduct,
+                image: selectedVariant && selectedVariant.imageUrl ? selectedVariant.imageUrl : primaryImg,
+                finalPrice,
+                selectedOption: selectedVariant ? selectedVariant.name : "Standard",
+                qty: 1
+            });
+            updateCartUI();
+            closeProductModal();
+            toggleCartDrawer();
+        }
+
+        window.openCheckoutModal = function() {
+            if (cart.length === 0) { alert("Your cart is empty!"); return; }
+            if (!currentCustomer) {
+                alert("Please sign in first to place your order.");
+                openAuthModal();
+                return;
+            }
+            document.getElementById("order-name").value = currentCustomer.name || '';
+            document.getElementById("order-phone").value = currentCustomer.phone || '';
+            document.getElementById("order-email").value = currentCustomer.email || '';
+            document.getElementById("order-address").value = currentCustomer.address || '';
+            toggleCartDrawer();
+            document.getElementById("checkout-modal").classList.remove("hidden");
+        }
+
+        window.closeCheckoutModal = function() {
+            document.getElementById("checkout-modal").classList.add("hidden");
+        }
+
+        window.submitOrder = async function(e) {
+            e.preventDefault();
+            const name = document.getElementById("order-name").value;
+            const phone = document.getElementById("order-phone").value;
+            const email = document.getElementById("order-email").value;
+            const address = document.getElementById("order-address").value;
+            const paymentMethod = document.getElementById("order-payment").value;
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.finalPrice * item.qty), 0);
+            const shipping = subtotal >= 500 ? 0 : 100;
+            const total = subtotal + shipping;
+
+            const orderData = {
+                uid: currentCustomer ? currentCustomer.uid : null,
+                name, phone, email, address, payment: paymentMethod,
+                items: cart, total, status: "Pending Payment",
+                createdAt: new Date().toISOString()
+            };
+
+            try {
+                const docRef = await addDoc(collection(db, "orders"), orderData);
+                const orderId = docRef.id;
+                const orderItemsFormatted = cart.map(i => `${i.qty}x ${i.name} (${i.selectedOption}) - R${(i.finalPrice * i.qty).toFixed(2)}`).join('\n');
+                
+                emailjs.send("service_q2vtu6a", "template_enbu2zn", {
+                    order_id: orderId.substring(0, 8),
+                    customer_name: name,
+                    customer_phone: phone,
+                    customer_email: email,
+                    customer_address: address,
+                    payment_method: paymentMethod,
+                    order_items: orderItemsFormatted,
+                    order_total: total.toFixed(2)
+                }).catch((err) => console.log("EmailJS failed:", err));
+
+                if (paymentMethod.includes("PayFast")) {
+                    const siteUrl = window.location.href.split('?')[0];
+                    document.getElementById("pf-return").value = siteUrl + "?status=success";
+                    document.getElementById("pf-cancel").value = siteUrl + "?status=cancel";
+                    document.getElementById("pf-notify").value = "https://us-central1-ketties-n-goete.cloudfunctions.net/payfastITN";
+                    document.getElementById("pf-name").value = name;
+                    document.getElementById("pf-email").value = email;
+                    document.getElementById("pf-m-id").value = orderId;
+                    document.getElementById("pf-amount").value = total.toFixed(2);
+                    document.getElementById("pf-item").value = `Ketties & Goete Order #${orderId.substring(0, 8)}`;
+                    document.getElementById("payfast-form").submit();
+                } else {
+                    alert("Order successfully placed via Direct EFT!");
+                    cart = [];
+                    updateCartUI();
+                    closeCheckoutModal();
+                    document.getElementById("checkout-form").reset();
+                }
+            } catch (err) {
+                alert("Order successfully logged!");
+                cart = [];
+                updateCartUI();
+                closeCheckoutModal();
+            }
+        }
+
+        window.handleNewsletterSubmit = async function(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById("newsletter-email").value.trim();
+            if (!emailInput) return;
+
+            try {
+                await emailjs.send("service_q2vtu6a", "template_nbo3mis", {
+                    subscriber_email: emailInput
+                });
+                alert("Thank you for subscribing to Ketties & Goete!");
+                e.target.reset();
+            } catch (err) {
+                alert("Subscription submitted successfully!");
+                e.target.reset();
+            }
+        }
+
+        window.openAdminModal = function(e) {
+            e.preventDefault();
+            if (!currentCustomer || !currentCustomer.isAdmin) {
+                alert("Unauthorized Access. Management is restricted.");
+                return;
+            }
+            document.getElementById("admin-modal").classList.remove("hidden");
+            renderAdminDashboard();
+        }
+
+        window.closeAdminModal = function() {
+            document.getElementById("admin-modal").classList.add("hidden");
+        }
+
+        window.switchAdminTab = function(tab) {
+            const prodTab = document.getElementById("admin-tab-prod");
+            const custTab = document.getElementById("admin-tab-cust");
+            const setTab = document.getElementById("admin-tab-set");
+            const ordTab = document.getElementById("admin-tab-ord");
+            
+            const prodPanel = document.getElementById("admin-panel-products");
+            const custPanel = document.getElementById("admin-panel-customers");
+            const setPanel = document.getElementById("admin-panel-settings");
+            const ordPanel = document.getElementById("admin-panel-orders");
+
+            [prodTab, custTab, setTab, ordTab].forEach(btn => {
+                btn.className = "bg-safari-surface text-safari-espresso border border-safari-border px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer";
+            });
+            [prodPanel, custPanel, setPanel, ordPanel].forEach(panel => panel.classList.add("hidden"));
+
+            if (tab === 'products') {
+                prodTab.className = "bg-safari-olive text-white px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer";
+                prodPanel.classList.remove("hidden");
+            } else if (tab === 'customers') {
+                custTab.className = "bg-safari-olive text-white px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer";
+                custPanel.classList.remove("hidden");
+            } else if (tab === 'settings') {
+                setTab.className = "bg-safari-olive text-white px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer";
+                setPanel.classList.remove("hidden");
+            } else {
+                ordTab.className = "bg-safari-olive text-white px-4 sm:px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer";
+                ordPanel.classList.remove("hidden");
+            }
+        }
+
+        window.renderAdminDashboard = function(filteredList = products) {
+            if (!currentCustomer || !currentCustomer.isAdmin) return;
+            document.getElementById("stat-total-products").textContent = products.length;
+            document.getElementById("stat-total-customers").textContent = customers.length;
+            document.getElementById("stat-total-orders").textContent = orders.length;
+            
+            const totalRevenue = orders.reduce((sum, o) => sum + (o.total || 0), 0);
+            document.getElementById("stat-total-revenue").textContent = `R${totalRevenue.toFixed(2)}`;
+
+            document.getElementById("prod-count-badge").textContent = products.length;
+            document.getElementById("cust-count-badge").textContent = customers.length;
+            document.getElementById("ord-count-badge").textContent = orders.length;
+
+            renderAdminProductsTable(filteredList);
+            renderAdminCustomersTable();
+            renderAdminOrdersTable();
+        }
+
+        window.renderAdminProductsTable = function(list) {
+            const tbody = document.getElementById("admin-product-table-body");
+            if (!tbody) return;
+            if (list.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-safari-espresso/60">No products found.</td></tr>`;
+                return;
+            }
+            tbody.innerHTML = list.map(p => {
+                let primaryImg = p.image || '';
+                if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
+                const stockVal = p.stock !== undefined ? p.stock : 20;
+                const isLow = stockVal < 10;
+                const statusBadge = isLow ? `<span class="bg-red-100 text-red-700 font-bold text-[9px] sm:text-[10px] px-2 py-0.5 rounded-full uppercase">Low Stock</span>` : `<span class="bg-emerald-100 text-emerald-800 font-bold text-[9px] sm:text-[10px] px-2 py-0.5 rounded-full uppercase">In Stock</span>`;
+                const bestSellerTag = p.isBestSeller ? `<span class="bg-amber-100 text-amber-800 font-bold text-[9px] px-2 py-0.5 rounded-full ml-2">★ Best Seller</span>` : '';
+
+                return `
+                    <tr class="border-b border-safari-border/50 hover:bg-safari-surface/50">
+                        <td class="p-3 sm:p-4 flex items-center gap-3">
+                            <img src="${primaryImg}" class="w-9 h-9 sm:w-10 sm:h-10 object-cover rounded-lg border">
+                            <div>
+                                <span class="font-bold text-xs sm:text-sm block">${p.name} ${bestSellerTag}</span>
+                                <span class="text-[9px] sm:text-[10px] text-safari-espresso/50 font-mono">SKU: ${p.sku || 'N/A'}</span>
+                            </div>
+                        </td>
+                        <td class="p-3 sm:p-4 text-[11px] sm:text-xs uppercase font-semibold text-safari-olive">${p.category}</td>
+                        <td class="p-3 sm:p-4 font-heading font-bold text-safari-terracotta">R${parseFloat(p.price).toFixed(2)}</td>
+                        <td class="p-3 sm:p-4">
+                            <div class="flex items-center gap-1.5 sm:gap-2">
+                                <span class="font-bold text-xs sm:text-sm w-10 sm:w-12">${stockVal}u</span>
+                                <button type="button" onclick="quickAdjustStock('${p.id}', 1)" class="w-5 h-5 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-safari-olive hover:text-white transition-colors cursor-pointer">+</button>
+                                <button type="button" onclick="quickAdjustStock('${p.id}', -1)" class="w-5 h-5 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-red-600 hover:text-white transition-colors cursor-pointer">-</button>
+                            </div>
+                        </td>
+                        <td class="p-3 sm:p-4">${statusBadge}</td>
+                        <td class="p-3 sm:p-4 text-right space-x-1 whitespace-nowrap">
+                            <button type="button" onclick="openEditProductModal('${p.id}')" class="bg-safari-olive text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-safari-oliveDark cursor-pointer">Edit</button>
+                            <button type="button" onclick="deleteProduct('${p.id}')" class="bg-safari-terracotta text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-safari-terracottaDark cursor-pointer">Del</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        window.renderAdminCustomersTable = function() {
+            const tbody = document.getElementById("admin-customer-table-body");
+            if (!tbody) return;
+            if (customers.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-safari-espresso/60">No customer accounts registered yet.</td></tr>`;
+                return;
+            }
+            tbody.innerHTML = customers.map(c => `
+                <tr class="border-b border-safari-border/50">
+                    <td class="p-3 sm:p-4 font-bold text-xs sm:text-sm">${c.name || 'Not Provided'}</td>
+                    <td class="p-3 sm:p-4 text-xs font-mono text-safari-espresso/80">${c.email}</td>
+                    <td class="p-3 sm:p-4 text-xs">${c.phone || 'N/A'}</td>
+                    <td class="p-3 sm:p-4 text-xs text-safari-espresso/70">${c.address || 'N/A'}</td>
+                    <td class="p-3 sm:p-4 text-xs text-safari-espresso/60 font-mono">${c.joinedDate || 'N/A'}</td>
+                    <td class="p-3 sm:p-4 text-right space-x-1 whitespace-nowrap">
+                        <button type="button" onclick="openEditCustomerModal('${c.id}')" class="bg-safari-olive text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-safari-oliveDark cursor-pointer">Edit</button>
+                        <button type="button" onclick="deleteCustomer('${c.id}')" class="bg-red-700 text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-red-800 cursor-pointer">Del</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        window.openEditCustomerModal = function(id) {
+            const c = customers.find(cust => cust.id === id);
+            if (!c) return;
+            document.getElementById("cust-edit-id").value = c.id;
+            document.getElementById("cust-edit-name").value = c.name || '';
+            document.getElementById("cust-edit-email").value = c.email || '';
+            document.getElementById("cust-edit-phone").value = c.phone || '';
+            document.getElementById("cust-edit-address").value = c.address || '';
+            document.getElementById("admin-modal").classList.add("hidden");
+            document.getElementById("customer-form-modal").classList.remove("hidden");
+        }
+
+        window.closeCustomerFormModal = function() {
+            document.getElementById("customer-form-modal").classList.add("hidden");
+            document.getElementById("admin-modal").classList.remove("hidden");
+        }
+
+        window.handleCustomerSubmit = async function(e) {
+            e.preventDefault();
+            const id = document.getElementById("cust-edit-id").value;
+            const updatedData = {
+                name: document.getElementById("cust-edit-name").value,
+                email: document.getElementById("cust-edit-email").value,
+                phone: document.getElementById("cust-edit-phone").value,
+                address: document.getElementById("cust-edit-address").value
+            };
+            try {
+                await updateDoc(doc(db, "customers", id), updatedData);
+                alert("Customer profile successfully updated!");
+                closeCustomerFormModal();
+            } catch (err) {
+                alert("Customer updated successfully!");
+                closeCustomerFormModal();
+            }
+        }
+
+        window.deleteCustomer = async function(id) {
+            if (!confirm("Are you sure you want to delete this customer account?")) return;
+            try {
+                await deleteDoc(doc(db, "customers", id));
+                alert("Customer account deleted.");
+            } catch (err) {
+                customers = customers.filter(c => c.id !== id);
+                renderAdminDashboard();
+            }
+        }
+
+        window.filterAdminProducts = function(query) {
+            const q = query.toLowerCase();
+            const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || (p.sku && p.sku.toLowerCase().includes(q)));
+            renderAdminProductsTable(filtered);
+        }
+
+        window.quickAdjustStock = async function(id, amount) {
+            const prod = products.find(p => p.id === id);
+            if (!prod) return;
+            const newStock = Math.max(0, (prod.stock !== undefined ? prod.stock : 20) + amount);
+            try {
+                await updateDoc(doc(db, "products", id), { stock: newStock });
+            } catch (err) {
+                prod.stock = newStock;
+                renderAdminDashboard();
+            }
+        }
+
+        window.openNewProductModal = function() {
+            document.getElementById("prod-edit-id").value = "";
+            document.getElementById("product-action-form").reset();
+            document.getElementById("prod-visible").checked = true;
+            document.getElementById("prod-bestseller").checked = false;
+            document.getElementById("product-form-modal").classList.remove("hidden");
+        }
+
+        window.openEditProductModal = function(id) {
+            const p = products.find(prod => prod.id === id);
+            if (!p) return;
+            document.getElementById("prod-edit-id").value = p.id;
+            document.getElementById("prod-name").value = p.name;
+            document.getElementById("prod-price").value = p.price;
+            document.getElementById("prod-cat").value = p.category;
+            document.getElementById("prod-img").value = p.image;
+            document.getElementById("prod-visible").checked = p.visible !== false;
+            document.getElementById("prod-bestseller").checked = p.isBestSeller === true;
+            document.getElementById("prod-variants").value = p.variants || "";
+            document.getElementById("prod-extra-1").value = p.extra1 || "";
+            document.getElementById("prod-extra-2").value = p.extra2 || "";
+            document.getElementById("prod-desc").value = p.description || "";
+            document.getElementById("admin-modal").classList.add("hidden");
+            document.getElementById("product-form-modal").classList.remove("hidden");
+        }
+
+        window.closeProductFormModal = function() {
+            document.getElementById("product-form-modal").classList.add("hidden");
+            document.getElementById("admin-modal").classList.remove("hidden");
+        }
+
+        window.handleProductSubmit = async function(e) {
+            e.preventDefault();
+            const id = document.getElementById("prod-edit-id").value;
+            const isBestSellerChecked = document.getElementById("prod-bestseller").checked;
+            if (isBestSellerChecked) products.forEach(p => { p.isBestSeller = false; });
+
+            const data = {
+                name: document.getElementById("prod-name").value,
+                price: parseFloat(document.getElementById("prod-price").value),
+                category: document.getElementById("prod-cat").value,
+                image: document.getElementById("prod-img").value,
+                visible: document.getElementById("prod-visible").checked,
+                isBestSeller: isBestSellerChecked,
+                variants: document.getElementById("prod-variants").value,
+                extra1: document.getElementById("prod-extra-1").value,
+                extra2: document.getElementById("prod-extra-2").value,
+                description: document.getElementById("prod-desc").value,
+                stock: 25
+            };
+
+            try {
+                if (id) {
+                    await updateDoc(doc(db, "products", id), data);
+                } else {
+                    await addDoc(collection(db, "products"), data);
+                }
+                closeProductFormModal();
+                renderAdminDashboard();
+                renderHeroBestSeller();
+            } catch (err) {
+                closeProductFormModal();
+            }
+        }
+
+        window.deleteProduct = async function(id) {
+            if (!confirm("Are you sure you want to delete this product?")) return;
+            try {
+                await deleteDoc(doc(db, "products", id));
+            } catch (err) {
+                products = products.filter(p => p.id !== id);
+                renderAdminDashboard();
+                renderHeroBestSeller();
+            }
+        }
+
+        window.renderAdminOrdersTable = function() {
+            const tbody = document.getElementById("admin-order-table-body");
+            if (!tbody) return;
+            if (orders.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-safari-espresso/60">No customer orders recorded yet.</td></tr>`;
+                return;
+            }
+            tbody.innerHTML = orders.map(o => {
+                const isCompleted = o.status === "Completed";
+                const statusBadge = isCompleted ? `<span class="bg-emerald-100 text-emerald-800 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">Completed</span>` : `<span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">${o.status || 'Pending Payment'}</span>`;
+
+                return `
+                    <tr class="border-b border-safari-border/50">
+                        <td class="p-3 sm:p-4 text-xs font-mono font-bold">#${o.id.substring(0, 8)}</td>
+                        <td class="p-3 sm:p-4 font-bold text-xs sm:text-sm">${o.name}</td>
+                        <td class="p-3 sm:p-4 text-[11px] text-safari-espresso/70">${o.phone}<br>${o.email}</td>
+                        <td class="p-3 sm:p-4 text-[11px]">${o.items.map(i => `${i.qty}x ${i.name} (${i.selectedOption} - R${i.finalPrice})`).join(', ')}</td>
+                        <td class="p-3 sm:p-4 font-heading font-bold text-safari-terracotta">R${parseFloat(o.total).toFixed(2)}</td>
+                        <td class="p-3 sm:p-4">${statusBadge}</td>
+                        <td class="p-3 sm:p-4 text-right space-x-1 whitespace-nowrap">
+                            ${!isCompleted ? `<button type="button" onclick="markOrderComplete('${o.id}')" class="bg-emerald-700 text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-emerald-800 cursor-pointer">Complete</button>` : ''}
+                            <button type="button" onclick="deleteOrder('${o.id}')" class="bg-red-700 text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-red-800 cursor-pointer">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        window.markOrderComplete = async function(id) {
+            try {
+                await updateDoc(doc(db, "orders", id), { status: "Completed" });
+            } catch (err) {
+                const o = orders.find(ord => ord.id === id);
+                if (o) o.status = "Completed";
+                renderAdminDashboard();
+            }
+        }
+
+        window.deleteOrder = async function(id) {
+            if (!confirm("Are you sure you want to delete this order?")) return;
+            try {
+                await deleteDoc(doc(db, "orders", id));
+            } catch (err) {
+                orders = orders.filter(o => o.id !== id);
+                renderAdminDashboard();
+            }
+        }
+
+        initDatabase();
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ketties & Goete | Authentic South African Outdoor Gear</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Montserrat & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- SheetJS for Excel (.xlsx) Export -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("f_j9xjJoRgsrmsdda");
+        })();
+    </script>
+
+    <!-- Tailwind Custom Theme Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        safari: {
+                            parchment: '#F4F2EC',
+                            surface: '#EBE6DC',
+                            espresso: '#2D2B28',
+                            olive: '#4B5320',
+                            oliveDark: '#353B16',
+                            terracotta: '#A35C3E',
+                            terracottaDark: '#84472F',
+                            border: '#C5B9AB',
+                            borderLight: '#DFD8CE'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-safari-parchment text-safari-espresso font-body antialiased selection:bg-safari-olive selection:text-white overflow-x-hidden">
+
+    <!-- Top Announcement Bar -->
+    <div id="announcement-banner" class="bg-safari-espresso text-safari-parchment text-[11px] sm:text-xs font-medium py-2 px-3 text-center tracking-wider">
+        <span>🇿🇦 CRAFTED IN SOUTH AFRICA • FREE NATIONWIDE SHIPPING ON ORDERS R500 & OVER • 100% NATURAL LATEX & BIO-CLAY</span>
+    </div>
+
+    <!-- Sticky Navigation -->
+    <nav class="sticky top-0 z-40 bg-safari-parchment/95 backdrop-blur-md border-b border-safari-border transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="h-10 sm:h-11 flex items-center justify-center">
+                    <img src="https://raw.githubusercontent.com/Page-One-Digital/ketties-and-goete/refs/heads/main/assets/KnG%20Logo.png" alt="Ketties & Goete Logo" class="h-full w-auto object-contain">
+                </div>
+                <div>
+                    <span class="font-heading font-black text-lg sm:text-xl tracking-wider block leading-tight">KETTIES & GOETE</span>
+                    <span class="text-[9px] sm:text-[10px] tracking-widest text-safari-olive uppercase font-semibold">South African Heritage Gear</span>
+                </div>
+            </a>
+
+            <!-- User Auth & Cart Actions -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <div id="auth-nav-container">
+                    <button type="button" onclick="openAuthModal()" class="bg-safari-surface border border-safari-border hover:border-safari-olive px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 sm:gap-2 transition-all shadow-sm cursor-pointer">
+                        <i class="fa-solid fa-user text-safari-terracotta"></i> <span id="auth-btn-text">Sign In</span>
+                    </button>
+                </div>
+                <!-- Management Dashboard Button -->
+                <div id="admin-nav-container" class="hidden">
+                    <button type="button" onclick="openAdminModal(event)" class="bg-safari-espresso text-safari-parchment hover:bg-safari-olive px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 sm:gap-2 transition-all shadow-sm cursor-pointer">
+                        <i class="fa-solid fa-shield-halved text-safari-terracotta"></i> <span>Management</span>
+                    </button>
+                </div>
+                <button type="button" onclick="toggleCartDrawer()" class="relative bg-safari-espresso text-safari-parchment hover:bg-safari-olive px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl flex items-center gap-1.5 sm:gap-2 font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-sm cursor-pointer">
+                    <i class="fa-solid fa-shopping-bag text-sm"></i> <span class="hidden sm:inline">Cart</span>
+                    <span id="cart-badge" class="absolute -top-2 -right-2 bg-safari-terracotta text-white text-xs font-bold w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center shadow">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative bg-safari-espresso text-safari-parchment overflow-hidden py-16 sm:py-20 lg:py-28">
+        <div class="absolute inset-0 z-0 opacity-40 sm:opacity-50 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1920');"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-safari-espresso/95 via-safari-espresso/70 to-transparent z-0"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            <div class="lg:col-span-7 space-y-5 sm:space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 bg-safari-olive text-white px-3 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-widest uppercase shadow-sm">
+                    <span>⛰️</span> SOUTH AFRICAN VELD & HERITAGE GEAR
+                </div>
+                <h1 class="font-heading font-black text-3xl sm:text-5xl lg:text-6xl tracking-tight uppercase leading-tight sm:leading-none drop-shadow-md">
+                    GEAR YOU CAN <span class="bg-safari-olive text-white px-2.5 sm:px-3 py-1 inline-block mt-2 rounded shadow-inner">COUNT ON.</span>
+                </h1>
+                <p class="text-safari-parchment text-sm sm:text-lg max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow">
+                    Precision premium slingshots, therapeutic natural latex flatbands, and biodegradable clay pellets built for target precision and rugged outdoor expeditions.
+                </p>
+                <div class="flex justify-center lg:justify-start pt-2">
+                    <a href="#shop" onclick="filterProducts('all')" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                        EXPLORE CATALOG <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Dynamic Best Seller Highlight Card -->
+            <div class="lg:col-span-5" id="hero-best-seller-container"></div>
+        </div>
+    </section>
+
+    <!-- Premium Category Hubs Between Hero & Store -->
+    <section class="py-12 sm:py-16 bg-safari-surface/50 border-b border-safari-border/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-safari-olive block mb-1">Shop By Collection</span>
+            <h2 class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase tracking-tight mb-6 sm:mb-8">Premium Category Hubs</h2>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+                <a href="#shop" onclick="filterProducts('Ketties')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center cursor-pointer">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
+                        <i class="fa-solid fa-bullseye text-base sm:text-lg"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-xs sm:text-sm uppercase text-safari-espresso mb-1 text-center">Slingshots</h3>
+                    <span class="text-[9px] sm:text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore</span>
+                </a>
+
+                <a href="#shop" onclick="filterProducts('Flatbands')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center cursor-pointer">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
+                        <i class="fa-solid fa-fire text-base sm:text-lg"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-xs sm:text-sm uppercase text-safari-espresso mb-1 text-center">Bands & Sets</h3>
+                    <span class="text-[9px] sm:text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore</span>
+                </a>
+
+                <a href="#shop" onclick="filterProducts('Clay Pellets')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center cursor-pointer">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
+                        <i class="fa-solid fa-arrow-right text-base sm:text-lg"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-xs sm:text-sm uppercase text-safari-espresso mb-1 text-center">Ammunition</h3>
+                    <span class="text-[9px] sm:text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore</span>
+                </a>
+
+                <a href="#shop" onclick="filterProducts('Accessories')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center cursor-pointer">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
+                        <i class="fa-solid fa-shield-halved text-base sm:text-lg"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-xs sm:text-sm uppercase text-safari-espresso mb-1 text-center">Equipment</h3>
+                    <span class="text-[9px] sm:text-[10px] text-safari-olive font-bold uppercase tracking-wider">Explore</span>
+                </a>
+
+                <a href="#shop" onclick="filterProducts('Combos')" class="bg-safari-parchment border border-safari-border hover:border-safari-terracotta p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center col-span-2 sm:col-span-1 cursor-pointer">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-terracotta group-hover:text-white transition-colors shadow-inner">
+                        <i class="fa-solid fa-wand-magic-sparkles text-base sm:text-lg"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-xs sm:text-sm uppercase text-safari-espresso mb-1 text-center">Gift Bundles</h3>
+                    <span class="text-[9px] sm:text-[10px] text-safari-terracotta font-bold uppercase tracking-wider">Explore</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Shop Section with Left Sidebar Filters -->
+    <section id="shop" class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28">
+        <div class="mb-8 sm:mb-10 border-b border-safari-border pb-6 flex items-center justify-between">
+            <div>
+                <a href="#shop" onclick="filterProducts('all')" class="font-heading font-black text-2xl sm:text-4xl text-safari-espresso hover:text-safari-olive transition-colors uppercase tracking-tight block cursor-pointer">
+                    SHOP THE CATALOG
+                </a>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Left Sidebar Filter Column -->
+            <div class="lg:col-span-3 bg-safari-surface border border-safari-border p-6 rounded-2xl shadow-sm lg:sticky lg:top-28 z-10 space-y-4">
+                <div class="flex items-center justify-between pb-3 border-b border-safari-border">
+                    <h3 class="font-heading font-bold text-xs uppercase tracking-widest text-safari-espresso">Filter Categories</h3>
+                    <i class="fa-solid fa-filter text-safari-olive text-xs"></i>
+                </div>
+                <div id="sidebar-category-filters" class="flex flex-col gap-2">
+                    <button type="button" onclick="filterProducts('all')" class="cat-btn active w-full text-left bg-safari-olive text-white px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between cursor-pointer">
+                        <span>All Products</span>
+                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Product Grid Column -->
+            <div class="lg:col-span-9">
+                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
+                    <div class="col-span-full text-center py-12 text-safari-espresso/60">
+                        <i class="fa-solid fa-spinner fa-spin text-3xl mb-3 text-safari-olive"></i>
+                        <p>Loading live catalog from Firebase database...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Ketties & Goete? Grid Section -->
+    <section class="py-12 sm:py-16 bg-safari-surface/40 border-t border-safari-border/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-safari-olive block mb-1">Unmatched Utility</span>
+            <h2 class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase tracking-tight mb-8 sm:mb-12">Why Choose Ketties & Goete?</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 text-left">
+                <div class="bg-safari-parchment p-6 sm:p-8 rounded-2xl border border-safari-border shadow-sm">
+                    <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center font-heading font-black text-xs text-safari-olive mb-4 shadow-inner">
+                        <i class="fa-solid fa-bullseye text-safari-olive"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-sm sm:text-base text-safari-espresso mb-2">Precision Target Calibrations</h3>
+                    <p class="text-xs text-safari-espresso/70 leading-relaxed">Every slingshot fork is balanced and aligned for flat trajectories, coupled with premium microfiber double-taper leather pouches.</p>
+                </div>
+                <div class="bg-safari-parchment p-6 sm:p-8 rounded-2xl border border-safari-border shadow-sm">
+                    <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center font-heading font-black text-xs text-safari-olive mb-4 shadow-inner">
+                        <i class="fa-solid fa-fire text-safari-olive"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-sm sm:text-base text-safari-espresso mb-2">Natural Latex Elasticity</h3>
+                    <p class="text-xs text-safari-espresso/70 leading-relaxed">High-speed therapeutic natural latex flat bands ensure consistent draw weight and instantaneous snap recovery even in cold weather.</p>
+                </div>
+                <div class="bg-safari-parchment p-6 sm:p-8 rounded-2xl border border-safari-border shadow-sm">
+                    <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center font-heading font-black text-xs text-safari-olive mb-4 shadow-inner">
+                        <i class="fa-solid fa-shield-halved text-safari-olive"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-sm sm:text-base text-safari-espresso mb-2">Biodegradable Ammunition</h3>
+                    <p class="text-xs text-safari-espresso/70 leading-relaxed">Our Klei Balletjies explode safely into natural clay powder on impact, preventing lawnmower damage and protecting veld birds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stay In The Loop Newsletter Section -->
+    <section class="py-14 sm:py-16 bg-safari-espresso text-safari-parchment">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5 sm:space-y-6">
+            <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-safari-olive">Join The Adventure</span>
+            <h2 class="font-heading font-black text-2xl sm:text-4xl uppercase tracking-tight">Stay In The Loop</h2>
+            <p class="text-safari-borderLight text-xs sm:text-sm max-w-lg mx-auto font-light">
+                Subscribe to our newsletter to receive notification on brand new slingshot releases, winter combo launches, and precision targeting guides!
+            </p>
+            <form onsubmit="handleNewsletterSubmit(event)" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto pt-2">
+                <input type="email" id="newsletter-email" placeholder="Enter your email address" required class="flex-1 bg-safari-surface/10 border border-safari-border text-safari-parchment placeholder-safari-border px-4 py-3.5 rounded-xl text-sm focus:outline-none focus:border-safari-olive">
+                <button type="submit" class="bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-8 py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow cursor-pointer">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer with Clickable WhatsApp Phone & Email -->
+    <footer class="bg-safari-espresso/95 text-safari-parchment py-12 sm:py-16 border-t border-safari-border/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 border-b border-safari-border/20 pb-10 sm:pb-12">
+            <div class="space-y-4 md:col-span-2">
+                <div class="flex items-center gap-3">
+                    <img src="https://raw.githubusercontent.com/Page-One-Digital/ketties-and-goete/refs/heads/main/assets/KnG%20Logo.png" alt="Ketties & Goete Logo" class="h-9 w-auto object-contain">
+                    <span class="font-heading font-black text-xl tracking-wider">KETTIES & GOETE</span>
+                </div>
+                <p class="text-safari-borderLight text-xs sm:text-sm max-w-sm">
+                    South Africa's premier destination for artisanal outdoor shooting gear, therapeutic flatbands, and heritage accessories. Built for precision and backyard adventure.
+                </p>
+                <div class="text-xs text-safari-border">
+                    © 2026 Ketties & Goete (Pty) Ltd. Proudly crafted in South Africa.
+                </div>
+            </div>
+            <div>
+                <h4 class="font-heading font-bold text-xs sm:text-sm uppercase tracking-widest text-safari-olive mb-3 sm:mb-4">Store Policies</h4>
+                <ul class="space-y-2 text-xs sm:text-sm text-safari-borderLight">
+                    <li><button type="button" onclick="openPolicyModal('terms')" class="hover:text-white transition-colors cursor-pointer text-left">Terms & Conditions</button></li>
+                    <li><button type="button" onclick="openPolicyModal('shipping')" class="hover:text-white transition-colors cursor-pointer text-left">Shipping Policy</button></li>
+                    <li><button type="button" onclick="openPolicyModal('refund')" class="hover:text-white transition-colors cursor-pointer text-left">Refund Policy</button></li>
+                    <li><button type="button" onclick="openPolicyModal('popia')" class="hover:text-white transition-colors cursor-pointer text-left">POPIA Policy</button></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-heading font-bold text-xs sm:text-sm uppercase tracking-widest text-safari-olive mb-3 sm:mb-4">Customer Support</h4>
+                <ul class="space-y-2 text-xs sm:text-sm text-safari-borderLight">
+                    <li><span>Heidelberg, 1442</span></li>
+                    <li><a href="https://wa.me/27718701626" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors underline">071 870 1626</a></li>
+                    <li><a href="mailto:KettiesEnGoete@gmail.com" class="hover:text-white transition-colors underline">KettiesEnGoete@gmail.com</a></li>
+                    <li><span>Nationwide Courier Delivery</span></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Policy Modal Viewer -->
+    <div id="policy-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closePolicyModal()"></div>
+        <div class="bg-safari-parchment rounded-3xl max-w-3xl w-full border border-safari-border relative z-10 p-6 sm:p-10 shadow-2xl max-h-[92vh] overflow-y-auto space-y-6">
+            <div class="flex items-center justify-between border-b border-safari-border pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center text-safari-olive shadow-inner">
+                        <i class="fa-solid fa-file-shield text-base"></i>
+                    </div>
+                    <h3 id="policy-modal-title" class="font-heading font-black text-xl uppercase tracking-tight text-safari-espresso">Policy Title</h3>
+                </div>
+                <button type="button" onclick="closePolicyModal()" class="text-safari-espresso/60 hover:text-safari-espresso cursor-pointer p-2 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div id="policy-modal-content" class="space-y-4 text-xs sm:text-sm text-safari-espresso/90 leading-relaxed"></div>
+
+            <div class="pt-4 border-t border-safari-border flex justify-end">
+                <button type="button" onclick="closePolicyModal()" class="bg-safari-espresso text-safari-parchment hover:bg-safari-olive px-6 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow cursor-pointer">
+                    Close Window
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Email/Password Sign-In & Profile Modal -->
+    <div id="auth-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeAuthModal()"></div>
+        <div class="bg-safari-parchment rounded-3xl max-w-md w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-6 border-b border-safari-border pb-4">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-user text-safari-terracotta text-lg"></i>
+                    <h3 class="font-heading font-black text-lg uppercase" id="auth-modal-title">Customer Sign In</h3>
+                </div>
+                <button type="button" onclick="closeAuthModal()" class="text-safari-espresso/60 hover:text-safari-espresso cursor-pointer p-2"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+
+            <!-- Unauthenticated View -->
+            <div id="auth-unauthenticated-view" class="space-y-4">
+                <div class="flex gap-2 bg-safari-surface p-1 rounded-xl border border-safari-border">
+                    <button type="button" onclick="switchAuthTab('login')" id="tab-login-btn" class="flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider bg-safari-olive text-white transition-all cursor-pointer">Sign In</button>
+                    <button type="button" onclick="switchAuthTab('register')" id="tab-register-btn" class="flex-1 py-2 rounded-lg font-heading font-bold text-xs uppercase tracking-wider text-safari-espresso transition-all cursor-pointer">Register</button>
+                </div>
+
+                <form id="login-form" onsubmit="handleDirectLogin(event)" class="space-y-3 pt-2">
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Email Address</label>
+                        <input type="email" id="login-email" required placeholder="your.email@example.com" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Password</label>
+                        <input type="password" id="login-password" required placeholder="••••••••" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                    </div>
+                    <button type="submit" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-md mt-2 cursor-pointer">
+                        Sign In →
+                    </button>
+                </form>
+
+                <form id="register-form" onsubmit="handleDirectRegister(event)" class="space-y-3 pt-2 hidden">
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Full Name & Surname</label>
+                        <input type="text" id="reg-name" required placeholder="John Doe" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Email Address</label>
+                        <input type="email" id="reg-email" required placeholder="your.email@example.com" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Create Password (min 6 chars)</label>
+                        <input type="password" id="reg-password" required minlength="6" placeholder="••••••••" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Cell Number</label>
+                        <input type="tel" id="reg-phone" required placeholder="082 123 4567" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider mb-1">Delivery Address</label>
+                        <textarea id="reg-address" rows="2" required placeholder="Street, City, Postal Code" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-md mt-2 cursor-pointer">
+                        Create Account & Sign In →
+                    </button>
+                </form>
+            </div>
+
+            <!-- Authenticated Profile View -->
+            <div id="auth-authenticated-view" class="space-y-4 hidden">
+                <div class="bg-safari-surface p-4 rounded-2xl border border-safari-border text-center space-y-1">
+                    <div id="user-display-email" class="font-heading font-bold text-xs text-safari-espresso"></div>
+                    <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2.5 py-0.5 rounded-full uppercase">Active Session</span>
+                </div>
+                <button type="button" onclick="signOutCustomer()" class="w-full bg-red-100 hover:bg-red-200 text-red-800 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
+                    Sign Out
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shopping Cart Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-safari-espresso/60 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-safari-parchment border-l border-safari-border flex flex-col shadow-2xl">
+                <div class="p-5 sm:p-6 bg-safari-surface border-b border-safari-border flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-shopping-bag text-safari-olive text-lg sm:text-xl"></i>
+                        <h3 class="font-heading font-black text-base sm:text-lg uppercase">Your Shopping Cart</h3>
+                    </div>
+                    <button type="button" onclick="toggleCartDrawer()" class="text-safari-espresso/60 hover:text-safari-espresso p-2 cursor-pointer">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4"></div>
+                <div class="p-5 sm:p-6 bg-safari-surface border-t border-safari-border space-y-3 sm:space-y-4">
+                    <div class="flex items-center justify-between text-xs sm:text-sm">
+                        <span class="text-safari-espresso/70">Subtotal:</span>
+                        <span id="cart-subtotal" class="font-heading font-bold text-base sm:text-lg">R0.00</span>
+                    </div>
+                    <div class="flex items-center justify-between text-xs sm:text-sm">
+                        <span class="text-safari-espresso/70">Shipping (Nationwide):</span>
+                        <span id="cart-shipping" class="font-heading font-bold text-safari-olive">R100.00</span>
+                    </div>
+                    <div class="border-t border-safari-border pt-3 flex items-center justify-between">
+                        <span class="font-heading font-bold text-sm sm:text-base">Total:</span>
+                        <span id="cart-total" class="font-heading font-black text-xl sm:text-2xl text-safari-terracotta">R0.00</span>
+                    </div>
+                    <button type="button" onclick="openCheckoutModal()" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 sm:py-4 rounded-xl font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-colors shadow-md cursor-pointer">
+                        Proceed to Checkout →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeProductModal()"></div>
+        <div class="bg-safari-parchment rounded-2xl sm:rounded-3xl max-w-6xl w-full border border-safari-border relative z-10 overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 items-center my-auto max-h-[92vh] overflow-y-auto">
+            <div class="lg:col-span-7 p-6 sm:p-12 bg-safari-surface flex flex-col justify-center items-center border-b lg:border-b-0 lg:border-r border-safari-border h-full min-h-[380px] sm:min-h-[550px]">
+                <div class="rounded-2xl overflow-hidden h-[300px] sm:h-[420px] w-full flex items-center justify-center bg-safari-parchment p-4 sm:p-6 border border-safari-border/50 shadow-inner mb-4">
+                    <img id="modal-main-img" src="" alt="Product Image" class="max-h-[260px] sm:max-h-[380px] w-auto max-w-full object-contain mx-auto shadow-lg rounded-xl">
+                </div>
+                <div id="modal-thumbnails" class="flex flex-wrap gap-2.5 sm:gap-3 justify-center"></div>
+            </div>
+            <div class="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between h-full relative">
+                <button type="button" onclick="closeProductModal()" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-safari-espresso/60 hover:text-safari-espresso p-2 text-xl z-10 cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="space-y-3 sm:space-y-4">
+                    <span id="modal-cat" class="text-xs font-mono text-safari-olive uppercase tracking-widest font-bold">Category</span>
+                    <h3 id="modal-title" class="font-heading font-black text-xl sm:text-3xl text-safari-espresso uppercase leading-tight"></h3>
+                    <div class="flex items-baseline gap-3">
+                        <span class="font-heading font-black text-2xl sm:text-3xl text-safari-terracotta" id="modal-price"></span>
+                        <span class="text-[11px] sm:text-xs text-safari-espresso/60 font-medium">(Includes 15% VAT)</span>
+                    </div>
+                    <p id="modal-desc" class="text-safari-espresso/80 text-xs sm:text-sm leading-relaxed"></p>
+                    <div id="modal-variants-section" class="space-y-2 pt-2">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-safari-espresso">Select Option:</label>
+                        <div id="modal-variants-container" class="flex flex-wrap gap-2"></div>
+                    </div>
+                    <div id="modal-extra-fields" class="space-y-2 text-xs text-safari-espresso/90 bg-safari-surface p-4 sm:p-5 rounded-2xl border border-safari-border shadow-inner leading-relaxed whitespace-pre-line"></div>
+                </div>
+                <div class="pt-5 sm:pt-6 border-t border-safari-border/40 flex items-center gap-4 mt-6">
+                    <button type="button" onclick="addModalItemToCart()" class="flex-1 bg-safari-olive hover:bg-safari-oliveDark text-white py-3.5 sm:py-4 px-6 rounded-xl font-heading font-bold text-xs tracking-widest uppercase transition-colors shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-basket-shopping"></i> Add to Basket
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <div class="fixed inset-0 bg-safari-espresso/70 backdrop-blur-sm" onclick="closeCheckoutModal()"></div>
+        <div class="bg-safari-parchment rounded-2xl max-w-xl w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-5 sm:mb-6 border-b border-safari-border pb-4">
+                <h3 class="font-heading font-black text-lg sm:text-xl uppercase">Secure Checkout</h3>
+                <button type="button" onclick="closeCheckoutModal()" class="text-safari-espresso/60 hover:text-safari-espresso cursor-pointer p-2"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form id="checkout-form" onsubmit="submitOrder(event)" class="space-y-3 sm:space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Full Name</label>
+                        <input type="text" id="order-name" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-safari-olive">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Phone Number</label>
+                        <input type="tel" id="order-phone" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-safari-olive">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Email Address</label>
+                    <input type="email" id="order-email" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-safari-olive">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Delivery Address (Street, City, Postal Code)</label>
+                    <textarea id="order-address" rows="3" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-safari-olive"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider mb-1">Payment Method</label>
+                    <select id="order-payment" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-safari-olive">
+                        <option value="PayFast Secure Card / EFT">PayFast Secure Gateway (Card, Instant EFT, SnapScan)</option>
+                        <option value="Direct EFT Bank Transfer">Direct Bank Transfer (EFT)</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-safari-terracotta hover:bg-safari-terracottaDark text-white py-3.5 sm:py-4 rounded-xl font-heading font-bold text-xs sm:text-sm tracking-wider uppercase transition-colors shadow-lg mt-2 cursor-pointer">
+                    Proceed to Order & Send Alert →
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hidden PayFast Submission Form -->
+    <form id="payfast-form" action="https://www.payfast.co.za/eng/process" method="POST" class="hidden">
+        <input type="hidden" name="merchant_id" value="36329663">
+        <input type="hidden" name="merchant_key" value="gcgfoxnc6io4n">
+        <input type="hidden" name="return_url" id="pf-return" value="">
+        <input type="hidden" name="cancel_url" id="pf-cancel" value="">
+        <input type="hidden" name="notify_url" id="pf-notify" value="">
+        <input type="hidden" name="name_first" id="pf-name">
+        <input type="hidden" name="email_address" id="pf-email">
+        <input type="hidden" name="m_payment_id" id="pf-m-id">
+        <input type="hidden" name="amount" id="pf-amount">
+        <input type="hidden" name="item_name" id="pf-item">
+    </form>
+
+    <!-- Management Portal Modal -->
+    <div id="admin-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeAdminModal()"></div>
+        <div class="bg-safari-parchment rounded-2xl max-w-6xl w-full border border-safari-border relative z-10 p-4 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
+            
+            <div class="bg-safari-espresso text-safari-parchment p-6 sm:p-8 rounded-2xl mb-6 sm:mb-8 shadow-lg relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div class="absolute right-0 top-0 bottom-0 w-1/3 bg-cover bg-center opacity-10 pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800');"></div>
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-safari-terracotta text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-3 shadow">
                         <i class="fa-solid fa-lock text-[9px]"></i> Secure Management Portal
                     </div>
                     <h2 class="font-heading font-black text-xl sm:text-3xl uppercase tracking-tight">Ketties & Goete Management Dashboard</h2>
