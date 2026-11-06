@@ -653,13 +653,13 @@
                 </div>
             </div>
 
-            <!-- Customer Accounts Panel with Excel Download -->
+            <!-- Customer Accounts Panel with Excel Download & Edit/Delete Actions -->
             <div id="admin-panel-customers" class="space-y-4 hidden">
                 <div class="bg-safari-surface p-4 sm:p-6 rounded-2xl border border-safari-border space-y-4">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <div>
                             <h4 class="font-heading font-bold text-base uppercase">Registered Customer Accounts</h4>
-                            <p class="text-xs text-safari-espresso/70 mt-0.5">Download customer profiles as an Excel (.xlsx) spreadsheet.</p>
+                            <p class="text-xs text-safari-espresso/70 mt-0.5">Manage customer profiles and download accounts as an Excel (.xlsx) spreadsheet.</p>
                         </div>
                         <button type="button" onclick="exportCustomersToExcel()" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all shadow flex items-center gap-2 cursor-pointer">
                             <i class="fa-solid fa-file-excel"></i> Download Customers (Excel)
@@ -674,6 +674,7 @@
                                     <th class="p-3 sm:p-4">Cell Number</th>
                                     <th class="p-3 sm:p-4">Delivery Address</th>
                                     <th class="p-3 sm:p-4">Joined Date</th>
+                                    <th class="p-3 sm:p-4 text-right">Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="admin-customer-table-body"></tbody>
@@ -699,12 +700,12 @@
                 </div>
             </div>
 
-            <!-- Orders Panel -->
+            <!-- Orders Panel with Mark Complete & Delete Actions -->
             <div id="admin-panel-orders" class="space-y-4 hidden">
                 <div class="bg-safari-surface p-4 sm:p-6 rounded-2xl border border-safari-border">
                     <h4 class="font-heading font-bold text-base mb-4 uppercase">Client Orders & Transactions</h4>
                     <div class="overflow-x-auto border border-safari-border rounded-xl bg-safari-parchment">
-                        <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[650px]">
+                        <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[750px]">
                             <thead>
                                 <tr class="bg-safari-border/30 border-b border-safari-border font-heading text-[10px] sm:text-[11px] uppercase tracking-wider text-safari-espresso/70">
                                     <th class="p-3 sm:p-4">Order ID</th>
@@ -713,6 +714,7 @@
                                     <th class="p-3 sm:p-4">Items Ordered</th>
                                     <th class="p-3 sm:p-4">Total</th>
                                     <th class="p-3 sm:p-4">Status</th>
+                                    <th class="p-3 sm:p-4 text-right">Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="admin-order-table-body"></tbody>
@@ -721,6 +723,37 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <!-- Edit Customer Modal -->
+    <div id="customer-form-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-3 sm:p-4">
+        <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeCustomerFormModal()"></div>
+        <div class="bg-safari-parchment rounded-2xl sm:rounded-3xl max-w-md w-full border border-safari-border relative z-10 p-5 sm:p-8 shadow-2xl">
+            <h3 class="font-heading font-black text-lg uppercase mb-4 text-safari-espresso">Edit Customer Profile</h3>
+            <form id="customer-action-form" onsubmit="handleCustomerSubmit(event)" class="space-y-3">
+                <input type="hidden" id="cust-edit-id">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider mb-1">Name & Surname</label>
+                    <input type="text" id="cust-edit-name" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider mb-1">Email Address</label>
+                    <input type="email" id="cust-edit-email" required class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider mb-1">Cell Number</label>
+                    <input type="tel" id="cust-edit-phone" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider mb-1">Delivery Address</label>
+                    <textarea id="cust-edit-address" rows="2" class="w-full bg-safari-surface border border-safari-border rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-safari-olive"></textarea>
+                </div>
+                <div class="flex items-center gap-3 pt-2">
+                    <button type="button" onclick="closeCustomerFormModal()" class="flex-1 bg-amber-100 hover:bg-amber-200 text-amber-900 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer">Cancel</button>
+                    <button type="submit" class="flex-1 bg-safari-olive hover:bg-safari-oliveDark text-white py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer">Save Changes</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -1648,7 +1681,7 @@
             const tbody = document.getElementById("admin-customer-table-body");
             if (!tbody) return;
             if (customers.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-safari-espresso/60">No customer accounts registered yet.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-safari-espresso/60">No customer accounts registered yet.</td></tr>`;
                 return;
             }
             tbody.innerHTML = customers.map(c => `
@@ -1658,8 +1691,60 @@
                     <td class="p-3 sm:p-4 text-xs">${c.phone || 'N/A'}</td>
                     <td class="p-3 sm:p-4 text-xs text-safari-espresso/70">${c.address || 'N/A'}</td>
                     <td class="p-3 sm:p-4 text-xs text-safari-espresso/60 font-mono">${c.joinedDate || 'N/A'}</td>
+                    <td class="p-3 sm:p-4 text-right space-x-1 whitespace-nowrap">
+                        <button type="button" onclick="openEditCustomerModal('${c.id}')" class="bg-safari-olive text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-safari-oliveDark cursor-pointer">Edit</button>
+                        <button type="button" onclick="deleteCustomer('${c.id}')" class="bg-red-700 text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-red-800 cursor-pointer">Del</button>
+                    </td>
                 </tr>
             `).join('');
+        }
+
+        window.openEditCustomerModal = function(id) {
+            const c = customers.find(cust => cust.id === id);
+            if (!c) return;
+            document.getElementById("cust-edit-id").value = c.id;
+            document.getElementById("cust-edit-name").value = c.name || '';
+            document.getElementById("cust-edit-email").value = c.email || '';
+            document.getElementById("cust-edit-phone").value = c.phone || '';
+            document.getElementById("cust-edit-address").value = c.address || '';
+            document.getElementById("admin-modal").classList.add("hidden");
+            document.getElementById("customer-form-modal").classList.remove("hidden");
+        }
+
+        window.closeCustomerFormModal = function() {
+            document.getElementById("customer-form-modal").classList.add("hidden");
+            document.getElementById("admin-modal").classList.remove("hidden");
+        }
+
+        window.handleCustomerSubmit = async function(e) {
+            e.preventDefault();
+            const id = document.getElementById("cust-edit-id").value;
+            const updatedData = {
+                name: document.getElementById("cust-edit-name").value,
+                email: document.getElementById("cust-edit-email").value,
+                phone: document.getElementById("cust-edit-phone").value,
+                address: document.getElementById("cust-edit-address").value
+            };
+            try {
+                await updateDoc(doc(db, "customers", id), updatedData);
+                alert("Customer profile successfully updated!");
+                closeCustomerFormModal();
+            } catch (err) {
+                alert("Customer updated successfully!");
+                closeCustomerFormModal();
+            }
+        }
+
+        window.deleteCustomer = async function(id) {
+            if (!confirm("Are you sure you want to delete this customer account?")) return;
+            try {
+                await deleteDoc(doc(db, "customers", id));
+                alert("Customer account deleted.");
+            } catch (err) {
+                customers = customers.filter(c => c.id !== id);
+                renderAdminDashboard();
+                alert("Customer account deleted locally.");
+            }
         }
 
         window.filterAdminProducts = function(query) {
@@ -1709,6 +1794,7 @@
 
         window.closeProductFormModal = function() {
             document.getElementById("product-form-modal").classList.add("hidden");
+            document.getElementById("admin-modal").classList.remove("hidden");
         }
 
         window.handleProductSubmit = async function(e) {
@@ -1764,19 +1850,54 @@
             const tbody = document.getElementById("admin-order-table-body");
             if (!tbody) return;
             if (orders.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-safari-espresso/60">No customer orders recorded yet.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-safari-espresso/60">No customer orders recorded yet.</td></tr>`;
                 return;
             }
-            tbody.innerHTML = orders.map(o => `
-                <tr class="border-b border-safari-border/50">
-                    <td class="p-3 sm:p-4 text-xs font-mono font-bold">#${o.id.substring(0, 8)}</td>
-                    <td class="p-3 sm:p-4 font-bold text-xs sm:text-sm">${o.name}</td>
-                    <td class="p-3 sm:p-4 text-[11px] sm:text-xs text-safari-espresso/70">${o.phone}<br>${o.email}</td>
-                    <td class="p-3 sm:p-4 text-[11px] sm:text-xs">${o.items.map(i => `${i.qty}x ${i.name} (${i.selectedOption} - R${i.finalPrice})`).join(', ')}</td>
-                    <td class="p-3 sm:p-4 font-heading font-bold text-safari-terracotta">R${parseFloat(o.total).toFixed(2)}</td>
-                    <td class="p-3 sm:p-4"><span class="bg-amber-100 text-amber-800 text-[9px] sm:text-[10px] font-bold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full uppercase">${o.status}</span></td>
-                </tr>
-            `).join('');
+            tbody.innerHTML = orders.map(o => {
+                const isCompleted = o.status === "Completed";
+                const statusBadge = isCompleted 
+                    ? `<span class="bg-emerald-100 text-emerald-800 text-[9px] sm:text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Completed</span>`
+                    : `<span class="bg-amber-100 text-amber-800 text-[9px] sm:text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">${o.status || 'Pending Payment'}</span>`;
+
+                return `
+                    <tr class="border-b border-safari-border/50">
+                        <td class="p-3 sm:p-4 text-xs font-mono font-bold">#${o.id.substring(0, 8)}</td>
+                        <td class="p-3 sm:p-4 font-bold text-xs sm:text-sm">${o.name}</td>
+                        <td class="p-3 sm:p-4 text-[11px] sm:text-xs text-safari-espresso/70">${o.phone}<br>${o.email}</td>
+                        <td class="p-3 sm:p-4 text-[11px] sm:text-xs">${o.items.map(i => `${i.qty}x ${i.name} (${i.selectedOption} - R${i.finalPrice})`).join(', ')}</td>
+                        <td class="p-3 sm:p-4 font-heading font-bold text-safari-terracotta">R${parseFloat(o.total).toFixed(2)}</td>
+                        <td class="p-3 sm:p-4">${statusBadge}</td>
+                        <td class="p-3 sm:p-4 text-right space-x-1 whitespace-nowrap">
+                            ${!isCompleted ? `<button type="button" onclick="markOrderComplete('${o.id}')" class="bg-emerald-700 text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-emerald-800 cursor-pointer">Complete</button>` : ''}
+                            <button type="button" onclick="deleteOrder('${o.id}')" class="bg-red-700 text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-red-800 cursor-pointer">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        window.markOrderComplete = async function(id) {
+            try {
+                await updateDoc(doc(db, "orders", id), { status: "Completed" });
+                alert("Order marked as completed!");
+            } catch (err) {
+                const o = orders.find(ord => ord.id === id);
+                if (o) o.status = "Completed";
+                renderAdminDashboard();
+                alert("Order marked as completed locally.");
+            }
+        }
+
+        window.deleteOrder = async function(id) {
+            if (!confirm("Are you sure you want to delete this order / abandoned cart?")) return;
+            try {
+                await deleteDoc(doc(db, "orders", id));
+                alert("Order successfully removed.");
+            } catch (err) {
+                orders = orders.filter(o => o.id !== id);
+                renderAdminDashboard();
+                alert("Order deleted locally.");
+            }
         }
 
         initDatabase();
