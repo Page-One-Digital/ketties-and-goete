@@ -90,9 +90,22 @@
         <!-- Countdown Timer -->
         <div class="grid grid-cols-4 gap-3 max-w-md mx-auto pt-2">
             <div class="earth-card p-4 rounded-2xl text-center">
-                <span id="days" class="font-bold text-2xl sm:text-3xl text-white block">00</span>
-                <span class="text-[10px] uppercase tracking-widest text-[#D4C5B9] mt-1 block font-semibold">Days</span>
+                <span id="hours" class="font-bold text-2xl sm:text-3xl text-white block">00</span>
+                <span class="text-[10px] uppercase tracking-widest text-[#D4C5B9] mt-1 block font-semibold">Hours</span>
             </div>
+            <div class="earth-card p-4 rounded-2xl text-center">
+                <span id="minutes" class="font-bold text-2xl sm:text-3xl text-white block">00</span>
+                <span class="text-[10px] uppercase tracking-widest text-[#D4C5B9] mt-1 block font-semibold">Mins</span>
+            </div>
+            <div class="earth-card p-4 rounded-2xl text-center">
+                <span id="seconds" class="font-bold text-2xl sm:text-3xl text-white block">00</span>
+                <span class="text-[10px] uppercase tracking-widest text-[#D4C5B9] mt-1 block font-semibold">Secs</span>
+            </div>
+            <!-- If launching today within hours, showing Hours/Mins/Secs or adding Days back if needed. Using standard 4-block setup below: -->
+        </div>
+        
+        <!-- Restructured 4-Block Countdown Grid for Hours/Mins/Secs precision -->
+        <div class="grid grid-cols-3 gap-3 max-w-sm mx-auto pt-2">
             <div class="earth-card p-4 rounded-2xl text-center">
                 <span id="hours" class="font-bold text-2xl sm:text-3xl text-white block">00</span>
                 <span class="text-[10px] uppercase tracking-widest text-[#D4C5B9] mt-1 block font-semibold">Hours</span>
@@ -148,10 +161,10 @@
                 </p>
             </div>
 
-            <!-- Big Highlighted Days Box -->
+            <!-- Big Highlighted Time Box -->
             <div class="p-6 rounded-2xl bg-[#2C321E] border border-[#D4C5B9]/30">
                 <span class="text-xs uppercase tracking-widest text-[#D4C5B9] font-semibold block mb-1">Status Update</span>
-                <p class="text-base font-semibold text-white my-2">This website will go live in <span id="popup-days-num" class="text-4xl sm:text-5xl font-extrabold text-[#D4C5B9] block my-1">--</span> Days</p>
+                <p class="text-base font-semibold text-white my-2">This website will go live in <span id="popup-time-num" class="text-3xl sm:text-4xl font-extrabold text-[#D4C5B9] block my-1">--</span></p>
                 <span id="popup-exact-time" class="text-xs text-gray-300 mt-2 block font-mono">Synchronizing countdown...</span>
             </div>
 
@@ -166,35 +179,32 @@
         lucide.createIcons();
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // Target Launch Date: Friday 6 November 2026 at 08:00 SAST (Pretoria Time)
-        const targetTime = new Date('2026-11-06T08:00:00+02:00').getTime();
+        // Target Launch Date: Today (Friday 6 November 2026) at 17:00 (5:00 PM) SAST
+        const targetTime = new Date('2026-11-06T17:00:00+02:00').getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
             const diff = targetTime - now;
 
             if (diff < 0) {
-                document.getElementById('days').textContent = '00';
                 document.getElementById('hours').textContent = '00';
                 document.getElementById('minutes').textContent = '00';
                 document.getElementById('seconds').textContent = '00';
-                document.getElementById('popup-days-num').textContent = '0';
+                document.getElementById('popup-time-num').textContent = '0 Hours';
                 document.getElementById('popup-exact-time').textContent = 'We are now live!';
                 return;
             }
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const hours = Math.floor(diff / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-            document.getElementById('days').textContent = String(days).padStart(2, '0');
             document.getElementById('hours').textContent = String(hours).padStart(2, '0');
             document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
 
-            document.getElementById('popup-days-num').textContent = days;
-            document.getElementById('popup-exact-time').textContent = `Exact window: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            document.getElementById('popup-time-num').textContent = `${hours}h ${minutes}m ${seconds}s`;
+            document.getElementById('popup-exact-time').textContent = `Launching today at 17:00 (5:00 PM)`;
         }
 
         setInterval(updateCountdown, 1000);
