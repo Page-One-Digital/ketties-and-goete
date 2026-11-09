@@ -321,6 +321,54 @@
         </div>
     </div>
 
+    <!-- Direct EFT Banking Details Success Modal -->
+    <div id="eft-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeEftModal()"></div>
+        <div class="bg-safari-parchment rounded-3xl max-w-lg w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl space-y-5">
+            <div class="flex items-center justify-between border-b border-safari-border pb-4">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-building-columns text-safari-olive text-xl"></i>
+                    <h3 class="font-heading font-black text-lg uppercase text-safari-espresso">Direct EFT Banking Details</h3>
+                </div>
+                <button type="button" onclick="closeEftModal()" class="text-safari-espresso/60 hover:text-safari-espresso cursor-pointer p-2 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <p class="text-xs sm:text-sm text-safari-espresso/80">
+                Your order has been successfully placed! A confirmation email with these banking details has also been sent to your email address. Please make your payment using the details below:
+            </p>
+
+            <div class="bg-safari-surface p-5 rounded-2xl border border-safari-border space-y-2.5 text-xs sm:text-sm">
+                <div class="flex justify-between border-b border-safari-border/60 pb-2">
+                    <span class="text-safari-espresso/70 font-semibold">Bank:</span>
+                    <span class="font-heading font-bold text-safari-espresso">Capitec Business</span>
+                </div>
+                <div class="flex justify-between border-b border-safari-border/60 pb-2">
+                    <span class="text-safari-espresso/70 font-semibold">Account Name:</span>
+                    <span class="font-heading font-bold text-safari-espresso">Ketties en Goete</span>
+                </div>
+                <div class="flex justify-between border-b border-safari-border/60 pb-2">
+                    <span class="text-safari-espresso/70 font-semibold">Account Number:</span>
+                    <span class="font-heading font-mono font-bold text-safari-espresso">1055613013</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-safari-espresso/70 font-semibold">Reference:</span>
+                    <span class="font-heading font-bold text-safari-terracotta">Your Name & Surname</span>
+                </div>
+            </div>
+
+            <div class="bg-safari-olive/10 border border-safari-olive/30 p-4 rounded-xl text-xs text-safari-espresso space-y-1">
+                <p class="font-bold flex items-center gap-1.5"><i class="fa-solid fa-envelope text-safari-olive"></i> Send Proof of Payment (POP):</p>
+                <p>Please email your POP to <a href="mailto:kettiesengoete@gmail.com" class="font-bold underline text-safari-olive">kettiesengoete@gmail.com</a> to ensure prompt order processing.</p>
+            </div>
+
+            <div class="pt-2">
+                <button type="button" onclick="closeEftModal()" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow cursor-pointer">
+                    Understood & Return to Store
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Customer Email/Password Sign-In & Profile Modal -->
     <div id="auth-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeAuthModal()"></div>
@@ -1036,6 +1084,14 @@
             document.getElementById("policy-modal").classList.add("hidden");
         }
 
+        window.openEftModal = function() {
+            document.getElementById("eft-modal").classList.remove("hidden");
+        }
+
+        window.closeEftModal = function() {
+            document.getElementById("eft-modal").classList.add("hidden");
+        }
+
         window.openAuthModal = function() {
             document.getElementById("auth-modal").classList.remove("hidden");
             if (currentCustomer) {
@@ -1458,7 +1514,7 @@
                 uid: currentCustomer ? currentCustomer.uid : null,
                 name, phone, email, address, payment: paymentMethod,
                 items: cart, total, 
-                status: isPayFast ? "Pending Payment" : "Pending Payment",
+                status: "Pending Payment",
                 createdAt: new Date().toISOString()
             };
 
@@ -1467,8 +1523,8 @@
                 const orderId = docRef.id;
                 const orderItemsFormatted = cart.map(i => `${i.qty}x ${i.name} (${i.selectedOption}) - R${(i.finalPrice * i.qty).toFixed(2)}`).join('\n');
                 
-                // If Direct EFT, send email immediately. For PayFast, defer email sending until payment success return.
                 if (!isPayFast) {
+                    // Send EmailJS confirmation with banking details & POP instructions for EFT
                     emailjs.send("service_q2vtu6a", "template_enbu2zn", {
                         order_id: orderId.substring(0, 8),
                         customer_name: name,
@@ -1480,11 +1536,11 @@
                         order_total: total.toFixed(2)
                     }).catch((err) => console.log("EmailJS failed:", err));
 
-                    alert("Order successfully placed via Direct EFT!");
                     cart = [];
                     updateCartUI();
                     closeCheckoutModal();
                     document.getElementById("checkout-form").reset();
+                    openEftModal(); // Open popup modal with banking details
                 } else {
                     // Redirect to PayFast
                     const siteUrl = window.location.href.split('?')[0];
@@ -1499,10 +1555,17 @@
                     document.getElementById("payfast-form").submit();
                 }
             } catch (err) {
-                alert("Order successfully logged!");
-                cart = [];
-                updateCartUI();
-                closeCheckoutModal();
+                if (!isPayFast) {
+                    cart = [];
+                    updateCartUI();
+                    closeCheckoutModal();
+                    openEftModal();
+                } else {
+                    alert("Order successfully logged!");
+                    cart = [];
+                    updateCartUI();
+                    closeCheckoutModal();
+                }
             }
         }
 
@@ -1530,7 +1593,6 @@
                     }
                 }
                 alert("Payment successful! Your order has been confirmed and our team has been notified.");
-                // Clean URL params
                 window.history.replaceState({}, document.title, window.location.pathname);
             } catch (err) {
                 console.log("Error handling PayFast return:", err);
