@@ -941,7 +941,6 @@
                 snapshot.forEach((docSnap) => {
                     products.push({ id: docSnap.id, ...docSnap.data() });
                 });
-                // Always sort products High to Low by price
                 products.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
                 renderProducts();
                 renderSidebarCategories();
@@ -970,6 +969,14 @@
                 } catch (err) {}
                 setCurrentCustomer(user, profile);
             });
+
+            // Check URL parameters for PayFast return status
+            const urlParams = new URLSearchParams(window.location.search);
+            const status = urlParams.get('status');
+            const pfOrderId = urlParams.get('order_id');
+            if (status === 'success' && pfOrderId) {
+                handleSuccessfulPayFastReturn(pfOrderId);
+            }
         }
 
         let registering = false;
@@ -1195,7 +1202,6 @@
             const visibleProducts = products.filter(p => p.visible !== false);
             const filtered = currentFilter === 'all' ? visibleProducts : visibleProducts.filter(p => p.category.toLowerCase() === currentFilter.toLowerCase());
 
-            // Ensure High to Low sort is always enforced
             filtered.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
 
             if (filtered.length === 0) {
@@ -1446,10 +1452,13 @@
             const shipping = subtotal >= 500 ? 0 : 100;
             const total = subtotal + shipping;
 
+            const isPayFast = paymentMethod.includes("PayFast");
+
             const orderData = {
                 uid: currentCustomer ? currentCustomer.uid : null,
                 name, phone, email, address, payment: paymentMethod,
-                items: cart, total, status: "Pending Payment",
+                items: cart, total, 
+                status: isPayFast ? "Pending Payment" : "Pending Payment",
                 createdAt: new Date().toISOString()
             };
 
@@ -1458,20 +1467,28 @@
                 const orderId = docRef.id;
                 const orderItemsFormatted = cart.map(i => `${i.qty}x ${i.name} (${i.selectedOption}) - R${(i.finalPrice * i.qty).toFixed(2)}`).join('\n');
                 
-                emailjs.send("service_q2vtu6a", "template_enbu2zn", {
-                    order_id: orderId.substring(0, 8),
-                    customer_name: name,
-                    customer_phone: phone,
-                    customer_email: email,
-                    customer_address: address,
-                    payment_method: paymentMethod,
-                    order_items: orderItemsFormatted,
-                    order_total: total.toFixed(2)
-                }).catch((err) => console.log("EmailJS failed:", err));
+                // If Direct EFT, send email immediately. For PayFast, defer email sending until payment success return.
+                if (!isPayFast) {
+                    emailjs.send("service_q2vtu6a", "template_enbu2zn", {
+                        order_id: orderId.substring(0, 8),
+                        customer_name: name,
+                        customer_phone: phone,
+                        customer_email: email,
+                        customer_address: address,
+                        payment_method: paymentMethod,
+                        order_items: orderItemsFormatted,
+                        order_total: total.toFixed(2)
+                    }).catch((err) => console.log("EmailJS failed:", err));
 
-                if (paymentMethod.includes("PayFast")) {
+                    alert("Order successfully placed via Direct EFT!");
+                    cart = [];
+                    updateCartUI();
+                    closeCheckoutModal();
+                    document.getElementById("checkout-form").reset();
+                } else {
+                    // Redirect to PayFast
                     const siteUrl = window.location.href.split('?')[0];
-                    document.getElementById("pf-return").value = siteUrl + "?status=success";
+                    document.getElementById("pf-return").value = siteUrl + "?status=success&order_id=" + orderId;
                     document.getElementById("pf-cancel").value = siteUrl + "?status=cancel";
                     document.getElementById("pf-notify").value = "https://us-central1-ketties-n-goete.cloudfunctions.net/payfastITN";
                     document.getElementById("pf-name").value = name;
@@ -1480,18 +1497,43 @@
                     document.getElementById("pf-amount").value = total.toFixed(2);
                     document.getElementById("pf-item").value = `Ketties & Goete Order #${orderId.substring(0, 8)}`;
                     document.getElementById("payfast-form").submit();
-                } else {
-                    alert("Order successfully placed via Direct EFT!");
-                    cart = [];
-                    updateCartUI();
-                    closeCheckoutModal();
-                    document.getElementById("checkout-form").reset();
                 }
             } catch (err) {
                 alert("Order successfully logged!");
                 cart = [];
                 updateCartUI();
                 closeCheckoutModal();
+            }
+        }
+
+        async function handleSuccessfulPayFastReturn(orderId) {
+            try {
+                const orderRef = doc(db, "orders", orderId);
+                const orderSnap = await getDoc(orderRef);
+                if (orderSnap.exists()) {
+                    const order = orderSnap.data();
+                    if (order.status !== "Paid / Processing") {
+                        await updateDoc(orderRef, { status: "Paid / Processing" });
+                        
+                        const orderItemsFormatted = order.items.map(i => `${i.qty}x ${i.name} (${i.selectedOption}) - R${(i.finalPrice * i.qty).toFixed(2)}`).join('\n');
+                        
+                        emailjs.send("service_q2vtu6a", "template_enbu2zn", {
+                            order_id: orderId.substring(0, 8),
+                            customer_name: order.name,
+                            customer_phone: order.phone,
+                            customer_email: order.email,
+                            customer_address: order.address,
+                            payment_method: order.payment,
+                            order_items: orderItemsFormatted,
+                            order_total: order.total.toFixed(2)
+                        }).catch((err) => console.log("PayFast EmailJS failed:", err));
+                    }
+                }
+                alert("Payment successful! Your order has been confirmed and our team has been notified.");
+                // Clean URL params
+                window.history.replaceState({}, document.title, window.location.pathname);
+            } catch (err) {
+                console.log("Error handling PayFast return:", err);
             }
         }
 
@@ -1789,8 +1831,12 @@
                 return;
             }
             tbody.innerHTML = orders.map(o => {
+                const isPaid = o.status === "Paid / Processing" || o.status === "Completed";
                 const isCompleted = o.status === "Completed";
-                const statusBadge = isCompleted ? `<span class="bg-emerald-100 text-emerald-800 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">Completed</span>` : `<span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">${o.status || 'Pending Payment'}</span>`;
+                let statusBadge = `<span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">${o.status || 'Pending Payment'}</span>`;
+                if (isPaid) {
+                    statusBadge = `<span class="bg-emerald-100 text-emerald-800 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">${o.status}</span>`;
+                }
 
                 return `
                     <tr class="border-b border-safari-border/50">
