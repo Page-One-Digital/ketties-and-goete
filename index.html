@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ketties & Goete | Authentic South African Outdoor Gear</title>
     <meta name="description" content="Precision premium slingshots, therapeutic natural latex flatbands, and biodegradable clay pellets built for target precision and backyard family expeditions.">
-    
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Google Fonts: Montserrat & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-    
+
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- SheetJS for Excel (.xlsx) Export -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
@@ -54,6 +54,9 @@
             }
         }
     </script>
+  <meta property="og:image" content="https://bolt.new/static/og_default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
 </head>
 <body class="bg-safari-parchment text-safari-espresso font-body antialiased selection:bg-safari-olive selection:text-white overflow-x-hidden">
 
@@ -125,12 +128,12 @@
         </div>
     </section>
 
-    <!-- Premium Category Hubs Between Hero & Store -->
+    <!-- Premium Category Hubs between Hero & Store -->
     <section class="py-12 sm:py-16 bg-safari-surface/50 border-b border-safari-border/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-safari-olive block mb-1">Shop By Collection</span>
             <h2 class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase tracking-tight mb-6 sm:mb-8">Premium Category Hubs</h2>
-            
+
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
                 <a href="#shop" onclick="filterProducts('Ketties')" class="bg-safari-parchment border border-safari-border hover:border-safari-olive p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-md transition-all group flex flex-col items-center cursor-pointer">
                     <div class="w-10 h-10 sm:w-12 sm:h-12 bg-safari-surface rounded-xl flex items-center justify-center text-safari-espresso mb-2 sm:mb-3 group-hover:bg-safari-olive group-hover:text-white transition-colors shadow-inner">
@@ -217,7 +220,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-safari-olive block mb-1">Unmatched Utility</span>
             <h2 class="font-heading font-black text-2xl sm:text-3xl text-safari-espresso uppercase tracking-tight mb-8 sm:mb-12">Why Choose Ketties & Goete?</h2>
-            
+
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 text-left">
                 <div class="bg-safari-parchment p-6 sm:p-8 rounded-2xl border border-safari-border shadow-sm">
                     <div class="w-10 h-10 bg-safari-surface border border-safari-border rounded-xl flex items-center justify-center font-heading font-black text-xs text-safari-olive mb-4 shadow-inner">
@@ -297,6 +300,21 @@
         </div>
     </footer>
 
+    <!-- PayFast Payment Status Modal -->
+    <div id="payfast-status-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closePayFastStatusModal()"></div>
+        <div class="bg-safari-parchment rounded-3xl max-w-md w-full border border-safari-border relative z-10 p-6 sm:p-8 shadow-2xl text-center space-y-4">
+            <div class="w-14 h-14 mx-auto rounded-full flex items-center justify-center" id="payfast-status-icon-wrap">
+                <i id="payfast-status-icon" class="fa-solid fa-check text-2xl"></i>
+            </div>
+            <h3 id="payfast-status-title" class="font-heading font-black text-lg uppercase text-safari-espresso">Payment Submitted</h3>
+            <p id="payfast-status-message" class="text-sm text-safari-espresso/80 leading-relaxed"></p>
+            <button type="button" onclick="closePayFastStatusModal()" class="w-full bg-safari-olive hover:bg-safari-oliveDark text-white py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow cursor-pointer">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
     <!-- Policy Modal Viewer -->
     <div id="policy-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closePolicyModal()"></div>
@@ -310,7 +328,7 @@
                 </div>
                 <button type="button" onclick="closePolicyModal()" class="text-safari-espresso/60 hover:text-safari-espresso cursor-pointer p-2 text-xl"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            
+
             <div id="policy-modal-content" class="space-y-4 text-xs sm:text-sm text-safari-espresso/90 leading-relaxed"></div>
 
             <div class="pt-4 border-t border-safari-border flex justify-end">
@@ -574,7 +592,7 @@
     <div id="admin-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-3 sm:p-4">
         <div class="fixed inset-0 bg-safari-espresso/80 backdrop-blur-sm" onclick="closeAdminModal()"></div>
         <div class="bg-safari-parchment rounded-2xl max-w-6xl w-full border border-safari-border relative z-10 p-4 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
-            
+
             <div class="bg-safari-espresso text-safari-parchment p-6 sm:p-8 rounded-2xl mb-6 sm:mb-8 shadow-lg relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                 <div class="absolute right-0 top-0 bottom-0 w-1/3 bg-cover bg-center opacity-10 pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800');"></div>
                 <div>
@@ -832,7 +850,7 @@
     <!-- Firebase Firestore & Auth Script -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, getDoc, setDoc, onSnapshot, writeBatch } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
         const firebaseConfig = {
@@ -860,13 +878,65 @@
         let selectedVariant = null;
         let currentCustomer = null;
 
+        // ---------- XSS ESCAPE UTILITY ----------
+        function esc(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // ---------- CART PERSISTENCE (localStorage) ----------
+        const CART_STORAGE_KEY = 'ketties_cart';
+
+        function saveCartToStorage() {
+            try {
+                localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+            } catch (e) {}
+        }
+
+        function loadCartFromStorage() {
+            try {
+                const stored = localStorage.getItem(CART_STORAGE_KEY);
+                if (stored) {
+                    cart = JSON.parse(stored);
+                    if (!Array.isArray(cart)) cart = [];
+                }
+            } catch (e) {
+                cart = [];
+            }
+        }
+
+        // ---------- IMPROVED AUTH ERROR MESSAGES ----------
+        function friendlyAuthError(err) {
+            const code = err.code || '';
+            const map = {
+                'auth/invalid-email': 'The email address you entered is not valid.',
+                'auth/user-disabled': 'This account has been disabled. Please contact support.',
+                'auth/user-not-found': 'No account found with this email. Please register first.',
+                'auth/wrong-password': 'Incorrect password. Please try again.',
+                'auth/invalid-credential': 'Email or password is incorrect. Please try again.',
+                'auth/email-already-in-use': 'An account with this email already exists. Please sign in instead.',
+                'auth/weak-password': 'Password is too weak. Please use at least 6 characters.',
+                'auth/too-many-requests': 'Too many attempts. Please wait a moment and try again.',
+                'auth/network-request-failed': 'Network error. Please check your internet connection and try again.',
+                'auth/popup-closed-by-user': 'The sign-in popup was closed before completing.',
+                'auth/operation-not-allowed': 'This operation is not allowed. Please contact support.',
+                'auth/requires-recent-login': 'Please sign out and sign in again to complete this action.'
+            };
+            return map[code] || 'Something went wrong. Please try again, or contact support if the problem persists.';
+        }
+
         const policiesData = {
             terms: {
                 title: "Terms & Conditions",
                 content: `
                     <p class="font-bold text-safari-espresso mb-1">Ketties en Goete | Heidelberg, 1442</p>
                     <p class="text-xs text-safari-espresso/60 mb-4">Last Updated: October 2026</p>
-                    
+
                     <div class="space-y-4">
                         <div>
                             <h4 class="font-heading font-bold uppercase text-safari-espresso text-xs mb-1">1. Introduction & Acceptance</h4>
@@ -892,7 +962,7 @@
                 content: `
                     <p class="font-bold text-safari-espresso mb-1">Ketties en Goete | Heidelberg, 1442</p>
                     <p class="text-xs text-safari-espresso/60 mb-4">Last Updated: October 2026</p>
-                    
+
                     <div class="space-y-4">
                         <div>
                             <h4 class="font-heading font-bold uppercase text-safari-espresso text-xs mb-1">1. Order Processing</h4>
@@ -914,7 +984,7 @@
                 content: `
                     <p class="font-bold text-safari-espresso mb-1">Ketties en Goete | Heidelberg, 1442</p>
                     <p class="text-xs text-safari-espresso/60 mb-4">Last Updated: October 2026</p>
-                    
+
                     <div class="space-y-4">
                         <div>
                             <h4 class="font-heading font-bold uppercase text-safari-espresso text-xs mb-1">1. Returns & Exchanges</h4>
@@ -936,7 +1006,7 @@
                 content: `
                     <p class="font-bold text-safari-espresso mb-1">Ketties en Goete | Heidelberg, 1442</p>
                     <p class="text-xs text-safari-espresso/60 mb-4">Last Updated: October 2026</p>
-                    
+
                     <div class="space-y-4">
                         <div>
                             <h4 class="font-heading font-bold uppercase text-safari-espresso text-xs mb-1">1. Commitment to Privacy</h4>
@@ -973,11 +1043,14 @@
         ];
 
         async function initDatabase() {
+            loadCartFromStorage();
+            updateCartUI();
+
             try {
                 const bannerDoc = await getDoc(doc(db, "settings", "announcement"));
                 if (bannerDoc.exists() && bannerDoc.data().text) {
                     const text = bannerDoc.data().text;
-                    document.getElementById("announcement-banner").innerHTML = `<span>${text}</span>`;
+                    document.getElementById("announcement-banner").innerHTML = `<span>${esc(text)}</span>`;
                     document.getElementById("admin-banner-text").value = text;
                 }
             } catch (err) {
@@ -1019,21 +1092,21 @@
             });
 
             // Check URL parameters for PayFast return status
+            // NOTE: We do NOT mark orders as paid here — only the ITN webhook can do that.
+            // The return URL just shows a user-facing message.
             const urlParams = new URLSearchParams(window.location.search);
             const status = urlParams.get('status');
             const pfOrderId = urlParams.get('order_id');
             if (status === 'success' && pfOrderId) {
-                handleSuccessfulPayFastReturn(pfOrderId);
+                showPayFastReturnMessage('success', pfOrderId);
+            } else if (status === 'cancel') {
+                showPayFastReturnMessage('cancel');
             }
         }
 
         let registering = false;
         let unsubCustomers = null;
         let unsubOrders = null;
-
-        function friendlyAuthError(err) {
-            return err.message;
-        }
 
         function setCurrentCustomer(user, profile) {
             currentCustomer = {
@@ -1072,6 +1145,34 @@
             orders = [];
         }
 
+        // ---------- PAYFAST RETURN: user-facing message only, NO order status change ----------
+        function showPayFastReturnMessage(type, orderId) {
+            const modal = document.getElementById('payfast-status-modal');
+            const titleEl = document.getElementById('payfast-status-title');
+            const msgEl = document.getElementById('payfast-status-message');
+            const iconWrap = document.getElementById('payfast-status-icon-wrap');
+            const iconEl = document.getElementById('payfast-status-icon');
+
+            if (type === 'success') {
+                iconWrap.className = 'w-14 h-14 mx-auto rounded-full flex items-center justify-center bg-emerald-100 text-emerald-700';
+                iconEl.className = 'fa-solid fa-circle-check text-2xl';
+                titleEl.textContent = 'Payment Submitted Successfully';
+                msgEl.innerHTML = `Thank you! Your payment has been submitted. Your order <strong>#${esc(orderId.substring(0, 8))}</strong> is being verified by PayFast. Once confirmed, you will receive an email with your order details. Our team has been notified.`;
+            } else {
+                iconWrap.className = 'w-14 h-14 mx-auto rounded-full flex items-center justify-center bg-red-100 text-red-700';
+                iconEl.className = 'fa-solid fa-circle-xmark text-2xl';
+                titleEl.textContent = 'Payment Cancelled';
+                msgEl.textContent = 'Your payment was cancelled. No charge has been made. Your cart items are still saved if you would like to try again.';
+            }
+            modal.classList.remove('hidden');
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+
+        window.closePayFastStatusModal = function() {
+            document.getElementById('payfast-status-modal').classList.add('hidden');
+        }
+
+        // ---------- POLICY MODALS ----------
         window.openPolicyModal = function(policyKey) {
             const policy = policiesData[policyKey];
             if (!policy) return;
@@ -1092,6 +1193,7 @@
             document.getElementById("eft-modal").classList.add("hidden");
         }
 
+        // ---------- AUTH MODALS ----------
         window.openAuthModal = function() {
             document.getElementById("auth-modal").classList.remove("hidden");
             if (currentCustomer) {
@@ -1220,7 +1322,8 @@
             let html = `<button type="button" onclick="filterProducts('all')" class="cat-btn ${currentFilter === 'all' ? 'active bg-safari-olive text-white' : 'bg-safari-surface/70 hover:bg-safari-surface text-safari-espresso'} w-full text-left px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between border border-safari-border/60 cursor-pointer"><span>All Products</span><i class="fa-solid fa-chevron-right text-[10px]"></i></button>`;
             categories.forEach(cat => {
                 const isActive = currentFilter.toLowerCase() === cat.toLowerCase();
-                html += `<button type="button" onclick="filterProducts('${cat.replace(/'/g, "\\'")}')" class="cat-btn ${isActive ? 'active bg-safari-olive text-white' : 'bg-safari-surface/70 hover:bg-safari-surface text-safari-espresso'} w-full text-left px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between border border-safari-border/60 cursor-pointer"><span>${cat}</span><i class="fa-solid fa-chevron-right text-[10px]"></i></button>`;
+                const safeCat = cat.replace(/'/g, "\\'");
+                html += `<button type="button" onclick="filterProducts('${safeCat}')" class="cat-btn ${isActive ? 'active bg-safari-olive text-white' : 'bg-safari-surface/70 hover:bg-safari-surface text-safari-espresso'} w-full text-left px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between border border-safari-border/60 cursor-pointer"><span>${esc(cat)}</span><i class="fa-solid fa-chevron-right text-[10px]"></i></button>`;
             });
             container.innerHTML = html;
         }
@@ -1232,22 +1335,23 @@
             if (!bestSeller) { container.innerHTML = ""; return; }
             let primaryImg = bestSeller.image || '';
             if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
+            const safeId = bestSeller.id.replace(/'/g, "\\'");
 
             container.innerHTML = `
                 <div class="bg-safari-espresso/95 border border-safari-border/40 rounded-2xl p-5 sm:p-8 shadow-2xl backdrop-blur-md relative">
                     <div class="absolute -top-3 right-6 bg-safari-terracotta text-white font-heading font-bold text-[11px] sm:text-xs uppercase px-3 py-1 rounded-full shadow">Best Seller Combo</div>
-                    <div class="rounded-xl overflow-hidden mb-5 sm:mb-6 h-48 sm:h-56 border border-safari-border/30 bg-white flex items-center justify-center cursor-pointer" onclick="openProductModal('${bestSeller.id}')">
-                        <img src="${primaryImg}" alt="${bestSeller.name}" class="w-full h-full object-cover">
+                    <div class="rounded-xl overflow-hidden mb-5 sm:mb-6 h-48 sm:h-56 border border-safari-border/30 bg-white flex items-center justify-center cursor-pointer" onclick="openProductModal('${safeId}')">
+                        <img src="${esc(primaryImg)}" alt="${esc(bestSeller.name)}" class="w-full h-full object-cover">
                     </div>
-                    <span class="text-[11px] sm:text-xs uppercase tracking-widest text-safari-olive font-bold">${bestSeller.category}</span>
-                    <h3 class="font-heading font-black text-xl sm:text-2xl text-white mt-1 mb-2 cursor-pointer hover:text-safari-olive" onclick="openProductModal('${bestSeller.id}')">${bestSeller.name}</h3>
-                    <p class="text-safari-borderLight text-xs sm:text-sm mb-5 sm:mb-6 leading-relaxed line-clamp-2">${bestSeller.description || ''}</p>
+                    <span class="text-[11px] sm:text-xs uppercase tracking-widest text-safari-olive font-bold">${esc(bestSeller.category)}</span>
+                    <h3 class="font-heading font-black text-xl sm:text-2xl text-white mt-1 mb-2 cursor-pointer hover:text-safari-olive" onclick="openProductModal('${safeId}')">${esc(bestSeller.name)}</h3>
+                    <p class="text-safari-borderLight text-xs sm:text-sm mb-5 sm:mb-6 leading-relaxed line-clamp-2">${esc(bestSeller.description || '')}</p>
                     <div class="flex items-center justify-between">
                         <div>
                             <span class="text-[11px] sm:text-xs text-safari-border line-through block">R${(parseFloat(bestSeller.price) * 1.2).toFixed(2)}</span>
                             <span class="font-heading font-black text-xl sm:text-2xl text-safari-terracotta">R${parseFloat(bestSeller.price).toFixed(2)}</span>
                         </div>
-                        <button type="button" onclick="addToCart('${bestSeller.id}')" class="bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow cursor-pointer">Add Combo to Cart</button>
+                        <button type="button" onclick="addToCart('${safeId}')" class="bg-safari-terracotta hover:bg-safari-terracottaDark text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow cursor-pointer">Add Combo to Cart</button>
                     </div>
                 </div>
             `;
@@ -1268,21 +1372,22 @@
             grid.innerHTML = filtered.map(p => {
                 let primaryImg = p.image || '';
                 if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
+                const safeId = p.id.replace(/'/g, "\\'");
                 return `
                     <div class="bg-safari-surface border border-safari-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
                         <div>
-                            <div class="h-56 sm:h-60 overflow-hidden relative cursor-pointer bg-white flex items-center justify-center" onclick="openProductModal('${p.id}')">
-                                <img src="${primaryImg}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                <span class="absolute top-3 left-3 bg-safari-espresso/90 text-safari-parchment text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-md">${p.category}</span>
+                            <div class="h-56 sm:h-60 overflow-hidden relative cursor-pointer bg-white flex items-center justify-center" onclick="openProductModal('${safeId}')">
+                                <img src="${esc(primaryImg)}" alt="${esc(p.name)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <span class="absolute top-3 left-3 bg-safari-espresso/90 text-safari-parchment text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-md">${esc(p.category)}</span>
                             </div>
                             <div class="p-4 sm:p-5">
-                                <h3 class="font-heading font-black text-base sm:text-lg text-safari-espresso mb-1 line-clamp-1 cursor-pointer hover:text-safari-olive" onclick="openProductModal('${p.id}')">${p.name}</h3>
-                                <p class="text-xs text-safari-espresso/70 line-clamp-2 mb-4">${p.description}</p>
+                                <h3 class="font-heading font-black text-base sm:text-lg text-safari-espresso mb-1 line-clamp-1 cursor-pointer hover:text-safari-olive" onclick="openProductModal('${safeId}')">${esc(p.name)}</h3>
+                                <p class="text-xs text-safari-espresso/70 line-clamp-2 mb-4">${esc(p.description)}</p>
                             </div>
                         </div>
                         <div class="p-4 sm:p-5 pt-0 flex items-center justify-between border-t border-safari-border/40 mt-auto">
                             <span class="font-heading font-black text-lg sm:text-xl text-safari-terracotta">R${parseFloat(p.price).toFixed(2)}</span>
-                            <button type="button" onclick="addToCart('${p.id}')" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow cursor-pointer">Add to Cart</button>
+                            <button type="button" onclick="addToCart('${safeId}')" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-colors shadow cursor-pointer">Add to Cart</button>
                         </div>
                     </div>
                 `;
@@ -1295,6 +1400,7 @@
             renderProducts();
         }
 
+        // ---------- CART LOGIC with stock validation ----------
         window.addToCart = function(id) {
             const prod = products.find(p => p.id === id);
             if (!prod) return;
@@ -1314,7 +1420,16 @@
                 }
             }
 
-            cart.push({ ...prod, image: variantImg, finalPrice: parseFloat(prod.price) + priceMod, selectedOption: variantName, qty: 1 });
+            // Stock validation: check if adding one more exceeds available stock
+            const stockVal = prod.stock !== undefined ? prod.stock : 99;
+            const currentInCart = cart.filter(item => item.id === id).reduce((sum, item) => sum + item.qty, 0);
+            if (currentInCart + 1 > stockVal) {
+                alert(`Sorry, only ${stockVal} unit(s) of "${prod.name}" are available in stock.`);
+                return;
+            }
+
+            cart.push({ ...prod, id: prod.id, image: variantImg, finalPrice: parseFloat(prod.price) + priceMod, selectedOption: variantName, qty: 1 });
+            saveCartToStorage();
             updateCartUI();
             toggleCartDrawer();
         }
@@ -1339,10 +1454,10 @@
 
             container.innerHTML = cart.map((item, index) => `
                 <div class="flex items-center gap-3 sm:gap-4 bg-safari-parchment p-3 rounded-xl border border-safari-border">
-                    <img src="${item.image}" class="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-lg border border-safari-border">
+                    <img src="${esc(item.image)}" class="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-lg border border-safari-border">
                     <div class="flex-1">
-                        <h4 class="font-heading font-bold text-xs sm:text-sm line-clamp-1">${item.name}</h4>
-                        <span class="text-[10px] text-safari-olive font-bold block leading-snug">${item.selectedOption}</span>
+                        <h4 class="font-heading font-bold text-xs sm:text-sm line-clamp-1">${esc(item.name)}</h4>
+                        <span class="text-[10px] text-safari-olive font-bold block leading-snug">${esc(item.selectedOption)}</span>
                         <span class="text-xs text-safari-terracotta font-bold mt-1 block">R${parseFloat(item.finalPrice).toFixed(2)}</span>
                         <div class="flex items-center gap-2 mt-1.5">
                             <button type="button" onclick="updateCartItemQty(${index}, -1)" class="w-6 h-6 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs cursor-pointer">-</button>
@@ -1363,13 +1478,28 @@
         }
 
         window.updateCartItemQty = function(index, delta) {
+            // Stock validation on quantity increase
+            if (delta > 0) {
+                const item = cart[index];
+                const prod = products.find(p => p.id === item.id);
+                if (prod) {
+                    const stockVal = prod.stock !== undefined ? prod.stock : 99;
+                    const currentInCart = cart.filter(ci => ci.id === item.id).reduce((sum, ci) => sum + ci.qty, 0);
+                    if (currentInCart + delta > stockVal) {
+                        alert(`Sorry, only ${stockVal} unit(s) of "${prod.name}" are available in stock.`);
+                        return;
+                    }
+                }
+            }
             cart[index].qty += delta;
             if (cart[index].qty <= 0) cart.splice(index, 1);
+            saveCartToStorage();
             updateCartUI();
         }
 
         window.removeFromCart = function(index) {
             cart.splice(index, 1);
+            saveCartToStorage();
             updateCartUI();
         }
 
@@ -1377,6 +1507,7 @@
             document.getElementById("cart-drawer").classList.toggle("hidden");
         }
 
+        // ---------- PRODUCT MODAL ----------
         window.openProductModal = function(id) {
             selectedProduct = products.find(p => p.id === id);
             if (!selectedProduct) return;
@@ -1392,8 +1523,8 @@
             const thumbContainer = document.getElementById("modal-thumbnails");
             if (imageList.length > 1) {
                 thumbContainer.innerHTML = imageList.map((url, idx) => `
-                    <button type="button" onclick="switchModalImage('${url}', this)" class="w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden border-2 ${idx === 0 ? 'border-safari-olive shadow-md' : 'border-safari-border opacity-70'} hover:opacity-100 transition-all bg-white flex items-center justify-center cursor-pointer">
-                        <img src="${url}" class="w-full h-full object-cover">
+                    <button type="button" onclick="switchModalImage('${esc(url)}', this)" class="w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden border-2 ${idx === 0 ? 'border-safari-olive shadow-md' : 'border-safari-border opacity-70'} hover:opacity-100 transition-all bg-white flex items-center justify-center cursor-pointer">
+                        <img src="${esc(url)}" class="w-full h-full object-cover">
                     </button>
                 `).join('');
                 thumbContainer.style.display = "flex";
@@ -1403,7 +1534,7 @@
 
             const varContainer = document.getElementById("modal-variants-container");
             const varSection = document.getElementById("modal-variants-section");
-            
+
             if (selectedProduct.variants && selectedProduct.variants.trim() !== "") {
                 varSection.classList.remove("hidden");
                 const variantsList = selectedProduct.variants.split(',').map(v => {
@@ -1415,8 +1546,8 @@
                 });
                 selectedVariant = variantsList[0];
                 varContainer.innerHTML = variantsList.map((v, i) => `
-                    <button type="button" onclick="selectModalVariant('${v.name.replace(/'/g, "\\'")}', ${v.priceMod}, '${v.imageUrl}', this)" class="px-3.5 sm:px-4 py-2 rounded-lg text-xs border transition-all font-semibold ${i === 0 ? 'bg-safari-olive text-white border-safari-olive' : 'bg-safari-surface text-safari-espresso border-safari-border'} cursor-pointer">
-                        ${v.name}
+                    <button type="button" onclick="selectModalVariant('${esc(v.name.replace(/'/g, "\\'"))}', ${v.priceMod}, '${esc(v.imageUrl)}', this)" class="px-3.5 sm:px-4 py-2 rounded-lg text-xs border transition-all font-semibold ${i === 0 ? 'bg-safari-olive text-white border-safari-olive' : 'bg-safari-surface text-safari-espresso border-safari-border'} cursor-pointer">
+                        ${esc(v.name)}
                     </button>
                 `).join('');
                 if (selectedVariant && selectedVariant.imageUrl) document.getElementById("modal-main-img").src = selectedVariant.imageUrl;
@@ -1465,18 +1596,30 @@
             let primaryImg = selectedProduct.image || '';
             if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
             const finalPrice = parseFloat(selectedProduct.price) + (selectedVariant ? selectedVariant.priceMod : 0);
+
+            // Stock validation
+            const stockVal = selectedProduct.stock !== undefined ? selectedProduct.stock : 99;
+            const currentInCart = cart.filter(item => item.id === selectedProduct.id).reduce((sum, item) => sum + item.qty, 0);
+            if (currentInCart + 1 > stockVal) {
+                alert(`Sorry, only ${stockVal} unit(s) of "${selectedProduct.name}" are available in stock.`);
+                return;
+            }
+
             cart.push({
                 ...selectedProduct,
+                id: selectedProduct.id,
                 image: selectedVariant && selectedVariant.imageUrl ? selectedVariant.imageUrl : primaryImg,
                 finalPrice,
                 selectedOption: selectedVariant ? selectedVariant.name : "Standard",
                 qty: 1
             });
+            saveCartToStorage();
             updateCartUI();
             closeProductModal();
             toggleCartDrawer();
         }
 
+        // ---------- CHECKOUT ----------
         window.openCheckoutModal = function() {
             if (cart.length === 0) { alert("Your cart is empty!"); return; }
             if (!currentCustomer) {
@@ -1484,6 +1627,19 @@
                 openAuthModal();
                 return;
             }
+
+            // Final stock validation before checkout
+            for (const item of cart) {
+                const prod = products.find(p => p.id === item.id);
+                if (prod) {
+                    const stockVal = prod.stock !== undefined ? prod.stock : 99;
+                    if (item.qty > stockVal) {
+                        alert(`Sorry, "${prod.name}" only has ${stockVal} unit(s) in stock. Please reduce your quantity.`);
+                        return;
+                    }
+                }
+            }
+
             document.getElementById("order-name").value = currentCustomer.name || '';
             document.getElementById("order-phone").value = currentCustomer.phone || '';
             document.getElementById("order-email").value = currentCustomer.email || '';
@@ -1494,6 +1650,28 @@
 
         window.closeCheckoutModal = function() {
             document.getElementById("checkout-modal").classList.add("hidden");
+        }
+
+        // ---------- STOCK DECREMENT after order ----------
+        async function decrementStock(orderItems) {
+            try {
+                const batch = writeBatch(db);
+                let hasUpdates = false;
+                for (const item of orderItems) {
+                    const prod = products.find(p => p.id === item.id);
+                    if (!prod) continue;
+                    const currentStock = prod.stock !== undefined ? prod.stock : 99;
+                    const newStock = Math.max(0, currentStock - item.qty);
+                    const prodRef = doc(db, "products", item.id);
+                    batch.update(prodRef, { stock: newStock });
+                    hasUpdates = true;
+                }
+                if (hasUpdates) {
+                    await batch.commit();
+                }
+            } catch (err) {
+                console.error("Stock decrement failed:", err);
+            }
         }
 
         window.submitOrder = async function(e) {
@@ -1513,7 +1691,14 @@
             const orderData = {
                 uid: currentCustomer ? currentCustomer.uid : null,
                 name, phone, email, address, payment: paymentMethod,
-                items: cart, total, 
+                items: cart.map(item => ({
+                    id: item.id,
+                    name: item.name,
+                    selectedOption: item.selectedOption,
+                    finalPrice: item.finalPrice,
+                    qty: item.qty
+                })),
+                total,
                 status: "Pending Payment",
                 createdAt: new Date().toISOString()
             };
@@ -1522,7 +1707,10 @@
                 const docRef = await addDoc(collection(db, "orders"), orderData);
                 const orderId = docRef.id;
                 const orderItemsFormatted = cart.map(i => `${i.qty}x ${i.name} (${i.selectedOption}) - R${(i.finalPrice * i.qty).toFixed(2)}`).join('\n');
-                
+
+                // Decrement stock for ordered items
+                await decrementStock(cart);
+
                 if (!isPayFast) {
                     // Send EmailJS confirmation with banking details & POP instructions for EFT
                     emailjs.send("service_q2vtu6a", "template_enbu2zn", {
@@ -1537,12 +1725,14 @@
                     }).catch((err) => console.log("EmailJS failed:", err));
 
                     cart = [];
+                    saveCartToStorage();
                     updateCartUI();
                     closeCheckoutModal();
                     document.getElementById("checkout-form").reset();
-                    openEftModal(); // Open popup modal with banking details
+                    openEftModal();
                 } else {
-                    // Redirect to PayFast
+                    // Redirect to PayFast — order status stays "Pending Payment"
+                    // The ITN webhook (payfastITN Cloud Function) is the ONLY thing that marks it as paid.
                     const siteUrl = window.location.href.split('?')[0];
                     document.getElementById("pf-return").value = siteUrl + "?status=success&order_id=" + orderId;
                     document.getElementById("pf-cancel").value = siteUrl + "?status=cancel";
@@ -1555,47 +1745,9 @@
                     document.getElementById("payfast-form").submit();
                 }
             } catch (err) {
-                if (!isPayFast) {
-                    cart = [];
-                    updateCartUI();
-                    closeCheckoutModal();
-                    openEftModal();
-                } else {
-                    alert("Order successfully logged!");
-                    cart = [];
-                    updateCartUI();
-                    closeCheckoutModal();
-                }
-            }
-        }
-
-        async function handleSuccessfulPayFastReturn(orderId) {
-            try {
-                const orderRef = doc(db, "orders", orderId);
-                const orderSnap = await getDoc(orderRef);
-                if (orderSnap.exists()) {
-                    const order = orderSnap.data();
-                    if (order.status !== "Paid / Processing") {
-                        await updateDoc(orderRef, { status: "Paid / Processing" });
-                        
-                        const orderItemsFormatted = order.items.map(i => `${i.qty}x ${i.name} (${i.selectedOption}) - R${(i.finalPrice * i.qty).toFixed(2)}`).join('\n');
-                        
-                        emailjs.send("service_q2vtu6a", "template_enbu2zn", {
-                            order_id: orderId.substring(0, 8),
-                            customer_name: order.name,
-                            customer_phone: order.phone,
-                            customer_email: order.email,
-                            customer_address: order.address,
-                            payment_method: order.payment,
-                            order_items: orderItemsFormatted,
-                            order_total: order.total.toFixed(2)
-                        }).catch((err) => console.log("PayFast EmailJS failed:", err));
-                    }
-                }
-                alert("Payment successful! Your order has been confirmed and our team has been notified.");
-                window.history.replaceState({}, document.title, window.location.pathname);
-            } catch (err) {
-                console.log("Error handling PayFast return:", err);
+                // FIX: Show actual error message instead of fake success
+                alert("There was a problem placing your order: " + (err.message || "Please try again or contact support."));
+                console.error("Order submission error:", err);
             }
         }
 
@@ -1611,13 +1763,29 @@
                 alert("Thank you for subscribing to Ketties & Goete!");
                 e.target.reset();
             } catch (err) {
-                alert("Subscription submitted successfully!");
-                e.target.reset();
+                // FIX: Show actual error instead of fake success
+                alert("Sorry, we couldn't process your subscription right now. Please try again later.");
+                console.error("Newsletter subscription error:", err);
             }
         }
 
-        window.openAdminModal = function(e) {
+        // ---------- ANNOUNCEMENT BANNER ----------
+        window.saveAnnouncementBanner = async function(e) {
             e.preventDefault();
+            const text = document.getElementById("admin-banner-text").value;
+            try {
+                await setDoc(doc(db, "settings", "announcement"), { text }, { merge: true });
+                document.getElementById("announcement-banner").innerHTML = `<span>${esc(text)}</span>`;
+                alert("Banner updated successfully!");
+            } catch (err) {
+                alert("Failed to update banner: " + (err.message || "Please try again."));
+                console.error("Banner save error:", err);
+            }
+        }
+
+        // ---------- ADMIN DASHBOARD ----------
+        window.openAdminModal = function(e) {
+            if (e) e.preventDefault();
             if (!currentCustomer || !currentCustomer.isAdmin) {
                 alert("Unauthorized Access. Management is restricted.");
                 return;
@@ -1635,7 +1803,7 @@
             const custTab = document.getElementById("admin-tab-cust");
             const setTab = document.getElementById("admin-tab-set");
             const ordTab = document.getElementById("admin-tab-ord");
-            
+
             const prodPanel = document.getElementById("admin-panel-products");
             const custPanel = document.getElementById("admin-panel-customers");
             const setPanel = document.getElementById("admin-panel-settings");
@@ -1666,7 +1834,7 @@
             document.getElementById("stat-total-products").textContent = products.length;
             document.getElementById("stat-total-customers").textContent = customers.length;
             document.getElementById("stat-total-orders").textContent = orders.length;
-            
+
             const totalRevenue = orders.reduce((sum, o) => sum + (o.total || 0), 0);
             document.getElementById("stat-total-revenue").textContent = `R${totalRevenue.toFixed(2)}`;
 
@@ -1693,29 +1861,30 @@
                 const isLow = stockVal < 10;
                 const statusBadge = isLow ? `<span class="bg-red-100 text-red-700 font-bold text-[9px] sm:text-[10px] px-2 py-0.5 rounded-full uppercase">Low Stock</span>` : `<span class="bg-emerald-100 text-emerald-800 font-bold text-[9px] sm:text-[10px] px-2 py-0.5 rounded-full uppercase">In Stock</span>`;
                 const bestSellerTag = p.isBestSeller ? `<span class="bg-amber-100 text-amber-800 font-bold text-[9px] px-2 py-0.5 rounded-full ml-2">★ Best Seller</span>` : '';
+                const safeId = p.id.replace(/'/g, "\\'");
 
                 return `
                     <tr class="border-b border-safari-border/50 hover:bg-safari-surface/50">
                         <td class="p-3 sm:p-4 flex items-center gap-3">
-                            <img src="${primaryImg}" class="w-9 h-9 sm:w-10 sm:h-10 object-cover rounded-lg border">
+                            <img src="${esc(primaryImg)}" class="w-9 h-9 sm:w-10 sm:h-10 object-cover rounded-lg border">
                             <div>
-                                <span class="font-bold text-xs sm:text-sm block">${p.name} ${bestSellerTag}</span>
-                                <span class="text-[9px] sm:text-[10px] text-safari-espresso/50 font-mono">SKU: ${p.sku || 'N/A'}</span>
+                                <span class="font-bold text-xs sm:text-sm block">${esc(p.name)} ${bestSellerTag}</span>
+                                <span class="text-[9px] sm:text-[10px] text-safari-espresso/50 font-mono">SKU: ${esc(p.sku || 'N/A')}</span>
                             </div>
                         </td>
-                        <td class="p-3 sm:p-4 text-[11px] sm:text-xs uppercase font-semibold text-safari-olive">${p.category}</td>
+                        <td class="p-3 sm:p-4 text-[11px] sm:text-xs uppercase font-semibold text-safari-olive">${esc(p.category)}</td>
                         <td class="p-3 sm:p-4 font-heading font-bold text-safari-terracotta">R${parseFloat(p.price).toFixed(2)}</td>
                         <td class="p-3 sm:p-4">
                             <div class="flex items-center gap-1.5 sm:gap-2">
                                 <span class="font-bold text-xs sm:text-sm w-10 sm:w-12">${stockVal}u</span>
-                                <button type="button" onclick="quickAdjustStock('${p.id}', 1)" class="w-5 h-5 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-safari-olive hover:text-white transition-colors cursor-pointer">+</button>
-                                <button type="button" onclick="quickAdjustStock('${p.id}', -1)" class="w-5 h-5 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-red-600 hover:text-white transition-colors cursor-pointer">-</button>
+                                <button type="button" onclick="quickAdjustStock('${safeId}', 1)" class="w-5 h-5 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-safari-olive hover:text-white transition-colors cursor-pointer">+</button>
+                                <button type="button" onclick="quickAdjustStock('${safeId}', -1)" class="w-5 h-5 bg-safari-surface border border-safari-border rounded flex items-center justify-center text-xs hover:bg-red-600 hover:text-white transition-colors cursor-pointer">-</button>
                             </div>
                         </td>
                         <td class="p-3 sm:p-4">${statusBadge}</td>
                         <td class="p-3 sm:p-4 text-right space-x-1 whitespace-nowrap">
-                            <button type="button" onclick="openEditProductModal('${p.id}')" class="bg-safari-olive text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-safari-oliveDark cursor-pointer">Edit</button>
-                            <button type="button" onclick="deleteProduct('${p.id}')" class="bg-safari-terracotta text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-safari-terracottaDark cursor-pointer">Del</button>
+                            <button type="button" onclick="openEditProductModal('${safeId}')" class="bg-safari-olive text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-safari-oliveDark cursor-pointer">Edit</button>
+                            <button type="button" onclick="deleteProduct('${safeId}')" class="bg-safari-terracotta text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-safari-terracottaDark cursor-pointer">Del</button>
                         </td>
                     </tr>
                 `;
@@ -1729,19 +1898,22 @@
                 tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-safari-espresso/60">No customer accounts registered yet.</td></tr>`;
                 return;
             }
-            tbody.innerHTML = customers.map(c => `
+            tbody.innerHTML = customers.map(c => {
+                const safeId = c.id.replace(/'/g, "\\'");
+                return `
                 <tr class="border-b border-safari-border/50">
-                    <td class="p-3 sm:p-4 font-bold text-xs sm:text-sm">${c.name || 'Not Provided'}</td>
-                    <td class="p-3 sm:p-4 text-xs font-mono text-safari-espresso/80">${c.email}</td>
-                    <td class="p-3 sm:p-4 text-xs">${c.phone || 'N/A'}</td>
-                    <td class="p-3 sm:p-4 text-xs text-safari-espresso/70">${c.address || 'N/A'}</td>
-                    <td class="p-3 sm:p-4 text-xs text-safari-espresso/60 font-mono">${c.joinedDate || 'N/A'}</td>
+                    <td class="p-3 sm:p-4 font-bold text-xs sm:text-sm">${esc(c.name || 'Not Provided')}</td>
+                    <td class="p-3 sm:p-4 text-xs font-mono text-safari-espresso/80">${esc(c.email)}</td>
+                    <td class="p-3 sm:p-4 text-xs">${esc(c.phone || 'N/A')}</td>
+                    <td class="p-3 sm:p-4 text-xs text-safari-espresso/70">${esc(c.address || 'N/A')}</td>
+                    <td class="p-3 sm:p-4 text-xs text-safari-espresso/60 font-mono">${esc(c.joinedDate || 'N/A')}</td>
                     <td class="p-3 sm:p-4 text-right space-x-1 whitespace-nowrap">
-                        <button type="button" onclick="openEditCustomerModal('${c.id}')" class="bg-safari-olive text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-safari-oliveDark cursor-pointer">Edit</button>
-                        <button type="button" onclick="deleteCustomer('${c.id}')" class="bg-red-700 text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-red-800 cursor-pointer">Del</button>
+                        <button type="button" onclick="openEditCustomerModal('${safeId}')" class="bg-safari-olive text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-safari-oliveDark cursor-pointer">Edit</button>
+                        <button type="button" onclick="deleteCustomer('${safeId}')" class="bg-red-700 text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-red-800 cursor-pointer">Del</button>
                     </td>
                 </tr>
-            `).join('');
+                `;
+            }).join('');
         }
 
         window.openEditCustomerModal = function(id) {
@@ -1775,8 +1947,9 @@
                 alert("Customer profile successfully updated!");
                 closeCustomerFormModal();
             } catch (err) {
-                alert("Customer updated successfully!");
-                closeCustomerFormModal();
+                // FIX: Show actual error instead of fake success
+                alert("Failed to update customer: " + (err.message || "Please try again."));
+                console.error("Customer update error:", err);
             }
         }
 
@@ -1786,8 +1959,9 @@
                 await deleteDoc(doc(db, "customers", id));
                 alert("Customer account deleted.");
             } catch (err) {
-                customers = customers.filter(c => c.id !== id);
-                renderAdminDashboard();
+                // FIX: Show actual error instead of silently proceeding
+                alert("Failed to delete customer: " + (err.message || "Please try again."));
+                console.error("Customer delete error:", err);
             }
         }
 
@@ -1804,8 +1978,9 @@
             try {
                 await updateDoc(doc(db, "products", id), { stock: newStock });
             } catch (err) {
-                prod.stock = newStock;
-                renderAdminDashboard();
+                // FIX: Show actual error
+                alert("Failed to update stock: " + (err.message || "Please try again."));
+                console.error("Stock update error:", err);
             }
         }
 
@@ -1844,7 +2019,6 @@
             e.preventDefault();
             const id = document.getElementById("prod-edit-id").value;
             const isBestSellerChecked = document.getElementById("prod-bestseller").checked;
-            if (isBestSellerChecked) products.forEach(p => { p.isBestSeller = false; });
 
             const data = {
                 name: document.getElementById("prod-name").value,
@@ -1857,7 +2031,7 @@
                 extra1: document.getElementById("prod-extra-1").value,
                 extra2: document.getElementById("prod-extra-2").value,
                 description: document.getElementById("prod-desc").value,
-                stock: 25
+                stock: id ? (products.find(p => p.id === id)?.stock ?? 25) : 25
             };
 
             try {
@@ -1866,11 +2040,26 @@
                 } else {
                     await addDoc(collection(db, "products"), data);
                 }
+
+                // FIX: If best seller is checked, clear the flag on ALL other products in the database
+                if (isBestSellerChecked) {
+                    const otherBestSellers = products.filter(p => p.id !== id && p.isBestSeller === true);
+                    for (const other of otherBestSellers) {
+                        try {
+                            await updateDoc(doc(db, "products", other.id), { isBestSeller: false });
+                        } catch (err) {
+                            console.error("Failed to clear old best seller:", err);
+                        }
+                    }
+                }
+
                 closeProductFormModal();
                 renderAdminDashboard();
                 renderHeroBestSeller();
             } catch (err) {
-                closeProductFormModal();
+                // FIX: Show actual error instead of just closing the modal
+                alert("Failed to save product: " + (err.message || "Please try again."));
+                console.error("Product save error:", err);
             }
         }
 
@@ -1879,9 +2068,9 @@
             try {
                 await deleteDoc(doc(db, "products", id));
             } catch (err) {
-                products = products.filter(p => p.id !== id);
-                renderAdminDashboard();
-                renderHeroBestSeller();
+                // FIX: Show actual error
+                alert("Failed to delete product: " + (err.message || "Please try again."));
+                console.error("Product delete error:", err);
             }
         }
 
@@ -1895,22 +2084,24 @@
             tbody.innerHTML = orders.map(o => {
                 const isPaid = o.status === "Paid / Processing" || o.status === "Completed";
                 const isCompleted = o.status === "Completed";
-                let statusBadge = `<span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">${o.status || 'Pending Payment'}</span>`;
+                let statusBadge = `<span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">${esc(o.status || 'Pending Payment')}</span>`;
                 if (isPaid) {
-                    statusBadge = `<span class="bg-emerald-100 text-emerald-800 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">${o.status}</span>`;
+                    statusBadge = `<span class="bg-emerald-100 text-emerald-800 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">${esc(o.status)}</span>`;
                 }
+                const safeId = o.id.replace(/'/g, "\\'");
+                const itemsSummary = (o.items || []).map(i => `${i.qty}x ${esc(i.name)} (${esc(i.selectedOption)} - R${i.finalPrice})`).join(', ');
 
                 return `
                     <tr class="border-b border-safari-border/50">
-                        <td class="p-3 sm:p-4 text-xs font-mono font-bold">#${o.id.substring(0, 8)}</td>
-                        <td class="p-3 sm:p-4 font-bold text-xs sm:text-sm">${o.name}</td>
-                        <td class="p-3 sm:p-4 text-[11px] text-safari-espresso/70">${o.phone}<br>${o.email}</td>
-                        <td class="p-3 sm:p-4 text-[11px]">${o.items.map(i => `${i.qty}x ${i.name} (${i.selectedOption} - R${i.finalPrice})`).join(', ')}</td>
+                        <td class="p-3 sm:p-4 text-xs font-mono font-bold">#${esc(o.id.substring(0, 8))}</td>
+                        <td class="p-3 sm:p-4 font-bold text-xs sm:text-sm">${esc(o.name)}</td>
+                        <td class="p-3 sm:p-4 text-[11px] text-safari-espresso/70">${esc(o.phone)}<br>${esc(o.email)}</td>
+                        <td class="p-3 sm:p-4 text-[11px]">${itemsSummary}</td>
                         <td class="p-3 sm:p-4 font-heading font-bold text-safari-terracotta">R${parseFloat(o.total).toFixed(2)}</td>
                         <td class="p-3 sm:p-4">${statusBadge}</td>
                         <td class="p-3 sm:p-4 text-right space-x-1 whitespace-nowrap">
-                            ${!isCompleted ? `<button type="button" onclick="markOrderComplete('${o.id}')" class="bg-emerald-700 text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-emerald-800 cursor-pointer">Complete</button>` : ''}
-                            <button type="button" onclick="deleteOrder('${o.id}')" class="bg-red-700 text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-red-800 cursor-pointer">Delete</button>
+                            ${!isCompleted ? `<button type="button" onclick="markOrderComplete('${safeId}')" class="bg-emerald-700 text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-emerald-800 cursor-pointer">Complete</button>` : ''}
+                            <button type="button" onclick="deleteOrder('${safeId}')" class="bg-red-700 text-white px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase hover:bg-red-800 cursor-pointer">Delete</button>
                         </td>
                     </tr>
                 `;
@@ -1921,9 +2112,9 @@
             try {
                 await updateDoc(doc(db, "orders", id), { status: "Completed" });
             } catch (err) {
-                const o = orders.find(ord => ord.id === id);
-                if (o) o.status = "Completed";
-                renderAdminDashboard();
+                // FIX: Show actual error
+                alert("Failed to mark order as complete: " + (err.message || "Please try again."));
+                console.error("Order complete error:", err);
             }
         }
 
@@ -1932,8 +2123,9 @@
             try {
                 await deleteDoc(doc(db, "orders", id));
             } catch (err) {
-                orders = orders.filter(o => o.id !== id);
-                renderAdminDashboard();
+                // FIX: Show actual error
+                alert("Failed to delete order: " + (err.message || "Please try again."));
+                console.error("Order delete error:", err);
             }
         }
 
