@@ -714,13 +714,13 @@
                                     <th class="p-3 sm:p-4">Delivery Address</th>
                                     <th class="p-3 sm:p-4">Joined Date</th>
                                     <th class="p-3 sm:p-4 text-right">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="admin-customer-table-body"></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                              </tr>
+                          </thead>
+                          <tbody id="admin-customer-table-body"></tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
 
             <!-- Settings & Announcement Banner Panel -->
             <div id="admin-panel-settings" class="space-y-4 hidden">
@@ -735,7 +735,7 @@
                         <button type="submit" class="bg-safari-olive hover:bg-safari-oliveDark text-white px-6 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider transition-all shadow cursor-pointer">
                             Save & Update Banner Live →
                         </button>
-                    </form>
+                  </form>
                 </div>
             </div>
 
@@ -758,9 +758,9 @@
                             </thead>
                             <tbody id="admin-order-table-body"></tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
+                  </div>
+              </div>
+          </div>
 
         </div>
     </div>
@@ -1091,9 +1091,6 @@
                 setCurrentCustomer(user, profile);
             });
 
-            // Check URL parameters for PayFast return status
-            // NOTE: We do NOT mark orders as paid here — only the ITN webhook can do that.
-            // The return URL just shows a user-facing message.
             const urlParams = new URLSearchParams(window.location.search);
             const status = urlParams.get('status');
             const pfOrderId = urlParams.get('order_id');
@@ -1145,7 +1142,6 @@
             orders = [];
         }
 
-        // ---------- PAYFAST RETURN: user-facing message only, NO order status change ----------
         function showPayFastReturnMessage(type, orderId) {
             const modal = document.getElementById('payfast-status-modal');
             const titleEl = document.getElementById('payfast-status-title');
@@ -1172,7 +1168,6 @@
             document.getElementById('payfast-status-modal').classList.add('hidden');
         }
 
-        // ---------- POLICY MODALS ----------
         window.openPolicyModal = function(policyKey) {
             const policy = policiesData[policyKey];
             if (!policy) return;
@@ -1193,7 +1188,6 @@
             document.getElementById("eft-modal").classList.add("hidden");
         }
 
-        // ---------- AUTH MODALS ----------
         window.openAuthModal = function() {
             document.getElementById("auth-modal").classList.remove("hidden");
             if (currentCustomer) {
@@ -1400,7 +1394,6 @@
             renderProducts();
         }
 
-        // ---------- CART LOGIC with stock validation ----------
         window.addToCart = function(id) {
             const prod = products.find(p => p.id === id);
             if (!prod) return;
@@ -1420,7 +1413,6 @@
                 }
             }
 
-            // Stock validation: check if adding one more exceeds available stock
             const stockVal = prod.stock !== undefined ? prod.stock : 99;
             const currentInCart = cart.filter(item => item.id === id).reduce((sum, item) => sum + item.qty, 0);
             if (currentInCart + 1 > stockVal) {
@@ -1478,7 +1470,6 @@
         }
 
         window.updateCartItemQty = function(index, delta) {
-            // Stock validation on quantity increase
             if (delta > 0) {
                 const item = cart[index];
                 const prod = products.find(p => p.id === item.id);
@@ -1507,7 +1498,6 @@
             document.getElementById("cart-drawer").classList.toggle("hidden");
         }
 
-        // ---------- PRODUCT MODAL ----------
         window.openProductModal = function(id) {
             selectedProduct = products.find(p => p.id === id);
             if (!selectedProduct) return;
@@ -1597,7 +1587,6 @@
             if (primaryImg.includes(',')) primaryImg = primaryImg.split(',')[0].trim();
             const finalPrice = parseFloat(selectedProduct.price) + (selectedVariant ? selectedVariant.priceMod : 0);
 
-            // Stock validation
             const stockVal = selectedProduct.stock !== undefined ? selectedProduct.stock : 99;
             const currentInCart = cart.filter(item => item.id === selectedProduct.id).reduce((sum, item) => sum + item.qty, 0);
             if (currentInCart + 1 > stockVal) {
@@ -1619,7 +1608,6 @@
             toggleCartDrawer();
         }
 
-        // ---------- CHECKOUT ----------
         window.openCheckoutModal = function() {
             if (cart.length === 0) { alert("Your cart is empty!"); return; }
             if (!currentCustomer) {
@@ -1628,7 +1616,6 @@
                 return;
             }
 
-            // Final stock validation before checkout
             for (const item of cart) {
                 const prod = products.find(p => p.id === item.id);
                 if (prod) {
@@ -1652,7 +1639,6 @@
             document.getElementById("checkout-modal").classList.add("hidden");
         }
 
-        // ---------- STOCK DECREMENT after order ----------
         async function decrementStock(orderItems) {
             try {
                 const batch = writeBatch(db);
@@ -1708,22 +1694,21 @@
                 const orderId = docRef.id;
                 const orderItemsFormatted = cart.map(i => `${i.qty}x ${i.name} (${i.selectedOption}) - R${(i.finalPrice * i.qty).toFixed(2)}`).join('\n');
 
-                // Decrement stock for ordered items
                 await decrementStock(cart);
 
-                if (!isPayFast) {
-                    // Send EmailJS confirmation with banking details & POP instructions for EFT
-                    emailjs.send("service_q2vtu6a", "template_enbu2zn", {
-                        order_id: orderId.substring(0, 8),
-                        customer_name: name,
-                        customer_phone: phone,
-                        customer_email: email,
-                        customer_address: address,
-                        payment_method: paymentMethod,
-                        order_items: orderItemsFormatted,
-                        order_total: total.toFixed(2)
-                    }).catch((err) => console.log("EmailJS failed:", err));
+                // Send EmailJS confirmation immediately upon order submission for both EFT and PayFast
+                emailjs.send("service_q2vtu6a", "template_enbu2zn", {
+                    order_id: orderId.substring(0, 8),
+                    customer_name: name,
+                    customer_phone: phone,
+                    customer_email: email,
+                    customer_address: address,
+                    payment_method: paymentMethod,
+                    order_items: orderItemsFormatted,
+                    order_total: total.toFixed(2)
+                }).catch((err) => console.log("EmailJS failed:", err));
 
+                if (!isPayFast) {
                     cart = [];
                     saveCartToStorage();
                     updateCartUI();
@@ -1731,8 +1716,6 @@
                     document.getElementById("checkout-form").reset();
                     openEftModal();
                 } else {
-                    // Redirect to PayFast — order status stays "Pending Payment"
-                    // The ITN webhook (payfastITN Cloud Function) is the ONLY thing that marks it as paid.
                     const siteUrl = window.location.href.split('?')[0];
                     document.getElementById("pf-return").value = siteUrl + "?status=success&order_id=" + orderId;
                     document.getElementById("pf-cancel").value = siteUrl + "?status=cancel";
@@ -1745,7 +1728,6 @@
                     document.getElementById("payfast-form").submit();
                 }
             } catch (err) {
-                // FIX: Show actual error message instead of fake success
                 alert("There was a problem placing your order: " + (err.message || "Please try again or contact support."));
                 console.error("Order submission error:", err);
             }
@@ -1763,13 +1745,11 @@
                 alert("Thank you for subscribing to Ketties & Goete!");
                 e.target.reset();
             } catch (err) {
-                // FIX: Show actual error instead of fake success
                 alert("Sorry, we couldn't process your subscription right now. Please try again later.");
                 console.error("Newsletter subscription error:", err);
             }
         }
 
-        // ---------- ANNOUNCEMENT BANNER ----------
         window.saveAnnouncementBanner = async function(e) {
             e.preventDefault();
             const text = document.getElementById("admin-banner-text").value;
@@ -1783,7 +1763,6 @@
             }
         }
 
-        // ---------- ADMIN DASHBOARD ----------
         window.openAdminModal = function(e) {
             if (e) e.preventDefault();
             if (!currentCustomer || !currentCustomer.isAdmin) {
@@ -1947,7 +1926,6 @@
                 alert("Customer profile successfully updated!");
                 closeCustomerFormModal();
             } catch (err) {
-                // FIX: Show actual error instead of fake success
                 alert("Failed to update customer: " + (err.message || "Please try again."));
                 console.error("Customer update error:", err);
             }
@@ -1959,7 +1937,6 @@
                 await deleteDoc(doc(db, "customers", id));
                 alert("Customer account deleted.");
             } catch (err) {
-                // FIX: Show actual error instead of silently proceeding
                 alert("Failed to delete customer: " + (err.message || "Please try again."));
                 console.error("Customer delete error:", err);
             }
@@ -1978,7 +1955,6 @@
             try {
                 await updateDoc(doc(db, "products", id), { stock: newStock });
             } catch (err) {
-                // FIX: Show actual error
                 alert("Failed to update stock: " + (err.message || "Please try again."));
                 console.error("Stock update error:", err);
             }
@@ -2041,7 +2017,6 @@
                     await addDoc(collection(db, "products"), data);
                 }
 
-                // FIX: If best seller is checked, clear the flag on ALL other products in the database
                 if (isBestSellerChecked) {
                     const otherBestSellers = products.filter(p => p.id !== id && p.isBestSeller === true);
                     for (const other of otherBestSellers) {
@@ -2057,7 +2032,6 @@
                 renderAdminDashboard();
                 renderHeroBestSeller();
             } catch (err) {
-                // FIX: Show actual error instead of just closing the modal
                 alert("Failed to save product: " + (err.message || "Please try again."));
                 console.error("Product save error:", err);
             }
@@ -2068,7 +2042,6 @@
             try {
                 await deleteDoc(doc(db, "products", id));
             } catch (err) {
-                // FIX: Show actual error
                 alert("Failed to delete product: " + (err.message || "Please try again."));
                 console.error("Product delete error:", err);
             }
@@ -2112,7 +2085,6 @@
             try {
                 await updateDoc(doc(db, "orders", id), { status: "Completed" });
             } catch (err) {
-                // FIX: Show actual error
                 alert("Failed to mark order as complete: " + (err.message || "Please try again."));
                 console.error("Order complete error:", err);
             }
@@ -2123,7 +2095,6 @@
             try {
                 await deleteDoc(doc(db, "orders", id));
             } catch (err) {
-                // FIX: Show actual error
                 alert("Failed to delete order: " + (err.message || "Please try again."));
                 console.error("Order delete error:", err);
             }
