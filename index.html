@@ -370,7 +370,7 @@
                 </div>
                 <div class="flex justify-between">
                     <span class="text-safari-espresso/70 font-semibold">Reference:</span>
-                    <span class="font-heading font-bold text-safari-terracotta">Your Name & Cell nr</span>
+                    <span class="font-heading font-bold text-safari-terracotta">Your Name & Surname</span>
                 </div>
             </div>
 
@@ -717,13 +717,13 @@
                               </tr>
                           </thead>
                           <tbody id="admin-customer-table-body"></tbody>
-                      </table>
+                    </table>
                   </div>
-              </div>
+            </div>
           </div>
 
-            <!-- Settings & Announcement Banner Panel -->
-            <div id="admin-panel-settings" class="space-y-4 hidden">
+          <!-- Settings & Announcement Banner Panel -->
+          <div id="admin-panel-settings" class="space-y-4 hidden">
                 <div class="bg-safari-surface p-6 rounded-2xl border border-safari-border space-y-4">
                     <h4 class="font-heading font-bold text-base uppercase">Editable Top Announcement Bar</h4>
                     <p class="text-xs text-safari-espresso/70">Update the message displayed at the very top of your website header instantly.</p>
@@ -737,20 +737,21 @@
                         </button>
                   </form>
                 </div>
-            </div>
+          </div>
 
-            <!-- Orders Panel -->
-            <div id="admin-panel-orders" class="space-y-4 hidden">
+          <!-- Orders Panel -->
+          <div id="admin-panel-orders" class="space-y-4 hidden">
                 <div class="bg-safari-surface p-4 sm:p-6 rounded-2xl border border-safari-border">
                     <h4 class="font-heading font-bold text-base mb-4 uppercase">Client Orders & Transactions</h4>
                     <div class="overflow-x-auto border border-safari-border rounded-xl bg-safari-parchment">
-                        <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[750px]">
+                        <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[850px]">
                             <thead>
                                 <tr class="bg-safari-border/30 border-b border-safari-border font-heading text-[10px] sm:text-[11px] uppercase tracking-wider text-safari-espresso/70">
                                     <th class="p-3 sm:p-4">Order ID</th>
                                     <th class="p-3 sm:p-4">Customer</th>
                                     <th class="p-3 sm:p-4">Contact</th>
                                     <th class="p-3 sm:p-4">Items Ordered</th>
+                                    <th class="p-3 sm:p-4">Payment Method</th>
                                     <th class="p-3 sm:p-4">Total</th>
                                     <th class="p-3 sm:p-4">Status</th>
                                     <th class="p-3 sm:p-4 text-right">Actions</th>
@@ -2051,7 +2052,7 @@
             const tbody = document.getElementById("admin-order-table-body");
             if (!tbody) return;
             if (orders.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-safari-espresso/60">No customer orders recorded yet.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-safari-espresso/60">No customer orders recorded yet.</td></tr>`;
                 return;
             }
             tbody.innerHTML = orders.map(o => {
@@ -2061,6 +2062,13 @@
                 if (isPaid) {
                     statusBadge = `<span class="bg-emerald-100 text-emerald-800 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">${esc(o.status)}</span>`;
                 }
+                
+                const paymentType = o.payment || "Direct EFT Bank Transfer";
+                const isPayFastMethod = paymentType.toLowerCase().includes("payfast");
+                const paymentBadge = isPayFastMethod 
+                    ? `<span class="bg-blue-100 text-blue-800 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase flex items-center gap-1 w-max"><i class="fa-solid fa-credit-card"></i> PayFast</span>` 
+                    : `<span class="bg-purple-100 text-purple-800 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase flex items-center gap-1 w-max"><i class="fa-solid fa-building-columns"></i> Direct EFT</span>`;
+
                 const safeId = o.id.replace(/'/g, "\\'");
                 const itemsSummary = (o.items || []).map(i => `${i.qty}x ${esc(i.name)} (${esc(i.selectedOption)} - R${i.finalPrice})`).join(', ');
 
@@ -2070,6 +2078,7 @@
                         <td class="p-3 sm:p-4 font-bold text-xs sm:text-sm">${esc(o.name)}</td>
                         <td class="p-3 sm:p-4 text-[11px] text-safari-espresso/70">${esc(o.phone)}<br>${esc(o.email)}</td>
                         <td class="p-3 sm:p-4 text-[11px]">${itemsSummary}</td>
+                        <td class="p-3 sm:p-4">${paymentBadge}</td>
                         <td class="p-3 sm:p-4 font-heading font-bold text-safari-terracotta">R${parseFloat(o.total).toFixed(2)}</td>
                         <td class="p-3 sm:p-4">${statusBadge}</td>
                         <td class="p-3 sm:p-4 text-right space-x-1 whitespace-nowrap">
